@@ -1,0 +1,56 @@
+version: 2
+
+jobs:
+  deploy:
+    docker:
+      # only 5MB Linux!
+      - image: alpine:latest
+    steps:
+      # default directory /root/project
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "29:0d:84:d2:ba:f3:ef:d3:6b:0b:f8:08:3e:d1:78:10"
+      - run:
+          name: Get rsync Command
+          command: |
+            apk update
+            apk add rsync openssh
+      - run:
+          name: Set Known Host
+          command: ssh-keyscan -p ${PORT} ${HOST_NAME} >> ~/.ssh/known_hosts
+      - run:
+          name: List up Excluding Files
+          command: |
+            touch excludes
+            cat << EOS > excludes
+            .git
+            .gitignore
+            .circleci
+            .env
+            sass
+            *.map
+            *.lock
+            vendor/**
+            package.json
+            excludes
+            EOS
+      - run:
+          name: Create Directory for Deploy
+          command: mkdir -p /tmp/site2020
+      - run:
+          name: Copy Files for Deploy
+          command: rsync -rva --delete --exclude-from=excludes ./ /tmp/site2020
+
+      - run:
+          name: Deploy
+          command: |
+            rsync -avr --delete --exclude-from=excludes -e "ssh -p ${PORT}" /tmp/site2020 ${USER_NAME}@${HOST_NAME}:/var/www/rikoten.com
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: master
