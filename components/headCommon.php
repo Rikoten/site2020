@@ -10,16 +10,16 @@
 
 <meta property="og:url" content="https://www.rikoten.com">
 <meta property="og:type" content="website">
-<meta property="og:title" content="早稲田理工の学園祭 第67回理工展 プレサイト">
+<!--<meta property="og:title" content="早稲田理工の学園祭 第67回理工展 プレサイト">
 <meta property="og:description" content="第67回理工展の運営に関する情報を掲載しています。">
-<!--<meta property="og:image" content="https://www.rikoten.com/pre/img/card.png">-->
+<meta property="og:image" content="https://www.rikoten.com/pre/img/card.png">-->
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@rikoten_waseda">
 <meta name="twitter:creator" content="@rikoten_waseda">
-<meta name="twitter:title" content="早稲田理工の学園祭 第67回理工展 プレサイト">
+<!--<meta name="twitter:title" content="早稲田理工の学園祭 第67回理工展 プレサイト">
 <meta name="twitter:description" content="第67回理工展の運営に関する情報を掲載しています。">
-<!--<meta name="twitter:image" content="https://www.rikoten.com/pre/img/card.png">-->
+<meta name="twitter:image" content="https://www.rikoten.com/pre/img/card.png">-->
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117940930-1"></script>
