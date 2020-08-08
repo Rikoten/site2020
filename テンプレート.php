@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang = "ja">
 <head>
 <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/components/headCommon.php"); ?>
 <title>タイトル</title>
