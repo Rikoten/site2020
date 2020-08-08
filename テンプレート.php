@@ -2,6 +2,7 @@
 <html>
 <head>
 <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/php/components/headCommon.php"); ?>
+<title>タイトル</title>
 </head>
 <body>
 <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/php/components/header.php"); ?>
