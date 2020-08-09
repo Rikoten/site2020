@@ -4,9 +4,8 @@
 <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 <link rel = "stylesheet" href = "/css/main.css">
 <script src = "/js/jquery-3.3.1.min.js"></script>
-<title>早稲田理工の学園祭 第67回理工展</title>
 
-<meta name="description" content="毎年11月初旬に早稲田大学西早稲田キャンパスで開催される早稲田理工の学園祭。今年はオンラインで、研究発表や講演会から参加型の実験企画まで幅広い企画を用意して、科学が持ついろいろな側面を皆様に見て、感じて、楽しんでいただけることを目指しています。">
+<!--<meta name="description" content="毎年11月初旬に早稲田大学西早稲田キャンパスで開催される早稲田理工の学園祭。今年はオンラインで、研究発表や講演会から参加型の実験企画まで幅広い企画を用意して、科学が持ついろいろな側面を皆様に見て、感じて、楽しんでいただけることを目指しています。">-->
 
 <meta property="og:url" content="https://www.rikoten.com">
 <meta property="og:type" content="website">
