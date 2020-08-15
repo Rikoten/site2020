@@ -5,6 +5,7 @@
 <title>参加団体ページ</title>
 <meta name = "keywords" content = "">
 <meta name = "description" content = "">
+<meta name = "viewport" content = "width = device-width, initial-scale = 1, shrink-to-fit = no">
 <link rel = "stylesheet" href = "../css/main.css">
 </head>
 
@@ -27,7 +28,10 @@
       <p>図法として一点透視図法、二点透視図法、三点透視図法などがあります。これらは美術にとどまらず、建築、映画、アニメ、コンピュータグラフィックスなど、視覚表現の分野で広く使用されています。</p>
     </article>
 
-    <section class = "group-desc">
+    <section class = "group-info">
+      <h2 class = "h2-group">団体紹介</h2>
+      <p class = "group-name">早稲田デザイン学振興会</p>
+      <p class = "group-desc">精緻な違和感のないデザインを制作するためには遠近感を正しく描写する必要があります。早稲田デザイン学振興会では目に映る像を平面に正確に写すための技法である透視図法の振興に努め、特に一点透視図法や二点透視図法等の図法の研究を行っています。<p>
     </section>
   </main>
 
