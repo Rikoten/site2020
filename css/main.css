@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
+
+  display: grid;
+  grid-template-rows: auto 100px auto 100px auto auto;
+  grid-template-areas:
+    "header"
+    "."
+    "main"
+    "."
+    "otherEvents"
+    "footer";
+}
+
+/* これは書き換える必要があります */
+header {
+  grid-area: header;
+  height: 400px;
+  background-color: #6EA9DB;
+}
+
+main {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: 1fr 760px 1fr;
+}
+
+aside {
+  grid-area: otherEvents;
+}
+
+footer {
+  grid-area: footer;
+  height: 150px;
+  background-color: #1B2C6C;
+}
+
+article {
+  grid-column: 2;
+}
+
+.grounp-desc {
+
+}
