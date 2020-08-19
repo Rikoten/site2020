@@ -139,3 +139,16 @@ article > p {
     padding: 0px 10px;
   }
 }
+
+h3 {
+  font-size: 26px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h3 > span.h3-num {
+  font-size: 46px;
+}
+/* 指定されたptよりpxの方がサイズ的にしっくりきた */
