@@ -52,3 +52,16 @@ document.addEventListener('DOMContentLoaded', function () {
   // 最後に画面にレンダリング
   contentsList.appendChild(div);
 });
+
+var $window = $(window), //ウィンドウを指定
+$articleIndex = $("#articleIndex"),
+articleIndexTop = $articleIndex.offset().top; //#contentの位置を取得
+
+$window.on("scroll", function () {
+  if ($window.scrollTop() > articleIndexTop) {
+    $articleIndex.addClass("fixed");
+  }
+  else {
+    $articleIndex.removeClass("fixed");
+  }
+});

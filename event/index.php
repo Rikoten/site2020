@@ -13,10 +13,10 @@
 
   <header></header>
 
-  <!-- 目次（山下担当部分） -->
-  <nav id = "articleIndex"></nav>
 
   <main>
+    <!-- 目次 -->
+    <nav id = "articleIndex"></nav>
     <article>
       <h3>遠近法</h3>
       <h4>空気遠近法</h4>
@@ -26,6 +26,7 @@
       <h4>透視図法</h4>
       <p>遠近法の基本は視点の前に置いた「投影面」に、それを通過する光を写し取ることであり、それは窓ガラスを通して見える光景を窓ガラス表面に直接描画することに似ています。ガラスに写し取られた図は3次元の光景を縮小し2次元平面上に変換したものとなります。</p>
       <p>図法として一点透視図法、二点透視図法、三点透視図法などがあります。これらは美術にとどまらず、建築、映画、アニメ、コンピュータグラフィックスなど、視覚表現の分野で広く使用されています。</p>
+      <br><br><br><br><br><br><br><br><br><br>
     </article>
 
     <section class = "group-info">
@@ -39,6 +40,8 @@
   <aside></aside>
 
   <footer></footer>
+  <!-- あとでいらないように作りかえたい(願望) -->
+  <script type="text/javascript" src = "/js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src = "/js/article-index.js"></script>
 </body>
 

@@ -23,6 +23,17 @@ header {
   background-color: #6EA9DB;
 }
 
+nav {
+  width: 400px;
+  position: absolute;
+  right: 0;
+}
+
+nav.fixed {
+  position: fixed;
+  top: 0px;
+}
+
 main {
   grid-area: main;
   display: grid;
