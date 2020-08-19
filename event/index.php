@@ -7,6 +7,7 @@
 <meta name = "description" content = "">
 <meta name = "viewport" content = "width = device-width, initial-scale = 1, shrink-to-fit = no">
 <link rel = "stylesheet" href = "/css/main.css">
+<link rel = "stylesheet" href = "/css/event.css">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
     <!-- 目次 -->
     <nav id = "articleIndex"></nav>
     <article>
-      <h3>遠近法</h3>
+      <h3><span class = "h3-num">01. </span>遠近法</h3>
       <h4>空気遠近法</h4>
       <p>空気遠近法は、大気が持つ性質を利用した空間表現法です。例えば戸外の風景を眺めてみると、遠景に向かうほどに対象物は青味がかって見え、また同時に、遠景ほど輪郭線が不明瞭になり、対象物は霞んで見えます。</p>
       <p>こういった性質を利用して空気遠近法では、遠景にあるものほど形態をぼやかして描いたり、色彩をより大気の色に近づけるなどして、空間の奥行きを表現します。</p>

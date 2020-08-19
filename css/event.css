@@ -1,0 +1,141 @@
+/* これは書き換える必要があります */
+header {
+  grid-area: header;
+  height: 400px;
+  background-color: #6EA9DB;
+}
+
+nav {
+  width: 400px;
+  position: absolute;
+  right: 0;
+}
+
+nav.fixed {
+  position: fixed;
+  top: 0px;
+}
+
+main {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: 1fr 760px 1fr;
+}
+
+aside {
+  grid-area: otherEvents;
+}
+
+footer {
+  grid-area: footer;
+  height: 150px;
+  background-color: #1B2C6C;
+}
+
+article {
+  grid-column: 2;
+}
+
+p {
+  margin: 0;
+}
+
+article > p {
+  margin: 1.5em 0;
+}
+
+.group-info {
+  display: none;
+}
+
+@media (max-width:567px) {
+  body {
+    font-size: 16px;
+
+    display: grid;
+    grid-template-rows: auto auto 50px auto 50px auto auto;
+    grid-template-areas:
+      "header"
+      "index"
+      "."
+      "main"
+      "."
+      "otherEvents"
+      "footer";
+  }
+
+  main {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto 50px 36px 50px auto;
+    grid-template-areas:
+      "article"
+      "."
+      "pagination"
+      "."
+      "groupInfo";
+  }
+
+  article {
+    grid-column: 1;
+    padding: 0px 10px;
+  }
+
+  h2 {
+    grid-row: 1;
+    margin: 0;
+    font-size: 16px;
+    line-height: 40px;
+    border-radius: 5px;
+    background-color: #59B4FF;
+    padding-left: 30px;
+    color: white;
+    position: relative;
+  }
+
+  h2::before {
+    position: absolute;
+    content: "";
+    height: 40px;
+    width: calc(100% - 7px);
+    border-radius: 5px;
+    background-color: #509AD5;
+    top: 0;
+    left: 7px;
+  }
+
+  .h2-group::after {
+    position: absolute;
+    content: "団体紹介";
+    height: 40px;
+    width: calc(100% - 14px);
+    border-radius: 5px;
+    background-color: #A1A1A1;
+    top: 0;
+    left: 14px;
+    padding-left: 16px;
+    box-sizing: border-box;
+  }
+
+  .group-info {
+    grid-area: groupInfo;
+    grid-column: 1 / -1;
+    background: linear-gradient(to bottom, white 20px, #EFEFEF 20px);
+
+    display: grid;
+    grid-template-rows: 40px 30px auto 30px auto 30px 45px 30px;
+  }
+
+  .group-name {
+    grid-row: 3;
+    font-weight: bold;
+    margin: 0;
+    padding: 0px 10px;
+  }
+
+  .group-desc {
+    grid-row: 5;
+    padding: 0px 10px;
+  }
+}
