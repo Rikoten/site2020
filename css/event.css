@@ -152,3 +152,22 @@ h3 > span.h3-num {
   font-size: 46px;
 }
 /* 指定されたptよりpxの方がサイズ的にしっくりきた */
+
+nav ul {
+  list-style-type: none;
+}
+
+nav > div > ul {
+  padding-left: 0;
+  font-weight: bold;
+}
+
+nav > div > ul ul {
+  padding-left: 30px;
+  font-weight: 400;
+}
+
+nav ul a {
+  text-decoration: none;
+  color: #000;
+}
