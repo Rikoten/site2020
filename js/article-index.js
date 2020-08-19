@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 見出しタグ要素のidを取得し空の場合は内容をidにする
     var id = value.id;
     if(id === '') {
-      id = value.textContent;
+      id = value.textContent.replace(/ /g, '').replace(/\./g, '');
       value.id = id;
     }
 
@@ -64,4 +64,17 @@ $window.on("scroll", function () {
   else {
     $articleIndex.removeClass("fixed");
   }
+});
+
+$(function(){
+  $('a[href^="#"]').click(function(){
+    var speed = 500;
+    var href= $(this).attr("href");
+    var target = $(href == "#" || href == "" ? 'html' : href);
+    var position = target.offset().top;
+    if (target.prop("tagName") === 'H3') position -= 20;
+    else position -= 10;
+    $("html, body").animate({scrollTop:position}, speed, "swing");
+    return false;
+  });
 });
