@@ -176,6 +176,7 @@ nav ul a {
   color: #454e53;
   width: 100%;
   display: inline-block;
+  transition: 200ms;
 }
 
 nav ul a.inView {
