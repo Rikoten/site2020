@@ -45,21 +45,30 @@ body {
   height: 100%;
   text-align: center;
 }
+
 #eventH3 > div {
   position: relative;
   display: inline-block;
   height: 100px;
-  color: #A3D4DC;
   font-size: 30px;
-  line-height: 100px;
   text-align: center;
   font-weight: bold;
-  width: 300px;
-  background: linear-gradient(to right, rgba(36, 61, 125, 0), rgba(36, 61, 125, 1));
+  width: 400px;
   z-index: 10;
+  border-left: #A3D4DC solid 4px;
+  border-right: #A3D4DC solid 4px;
 }
 
-#eventH3 > div::before {
+#eventH3 > div > div {
+  height: 100px;
+  line-height: 100px;
+  color: #A3D4DC;
+  background: linear-gradient(to right, rgba(36, 61, 125, 0), rgba(36, 61, 125, 1));
+  border-left: #FFF solid 2px;
+  border-right: #FFF solid 2px;
+}
+
+#eventH3 > div > div::before {
   position: absolute;
   z-index: -1;
   left: 0;
