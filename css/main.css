@@ -191,16 +191,45 @@ body {
 
 a.detailButton {
   display: inline-block;
+  position: relative;
   text-decoration: none;
   width: 150px;
   height: 50px;
   line-height: 50px;
   font-size: 18px;
+  transition: 200ms ease-in-out;
+  overflow: hidden;
+  z-index: 10;
+}
+
+a.detailButton::before {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  left: -450px;
+  top: -100px;
+  content: '';
+  transform: rotate(45deg);
+  transition: 200ms ease-in-out;
+  z-index: -1;
+}
+
+a.detailButton:hover::before {
+  left: -250px;
+  transform: rotate(45deg);
 }
 
 #about a.detailButton {
   border: 3px solid #A3D4DC;
   color: #fff;
+}
+
+#about a.detailButton:hover {
+  color: #1A2D63;
+}
+
+#about a.detailButton::before {
+  background: #A3D4DC;
 }
 
 #other {
@@ -213,7 +242,15 @@ a.detailButton {
 
 #other a.detailButton {
   border: 3px solid #fff;
+  color: #fff;
+}
+
+#other a.detailButton:hover {
   color: #243D7D;
+}
+
+#other a.detailButton::before {
+  background: #fff;
 }
 
 #support {
