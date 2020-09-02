@@ -184,26 +184,41 @@ body {
 a.detailButton {
   display: inline-block;
   text-decoration: none;
-  border: 3px solid #A3D4DC;
-  color: #fff;
   width: 150px;
   height: 50px;
   line-height: 50px;
   font-size: 18px;
 }
 
+#about a.detailButton {
+  border: 3px solid #A3D4DC;
+  color: #fff;
+}
+
 #other {
   grid-area: other;
   background-color: #A3D4DC;
   display: grid;
-  grid-template-rows: 100px auto 100px;
+  grid-template-rows: 100px auto auto 100px;
+  color: #243D7D;
+}
+
+#other a.detailButton {
+  border: 3px solid #fff;
+  color: #243D7D;
 }
 
 #support {
   grid-area: support;
   background-color: #fff;
-  display: grid;
-  grid-template-rows: 100px auto 100px;
+  padding: 100px 0;
+  text-align: center;
+  color: #243D7D;
+}
+
+#support > h3 {
+  font-weight: 500;
+  font-size: 30px;
 }
 
 #footer {
