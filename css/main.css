@@ -20,7 +20,7 @@ body {
   position: relative;
   height: 100vh;
   min-height: 900px;
-  background-color: aqua; /* デバッグ用 */
+  background: url(../img/top-background.png); /* デバッグ用 */
 }
 
 #header-event-bar {
