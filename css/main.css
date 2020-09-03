@@ -20,16 +20,55 @@ body {
   position: relative;
   height: 100vh;
   min-height: 900px;
-  background: url(../img/top-background.png); /* デバッグ用 */
+  background: url(../img/top-background.png);
+  width: 100%;
+  overflow: hidden;
 }
 
 #header-event-bar {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  display: flex;
+}
+
+#header-event-bar > .header-event-tile {
+  position: relative;
+  bottom: -10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 20vw;
   height: calc(20vw * 3 / 4.3);
-  background-color: rgba(255, 255, 255, 0.5);
-  overflow: hidden;
+  border-left: rgba(112, 112, 112, 0.2) solid 1px;
+  border-right: rgba(112, 112, 112, 0.2) solid 1px;
+  color: #fff;
+  font-weight: 500;
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  grid-template-rows: 20% 1fr 100px 20%;
+}
+
+#header-event-bar > .header-event-tile.active {
+  border-bottom: solid 10px #A3D4DC;
+  bottom: 0;
+}
+
+#header-event-bar > .header-event-tile > .header-event-head {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+#header-event-bar > .header-event-tile > .header-event-head > .header-event-type {
+  display: inline-block;
+}
+
+#header-event-bar > .header-event-tile > .header-event-head > .header-event-time {
+  display: inline-block;
+  font-size: 16px;
+}
+
+#header-event-bar > .header-event-tile > .header-event-title {
+  grid-row: 3;
+  grid-column: 2;
+  font-size: 22px;
 }
 
 #main {
