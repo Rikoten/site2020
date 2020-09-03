@@ -40,7 +40,7 @@ body {
 #event {
   display: grid;
   grid-template-rows: 80px auto 80px;
-  grid-template-columns: 25% 50% 25%;
+  grid-template-columns: 20% 60% 20%;
 }
 
 #eventH3 {
@@ -94,7 +94,7 @@ body {
   grid-row: 3;
   display: grid;
   /*height: 100%;*/
-  grid-template-columns: 20% 20% 40%;
+  grid-template-columns: 16% 16% 16% 52%;
   border-bottom: 2px #A1A8BC solid;
 }
 
