@@ -68,7 +68,7 @@ body {
   top: 0;
   width: 6px;
   height: 100px;
-  box-shadow: 0 0 6px #fff;
+  box-shadow: 0 0 10px #fff;
   z-index: 20;
   content: '';
 }
@@ -180,10 +180,29 @@ body {
 }
 
 #about > div.about-tile:nth-child(2) {
+  position: relative;
   grid-column: 3;
   background-color: #243D7D;
   border-left: #FFF solid 2px;
   border-right: #A3D4DC solid 4px;
+}
+
+#about > div.about-tile:nth-child(2)::before, #about > div.about-tile:nth-child(2)::after {
+  position: absolute;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  box-shadow: 0 0 10px #fff;
+  z-index: 20;
+  content: '';
+}
+
+#about > div.about-tile:nth-child(2)::before {
+  left: -6px;
+}
+
+#about > div.about-tile:nth-child(2)::after {
+  right: -6px;
 }
 
 #about > div.about-tile:nth-child(3) {
