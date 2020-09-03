@@ -325,6 +325,17 @@ body {
   visibility: hidden;
 }
 
+#eventList .eventTile > .eventView::before {
+  margin: 7px 0;
+  height: 16px;
+  background: url('../img/eye.svg') no-repeat;
+  display: inline-block;
+  content: '';
+  width: 40px;
+  background-size: contain;
+  vertical-align: bottom;
+}
+
 #eventList .eventTile.active > .eventView {
   visibility: visible;
   grid-row: 2;
@@ -333,6 +344,17 @@ body {
 
 #eventList .eventTile > .eventThumbsUp {
   visibility: hidden;
+}
+
+#eventList .eventTile > .eventThumbsUp::before {
+  margin: 5px 0;
+  height: 20px;
+  background: url('../img/thumbsUp.svg') no-repeat;
+  display: inline-block;
+  content: '';
+  width: 30px;
+  background-size: contain;
+  vertical-align: bottom;
 }
 
 #eventList .eventTile.active > .eventThumbsUp {
