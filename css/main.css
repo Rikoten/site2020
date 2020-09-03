@@ -255,14 +255,14 @@ body {
 
 #eventList .eventTile {
   display: grid;
-  grid-template-rows: 30px max(30px) 30px;
+  grid-template-rows: 15px 30px 15px;
   grid-template-columns: 20% 30px calc(30% - 30px) calc(7.5% - 15px) calc(7.5% - 15px) 30px 30px calc(7.5% - 30px) calc(7.5% - 30px) 30px 20%;
   transition: 250ms;
   font-size: 16px;
   line-height: 30px;
 }
 
-#eventList .eventTile.active {
+#eventList .eventTile.active, #eventList .eventTile.fading {
   position: relative;
   grid-template-rows: 30px 30px 30px auto 30px;
   /*background: linear-gradient(to right, rgba(36, 61, 125, 0), rgba(36, 61, 125, 1));*/
@@ -286,6 +286,28 @@ body {
   grid-column: 3;
   font-weight: bold;
   font-size: 18px;
+}
+
+#eventList .eventTile > .eventTitle::before {
+  visibility: hidden;
+  margin: 3px 0;
+  height: 24px;
+  background: url('../img/activeArrow.svg') no-repeat;
+  display: inline-block;
+  content: '';
+  width: 100px;
+  margin-left: -100px;
+  background-size: contain;
+  vertical-align: bottom;
+  transition: 200ms;
+  opacity: 0;
+}
+
+#eventList .eventTile.active > .eventTitle::before {
+  margin-left: -80px;
+  width: 80px;
+  visibility: visible;
+  opacity: 1;
 }
 
 #eventList .eventTile > .eventTime {
@@ -313,16 +335,23 @@ body {
 
 #eventList .eventTile > .eventDesc {
   visibility: hidden;
-}
-
-#eventList .eventTile.active > .eventDesc {
-  visibility: visible;
+  opacity: 0;
+  transition: 200ms;
   grid-row: 4;
   grid-column: 3 / 6;
 }
 
+#eventList .eventTile.active > .eventDesc {
+  visibility: visible;
+  opacity: 1;
+}
+
 #eventList .eventTile > .eventView {
   visibility: hidden;
+  opacity: 0;
+  transition: 200ms;
+  grid-row: 2;
+  grid-column: 8;
 }
 
 #eventList .eventTile > .eventView::before {
@@ -338,12 +367,15 @@ body {
 
 #eventList .eventTile.active > .eventView {
   visibility: visible;
-  grid-row: 2;
-  grid-column: 8;
+  opacity: 1;
 }
 
 #eventList .eventTile > .eventThumbsUp {
   visibility: hidden;
+  opacity: 0;
+  transition: 200ms;
+  grid-row: 2;
+  grid-column: 9;
 }
 
 #eventList .eventTile > .eventThumbsUp::before {
@@ -359,18 +391,20 @@ body {
 
 #eventList .eventTile.active > .eventThumbsUp {
   visibility: visible;
-  grid-row: 2;
-  grid-column: 9;
+  opacity: 1;
 }
 
 #eventList .eventTile > .eventGroupName {
   visibility: hidden;
+  opacity: 0;
+  transition: 200ms;
+  grid-row: 4;
+  grid-column: 8 / 10;
 }
 
 #eventList .eventTile.active > .eventGroupName {
   visibility: visible;
-  grid-row: 4;
-  grid-column: 8 / 10;
+  opacity: 1;
 }
 
 #about {
