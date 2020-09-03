@@ -58,6 +58,7 @@ body {
 }
 
 #header-event-bar > .header-event-tile > .header-event-head > .header-event-type {
+  position: relative;
   display: inline-block;
   border-left: 8px solid currentColor;
   background-color: #fff;
@@ -67,6 +68,16 @@ body {
   border-bottom-right-radius: 5px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
+}
+
+#header-event-bar > .header-event-tile > .header-event-head > .header-event-type::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  line-height: 30px;
+  width: 70px;
+  text-align: center;
 }
 
 #header-event-bar > .header-event-tile > .header-event-head > .header-event-type.article {
