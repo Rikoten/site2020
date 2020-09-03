@@ -197,7 +197,7 @@ body {
   grid-row: 2;
   grid-template-columns: 20% 60% 20%;
   display: grid;
-  grid-template-rows: 100px 80px 110px 30px auto 80px;
+  grid-template-rows: 100px 80px 110px 30px auto;
 }
 
 #eventTypeTab {
@@ -412,6 +412,58 @@ body {
 #eventList .eventTile.active > .eventGroupName {
   visibility: visible;
   opacity: 1;
+}
+
+#eventList .foot {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+}
+
+#eventList .foot > .pagination {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: center;
+}
+
+#eventList .foot > .pagination > a {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  line-height: 36px;
+  text-align: center;
+  margin: 0 9px;
+  background: transparent;
+  color: #fff;
+  font-weight: bold;
+  transition: 200ms;
+}
+
+#eventList .foot > .pagination > a.active {
+  background: #fff;
+  color: #243D7D;
+}
+
+#eventList .foot > .timetableBtn {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+#eventList .foot > .timetableBtn > a.timetable {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: inline-block;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 0 5px;
+  border-radius: 10px;
+  height: 40px;
+  width: 200px;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
 }
 
 #about {
