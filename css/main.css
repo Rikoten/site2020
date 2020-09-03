@@ -33,7 +33,7 @@ body {
 
 #header-event-bar > .header-event-tile {
   position: relative;
-  bottom: -10px;
+  bottom: 0;
   background-color: rgba(255, 255, 255, 0.2);
   width: 20vw;
   height: calc(20vw * 3 / 4.3);
@@ -44,11 +44,12 @@ body {
   display: grid;
   grid-template-columns: 15% 70% 15%;
   grid-template-rows: 20% 1fr 100px 20%;
+  transition: 200ms;
 }
 
-#header-event-bar > .header-event-tile.active {
-  border-bottom: solid 10px #A3D4DC;
-  bottom: 0;
+#header-event-bar > .header-event-tile:hover {
+  box-shadow: 0px 10px #A3D4DC;
+  bottom: 10px;
 }
 
 #header-event-bar > .header-event-tile > .header-event-head {
@@ -58,6 +59,38 @@ body {
 
 #header-event-bar > .header-event-tile > .header-event-head > .header-event-type {
   display: inline-block;
+  border-left: 8px solid currentColor;
+  background-color: #fff;
+  height: 30px;
+  width: 70px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+#header-event-bar > .header-event-tile > .header-event-head > .header-event-type.article {
+  color: #B0D8E4;
+}
+
+#header-event-bar > .header-event-tile > .header-event-head > .header-event-type.article::after {
+  content: 'Article';
+}
+
+#header-event-bar > .header-event-tile > .header-event-head > .header-event-type.movie {
+  color: #E2AFBF;
+}
+
+#header-event-bar > .header-event-tile > .header-event-head > .header-event-type.movie::after {
+  content: 'Movie';
+}
+
+#header-event-bar > .header-event-tile > .header-event-head > .header-event-type.live {
+  color: #AFD7AA;
+}
+
+#header-event-bar > .header-event-tile > .header-event-head > .header-event-type.live::after {
+  content: 'Live';
 }
 
 #header-event-bar > .header-event-tile > .header-event-head > .header-event-time {
