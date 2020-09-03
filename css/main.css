@@ -53,6 +53,8 @@ body {
 }
 
 #header-event-bar > .header-event-tile > .header-event-head {
+  line-height: 30px;
+  position: relative;
   grid-row: 2;
   grid-column: 2;
 }
@@ -75,7 +77,6 @@ body {
   top: 0;
   left: 0;
   display: inline-block;
-  line-height: 30px;
   width: 70px;
   text-align: center;
 }
@@ -106,6 +107,9 @@ body {
 
 #header-event-bar > .header-event-tile > .header-event-head > .header-event-time {
   display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
   font-size: 16px;
 }
 
