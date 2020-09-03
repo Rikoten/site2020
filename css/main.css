@@ -302,6 +302,14 @@ body {
   text-align: center;
 }
 
+#eventList .eventTile > .eventChild > div {
+  height: 30px;
+  width: 100px;
+  background: #fff;
+  border-radius: 15px;
+  color: #243D7D;
+}
+
 #eventList .eventTile > .eventDesc {
   visibility: hidden;
 }
@@ -309,7 +317,7 @@ body {
 #eventList .eventTile.active > .eventDesc {
   visibility: visible;
   grid-row: 4;
-  grid-column: 3 / 7;
+  grid-column: 3 / 6;
 }
 
 #eventList .eventTile > .eventView {
