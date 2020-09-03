@@ -63,6 +63,24 @@ body {
   border-right: #A3D4DC solid 4px;
 }
 
+#eventH3 > div::before, #eventH3 > div::after {
+  position: absolute;
+  top: 0;
+  width: 6px;
+  height: 100px;
+  box-shadow: 0 0 6px #fff;
+  z-index: 20;
+  content: '';
+}
+
+#eventH3 > div::before {
+  left: -4px;
+}
+
+#eventH3 > div::after {
+  right: -4px;
+}
+
 #eventH3 > div > div {
   height: 100px;
   line-height: 100px;
@@ -95,6 +113,7 @@ body {
   display: grid;
   /*height: 100%;*/
   grid-template-columns: 16% 16% 16% 52%;
+  /*grid-template-columns: 20% 20% 20% 40%;*/
   border-bottom: 2px #A1A8BC solid;
 }
 
