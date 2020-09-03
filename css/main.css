@@ -20,7 +20,8 @@ body {
   position: relative;
   height: 100vh;
   min-height: 900px;
-  background: url(../img/top-background.png);
+  background: url(../img/top-background.png) no-repeat;
+  background-size: cover;
   width: 100%;
   overflow: hidden;
 }
