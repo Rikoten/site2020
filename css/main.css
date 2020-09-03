@@ -230,6 +230,7 @@ body {
   color: #A1A8BC;
   padding-left: 30px;
   vertical-align: bottom;
+  transition: 200ms;
 }
 
 #eventTypeTab > div.active {
