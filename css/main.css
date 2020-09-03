@@ -264,6 +264,7 @@ body {
   transition: 250ms;
   font-size: 16px;
   line-height: 30px;
+  opacity: 0.8;
 }
 
 #eventList .eventTile.active, #eventList .eventTile.fading {
@@ -272,6 +273,7 @@ body {
   /*background: linear-gradient(to right, rgba(36, 61, 125, 0), rgba(36, 61, 125, 1));*/
   background: #243D7D;
   z-index: 20;
+  opacity: 1;
 }
 
 /*#eventList .eventTile.active::before {
