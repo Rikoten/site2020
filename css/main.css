@@ -498,6 +498,7 @@ body {
   color: #fff;
   font-weight: bold;
   transition: 200ms;
+  text-decoration: none;
 }
 
 #eventList .foot > div > .pagination > a.active {
