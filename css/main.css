@@ -450,6 +450,25 @@ body {
   opacity: 1;
 }
 
+/* タイプ選択 */
+.eventTypePage {
+  visibility: hidden;
+}
+
+.eventTypePage.active {
+  visibility: visible;
+}
+
+/* ページネーション */
+#eventList > .eventListPage {
+  visibility: hidden;
+}
+
+#eventList > .eventListPage.active {
+  visibility: visible;
+}
+
+/* ページネーションボタン */
 #eventList .foot {
   margin-top: 80px;
   display: grid;

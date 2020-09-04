@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log(eventTile);
   eventTile.forEach( function(elem) {
     elem.addEventListener("mouseover", function(event) {
-      let eventTileActive = Array.from( eventList.getElementsByClassName('active') );
+      let eventTileActive = Array.from( eventList.getElementsByClassName('eventTile active') );
       eventTileActive[0].classList.remove("active");
       elem.classList.add("active");
     }, false);
@@ -17,4 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
       elem.classList.remove("active");
     }, false);*/
   });
+
+  /* 表示切替 */
+  /* 初期状態 */
+
+  /* 変化 */
+
+
+  const eventListPageArticle = Array.from( eventList.getElementsByClassName('eventTile') );
 });
