@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* イベント一覧のホバーアニメーション */
   const eventList = document.getElementById('eventList');
   const eventTile = Array.from( eventList.getElementsByClassName('eventTile') );
+  eventTile[0].classList.add("active");
   console.log(eventTile);
   eventTile.forEach( function(elem) {
     elem.addEventListener("mouseover", function(event) {
