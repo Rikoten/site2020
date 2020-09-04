@@ -475,13 +475,18 @@ body {
   grid-template-columns: 20% 60% 20%;
 }
 
-#eventList .foot > .pagination {
+#eventList .foot > div {
   grid-column: 2;
   grid-row: 1;
   text-align: center;
+  position: relative;
 }
 
-#eventList .foot > .pagination > a {
+#eventList .foot > div > .pagination {
+  display: inline-block;
+}
+
+#eventList .foot > div > .pagination > a {
   display: inline-block;
   width: 36px;
   height: 36px;
@@ -495,18 +500,12 @@ body {
   transition: 200ms;
 }
 
-#eventList .foot > .pagination > a.active {
+#eventList .foot > div > .pagination > a.active {
   background: #fff;
   color: #243D7D;
 }
 
-#eventList .foot > .timetableBtn {
-  position: relative;
-  grid-column: 2;
-  grid-row: 1;
-}
-
-#eventList .foot > .timetableBtn > a.timetable {
+#eventList .foot > div > a.timetable {
   position: absolute;
   right: 0;
   top: 0;
