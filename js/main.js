@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* 初期状態 */
 
   /* 変化 */
-
+  
 
   const eventListPageArticle = Array.from( eventList.getElementsByClassName('eventTile') );
 });
