@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const eventTypePage = Array.from(eventList.getElementsByClassName('eventTypePage') );
   const eventTypeTab = document.getElementById('eventTypeTab');
   const eventTypeTabBtn = Array.from(eventTypeTab.getElementsByTagName("a"));
+  
+  /* ページネーション表示切替 */
+  const eventPagination = Array.from(document.getElementsByClassName('pagination'));
+  const eventListPage = Array.from(document.getElementsByClassName('eventListPage'));
 
   eventTypeTabBtn.forEach(function(elem) {
     elem.addEventListener('click', function (e) {
@@ -34,8 +38,18 @@ document.addEventListener('DOMContentLoaded', function () {
       eventTypePage.forEach(function(elem2){
         if (elem2.id == href) {
           elem2.classList.add('active');
+          
+          eventListPage.forEach(function(elem4) {
+            elem4.classList.remove('active');
+          });
           elem2.firstElementChild.classList.add('active');
-          elem2.firstElementChild.firstElementChild.classList.add('active');
+          elem2.firstElementChild.firstElementChild.classList.add('active');  // 一番上をホバー状態に
+          
+          let eventPaginationBtn2 = Array.from(elem2.lastElementChild.firstElementChild.firstElementChild.getElementsByTagName('a'));
+          eventPaginationBtn2.forEach(function(elem4) {
+            elem4.classList.remove('active');
+          });
+          elem2.lastElementChild.firstElementChild.firstElementChild.firstElementChild.classList.add('active');
         }
         else elem2.classList.remove('active');
       });
@@ -43,9 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* ページネーション表示切替 */
-  const eventPagination = Array.from(document.getElementsByClassName('pagination'));
-  const eventListPage = Array.from(document.getElementsByClassName('eventListPage'));
-
   eventPagination.forEach(function(elem) {
     let eventPaginationBtn = Array.from(elem.getElementsByTagName('a'));
 
