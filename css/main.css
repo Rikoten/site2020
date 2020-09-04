@@ -592,10 +592,11 @@ a.detailButton:hover::before {
   grid-area: other;
   background-color: #A3D4DC;
   display: grid;
-  grid-template-rows: 100px auto auto 100px;
+  grid-template-rows: 100px auto 100px auto 100px;
   grid-template-areas: 
   "."
   "app"
+  "."
   "collaboration"
   ".";
   color: #243D7D;
@@ -622,7 +623,18 @@ a.detailButton:hover::before {
 }
 
 #other #collaboration {
+  grid-area: collaboration;
+  display: grid;
+  grid-template-columns: 20% 40% 20% 20%;
+  grid-template-areas: ". collaboContainer collaboImg .";
+}
 
+#other #collaboration #collaboContainer {
+  grid-area: collaboContainer;
+}
+
+#other #collaboration #collaboImg {
+  grid-area: collaboImg;
 }
 
 #other a.detailButton {
@@ -653,6 +665,60 @@ a.detailButton:hover::before {
 
 #footer {
   grid-area: footer;
-  height: 400px; /* デバッグ */
+  display: grid;
   background-color: #243D7D;
+  color: #fff;
+  grid-template-rows: 80px auto 30px auto 30px auto;
+  grid-template-columns: 50% 50%;
+  grid-template-areas: 
+  ". ."
+  "logo logo"
+  ". ."
+  "sitemap no1"
+  ". ."
+  "copyright copyright";
+  text-align: center;
+}
+
+#footer #footerLogo {
+  grid-area: logo;
+}
+
+#footer #footerLogo > img {
+  width: 150px;
+}
+
+#footer #footerSiteMap {
+  grid-area: sitemap;
+  padding: 30px 0;
+  display: grid;
+  grid-template-columns: 10% 27% 27% 26% 10%;
+  border-right: solid 1px #fff;
+}
+
+#footer #footerSiteMap > div {
+  text-align: left;
+}
+
+#footer #footerSiteMap > div > a {
+  display: block;
+  margin: 10px 0;
+  text-decoration: none;
+}
+
+#footer #footerSiteMap > div:nth-child(1) {
+  grid-column: 2;
+}
+
+#footer #footerSiteMap > div:nth-child(2) {
+  grid-column: 3;
+}
+
+#footer #footerSiteMap > div:nth-child(3) {
+  grid-column: 4;
+}
+
+#footer #footerCopyright {
+  grid-area: copyright;
+  font-size: 14px;
 }
