@@ -84,6 +84,7 @@ body {
   display: inline-block;
   width: 70px;
   text-align: center;
+  font-size: 16px;
 }
 
 #header-event-bar > a > .header-event-tile > .header-event-head > .header-event-type.article {
