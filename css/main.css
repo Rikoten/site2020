@@ -15,6 +15,39 @@ body {
     "footer";
 }
 
+#header {
+  display: grid;
+  grid-template-rows: 30px 55px 30px;
+  grid-template-columns: 30px 1fr auto 30px 30px 30px;
+  grid-template-areas: 
+  ". . . . . ."
+  ". logo language . menuBtn ."
+  ". . . . . .";
+  position: fixed;
+  top: 0;
+  background: transparent;
+  color: #fff;
+  width: 100%;
+  z-index: 99;
+}
+
+#header #headerLogo {
+  grid-area: logo;
+}
+
+#header #headerLogo > img.icon {
+  height: 55px;
+}
+
+#header #headerLanguage {
+  grid-area: language;
+  line-height: 55px;
+}
+
+#header #headerMenuBtn {
+  grid-area: menuBtn;
+}
+
 #topView {
   grid-area: topView;
   position: relative;
@@ -684,7 +717,7 @@ a.detailButton:hover::before {
   grid-area: logo;
 }
 
-#footer #footerLogo > img {
+#footer #footerLogo > img.icon {
   width: 150px;
 }
 
