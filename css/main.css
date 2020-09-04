@@ -39,6 +39,11 @@ body {
   height: 55px;
 }
 
+#header #headerLogo > img.text {
+  height: 50px;
+  margin-left: 10px;
+}
+
 #header #headerLanguage {
   grid-area: language;
   line-height: 55px;
@@ -743,7 +748,7 @@ a.detailButton:hover::before {
   grid-area: logo;
 }
 
-#footer #footerLogo > img.icon {
+#footer #footerLogo > img.icon, #footer #footerLogo > img.text {
   width: 150px;
 }
 
