@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, false);*/
   });
 
-  /* 表示切替 */
+  /* タイプ表示切替 */
   const eventTypePage = Array.from(eventList.getElementsByClassName('eventTypePage') );
   const eventTypeTab = document.getElementById('eventTypeTab');
   const eventTypeTabBtn = Array.from(eventTypeTab.getElementsByTagName("a"));
@@ -32,12 +32,17 @@ document.addEventListener('DOMContentLoaded', function () {
       /* タブの動作 */
       href = elem.getAttribute('href').substr(1);
       eventTypePage.forEach(function(elem2){
-        if (elem2.id == href) elem2.classList.add('active');
+        if (elem2.id == href) {
+          elem2.classList.add('active');
+          elem2.firstElementChild.classList.add('active');
+          elem2.firstElementChild.firstElementChild.classList.add('active');
+        }
         else elem2.classList.remove('active');
       });
     });
   });
 
+  /* ページネーション表示切替 */
   const eventPagination = Array.from(document.getElementsByClassName('pagination'));
   const eventListPage = Array.from(document.getElementsByClassName('eventListPage'));
 
@@ -57,7 +62,10 @@ document.addEventListener('DOMContentLoaded', function () {
         /* タブの動作 */
         href = elem3.getAttribute('href').substr(1);
         eventListPage.forEach(function(elem2){
-          if (elem2.id == href) elem2.classList.add('active');
+          if (elem2.id == href) {
+            elem2.classList.add('active');
+            elem2.firstElementChild.classList.add('active');
+          }
           else elem2.classList.remove('active');
         });
       });
