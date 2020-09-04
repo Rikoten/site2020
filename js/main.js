@@ -75,6 +75,10 @@ document.addEventListener('DOMContentLoaded', function () {
         eventListPage.forEach(function(elem2){
           if (elem2.id == href) {
             elem2.classList.add('active');
+
+            eventTile.forEach(function(elem4) {
+              elem4.classList.remove('active');
+            });
             elem2.firstElementChild.classList.add('active');
           }
           else elem2.classList.remove('active');
