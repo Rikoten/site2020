@@ -451,6 +451,7 @@ body {
 }
 
 #eventList .foot {
+  margin-top: 80px;
   display: grid;
   grid-template-columns: 20% 60% 20%;
 }
