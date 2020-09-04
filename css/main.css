@@ -554,6 +554,7 @@ a.detailButton {
   transition: 200ms ease-in-out;
   overflow: hidden;
   z-index: 10;
+  text-align: center;
 }
 
 a.detailButton::before {
@@ -591,7 +592,36 @@ a.detailButton:hover::before {
   background-color: #A3D4DC;
   display: grid;
   grid-template-rows: 100px auto auto 100px;
+  grid-template-areas: 
+  "."
+  "app"
+  "collaboration"
+  ".";
   color: #243D7D;
+}
+
+#other h3 {
+  font-weight: 500;
+  font-size: 30px;
+}
+
+#other #app {
+  grid-area: app;
+  display: grid;
+  grid-template-columns: 20% 40% 20% 20%;
+  grid-template-areas: ". appContainer appImg .";
+}
+
+#other #app #appContainer {
+  grid-area: appContainer;
+}
+
+#other #app #appImg {
+  grid-area: appImg;
+}
+
+#other #collaboration {
+
 }
 
 #other a.detailButton {
