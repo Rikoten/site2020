@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* 表示切替 */
-  const eventTypePage = Array.from( eventList.getElementsByClassName('eventTypePage') );
+  const eventTypePage = Array.from(eventList.getElementsByClassName('eventTypePage') );
   const eventTypeTab = document.getElementById('eventTypeTab');
-  eventTypeTabBtn = Array.from(eventTypeTab.getElementsByTagName("a"));
+  const eventTypeTabBtn = Array.from(eventTypeTab.getElementsByTagName("a"));
 
   eventTypeTabBtn.forEach(function(elem) {
     elem.addEventListener('click', function (e) {
@@ -38,9 +38,32 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /*eventTypePage.forEach(function(elem) {
+  const eventPagination = Array.from(document.getElementsByClassName('pagination'));
+  const eventListPage = Array.from(document.getElementsByClassName('eventListPage'));
 
-  });*/
+  eventPagination.forEach(function(elem) {
+    let eventPaginationBtn = Array.from(elem.getElementsByTagName('a'));
+
+    eventPaginationBtn.forEach(function(elem3) {
+      elem3.addEventListener('click', function (e) {
+        event.preventDefault();
+  
+        /* ボタンの動作 */
+        eventPaginationBtn.forEach(function(elem2) {
+          elem2.classList.remove('active');
+        });
+        elem3.classList.add('active');
+  
+        /* タブの動作 */
+        href = elem3.getAttribute('href').substr(1);
+        eventListPage.forEach(function(elem2){
+          if (elem2.id == href) elem2.classList.add('active');
+          else elem2.classList.remove('active');
+        });
+      });
+    });
+      
+  });
 
 
 
