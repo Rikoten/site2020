@@ -704,6 +704,7 @@ a.detailButton:hover::before {
   display: block;
   margin: 10px 0;
   text-decoration: none;
+  color: #fff;
 }
 
 #footer #footerSiteMap > div:nth-child(1) {
