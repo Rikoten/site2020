@@ -93,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   /* 企画ロード */
-  const topViewEventBar = document.getElementById('topView-event-bar');
 
   const URLEventData = 'data/eventData.json';
   const requestEventData = new XMLHttpRequest();
@@ -111,7 +110,20 @@ document.addEventListener('DOMContentLoaded', function () {
       let rand = Math.floor(Math.random() * (i + 1));
       [EventDataShuffled[i], EventDataShuffled[rand]] = [EventDataShuffled[rand], EventDataShuffled[i]];
     }
-
+    
+    /* ヘッダー部分 */
+    const topViewEventBar = document.getElementById('topView-event-bar');
+    /* 企画一覧部分 */
+    const tilesOnePage = 7; //1ページあたりの企画数
+    const eventArticle = document.getElementById('eventArticle');
+    const eventMovie = document.getElementById('eventMovie');
+    const eventLive = document.getElementById('eventLive');
+    let ArticleCount = 0;
+    let ArticlePageCount = 0;
+    let MovieCount = 0;
+    let MoviePageCount = 0;
+    let LiveCount = 0;
+    let LivePageCount = 0;
     EventDataShuffled.forEach(function(elem) {
       /* ヘッダー部分 */
       let HeaderTile = document.createElement('a');
@@ -122,6 +134,82 @@ document.addEventListener('DOMContentLoaded', function () {
 
       topViewEventBar.appendChild(HeaderTile);
 
+      /* 企画一覧部分 */
+      let TargetContainer = "";
+      if (elem["eventType"] == "article") {
+        TargetContainer = eventArticle;
+        if (ArticleCount % 7 == 0) {//新しいページ最初の企画
+          ArticlePageCount++; //ページ数
+
+          let newPaginationID = '#eventArticle' + String(ArticlePageCount);
+
+          /* ページネーションボタンの追加 */
+          let newPaginationBtn = document.createElement('a');
+          newPaginationBtn.setAttribute('href', newPaginationID);
+          if (ArticlePageCount == 1) newPaginationBtn.classList.add('active');
+          TargetContainer.lastElementChild.firstElementChild.firstElementChild.appendChild(newPaginationBtn); //新しいページボタンの追加
+
+          /* 企画一覧ページの追加 */
+          let newPagination = document.createElement('div');
+          newPagination.classList.add('eventListPage');
+          if (LivePageCount == 1) newPagination.classList.add('active');
+          newPagination.id = newPaginationID;
+          TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
+        }
+        ArticleCount++;
+      }
+      else if (elem["eventType"] == "movie") {
+        TargetContainer = eventMovie;
+        if (MovieCount % 7 == 0) {//新しいページ最初の企画
+          MoviePageCount++; //ページ数
+
+          let newPaginationID = '#eventMovie' + String(MoviePageCount);
+
+          /* ページネーションボタンの追加 */
+          let newPaginationBtn = document.createElement('a');
+          newPaginationBtn.setAttribute('href', newPaginationID);
+          if (MoviePageCount == 1) newPaginationBtn.classList.add('active');
+          TargetContainer.lastElementChild.firstElementChild.firstElementChild.appendChild(newPaginationBtn); //新しいページボタンの追加
+
+          /* 企画一覧ページの追加 */
+          let newPagination = document.createElement('div');
+          newPagination.classList.add('eventListPage');
+          if (LivePageCount == 1) newPagination.classList.add('active');
+          newPagination.id = newPaginationID;
+          TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
+        }
+        MovieCount++;
+      }
+      else if (elem["eventType"] == "live") {
+        TargetContainer = eventLive;
+        if (LiveCount % 7 == 0) {//新しいページ最初の企画
+          LivePageCount++; //ページ数
+
+          let newPaginationID = '#eventLive' + String(LivePageCount);
+
+          /* ページネーションボタンの追加 */
+          let newPaginationBtn = document.createElement('a');
+          newPaginationBtn.setAttribute('href', newPaginationID);
+          if (LivePageCount == 1) newPaginationBtn.classList.add('active');
+          TargetContainer.lastElementChild.firstElementChild.firstElementChild.appendChild(newPaginationBtn); //新しいページボタンの追加
+
+          /* 企画一覧ページの追加 */
+          let newPagination = document.createElement('div');
+          newPagination.classList.add('eventListPage');
+          if (LivePageCount == 1) newPagination.classList.add('active');
+          newPagination.id = newPaginationID;
+          TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
+        }
+        LiveCount++;
+      }
+      
+      let EventListTile = document.createElement('a');
+      EventListTile.setAttribute('href', eventURL);
+      let EventListTileInner = '<div class = "eventTile"><div class = "eventTitle">' + elem["eventName"] + '</div><div class = "eventTime">' + elem["requiredTime"] + '</div><div class = "eventChild"><div>子ども向け</div></div><div class = "eventDesc">' + elem["eventDesc"] + '</div><div class = "eventView"><span>73</span></div><div class = "eventThumbsUp">3</div><div class = "eventGroupName">' + elem["groupName"] + '</div></div>';
+
+      EventListTile.innerHTML = EventListTileInner;
+
+      TargetContainer.lastElementChild.previousElementSibling.appendChild(EventListTile); //最後から2番目: footの前なので最後のページ
     });
   }
 
