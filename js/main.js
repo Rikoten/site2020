@@ -43,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function () {
             elem4.classList.remove('active');
           });
           elem2.firstElementChild.classList.add('active');
+          eventTile.forEach(function(elem4) {
+            elem4.classList.remove('active');
+          });
           elem2.firstElementChild.firstElementChild.classList.add('active');  // 一番上をホバー状態に
           
           let eventPaginationBtn2 = Array.from(elem2.lastElementChild.firstElementChild.firstElementChild.getElementsByTagName('a'));
