@@ -1,3 +1,20 @@
+@keyframes fade-in {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+    
 body {
   margin: 0;
   font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
@@ -467,6 +484,7 @@ body {
 
 .eventTypePage.active {
   display: block;
+  animation: 0.2s fade-in;
 }
 
 /* ページネーション */
@@ -476,6 +494,7 @@ body {
 
 #eventList .eventListPage.active {
   display: block;
+  animation: 0.2s fade-in;
 }
 
 /* ページネーションボタン */
