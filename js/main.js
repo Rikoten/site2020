@@ -49,11 +49,12 @@ document.addEventListener('DOMContentLoaded', function () {
             if (ArticleCount % tilesOnePage == 0) {//新しいページ最初の企画
               ArticlePageCount++; //ページ数
 
-              let newPaginationID = '#eventArticle' + String(ArticlePageCount);
+              let newPaginationID = 'eventArticle' + String(ArticlePageCount);
+              let newPaginationBtnHref = '#' + newPaginationID;
 
               /* ページネーションボタンの追加 */
               let newPaginationBtn = document.createElement('a');
-              newPaginationBtn.setAttribute('href', newPaginationID);
+              newPaginationBtn.setAttribute('href', newPaginationBtnHref);
               newPaginationBtn.innerText = ArticlePageCount;
               if (ArticlePageCount == 1) newPaginationBtn.classList.add('active');
               TargetContainer.lastElementChild.firstElementChild.firstElementChild.appendChild(newPaginationBtn); //新しいページボタンの追加
@@ -72,11 +73,12 @@ document.addEventListener('DOMContentLoaded', function () {
             if (MovieCount % tilesOnePage == 0) {//新しいページ最初の企画
               MoviePageCount++; //ページ数
 
-              let newPaginationID = '#eventMovie' + String(MoviePageCount);
+              let newPaginationID = 'eventMovie' + String(MoviePageCount);
+              let newPaginationBtnHref = '#' + newPaginationID;
 
               /* ページネーションボタンの追加 */
               let newPaginationBtn = document.createElement('a');
-              newPaginationBtn.setAttribute('href', newPaginationID);
+              newPaginationBtn.setAttribute('href', newPaginationBtnHref);
               newPaginationBtn.innerText = MoviePageCount;
               if (MoviePageCount == 1) newPaginationBtn.classList.add('active');
               TargetContainer.lastElementChild.firstElementChild.firstElementChild.appendChild(newPaginationBtn); //新しいページボタンの追加
@@ -95,11 +97,12 @@ document.addEventListener('DOMContentLoaded', function () {
             if (LiveCount % tilesOnePage == 0) {//新しいページ最初の企画
               LivePageCount++; //ページ数
 
-              let newPaginationID = '#eventLive' + String(LivePageCount);
+              let newPaginationID = 'eventLive' + String(LivePageCount);
+              let newPaginationBtnHref = '#' + newPaginationID;
 
               /* ページネーションボタンの追加 */
               let newPaginationBtn = document.createElement('a');
-              newPaginationBtn.setAttribute('href', newPaginationID);
+              newPaginationBtn.setAttribute('href', newPaginationBtnHref);
               newPaginationBtn.innerText = LivePageCount;
               if (LivePageCount == 1) newPaginationBtn.classList.add('active');
               TargetContainer.lastElementChild.firstElementChild.firstElementChild.appendChild(newPaginationBtn); //新しいページボタンの追加
