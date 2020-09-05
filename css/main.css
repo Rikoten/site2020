@@ -739,7 +739,6 @@ a.detailButton:hover::before {
 #support {
   grid-area: support;
   background-color: #fff;
-  padding: 100px 0;
   text-align: center;
   color: #243D7D;
 }
@@ -814,7 +813,6 @@ a.detailButton:hover::before {
 
 
 #banner {
-  width: 100%;
   padding: 0 1em;
   max-width: 940px;
   display: inline-block;
