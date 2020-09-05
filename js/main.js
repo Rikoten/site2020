@@ -226,7 +226,8 @@ document.addEventListener('DOMContentLoaded', function () {
       });
         
     });
-    /* ここまで */
+    const topViewEventBar = document.getElementById('topView-event-bar');
+
   });
 
   /* バナーロード */

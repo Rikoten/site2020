@@ -93,7 +93,7 @@ body {
 }
 
 #topView > #themeText > img {
-  width: 200px;
+  width: 300px;
 }
 
 #topView-event-bar {
@@ -651,7 +651,7 @@ body {
 }
 
 #about > div.about-tile img.about-logo {
-  width: 200px;
+  width: 250px;
 }
 
 a.detailButton {
