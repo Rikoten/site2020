@@ -497,6 +497,7 @@ body {
 #eventList .eventListPage.active {
   display: block;
   animation: 0.2s fade-in;
+  height: 570px;
 }
 
 /* ページネーションボタン */
