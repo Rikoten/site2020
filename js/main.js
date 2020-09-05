@@ -91,6 +91,41 @@ document.addEventListener('DOMContentLoaded', function () {
       
   });
 
+
+  /* 企画ロード */
+  const topViewEventBar = document.getElementById('topView-event-bar');
+
+  const URLEventData = 'data/eventData.json';
+  const requestEventData = new XMLHttpRequest();
+  requestEventData.open('GET', URLEventData);
+
+  requestEventData.responseType = 'json';
+  requestEventData.send();
+
+  requestEventData.onload = function() {
+    const EventData = requestEventData.response;
+
+    // Fisher–Yates アルゴリズムでシャッフルする
+    const EventDataShuffled = EventData;
+    for(let i = EventDataShuffled.length - 1; i > 0; i--){
+      let rand = Math.floor(Math.random() * (i + 1));
+      [EventDataShuffled[i], EventDataShuffled[rand]] = [EventDataShuffled[rand], EventDataShuffled[i]];
+    }
+
+    EventDataShuffled.forEach(function(elem) {
+      /* ヘッダー部分 */
+      let HeaderTile = document.createElement('a');
+      let eventURL = '/event/?id=' + String(elem["eventID"]);
+      HeaderTile.setAttribute('href', eventURL);
+      HeaderTileInner = '<div class = "topView-event-tile"><div class = "topView-event-head"><div class = "topView-event-type ' + elem["eventType"] + '"></div><div class = "topView-event-time">' + elem["requiredTime"] + '</div></div><div class = "topView-event-title">' + elem["eventName"] + '</div></div>'
+      HeaderTile.innerHTML = HeaderTileInner;
+
+      topViewEventBar.appendChild(HeaderTile);
+
+    });
+  }
+
+
   /* バナーロード */
   const goldBanner = document.getElementById('goldBanner');
   const silverBanner = document.getElementById('silverBanner');
