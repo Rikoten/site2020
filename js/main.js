@@ -44,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
           /* 企画一覧部分 */
           let TargetContainer = "";
+          let childrenTag = "";
+          if (typeof elem["children"] !== 'undefined' && elem["children"] == 1) childrenTag = '<div class = "eventChild"><div>子ども向け</div></div>';
           if (elem["eventType"] == "article") {
             TargetContainer = eventArticle;
             if (ArticleCount % tilesOnePage == 0) {//新しいページ最初の企画
@@ -119,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
           
           let EventListTile = document.createElement('a');
           EventListTile.setAttribute('href', eventURL);
-          let EventListTileInner = '<div class = "eventTile"><div class = "eventTitle">' + elem["eventName"] + '</div><div class = "eventTime">' + elem["requiredTime"] + '</div><div class = "eventChild"><div>子ども向け</div></div><div class = "eventDesc">' + elem["eventDesc"] + '</div><div class = "eventView"><span>73</span></div><div class = "eventThumbsUp">3</div><div class = "eventGroupName">' + elem["groupName"] + '</div></div>';
+          let EventListTileInner = '<div class = "eventTile"><div class = "eventTitle">' + elem["eventName"] + '</div><div class = "eventTime">' + elem["requiredTime"] + '</div>' + childrenTag + '<div class = "eventDesc">' + elem["eventDesc"] + '</div><div class = "eventView"><span>73</span></div><div class = "eventThumbsUp">3</div><div class = "eventGroupName">' + elem["groupName"] + '</div></div>';
 
           EventListTile.innerHTML = EventListTileInner;
 
