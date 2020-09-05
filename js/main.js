@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
             eventTile.forEach(function(elem4) {
               elem4.classList.remove('active');
             });
-            elem2.firstElementChild.firstElementChild.classList.add('active');  // 一番上をホバー状態に
+            elem2.firstElementChild.firstElementChild.firstElementChild.classList.add('active');  // 一番上をホバー状態に
             
             let eventPaginationBtn2 = Array.from(elem2.lastElementChild.firstElementChild.firstElementChild.getElementsByTagName('a'));
             eventPaginationBtn2.forEach(function(elem4) {
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function () {
               eventTile.forEach(function(elem4) {
                 elem4.classList.remove('active');
               });
-              elem2.firstElementChild.classList.add('active');
+              elem2.firstElementChild.firstElementChild.classList.add('active');  // 一番上をホバー状態に
             }
             else elem2.classList.remove('active');
           });
