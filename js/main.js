@@ -232,9 +232,9 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(frame, 50); 
     
     function frame() { 
-        //if (topViewPos == 150) { topViewPos = 0; }
-        topViewPos--;
-        topViewEventBar.style.left = topViewPos + 'px';
+      //if (topViewPos == 150) { topViewPos = 0; }
+      topViewPos--;
+      topViewEventBar.style.left = topViewPos + 'px';
     }
   });
 
