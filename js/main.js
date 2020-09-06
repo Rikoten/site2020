@@ -240,7 +240,6 @@ document.addEventListener('DOMContentLoaded', function () {
       /* 右端の追加 */
       let clientRect = topViewEventBar.lastElementChild.firstElementChild.getBoundingClientRect();
       if (clientRect.left < (200 + window.innerWidth)) {
-        console.log(clientRect.right);
         let elem = EventDataShuffled[k];
         let HeaderTile = document.createElement('a');
         let eventURL = '/event/?id=' + String(elem["eventID"]);
