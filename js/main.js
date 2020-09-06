@@ -230,11 +230,11 @@ document.addEventListener('DOMContentLoaded', function () {
     let topViewPos = 0;
     let k = 0;
 
-    setInterval(frame, 50); 
+    setInterval(frame, 25); 
     
     function frame() { 
       //if (topViewPos == 150) { topViewPos = 0; }
-      topViewPos--;
+      topViewPos -= 0.5;
       topViewEventBar.style.left = topViewPos + 'px';
 
       /* 右端の追加 */
