@@ -227,7 +227,15 @@ document.addEventListener('DOMContentLoaded', function () {
         
     });
     const topViewEventBar = document.getElementById('topView-event-bar');
-
+    let topViewPos = 0;
+     
+    setInterval(frame, 50); 
+    
+    function frame() { 
+        //if (topViewPos == 150) { topViewPos = 0; }
+        topViewPos--;
+        topViewEventBar.style.left = topViewPos + 'px';
+    }
   });
 
   /* バナーロード */
