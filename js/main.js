@@ -127,13 +127,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
           TargetContainer.lastElementChild.previousElementSibling.appendChild(EventListTile); //最後から2番目: footの前なので最後のページ
         });
-        resolve();
+        resolve(EventDataShuffled);
       }
     });
   }
 
   /* ここからは企画データ表示後の対応が必要！ */
-  eventLoad().then(function() {
+  eventLoad().then(function(EventDataShuffled) {
     /* イベント一覧のホバーアニメーション */
     const eventList = document.getElementById('eventList');
     const eventTile = Array.from( eventList.getElementsByClassName('eventTile') );
@@ -228,13 +228,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     const topViewEventBar = document.getElementById('topView-event-bar');
     let topViewPos = 0;
-     
+    let k = 0;
+
     setInterval(frame, 50); 
     
     function frame() { 
       //if (topViewPos == 150) { topViewPos = 0; }
       topViewPos--;
       topViewEventBar.style.left = topViewPos + 'px';
+
+      /* 右端の追加 */
+      let clientRect = topViewEventBar.lastElementChild.firstElementChild.getBoundingClientRect();
+      if (clientRect.left < (200 + window.innerWidth)) {
+        console.log(clientRect.right);
+        let elem = EventDataShuffled[k];
+        let HeaderTile = document.createElement('a');
+        let eventURL = '/event/?id=' + String(elem["eventID"]);
+        HeaderTile.setAttribute('href', eventURL);
+        let HeaderTileInner = '<div class = "topView-event-tile"><div class = "topView-event-head"><div class = "topView-event-type ' + elem["eventType"] + '"></div><div class = "topView-event-time">' + elem["requiredTime"] + '</div></div><div class = "topView-event-title">' + elem["eventName"] + '</div></div>'
+        HeaderTile.innerHTML = HeaderTileInner;
+
+        topViewEventBar.appendChild(HeaderTile);
+        k++;
+        if (k >= EventDataShuffled.length) k = 0;
+      }
     }
   });
 
