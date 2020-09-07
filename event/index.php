@@ -32,7 +32,10 @@
           <h2>遠近法</h2>
         </div>
         <div class="sub-sub-title">
-          <h3>空気遠近法</h3>
+          <h3 class="h3-group">空気遠近法</h3>
+        </div>
+        <div class="article-text">
+          
         </div>
       </section>
     </article>

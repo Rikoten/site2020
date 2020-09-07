@@ -55,17 +55,45 @@ main {
   border-radius: 5px;
 }
 
-.sub-title{
-  background-color: #E9F5FA;
-  padding: 10px 0 10px 50px;
-}
-
 .sub-title h2{
+  width: 800px;
+  padding: 0 80px;
   margin: 0;
+  height: 50px;
+  line-height: 50px;
+  background-color: #E9F5FA;
 }
 
 .sub-sub-title{
+  padding-top: 30px;
+}
 
+.sub-sub-title h3{
+  width: 800px;
+  padding: 0 80px;
+  margin: 0;
+  height: 50px;
+  line-height: 50px;
+  background-color: #E9F5FA;
+  position: relative;
+}
+
+.sub-sub-title h3::before{
+  position: absolute;
+  content: "";
+  height: 50px;
+  width: calc(100% - 20px);
+  background-color: #fff;
+  left: 20px;
+}
+
+.h3-group::after{
+  position: absolute;
+  content: "空気遠近法";
+  height: 50px;
+  background-color: #fff;
+  width: calc(100% - 80px);
+  left: 80px;
 }
 
 aside {
