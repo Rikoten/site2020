@@ -12,26 +12,18 @@
 
 <body>
 
-  <header></header>
+  <header>
+
+  </header>
 
 
   <main>
     <!-- 目次 -->
     <nav id = "articleIndex"></nav>
     <article>
-      <div class = "box">
-        <h3><span class = "h3-num">01. </span>遠近法</h3>
-        <h4>空気遠近法</h4>
-        <p>空気遠近法は、大気が持つ性質を利用した空間表現法です。例えば戸外の風景を眺めてみると、遠景に向かうほどに対象物は青味がかって見え、また同時に、遠景ほど輪郭線が不明瞭になり、対象物は霞んで見えます。</p>
-        <p>こういった性質を利用して空気遠近法では、遠景にあるものほど形態をぼやかして描いたり、色彩をより大気の色に近づけるなどして、空間の奥行きを表現します。</p>
-        <br><br><br><br><br><br><br><br><br><br>
-      </div>
-      <div class = "box">
-        <h4>透視図法</h4>
-        <p>遠近法の基本は視点の前に置いた「投影面」に、それを通過する光を写し取ることであり、それは窓ガラスを通して見える光景を窓ガラス表面に直接描画することに似ています。ガラスに写し取られた図は3次元の光景を縮小し2次元平面上に変換したものとなります。</p>
-        <p>図法として一点透視図法、二点透視図法、三点透視図法などがあります。これらは美術にとどまらず、建築、映画、アニメ、コンピュータグラフィックスなど、視覚表現の分野で広く使用されています。</p>
-        <br><br><br><br><br><br><br><br><br><br>
-      </div>
+      <section class = "box">
+        <h2></h2>
+      </section>
     </article>
 
     <section class = "group-info">
@@ -47,7 +39,7 @@
   <footer></footer>
   <!-- あとでいらないように作りかえたい(願望) -->
   <script type="text/javascript" src = "/js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src = "/js/article-index.js"></script>
+  <!-- <script type="text/javascript" src = "/js/article-index.js"></script> -->
 </body>
 
 </html>

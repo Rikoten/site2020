@@ -1,15 +1,27 @@
 /* これは書き換える必要があります */
 body {
-  color: #454e53;
+  margin: 0;
+  font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
+  font-size: 16px;
+  line-height: 36px;
+  color: #454E53;
+  display: grid;
+  grid-template-rows: 700px auto auto;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+      "header header"
+      "main nav"
+      "aside ."
+      ;
 }
 
 header {
   grid-area: header;
-  height: 400px;
-  background-color: #6EA9DB;
+  background-color: #B0D8E4;
 }
 
 nav {
+  grid-area: nav;
   width: 400px;
   position: absolute;
   right: 0;
@@ -22,22 +34,21 @@ nav.fixed {
 
 main {
   grid-area: main;
-  display: grid;
-  grid-template-columns: 1fr 760px 1fr;
+  margin: 60px 0 60px auto;
+  width: 960px;
 }
 
 aside {
-  grid-area: otherEvents;
+  grid-area: aside;
 }
 
 footer {
-  grid-area: footer;
   height: 150px;
   background-color: #1B2C6C;
 }
 
 article {
-  grid-column: 2;
+  margin-bottom: 60px;
 }
 
 p {
