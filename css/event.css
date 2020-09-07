@@ -38,6 +38,28 @@ main {
   width: 960px;
 }
 
+.title {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.square{
+  color: #B0D8E4;
+  background-color: #fff;
+  padding: 0 20px 0 20px;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.sub-title{
+  background-color: #E9F5FA;
+  padding: 0 0 0 20px;
+}
+
 aside {
   grid-area: aside;
 }

@@ -13,7 +13,13 @@
 <body>
 
   <header>
-
+    <img src = "../img/logo.png" width="300px" height="" alt="">
+    <div class="title">
+      <div class="square">
+        <p>Article</p>
+      </div>
+      <h1 style="color: white;">一点透視図法とその応用</h1>
+    </div>
   </header>
 
 
@@ -22,7 +28,9 @@
     <nav id = "articleIndex"></nav>
     <article>
       <section class = "box">
-        <h2></h2>
+        <div class="sub-title">
+          <h2>遠近法</h2>
+        </div>
       </section>
     </article>
 
