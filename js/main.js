@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
           let HeaderTile = document.createElement('a');
           let eventURL = '/event/?id=' + String(elem["eventID"]);
           HeaderTile.setAttribute('href', eventURL);
-          HeaderTileInner = '<div class = "topView-event-tile"><div class = "topView-event-head"><div class = "topView-event-type ' + elem["eventType"] + '"></div><div class = "topView-event-time">' + elem["requiredTime"] + '</div></div><div class = "topView-event-title">' + elem["eventName"] + '</div></div>'
+          HeaderTileInner = '<div class = "topView-event-tile ' + elem["eventType"] + '"><div class = "topView-event-head"><div class = "topView-event-type ' + elem["eventType"] + '"></div><div class = "topView-event-time">' + elem["requiredTime"] + '</div></div><div class = "topView-event-title">' + elem["eventName"] + '</div></div>'
           HeaderTile.innerHTML = HeaderTileInner;
 
           topViewEventBar.appendChild(HeaderTile);
