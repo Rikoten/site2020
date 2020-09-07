@@ -46,10 +46,12 @@ body {
   color: #fff;
   width: 100%;
   z-index: 99;
+  pointer-events: none;
 }
 
 #header #headerLogo {
   grid-area: logo;
+  pointer-events: all;
 }
 
 #header #headerLogo > img.icon {
@@ -64,10 +66,12 @@ body {
 #header #headerLanguage {
   grid-area: language;
   line-height: 55px;
+  pointer-events: all;
 }
 
 #header #headerMenuBtn {
   grid-area: menuBtn;
+  pointer-events: all;
 }
 
 #topView {
