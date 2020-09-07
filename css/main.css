@@ -123,8 +123,19 @@ body {
 }
 
 #topView-event-bar > a > .topView-event-tile:hover {
-  box-shadow: 0px 10px #A3D4DC;
   bottom: 10px;
+}
+
+#topView-event-bar > a > .topView-event-tile.article:hover {
+  box-shadow: 0px 10px #A3D4DC;
+}
+
+#topView-event-bar > a > .topView-event-tile.movie:hover {
+  box-shadow: 0px 10px #E2AFBF;
+}
+
+#topView-event-bar > a > .topView-event-tile.live:hover {
+  box-shadow: 0px 10px #AFD7AA;
 }
 
 #topView-event-bar > a > .topView-event-tile > .topView-event-head {
