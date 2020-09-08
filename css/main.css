@@ -788,7 +788,7 @@ a.detailButton:hover::before {
   font-size: 30px;
 }
 
-#footer {
+footer {
   grid-area: footer;
   display: grid;
   background-color: #243D7D;
@@ -805,15 +805,15 @@ a.detailButton:hover::before {
   text-align: center;
 }
 
-#footer #footerLogo {
+footer #footerLogo {
   grid-area: logo;
 }
 
-#footer #footerLogo > img.icon, #footer #footerLogo > img.text {
+footer #footerLogo > img.icon, footer #footerLogo > img.text {
   width: 150px;
 }
 
-#footer #footerSiteMap {
+footer #footerSiteMap {
   grid-area: sitemap;
   padding: 30px 0;
   display: grid;
@@ -821,35 +821,45 @@ a.detailButton:hover::before {
   border-right: solid 1px #fff;
 }
 
-#footer #footerSiteMap > div {
+footer #footerSiteMap > div {
   text-align: left;
 }
 
-#footer #footerSiteMap > div > a {
+footer #footerSiteMap > div > a {
   display: block;
   margin: 10px 0;
   text-decoration: none;
   color: #fff;
 }
 
-#footer #footerSiteMap > div:nth-child(1) {
+footer #footerSiteMap > div:nth-child(1) {
   grid-column: 2;
 }
 
-#footer #footerSiteMap > div:nth-child(2) {
+footer #footerSiteMap > div:nth-child(2) {
   grid-column: 3;
 }
 
-#footer #footerSiteMap > div:nth-child(3) {
+footer #footerSiteMap > div:nth-child(3) {
   grid-column: 4;
 }
 
-#footer #footerCopyright {
+footer #footerCopyright {
   grid-area: copyright;
   font-size: 14px;
 }
 
+@media screen and (max-width: 1600px) {
 
+}
+
+@media screen and (max-width: 992px) {
+  
+}
+
+@media screen and (max-width: 768px) {
+  
+}
 
 
 #banner {
@@ -858,6 +868,7 @@ a.detailButton:hover::before {
   display: inline-block;
 }
 #goldBanner, #silverBanner {
+
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: auto;
