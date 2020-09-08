@@ -51,16 +51,17 @@ body {
 
 #header #headerLogo {
   grid-area: logo;
-  pointer-events: all;
 }
 
 #header #headerLogo > img.icon {
   height: 55px;
+  pointer-events: all;
 }
 
 #header #headerLogo > img.text {
   height: 50px;
   margin-left: 10px;
+  pointer-events: all;
 }
 
 #header #headerLanguage {
