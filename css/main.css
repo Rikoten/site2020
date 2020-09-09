@@ -856,7 +856,14 @@ footer #sns-btn {
 }
 
 @media screen and (max-width: 1600px) {
+  #topView {
+    min-height: 558px;
+  }
 
+  #topView-event-bar > a > .topView-event-tile {
+    width: 25vw;
+    height: calc(25vw * 3 / 4.3);
+  }
 }
 
 @media screen and (max-width: 992px) {
