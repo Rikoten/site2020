@@ -96,6 +96,23 @@ main {
   left: 80px;
 }
 
+.h3-group2::after{
+  position: absolute;
+  content: "透視図法";
+  height: 50px;
+  background-color: #fff;
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.article-text{
+  margin: 30px 80px;
+}
+
+.article-img{
+  margin: 30px 80px;
+}
+
 aside {
   grid-area: aside;
 }
