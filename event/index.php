@@ -99,6 +99,9 @@
         <div class="sub-sub-title2">
           <h3 class="h3-group5">ゲームで遊べるプログラミング</h3>
         </div>
+        <div class="icon">
+          <p>Article <span>10~15分</span></p>
+        </div>
         <div class="article-text">
           <div>
             <p>普段から利用しているプログラミングの体験をゲームを通じて行おうと思います。プログラミング特有の実行命令を迷路の脱出ゲームで学べるものになっています。是非ともその面白さを体感してほしいと思います。これでプログラミングをマスターしよう！！</p>

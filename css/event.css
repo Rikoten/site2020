@@ -16,6 +16,14 @@ body {
       ;
 }
 
+h2{
+  font-size: 22px;
+}
+
+h3{
+  display: inline-block;
+}
+
 header {
   grid-area: header;
   background-color: #B0D8E4;
@@ -191,6 +199,14 @@ li{
   text-decoration: none;
 }
 
+.icon {
+  display: inline-block;
+}
+
+.icon p{
+  display: inline-block;
+}
+
 .article-text{
   margin: 30px 80px;
 }
@@ -317,7 +333,7 @@ article > p {
 }
 
 h3 {
-  font-size: 26px;
+  font-size: 18px;
 }
 
 h4 {
