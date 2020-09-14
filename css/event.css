@@ -105,6 +105,24 @@ main {
   left: 80px;
 }
 
+.h3-group3::after{
+  position: absolute;
+  content: "一点透視図法の性質";
+  height: 50px;
+  background-color: #fff;
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.button{
+  display: flex;
+  
+}
+
+.li{
+  list-style-type: none;
+}
+
 .article-text{
   margin: 30px 80px;
 }
