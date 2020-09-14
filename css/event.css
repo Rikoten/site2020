@@ -6,12 +6,13 @@ body {
   line-height: 36px;
   color: #454E53;
   display: grid;
-  grid-template-rows: 700px auto auto;
+  grid-template-rows: 700px auto auto auto;
   grid-template-columns: auto auto;
   grid-template-areas:
       "header header"
       "main nav"
       "aside ."
+      "footer footer"
       ;
 }
 
@@ -64,7 +65,20 @@ main {
   background-color: #E9F5FA;
 }
 
+.sub-title2 h2{
+  width: 800px;
+  padding: 0 80px;
+  margin: 0;
+  height: 50px;
+  line-height: 50px;
+  background-color: #FDFAE1;
+}
+
 .sub-sub-title{
+  padding-top: 30px;
+}
+
+.sub-sub-title2{
   padding-top: 30px;
 }
 
@@ -96,6 +110,45 @@ main {
   left: 80px;
 }
 
+
+.sub-sub-title2 h3{
+  width: 800px;
+  padding: 0 80px;
+  margin: 0;
+  height: 50px;
+  line-height: 50px;
+  background-color: #FDFAE1;
+  position: relative;
+}
+
+.sub-sub-title2 h3::before{
+  position: absolute;
+  content: "";
+  height: 50px;
+  width: calc(100% - 20px);
+  background-color: #fff;
+  left: 20px;
+}
+
+.h3-group4::after{
+  position: absolute;
+  content: "早稲田デザイン学振興会";
+  height: 50px;
+  background-color: #fff;
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.h3-group5::after{
+  position: absolute;
+  content: "ゲームで遊べるプログラミング";
+  height: 50px;
+  background-color: #fff;
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+
 .h3-group2::after{
   position: absolute;
   content: "透視図法";
@@ -114,13 +167,28 @@ main {
   left: 80px;
 }
 
-.button{
+.button-area{
   display: flex;
-  
+  justify-content: center;
+  padding: 60px 0;
 }
 
-.li{
+.button{
+  width: 34px;
+  height: auto;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid #000;
+}
+
+li{
   list-style-type: none;
+  text-align: center;
+  margin: 0 9px;
+}
+
+.button-design{
+  text-decoration: none;
 }
 
 .article-text{

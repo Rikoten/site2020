@@ -73,11 +73,37 @@
             <p>一点透視図法とはパース(透視図)を使った遠近法の一つで、立体的でリアルな背景を描くために使われます。部屋や家の中、風景を描くのによく使用され、消失点(※)を増やした応用編として二点透視、三点透視という方法もあります。</p>
           </div>
         </div>
-        <ul class="button">
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
+        <ul class="button-area">
+          <li class="button"><a class="button-design" href="#">1</a></li>
+          <li class="button"><a class="button-design" href="#">2</a></li>
+          <li class="button"><a class="button-design" href="#">3</a></li>
         </ul>
+
+        <div class="sub-title2">
+          <h2>団体紹介</h2>
+        </div>
+        <div class="sub-sub-title2">
+          <h3 class="h3-group4">早稲田デザイン学振興会</h3>
+        </div>
+        <div class="article-text">
+          <div>
+            <p>精緻な違和感のないデザインを制作するためには遠近感を正しく描写する必要があります。早稲田デザイン学振興会では目に映る像を平面に正確に写すための技法である透視図法の振興に努め、特に一点透視図法や二点透視図法等の図法の研究を行っています。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="box">
+        <div class="sub-title2">
+          <h2>おすすめ企画</h2>
+        </div>
+        <div class="sub-sub-title2">
+          <h3 class="h3-group5">ゲームで遊べるプログラミング</h3>
+        </div>
+        <div class="article-text">
+          <div>
+            <p>普段から利用しているプログラミングの体験をゲームを通じて行おうと思います。プログラミング特有の実行命令を迷路の脱出ゲームで学べるものになっています。是非ともその面白さを体感してほしいと思います。これでプログラミングをマスターしよう！！</p>
+          </div>
+        </div>
       </section>
     </article>
 
