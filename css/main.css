@@ -247,7 +247,7 @@ body {
   position: absolute;
   top: 0;
   width: 6px;
-  height: 100px;
+  height: 100%;
   box-shadow: 0 0 10px #fff;
   z-index: 20;
   content: '';
@@ -587,6 +587,10 @@ body {
   text-align: center;
   line-height: 40px;
   text-decoration: none;
+}
+
+#timetable-mb {
+  display: none;
 }
 
 #about {
@@ -956,19 +960,106 @@ footer #sns-btn {
     font-size: 16px;
   }
 
+  #event > #eventContainer {
+    grid-template-rows: 70px 40px 30px 40px auto 30px 60px 30px;
+  }
+
   #eventH3 > div {
     width: 250px;
-    /*width: 300px;*/
+    font-size: 22px;
+    height: 70px;
+  }
+  #eventH3 > div > div {
+    height: 70px;
+    line-height: 70px;
+  }
+  #eventH3 > div::before, #eventH3 > div::after {
+    height: 70px;
   }
 
   #eventList .eventTile,  #eventList .eventTile.active {
     position: relative;
-    grid-template-rows: 30px 30px 30px 90px 30px;
-    height: 210px;
-    /*background: linear-gradient(to right, rgba(36, 61, 125, 0), rgba(36, 61, 125, 1));*/
+    grid-template-rows: 50px 10px 40px 90px 10px;
+    margin: 20px 10px;
+    grid-template-columns: 10px 70px 70px 1fr 100px 10px;
+    grid-template-areas: "title title title title title title"
+    ". . . . . ."
+    ". view thumb time child ."
+    ". desc desc desc desc ."
+    ". . . . . .";
+    height: 200px;
     background: #243D7D;
+    border-radius: 5px;
     z-index: 20;
     opacity: 1;
+    font-size: 14px;
+  }
+
+  #eventList .eventTile > .eventDesc, #eventList .eventTile > .eventView, #eventList .eventTile > .eventThumbsUp {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  #eventList .eventTile > .eventGroupName {
+    display: none;
+  }
+
+  #eventList .eventTile > .eventDesc {
+    font-size: 16px;
+    overflow: hidden;
+  }
+  
+  #eventList .eventTile > .eventTitle {
+    line-height: 50px;
+    padding: 0 10px;
+    border-bottom: 1px solid #0D163B;
+  }
+
+  #eventList .eventTile > .eventChild > div {
+    width: 90px;
+    height: 25px;
+    border-radius: 12.5px;
+    line-height: 25px;
+  }
+
+  #eventList .eventTile > .eventView::before {
+    height: 12px;
+    margin: 9px 0;
+    width: 30px;
+  }
+
+  #eventList .eventTile > .eventThumbsUp::before {
+    margin: 7px 0;
+    height: 16px;
+    width: 20px;
+  }
+
+  #eventList .foot {
+    display: none;
+    /* もっと見るを作る */
+  }
+
+  #timetable-mb {
+    grid-row: 7;
+    grid-column: 1 / -1;
+    line-height: 60px;
+    display: block;
+    background-color: #fff;
+    color: #0D163B;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  #timetable-mb img {
+    width: 30px;
+    margin-left: 14px;
+    vertical-align: middle;
+  }
+
+  #about {
+    display: none;
   }
 }
 
