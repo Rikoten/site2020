@@ -960,6 +960,10 @@ footer #sns-btn {
     font-size: 16px;
   }
 
+  #event {
+    grid-template-rows: 40px auto 30px;
+  }
+
   #event > #eventContainer {
     grid-template-rows: 70px 40px 30px 40px auto 30px 60px 30px;
   }
@@ -1059,6 +1063,78 @@ footer #sns-btn {
   }
 
   #about {
+    grid-template-rows: auto auto auto 40px;
+    grid-template-columns: 100%;
+  }
+
+  #about > div.about-tile {
+    grid-column: 1!important;
+    background: linear-gradient(to right, rgba(36, 61, 125, 1), rgba(36, 61, 125, 0))!important;
+    border: none!important;
+    margin: 10px 0;
+    height: 100px;
+    display: block;
+    position: relative;
+  }
+
+  #about > div.about-tile::before, #about > div.about-tile::after {
+    box-shadow: none!important;
+  }
+
+  #about > div.about-tile:nth-child(1) {
+    grid-row: 1;
+  }
+
+  #about > div.about-tile:nth-child(2) {
+    grid-row: 2;
+  }
+
+  #about > div.about-tile:nth-child(3) {
+    grid-row: 3;
+  }
+
+  #about > div.about-tile > div:nth-child(3) {
+    display: none;
+  }
+  /* 正直ここら辺ゴミ、グリッドで書き直すか？ */
+  #about > div.about-tile > div:nth-child(1) {
+    position: absolute;
+    display: inline-block;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+  }
+
+  #about > div.about-tile > div:nth-child(2) {
+    position: absolute;
+    display: inline-block;
+    right: 13%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+  }
+
+  #about > div.about-tile > div:nth-child(2) > img {
+    height: 30px;
+    width: auto;
+  }
+
+  #about > div.about-tile:nth-child(1)::after, #about > div.about-tile:nth-child(2)::after, #about > div.about-tile:nth-child(3)::after {
+    position: absolute;
+    display: inline-block;
+    right: 15px;
+    top: 50%;
+    content: '';
+    background-image: url('../img/nav-icon.svg');
+    background-size: contain;
+    width: 16px;
+    height: 32px;
+    z-index: 100;
+    transform: translateY(-50%);
+  }
+
+  #other {
     display: none;
   }
 }
