@@ -313,36 +313,30 @@ body {
 #eventTypeTab > a {
   display: block;
   text-decoration: none;
-}
-
-#eventTypeTab > a > div {
   position: relative;
-  height: 100px;
   border-bottom: 9px solid transparent; /* 微妙 */
   font-weight: bold;
   color: #A1A8BC;
   padding-left: 30px;
-  vertical-align: bottom;
   transition: 200ms;
 }
 
-#eventTypeTab > a.active > div {
+#eventTypeTab > a.active {
   border-bottom: 9px solid #A3D4DC;
   color: #A3D4DC;
   background: linear-gradient(rgba(36, 61, 125, 0), rgba(36, 61, 125, 1));
 }
 
-#eventTypeTab > a > div > div {
+#eventTypeTab > a > div {
   position: absolute;
-  display: inline-block;
-  bottom: 0;
+  bottom: 5px;
 }
 
-#eventTypeTab > a > div > div > span:nth-child(1) {
+#eventTypeTab > a > div > span:nth-child(1) {
   font-size: 26px;
 }
 
-#eventTypeTab > a > div > div > span:nth-child(2) {
+#eventTypeTab > a > div > span:nth-child(2) {
   font-size: 16px;
 }
 
@@ -979,6 +973,17 @@ footer #sns-btn {
   }
   #eventH3 > div::before, #eventH3 > div::after {
     height: 70px;
+  }
+
+  #eventTypeTab > a > div {
+    height: 30px;
+    border: none;
+    background-color: #A1A8BC;
+    color: #121F4A;
+  }
+
+  #eventTypeTab > a.active > div {
+    background-color: #A3D4DC;
   }
 
   #eventList .eventTile,  #eventList .eventTile.active {
