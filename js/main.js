@@ -280,6 +280,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if (typeof elem["bgcolor"] !== 'undefined' && elem["bgcolor"] != "") bgcolor = elem["bgcolor"];
 
       bannerElem.setAttribute('href', elem["url"]);
+      bannerElem.setAttribute('target', '_blank');
+      bannerElem.setAttribute('rel', 'noopener');
       style = '-ms-grid-column: ' + String(columnG) + '; -ms-grid-row: ' + String(rowG) + '; background-color: ' + bgcolor + ';'
       bannerElem.setAttribute('style', style);
 
@@ -295,13 +297,15 @@ document.addEventListener('DOMContentLoaded', function () {
     let rowS = 0;
     SilverBannerData.forEach(function(elem) {
       let bannerElem = document.createElement('a');
-      let columnS = 1;
+      columnS = 1;
       if (iG % 3 == 1) columnS = 3;
       else if (iG % 3 == 2) columnS = 5;
       let bgcolor = "#fff";
       if (typeof elem["bgcolor"] !== 'undefined' && elem["bgcolor"] != "") bgcolor = elem["bgcolor"];
 
       bannerElem.setAttribute('href', elem["url"]);
+      bannerElem.setAttribute('target', '_blank');
+      bannerElem.setAttribute('rel', 'noopener');
       style = '-ms-grid-column: ' + String(columnS) + '; -ms-grid-row: ' + String(rowS) + '; background-color: ' + bgcolor + ';'
       bannerElem.setAttribute('style', style);
 
