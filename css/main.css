@@ -122,7 +122,12 @@ body {
   color: #fff;
   font-weight: 500;
   display: grid;
-  grid-template-columns: 15% 70% 15%;
+
+  grid-template-areas: ". . . ."
+  ". type time ."
+  ". title title ."
+  ". . . .";
+  grid-template-columns: 15% 90px calc(70% - 90px) 15%;
   grid-template-rows: 20% 1fr 100px 20%;
   transition: 200ms;
 }
@@ -143,14 +148,13 @@ body {
   box-shadow: 0px 10px #AFD7AA;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-head {
+#topView-event-bar > a > .topView-event-tile > .topView-event-type-container {
+  grid-area: type;
   line-height: 30px;
   position: relative;
-  grid-row: 2;
-  grid-column: 2;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-head > .topView-event-type {
+#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type {
   position: relative;
   display: inline-block;
   border-left: 8px solid currentColor;
@@ -163,7 +167,7 @@ body {
   border-bottom-left-radius: 0px;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-head > .topView-event-type::after {
+#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -173,41 +177,38 @@ body {
   font-size: 16px;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-head > .topView-event-type.article {
+#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.article {
   color: #B0D8E4;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-head > .topView-event-type.article::after {
+#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.article::after {
   content: 'Article';
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-head > .topView-event-type.movie {
+#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.movie {
   color: #E2AFBF;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-head > .topView-event-type.movie::after {
+#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.movie::after {
   content: 'Movie';
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-head > .topView-event-type.live {
+#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.live {
   color: #AFD7AA;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-head > .topView-event-type.live::after {
+#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.live::after {
   content: 'Live';
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-head > .topView-event-time {
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  right: 0;
+#topView-event-bar > a > .topView-event-tile > .topView-event-time {
+  grid-area: time;
   font-size: 16px;
+  text-align: right;
 }
 
 #topView-event-bar > a > .topView-event-tile > .topView-event-title {
-  grid-row: 3;
-  grid-column: 2;
+  grid-area: title;
   font-size: 22px;
 }
 
@@ -872,6 +873,53 @@ footer #sns-btn {
 
 @media screen and (max-width: 768px) {
   
+}
+
+@media screen and (max-width: 576px) {
+  #topView-event-bar > a > .topView-event-tile {
+    width: 140px;
+    height: 185px;
+    bottom: 10px;
+    margin: 0 5px;
+
+    grid-template-areas: ". . ."
+    "type type ."
+    ". title ."
+    ". time ."
+    ". . .";
+    grid-template-columns: 10px 1fr 10px;
+    grid-template-rows: 15px 25px 105px 25px 15px;
+    transition: 200ms;
+  }
+
+  #topView-event-bar > a > .topView-event-tile:hover {
+    box-shadow: none!important;
+    bottom: 10px;
+  }
+
+  #topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type {
+    height: 25px;
+    width: 60px;
+  }
+
+  #topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type::after {
+    width: 60px;
+    line-height: 25px;
+    font-size: 14px;
+  }
+
+  #topView-event-bar > a > .topView-event-tile > .topView-event-time {
+    font-size: 14px;
+  }
+
+  #topView-event-bar > a > .topView-event-tile > .topView-event-title {
+    font-size: 16px;
+  }
+
+  #eventH3 > div {
+    width: 250px;
+    /*width: 300px;*/
+  }
 }
 
 
