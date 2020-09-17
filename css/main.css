@@ -583,6 +583,10 @@ body {
   text-decoration: none;
 }
 
+#eventList .foot > a.more {
+  display: none;
+}
+
 #timetable-mb {
   display: none;
 }
@@ -783,6 +787,90 @@ a.detailButton:hover::before {
 #support > h3 {
   font-weight: 500;
   font-size: 30px;
+}
+
+/* バナー */
+#banner {
+  padding: 0 1em;
+  max-width: 940px;
+  display: inline-block;
+}
+#goldBanner, #silverBanner {
+
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: auto;
+}
+#goldBanner {
+  grid-template-columns: repeat(2, 1fr);
+  -ms-grid-columns: 1fr 60px 1fr;
+  grid-column-gap: 60px;
+  grid-row-gap: 60px;
+  margin: 60px 0;
+}
+#silverBanner {
+  grid-template-columns: repeat(3, 1fr);
+  -ms-grid-columns: 1fr 60px 1fr 60px 1fr;
+  grid-column-gap: 60px;
+  grid-row-gap: 60px;
+  margin: 60px 0;
+}
+#goldBanner > a, #silverBanner > a {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  background-color: #fff;
+  font-size: 0px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #cccccc;
+  border-image: initial;
+  padding: 10px;
+}
+#goldBanner > a > img {
+  width: 100%;
+  max-width: 440px;
+  max-height: 125px;
+  object-fit: contain;
+}
+#silverBanner > a > img {
+  width: 100%;
+  max-width: 280px;
+  max-height: 100px;
+  object-fit: contain;
+}
+@media screen and (max-width: 1600px) {
+}
+@media screen and (max-width: 768px) {
+  #goldBanner > a, #silverBanner > a {
+    padding: 5px;
+  }
+}
+@media screen and (max-width: 576px) {
+  #goldBanner {
+    grid-column-gap: 20px;
+    -ms-grid-columns: 1fr 20px 1fr;
+    grid-row-gap: 20px;
+  }
+  #silverBanner {
+    grid-column-gap: 20px;
+    -ms-grid-columns: 1fr 20px 1fr 20px 1fr;
+    grid-row-gap: 20px;
+  }
+}
+@media screen and (max-width: 330px) {
+  #goldBanner {
+    grid-column-gap: 10px;
+    -ms-grid-columns: 1fr 10px 1fr;
+    grid-row-gap: 10px;
+  }
+  #silverBanner {
+    grid-column-gap: 10px;
+    -ms-grid-columns: 1fr 10px 1fr 10px 1fr;
+    grid-row-gap: 10px;
+  }
 }
 
 footer {
@@ -1080,8 +1168,23 @@ footer #sns-btn {
   }
 
   #eventList .foot {
+    text-align: center;
+  }
+
+  #eventList .foot > div > div.pagination, #eventList .foot > div > a.timetable {
     display: none;
-    /* もっと見るを作る */
+  }
+
+  #eventList .foot > div > a.more {
+    margin-top: 10px;
+    display: inline-block;
+    background: #243D7D;
+    text-align: center;
+    width: 115px;
+    height: 40px;
+    line-height: 40px;
+    font-weight: bold;
+    font-size: 16px;
   }
 
   #timetable-mb {
@@ -1178,93 +1281,11 @@ footer #sns-btn {
   #other {
     display: none;
   }
-}
 
-
-#banner {
-  padding: 0 1em;
-  max-width: 940px;
-  display: inline-block;
-}
-#goldBanner, #silverBanner {
-
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: auto;
-}
-#goldBanner {
-  grid-template-columns: repeat(2, 1fr);
-  -ms-grid-columns: 1fr 60px 1fr;
-  grid-column-gap: 60px;
-  grid-row-gap: 60px;
-  margin: 60px 0;
-}
-#silverBanner {
-  grid-template-columns: repeat(3, 1fr);
-  -ms-grid-columns: 1fr 60px 1fr 60px 1fr;
-  grid-column-gap: 60px;
-  grid-row-gap: 60px;
-  margin: 60px 0;
-}
-#goldBanner > a, #silverBanner > a {
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-  background-color: #fff;
-  font-size: 0px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #cccccc;
-  border-image: initial;
-  padding: 10px;
-}
-#goldBanner > a > img {
-  width: 100%;
-  max-width: 440px;
-  max-height: 125px;
-  object-fit: contain;
-}
-#silverBanner > a > img {
-  width: 100%;
-  max-width: 280px;
-  max-height: 100px;
-  object-fit: contain;
-}
-@media screen and (max-width: 1600px) {
-}
-@media screen and (max-width: 768px) {
-  #goldBanner > a, #silverBanner > a {
-    padding: 5px;
+  #goldBanner, #silverBanner {
+    margin: 0 0 40px 0;
   }
 }
-@media screen and (max-width: 576px) {
-  #goldBanner {
-    grid-column-gap: 20px;
-    -ms-grid-columns: 1fr 20px 1fr;
-    grid-row-gap: 20px;
-  }
-  #silverBanner {
-    grid-column-gap: 20px;
-    -ms-grid-columns: 1fr 20px 1fr 20px 1fr;
-    grid-row-gap: 20px;
-  }
-}
-@media screen and (max-width: 330px) {
-  #goldBanner {
-    grid-column-gap: 10px;
-    -ms-grid-columns: 1fr 10px 1fr;
-    grid-row-gap: 10px;
-  }
-  #silverBanner {
-    grid-column-gap: 10px;
-    -ms-grid-columns: 1fr 10px 1fr 10px 1fr;
-    grid-row-gap: 10px;
-  }
-}
-
-
 
 /* SNSボタン */
 .circle_fl {
