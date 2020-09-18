@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
             for (let i = 0; i < 5; i++) {
               tileList[eventMbActive[href]].classList.add('mb-active');
               eventMbActive[href]++;
-              console.log(eventMbActive[href]);
+              // console.log(eventMbActive[href]);
               if (eventMbActive[href] >= tileList.length) {
                 elem.classList.add('disabled');
                 break;
