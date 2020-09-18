@@ -1049,6 +1049,7 @@ footer #sns-btn {
   #eventTypeTab {
     border: none;
     display: block;
+    text-align: center;
     grid-column: 1 / -1;
   }
 
