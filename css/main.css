@@ -568,7 +568,7 @@ body {
   text-decoration: none;
 }
 
-#eventList .foot > a.more {
+#eventList .foot > div > a.more {
   display: none;
 }
 
