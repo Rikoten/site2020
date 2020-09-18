@@ -15,6 +15,23 @@
   }
 }
 
+@keyframes fade-in-grid {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: grid;
+    opacity: 0;
+  }
+
+  100% {
+    display: grid;
+    opacity: 1;
+  }
+}
+
 @keyframes fade-out {
   0% {
     display: block;
@@ -1142,8 +1159,8 @@ footer #sns-btn {
   }
 
   #eventList .eventTile.mb-active {
-    display: block;
-    animation: 0.2s fade-in;
+    display: grid;
+    animation: 0.2s fade-in-grid;
   }
 
   #eventList .eventTile > .eventDesc, #eventList .eventTile > .eventView, #eventList .eventTile > .eventThumbsUp {
@@ -1207,8 +1224,8 @@ footer #sns-btn {
   }
 
   #eventList .foot > div > a.more.disabled {
-    animation: fade-out 0.2s;
-    animation-fill-mode: forwards;
+    /*animation: fade-out 0.2s;
+    animation-fill-mode: forwards;*/
     display: none;
   }
 
