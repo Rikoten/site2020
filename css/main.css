@@ -985,6 +985,7 @@ footer #sns-btn {
   
   #topView > #themeText > img {
     height: 40px;
+    width: auto;
   }
 
   #topView-event-bar > a > .topView-event-tile {
