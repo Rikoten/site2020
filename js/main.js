@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function () {
       style = '-ms-grid-column: ' + String(columnG) + '; -ms-grid-row: ' + String(rowG) + '; background-color: ' + bgcolor + ';'
       bannerElem.setAttribute('style', style);
 
-      bannerElem.innerHTML = '<img src = "/img/banner/' + elem["img"] + '">';
+      bannerElem.innerHTML = '<img src = "/img/banner/' + elem["img"] + '" alt = "' + elem["alt"] + '">';
 
       goldBanner.appendChild(bannerElem);
       if (iG % 2 != 0) rowG++;
@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', function () {
       style = '-ms-grid-column: ' + String(columnS) + '; -ms-grid-row: ' + String(rowS) + '; background-color: ' + bgcolor + ';'
       bannerElem.setAttribute('style', style);
 
-      bannerElem.innerHTML = '<img src = "/img/banner/' + elem["img"] + '">';
+      bannerElem.innerHTML = '<img src = "/img/banner/' + elem["img"] + '" alt = "' + elem["alt"] + '">';
 
       silverBanner.appendChild(bannerElem);
       if (iS % 3 == 2) rowS++;

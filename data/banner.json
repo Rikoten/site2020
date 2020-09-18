@@ -3,69 +3,46 @@
     {
       "img": "nipponsteal.jpg",
       "url": "https://www.nipponsteel.com/",
-      "bgcolor": ""
+      "bgcolor": "",
+      "alt": "日本製鉄株式会社"
     },
     {
-      "img": "logo2.png",
+      "img": "agos.png",
       "url": "",
-      "bgcolor": "#00A2D7"
+      "bgcolor": "",
+      "alt": "株式会社アゴスジャパン"
     },
     {
-      "img": "logo3.png",
+      "img": "lemon.png",
       "url": "",
-      "bgcolor": "#ECA83E"
+      "bgcolor": "",
+      "alt": "レモン画翠"
     },
     {
-      "img": "logo3.png",
+      "img": "tullys.png",
       "url": "",
-      "bgcolor": "#ECA83E"
+      "bgcolor": "",
+      "alt": "タリーズコーヒー"
     },
     {
-      "img": "logo2.png",
+      "img": "musashi.png",
       "url": "",
-      "bgcolor": "#00A2D7"
+      "bgcolor": "",
+      "alt": "武蔵エンジニアリング"
+    },
+    {
+      "img": "hit.png",
+      "url": "",
+      "bgcolor": "",
+      "alt": "株式会社ヒット"
     }
   ],
   [
     {
       "img": "nok.jpg",
       "url": "http://www.nok.co.jp/",
-      "bgcolor": ""
-    },
-    {
-      "img": "logo2.png",
-      "url": "",
-      "bgcolor": "#00A2D7"
-    },
-    {
-      "img": "logo3.png",
-      "url": "",
-      "bgcolor": "#ECA83E"
-    },
-    {
-      "img": "logo3.png",
-      "url": "",
-      "bgcolor": "#ECA83E"
-    },
-    {
-      "img": "logo2.png",
-      "url": "",
-      "bgcolor": "#00A2D7"
-    },
-    {
-      "img": "logo1.png",
-      "url": "",
-      "bgcolor": ""
-    },
-    {
-      "img": "logo1.png",
-      "url": "",
-      "bgcolor": ""
-    },
-    {
-      "img": "logo2.png",
-      "url": "",
-      "bgcolor": "#00A2D7"
+      "bgcolor": "",
+      "alt": "NOK株式会社"
     }
   ]
 ]
