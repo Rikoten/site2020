@@ -226,6 +226,47 @@ document.addEventListener('DOMContentLoaded', function () {
       });
         
     });
+
+    /* モバイルのもっと見るボタン */
+    const eventContainer = document.getElementById('eventContainer');
+    const eventMoreBtn = Array.from(eventContainer.getElementsByClassName('more'));
+    
+    /* 最初の5つを表示 */
+    eventTypePage.forEach(function(elem){
+      let tileList = elem.getElementsByClassName('eventTile');
+      for (let i = 0; i < 5; i++) {
+        if (i >= tileList.length) {
+          elem.getElementsByClassName('more')[0].classList.add('disabled');
+          break;
+        }
+        tileList[i].classList.add('mb-active');
+      }
+    });
+
+    /* もっと見るボタン */
+    let eventMbActive = {eventArticle: 5, eventMovie: 5, eventLive: 5};
+    eventMoreBtn.forEach(function(elem) {
+      elem.addEventListener('click', function(e) {
+        event.preventDefault();
+
+        let href = elem.getAttribute('href').substr(1);
+        eventTypePage.forEach(function(elem2){
+          if (elem2.id == href) {
+            let tileList = Array.from(elem2.getElementsByClassName('eventTile'));
+            for (let i = 0; i < 5; i++) {
+              tileList[eventMbActive[href]].classList.add('mb-active');
+              eventMbActive[href]++;
+              console.log(eventMbActive[href]);
+              if (eventMbActive[href] >= tileList.length) {
+                elem.classList.add('disabled');
+                break;
+              }
+            }
+          }
+        });
+      });
+    });
+
     const topViewEventBar = document.getElementById('topView-event-bar');
     let topViewPos = 0;
     let k = 0;

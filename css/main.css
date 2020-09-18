@@ -14,6 +14,23 @@
     opacity: 1;
   }
 }
+
+@keyframes fade-out {
+  0% {
+    display: block;
+    opacity: 1;
+  }
+
+  99% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: none;
+    opacity: 0;
+  }
+}
     
 body {
   margin: 0;
@@ -1093,11 +1110,15 @@ footer #sns-btn {
   #eventTypeTab > a.active > div {
     background-color: #A3D4DC;
   }
+
+  #eventList .eventListPage {
+    display: block;
+  }
   
   #eventList .eventListPage.active {
     height: auto;
   }
-
+  /* PC版のactiveとの競合 */
   #eventList .eventTile,  #eventList .eventTile.active {
     position: relative;
     grid-template-rows: 50px 10px 40px 90px 10px;
@@ -1114,6 +1135,15 @@ footer #sns-btn {
     z-index: 20;
     opacity: 1;
     font-size: 14px;
+  }
+
+  #eventList .eventTile {
+    display: none;
+  }
+
+  #eventList .eventTile.mb-active {
+    display: block;
+    animation: 0.2s fade-in;
   }
 
   #eventList .eventTile > .eventDesc, #eventList .eventTile > .eventView, #eventList .eventTile > .eventThumbsUp {
@@ -1174,6 +1204,12 @@ footer #sns-btn {
     line-height: 40px;
     font-weight: bold;
     font-size: 16px;
+  }
+
+  #eventList .foot > div > a.more.disabled {
+    animation: fade-out 0.2s;
+    animation-fill-mode: forwards;
+    display: none;
   }
 
   #timetable-mb {
