@@ -1092,6 +1092,10 @@ footer #sns-btn {
   #eventTypeTab > a.active > div {
     background-color: #A3D4DC;
   }
+  
+  #eventList .eventListPage.active {
+    height: auto;
+  }
 
   #eventList .eventTile,  #eventList .eventTile.active {
     position: relative;
@@ -1152,6 +1156,7 @@ footer #sns-btn {
 
   #eventList .foot {
     text-align: center;
+    margin-top: 20px;
   }
 
   #eventList .foot > div > div.pagination, #eventList .foot > div > a.timetable {
