@@ -172,22 +172,22 @@ document.addEventListener('DOMContentLoaded', function () {
         href = elem.getAttribute('href').substr(1);
         eventTypePage.forEach(function(elem2){
           if (elem2.id == href) {
-            elem2.classList.add('active');
+            elem2.classList.add('active');  //タブ自体をactiveに
             
             eventListPage.forEach(function(elem4) {
-              elem4.classList.remove('active');
+              elem4.classList.remove('active'); //全てのページを消す
             });
-            elem2.firstElementChild.classList.add('active');
+            elem2.getElementsByClassName('eventListPage')[0].classList.add('active');  //activeになったタブの最初のページをactiveに
             eventTile.forEach(function(elem4) {
-              elem4.classList.remove('active');
+              elem4.classList.remove('active'); //全てのタイルのホバーを取る
             });
-            elem2.firstElementChild.firstElementChild.firstElementChild.classList.add('active');  // 一番上をホバー状態に
+            elem2.getElementsByClassName('eventTile')[0].classList.add('active');  // 一番上のタイルをホバー状態に
             
-            let eventPaginationBtn2 = Array.from(elem2.lastElementChild.firstElementChild.firstElementChild.getElementsByTagName('a'));
+            let eventPaginationBtn2 = Array.from(elem2.getElementsByClassName('pagination')[0].getElementsByTagName('a')); //ページネーションボタン
             eventPaginationBtn2.forEach(function(elem4) {
-              elem4.classList.remove('active');
+              elem4.classList.remove('active'); //全てのページネーションボタンのactive消す
             });
-            elem2.lastElementChild.firstElementChild.firstElementChild.firstElementChild.classList.add('active');
+            elem2.getElementsByClassName('pagination')[0].firstElementChild.classList.add('active'); //一番最初のページネーションボタン（つまり表示ページのボタン）をactiveに
           }
           else elem2.classList.remove('active');
         });
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
               eventTile.forEach(function(elem4) {
                 elem4.classList.remove('active');
               });
-              elem2.firstElementChild.firstElementChild.classList.add('active');  // 一番上をホバー状態に
+              elem2.getElementsByClassName('eventTile')[0].classList.add('active');  // 一番上をホバー状態に
             }
             else elem2.classList.remove('active');
           });
