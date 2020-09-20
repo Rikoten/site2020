@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
               newPaginationBtn.setAttribute('href', newPaginationBtnHref);
               newPaginationBtn.innerText = ArticlePageCount;
               if (ArticlePageCount == 1) newPaginationBtn.classList.add('active');
-              TargetContainer.lastElementChild.firstElementChild.firstElementChild.appendChild(newPaginationBtn); //新しいページボタンの追加
+              TargetContainer.getElementsByClassName('pagination')[0].appendChild(newPaginationBtn); //新しいページボタンの追加
 
               /* 企画一覧ページの追加 */
               let newPagination = document.createElement('div');
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
               newPaginationBtn.setAttribute('href', newPaginationBtnHref);
               newPaginationBtn.innerText = MoviePageCount;
               if (MoviePageCount == 1) newPaginationBtn.classList.add('active');
-              TargetContainer.lastElementChild.firstElementChild.firstElementChild.appendChild(newPaginationBtn); //新しいページボタンの追加
+              TargetContainer.getElementsByClassName('pagination')[0].appendChild(newPaginationBtn); //新しいページボタンの追加
 
               /* 企画一覧ページの追加 */
               let newPagination = document.createElement('div');
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
               newPaginationBtn.setAttribute('href', newPaginationBtnHref);
               newPaginationBtn.innerText = LivePageCount;
               if (LivePageCount == 1) newPaginationBtn.classList.add('active');
-              TargetContainer.lastElementChild.firstElementChild.firstElementChild.appendChild(newPaginationBtn); //新しいページボタンの追加
+              TargetContainer.getElementsByClassName('pagination')[0].appendChild(newPaginationBtn); //新しいページボタンの追加
 
               /* 企画一覧ページの追加 */
               let newPagination = document.createElement('div');
