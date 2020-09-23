@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           EventListTile.innerHTML = EventListTileInner;
 
-          TargetContainer.lastElementChild.previousElementSibling.appendChild(EventListTile); //最後から2番目: footの前なので最後のページ
+          TargetContainer.lastElementChild.previousElementSibling.previousElementSibling.appendChild(EventListTile); //最後から2番目: footの前なので最後のページ
         });
         resolve(EventDataShuffled);
       }
@@ -248,7 +248,6 @@ document.addEventListener('DOMContentLoaded', function () {
     eventMoreBtn.forEach(function(elem) {
       elem.addEventListener('click', function(e) {
         event.preventDefault();
-
         let href = elem.getAttribute('href').substr(1);
         eventTypePage.forEach(function(elem2){
           if (elem2.id == href) {

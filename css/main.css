@@ -530,6 +530,11 @@ body {
 /* タイプ選択 */
 .eventTypePage {
   display: none;
+  text-align: center;
+}
+
+.eventTypePage > div {
+  text-align: left;
 }
 
 .eventTypePage.active {
