@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
               newPagination.classList.add('eventListPage');
               if (ArticlePageCount == 1) newPagination.classList.add('active');
               newPagination.id = newPaginationID;
-              TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
+              TargetContainer.insertBefore(newPagination, TargetContainer.getElementsByClassName('more')[0]);
             }
             ArticleCount++;
           }
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
               newPagination.classList.add('eventListPage');
               if (MoviePageCount == 1) newPagination.classList.add('active');
               newPagination.id = newPaginationID;
-              TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
+              TargetContainer.insertBefore(newPagination, TargetContainer.getElementsByClassName('more')[0]);
             }
             MovieCount++;
           }
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
               newPagination.classList.add('eventListPage');
               if (LivePageCount == 1) newPagination.classList.add('active');
               newPagination.id = newPaginationID;
-              TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
+              TargetContainer.insertBefore(newPagination, TargetContainer.getElementsByClassName('more')[0]);
             }
             LiveCount++;
           }

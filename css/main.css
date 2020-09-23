@@ -602,7 +602,7 @@ body {
   text-decoration: none;
 }
 
-#eventList .foot > div > a.more {
+#eventList a.more {
   display: none;
 }
 
@@ -1211,7 +1211,7 @@ footer #sns-btn {
     display: none;
   }
 
-  #eventList .foot > div > a.more {
+  #eventList a.more {
     margin-top: 10px;
     display: inline-block;
     background: #243D7D;
@@ -1223,7 +1223,7 @@ footer #sns-btn {
     font-size: 16px;
   }
 
-  #eventList .foot > div > a.more.disabled {
+  #eventList a.more.disabled {
     /*animation: fade-out 0.2s;
     animation-fill-mode: forwards;*/
     display: none;
