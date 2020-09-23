@@ -66,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
               newPagination.classList.add('eventListPage');
               if (ArticlePageCount == 1) newPagination.classList.add('active');
               newPagination.id = newPaginationID;
+              newPagination.innerHTML = '<a class = "more" href = "#eventArticle">もっと見る</a>';
               TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
             }
             ArticleCount++;
@@ -90,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
               newPagination.classList.add('eventListPage');
               if (MoviePageCount == 1) newPagination.classList.add('active');
               newPagination.id = newPaginationID;
+              newPagination.innerHTML = '<a class = "more" href = "#eventMovie">もっと見る</a>';
               TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
             }
             MovieCount++;
@@ -114,6 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
               newPagination.classList.add('eventListPage');
               if (LivePageCount == 1) newPagination.classList.add('active');
               newPagination.id = newPaginationID;
+              newPagination.innerHTML = '<a class = "more" href = "#eventLive">もっと見る</a>';
               TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
             }
             LiveCount++;
@@ -125,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           EventListTile.innerHTML = EventListTileInner;
 
-          TargetContainer.lastElementChild.previousElementSibling.appendChild(EventListTile); //最後から2番目: footの前なので最後のページ
+          TargetContainer.lastElementChild.previousElementSibling.insertBefore(EventListTile, TargetContainer.lastElementChild.previousElementSibling.getElementsByClassName('more')[0]);
         });
         resolve(EventDataShuffled);
       }
@@ -236,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function () {
       let tileList = elem.getElementsByClassName('eventTile');
       for (let i = 0; i < 5; i++) {
         if (i >= tileList.length) {
-//          elem.getElementsByClassName('more')[0].classList.add('disabled');
+          elem.getElementsByClassName('more')[0].classList.add('disabled'); //全部で5個以下だった場合
           break;
         }
         tileList[i].classList.add('mb-active');
