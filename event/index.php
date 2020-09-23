@@ -96,12 +96,9 @@
         <div class="sub-title2">
           <h2>おすすめ企画</h2>
         </div>
-        <div class="sub-sub-title2">
-          <h3 class="h3-group5">ゲームで遊べるプログラミング</h3>
-        </div>
-        <div class="icon">
-          <p>Article <span>10~15分</span></p>
-        </div>
+        <h3 class="h3-float">ゲームで遊べるプログラミング</h3>
+        <p class="icon">Article</p>
+        <p class="icon-text">10:00~15:00</p>
         <div class="article-text">
           <div>
             <p>普段から利用しているプログラミングの体験をゲームを通じて行おうと思います。プログラミング特有の実行命令を迷路の脱出ゲームで学べるものになっています。是非ともその面白さを体感してほしいと思います。これでプログラミングをマスターしよう！！</p>
