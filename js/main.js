@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
               newPagination.classList.add('eventListPage');
               if (ArticlePageCount == 1) newPagination.classList.add('active');
               newPagination.id = newPaginationID;
-              TargetContainer.insertBefore(newPagination, TargetContainer.getElementsByClassName('more')[0]);
+              TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
             }
             ArticleCount++;
           }
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
               newPagination.classList.add('eventListPage');
               if (MoviePageCount == 1) newPagination.classList.add('active');
               newPagination.id = newPaginationID;
-              TargetContainer.insertBefore(newPagination, TargetContainer.getElementsByClassName('more')[0]);
+              TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
             }
             MovieCount++;
           }
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
               newPagination.classList.add('eventListPage');
               if (LivePageCount == 1) newPagination.classList.add('active');
               newPagination.id = newPaginationID;
-              TargetContainer.insertBefore(newPagination, TargetContainer.getElementsByClassName('more')[0]);
+              TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
             }
             LiveCount++;
           }
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           EventListTile.innerHTML = EventListTileInner;
 
-          TargetContainer.lastElementChild.previousElementSibling.previousElementSibling.appendChild(EventListTile); //最後から2番目: footの前なので最後のページ
+          TargetContainer.lastElementChild.previousElementSibling.appendChild(EventListTile); //最後から2番目: footの前なので最後のページ
         });
         resolve(EventDataShuffled);
       }
@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
       let tileList = elem.getElementsByClassName('eventTile');
       for (let i = 0; i < 5; i++) {
         if (i >= tileList.length) {
-          elem.getElementsByClassName('more')[0].classList.add('disabled');
+//          elem.getElementsByClassName('more')[0].classList.add('disabled');
           break;
         }
         tileList[i].classList.add('mb-active');
