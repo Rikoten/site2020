@@ -237,10 +237,17 @@ document.addEventListener('DOMContentLoaded', function () {
     /* 最初の5つを表示 */
     eventTypePage.forEach(function(elem){
       let tileList = elem.getElementsByClassName('eventTile');
+      let moreBtns = Array.from(elem.getElementsByClassName('more'));
       for (let i = 0; i < 5; i++) {
         if (i >= tileList.length) {
           elem.getElementsByClassName('more')[0].classList.add('disabled'); //全部で5個以下だった場合
           break;
+        }
+        else {
+          moreBtns.forEach(function(elem2) {
+            elem2.classList.add('disabled');
+          });
+          moreBtns[0].classList.remove('disabled');
         }
         tileList[i].classList.add('mb-active');
       }
@@ -255,9 +262,16 @@ document.addEventListener('DOMContentLoaded', function () {
         eventTypePage.forEach(function(elem2){
           if (elem2.id == href) {
             let tileList = Array.from(elem2.getElementsByClassName('eventTile'));
+            let moreBtns = Array.from(elem2.getElementsByClassName('more'));
             for (let i = 0; i < 5; i++) {
               tileList[eventMbActive[href]].classList.add('mb-active');
               eventMbActive[href]++;
+
+              if (i == 4) {
+                if (typeof moreBtns[((eventMbActive[href] - eventMbActive[href] % 7) / 7 - 1)] != "undefined") moreBtns[((eventMbActive[href] - eventMbActive[href] % 7) / 7 - 1)].classList.add('disabled');
+                if (typeof moreBtns[((eventMbActive[href] - eventMbActive[href] % 7) / 7)] != "undefined") moreBtns[((eventMbActive[href] - eventMbActive[href] % 7) / 7)].classList.remove('disabled');
+              }
+              
               // console.log(eventMbActive[href]);
               if (eventMbActive[href] >= tileList.length) {
                 elem.classList.add('disabled');

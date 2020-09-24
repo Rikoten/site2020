@@ -545,6 +545,11 @@ body {
 /* ページネーション */
 #eventList .eventListPage {
   display: none;
+  text-align: center;
+}
+
+#eventList .eventListPage .eventTile {
+  text-align: left;
 }
 
 #eventList .eventListPage.active {
