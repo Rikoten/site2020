@@ -25,16 +25,22 @@
       "alt": "タリーズコーヒー"
     },
     {
-      "img": "musashi.png",
-      "url": "",
+      "img": "musashi.jpg",
+      "url": "https://www.musashi-engineering.co.jp/recruit/",
       "bgcolor": "",
       "alt": "武蔵エンジニアリング"
     },
     {
       "img": "hit.png",
-      "url": "",
+      "url": "http://www.hit-men.co.jp/",
       "bgcolor": "",
       "alt": "株式会社ヒット"
+    },
+    {
+      "img": "pco.png",
+      "url": "",
+      "bgcolor": "",
+      "alt": "株式会社ピーシーオーワークス"
     }
   ],
   [
