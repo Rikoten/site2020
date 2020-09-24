@@ -858,16 +858,20 @@ a.detailButton:hover::before {
   border-image: initial;
   padding: 10px;
 }
+#goldBanner > a {
+  height: 127px;
+}
+#silverBanner > a {
+  height: 101px;
+}
 #goldBanner > a > img {
   width: 100%;
   max-width: 440px;
-  max-height: 125px;
   object-fit: contain;
 }
 #silverBanner > a > img {
   width: 100%;
   max-width: 280px;
-  max-height: 100px;
   object-fit: contain;
 }
 @media screen and (max-width: 1600px) {
@@ -887,6 +891,12 @@ a.detailButton:hover::before {
     grid-column-gap: 20px;
     -ms-grid-columns: 1fr 20px 1fr 20px 1fr;
     grid-row-gap: 20px;
+  }
+  #goldBanner > a {
+    height: 68px;
+  }
+  #silverBanner > a {
+    height: 48px;
   }
 }
 @media screen and (max-width: 330px) {
