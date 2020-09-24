@@ -859,10 +859,10 @@ a.detailButton:hover::before {
   padding: 10px;
 }
 #goldBanner > a {
-  height: 127px;
+  height: calc(127px - 22px);
 }
 #silverBanner > a {
-  height: 101px;
+  height: calc(101px - 22px);
 }
 #goldBanner > a > img {
   width: 100%;
@@ -893,10 +893,10 @@ a.detailButton:hover::before {
     grid-row-gap: 20px;
   }
   #goldBanner > a {
-    height: 68px;
+    height: calc(68px - 12px);
   }
   #silverBanner > a {
-    height: 48px;
+    height: calc(48px - 12px);
   }
 }
 @media screen and (max-width: 330px) {
