@@ -66,10 +66,16 @@ document.addEventListener('DOMContentLoaded', function () {
               newPagination.classList.add('eventListPage');
               if (ArticlePageCount == 1) newPagination.classList.add('active');
               newPagination.id = newPaginationID;
-              newPagination.innerHTML = '<a class = "more" href = "#eventArticle">もっと見る</a>';
               TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
             }
             ArticleCount++;
+            if (ArticleCount % 5 == 1 && ArticleCount > 1) {
+              let moreBtn = document.createElement('a');
+              moreBtn.setAttribute('href', '#eventArticle');
+              moreBtn.classList.add('more');
+              moreBtn.innerText = "もっと見る";
+              TargetContainer.lastElementChild.previousElementSibling.appendChild(moreBtn);
+            }
           }
           else if (elem["eventType"] == "movie") {
             TargetContainer = eventMovie;
@@ -91,10 +97,18 @@ document.addEventListener('DOMContentLoaded', function () {
               newPagination.classList.add('eventListPage');
               if (MoviePageCount == 1) newPagination.classList.add('active');
               newPagination.id = newPaginationID;
-              newPagination.innerHTML = '<a class = "more" href = "#eventMovie">もっと見る</a>';
               TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
             }
             MovieCount++;
+            if (MovieCount % 5 == 1 && MovieCount > 1) {
+              let moreBtn = document.createElement('a');
+              moreBtn.setAttribute('href', '#eventMovie');
+              moreBtn.setAttribute('ahyahya', MovieCount);
+              moreBtn.classList.add('more');
+              moreBtn.innerText = "もっと見る";
+              TargetContainer.lastElementChild.previousElementSibling.appendChild(moreBtn);
+              console.log(MovieCount);
+            }
           }
           else if (elem["eventType"] == "live") {
             TargetContainer = eventLive;
@@ -116,10 +130,16 @@ document.addEventListener('DOMContentLoaded', function () {
               newPagination.classList.add('eventListPage');
               if (LivePageCount == 1) newPagination.classList.add('active');
               newPagination.id = newPaginationID;
-              newPagination.innerHTML = '<a class = "more" href = "#eventLive">もっと見る</a>';
               TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
             }
             LiveCount++;
+            if (LiveCount % 5 == 1 && LiveCount > 1) {
+              let moreBtn = document.createElement('a');
+              moreBtn.setAttribute('href', '#eventLive');
+              moreBtn.classList.add('more');
+              moreBtn.innerText = "もっと見る";
+              TargetContainer.lastElementChild.previousElementSibling.appendChild(moreBtn);
+            }
           }
           
           let EventListTile = document.createElement('a');
@@ -128,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           EventListTile.innerHTML = EventListTileInner;
 
-          TargetContainer.lastElementChild.previousElementSibling.insertBefore(EventListTile, TargetContainer.lastElementChild.previousElementSibling.getElementsByClassName('more')[0]);
+          TargetContainer.lastElementChild.previousElementSibling.appendChild(EventListTile);
         });
         resolve(EventDataShuffled);
       }
@@ -240,14 +260,18 @@ document.addEventListener('DOMContentLoaded', function () {
       let moreBtns = Array.from(elem.getElementsByClassName('more'));
       for (let i = 0; i < 5; i++) {
         if (i >= tileList.length) {
-          elem.getElementsByClassName('more')[0].classList.add('disabled'); //全部で5個以下だった場合
+          if (moreBtns.length != 0) {
+            moreBtns[0].classList.add('disabled'); //全部で5個以下だった場合
+          }
           break;
         }
         else {
-          moreBtns.forEach(function(elem2) {
-            elem2.classList.add('disabled');
-          });
-          moreBtns[0].classList.remove('disabled');
+          if (moreBtns.length != 0) {
+            moreBtns.forEach(function(elem2) {
+              elem2.classList.add('disabled');
+            });
+            moreBtns[0].classList.remove('disabled');
+          }
         }
         tileList[i].classList.add('mb-active');
       }
@@ -268,8 +292,8 @@ document.addEventListener('DOMContentLoaded', function () {
               eventMbActive[href]++;
 
               if (i == 4) {
-                if (typeof moreBtns[((eventMbActive[href] - eventMbActive[href] % 7) / 7 - 1)] != "undefined") moreBtns[((eventMbActive[href] - eventMbActive[href] % 7) / 7 - 1)].classList.add('disabled');
-                if (typeof moreBtns[((eventMbActive[href] - eventMbActive[href] % 7) / 7)] != "undefined") moreBtns[((eventMbActive[href] - eventMbActive[href] % 7) / 7)].classList.remove('disabled');
+                if (typeof moreBtns[(eventMbActive[href] / 5 - 2)] != "undefined") moreBtns[(eventMbActive[href] / 5 - 2)].classList.add('disabled');
+                if (typeof moreBtns[(eventMbActive[href] / 5 - 1)] != "undefined") moreBtns[(eventMbActive[href] / 5 - 1)].classList.remove('disabled');
               }
               
               // console.log(eventMbActive[href]);
