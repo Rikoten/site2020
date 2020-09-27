@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           showedtiles[type]++;
           
+          /* もっと見るボタン、5個の区切りずつで出力（PC版の仕様との干渉のため1つのボタンにできなかった） */
           if (showedtiles[type] % 5 == 1 && showedtiles[type] > 1) {
             let moreBtn = document.createElement('a');
             moreBtn.setAttribute('href', '#eventArticle');
