@@ -152,16 +152,16 @@ document.addEventListener('DOMContentLoaded', function () {
   
 
     /* ページネーション表示切替 */
-    eventPagination.forEach(function(paginationBtns) {
-      let eventPaginationBtn = Array.from(paginationBtns.getElementsByTagName('a'));
+    eventPagination.forEach(function(paginationBtnsContainer) {
+      let eventPaginationBtn = Array.from(paginationBtnsContainer.getElementsByTagName('a'));
   
       eventPaginationBtn.forEach(function(paginationBtnClicked) {
         paginationBtnClicked.addEventListener('click', function(e) {
           event.preventDefault();
   
           /* ボタンの動作 */
-          eventPaginationBtn.forEach(function(paginationBtns2) {
-            paginationBtns2.classList.remove('active');
+          eventPaginationBtn.forEach(function(paginationBtn) {
+            paginationBtn.classList.remove('active');
           });
           paginationBtnClicked.classList.add('active');
   
