@@ -113,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const eventPagination = Array.from(document.getElementsByClassName('pagination'));
     const eventListPage = Array.from(document.getElementsByClassName('eventListPage'));
 
+    /* タイプのタブの表示切り替え */
     eventTypeTabBtn.forEach(function(elem) {
       elem.addEventListener('click', function (e) {
         event.preventDefault();
@@ -151,32 +152,30 @@ document.addEventListener('DOMContentLoaded', function () {
   
 
     /* ページネーション表示切替 */
-    eventPagination.forEach(function(elem) {
-      let eventPaginationBtn = Array.from(elem.getElementsByTagName('a'));
+    eventPagination.forEach(function(paginationBtns) {
+      let eventPaginationBtn = Array.from(paginationBtns.getElementsByTagName('a'));
   
-      eventPaginationBtn.forEach(function(elem3) {
-        elem3.addEventListener('click', function (e) {
+      eventPaginationBtn.forEach(function(paginationBtnClicked) {
+        paginationBtnClicked.addEventListener('click', function(e) {
           event.preventDefault();
   
           /* ボタンの動作 */
-          eventPaginationBtn.forEach(function(elem2) {
-            elem2.classList.remove('active');
+          eventPaginationBtn.forEach(function(paginationBtns2) {
+            paginationBtns2.classList.remove('active');
           });
-          elem3.classList.add('active');
+          paginationBtnClicked.classList.add('active');
   
           /* タブの動作 */
-          href = elem3.getAttribute('href').substr(1);
-          eventListPage.forEach(function(elem2){
-            if (elem2.id == href) {
-              elem2.classList.add('active');
-  
-              eventTile.forEach(function(elem4) {
-                elem4.classList.remove('active');
-              });
-              elem2.getElementsByClassName('eventTile')[0].classList.add('active');  // 一番上をホバー状態に
-            }
-            else elem2.classList.remove('active');
+          let indexClicked = [].slice.call(eventPaginationBtn).indexOf(paginationBtnClicked) + 1; //押されたボタンの示すページネーション
+          eventListPage.forEach(function(listPage){
+            listPage.classList.remove('active');
           });
+
+          eventListPage[indexClicked].classList.add('active');
+          eventTile.forEach(function(tiles) {
+            tiles.classList.remove('active');
+          });
+          eventListPage[indexClicked].getElementsByClassName('eventTile')[0].classList.add('active');  // 一番上をホバー状態に
         });
       });
         
