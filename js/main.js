@@ -23,15 +23,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const topViewEventBar = document.getElementById('topView-event-bar');
         /* 企画一覧部分 */
         const tilesOnePage = 7; //1ページあたりの企画数
-        const eventArticle = document.getElementById('eventArticle');
-        const eventMovie = document.getElementById('eventMovie');
-        const eventLive = document.getElementById('eventLive');
-        let ArticleCount = 0;
-        let ArticlePageCount = 0;
-        let MovieCount = 0;
-        let MoviePageCount = 0;
-        let LiveCount = 0;
-        let LivePageCount = 0;
+        let TargetContainer = {article: document.getElementById('eventArticle'), movie: document.getElementById('eventMovie'), live: document.getElementById('eventLive')};  //コンテナ
+        let showedtiles = {article: 0, movie: 0, live: 0}; //表示された企画数
+        let showedPages = {article: 0, movie: 0, live: 0}; //生成されたページ数
+
         EventDataShuffled.forEach(function(elem) {
           /* ヘッダー部分 */
           let HeaderTile = document.createElement('a');
@@ -43,112 +38,49 @@ document.addEventListener('DOMContentLoaded', function () {
           topViewEventBar.appendChild(HeaderTile);
 
           /* 企画一覧部分 */
-          let TargetContainer = "";
-          let childrenTag = "";
+          let type = elem["eventType"]; //企画タイプ
+
+          let childrenTag = ""; //子ども向けの企画タグ
           if (typeof elem["children"] !== 'undefined' && elem["children"] == 1) childrenTag = '<div class = "eventChild"><div>子ども向け</div></div>';
-          if (elem["eventType"] == "article") {
-            TargetContainer = eventArticle;
-            if (ArticleCount % tilesOnePage == 0) {//新しいページ最初の企画
-              ArticlePageCount++; //ページ数
-
-              let newPaginationID = 'eventArticle' + String(ArticlePageCount);
-              let newPaginationBtnHref = '#' + newPaginationID;
-
-              /* ページネーションボタンの追加 */
-              let newPaginationBtn = document.createElement('a');
-              newPaginationBtn.setAttribute('href', newPaginationBtnHref);
-              newPaginationBtn.innerText = ArticlePageCount;
-              if (ArticlePageCount == 1) newPaginationBtn.classList.add('active');
-              TargetContainer.getElementsByClassName('pagination')[0].appendChild(newPaginationBtn); //新しいページボタンの追加
-
-              /* 企画一覧ページの追加 */
-              let newPagination = document.createElement('div');
-              newPagination.classList.add('eventListPage');
-              if (ArticlePageCount == 1) newPagination.classList.add('active');
-              newPagination.id = newPaginationID;
-              TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
-            }
-            ArticleCount++;
-            if (ArticleCount % 5 == 1 && ArticleCount > 1) {
-              let moreBtn = document.createElement('a');
-              moreBtn.setAttribute('href', '#eventArticle');
-              moreBtn.classList.add('more');
-              moreBtn.innerText = "もっと見る";
-              TargetContainer.lastElementChild.previousElementSibling.appendChild(moreBtn);
-            }
-          }
-          else if (elem["eventType"] == "movie") {
-            TargetContainer = eventMovie;
-            if (MovieCount % tilesOnePage == 0) {//新しいページ最初の企画
-              MoviePageCount++; //ページ数
-
-              let newPaginationID = 'eventMovie' + String(MoviePageCount);
-              let newPaginationBtnHref = '#' + newPaginationID;
-
-              /* ページネーションボタンの追加 */
-              let newPaginationBtn = document.createElement('a');
-              newPaginationBtn.setAttribute('href', newPaginationBtnHref);
-              newPaginationBtn.innerText = MoviePageCount;
-              if (MoviePageCount == 1) newPaginationBtn.classList.add('active');
-              TargetContainer.getElementsByClassName('pagination')[0].appendChild(newPaginationBtn); //新しいページボタンの追加
-
-              /* 企画一覧ページの追加 */
-              let newPagination = document.createElement('div');
-              newPagination.classList.add('eventListPage');
-              if (MoviePageCount == 1) newPagination.classList.add('active');
-              newPagination.id = newPaginationID;
-              TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
-            }
-            MovieCount++;
-            if (MovieCount % 5 == 1 && MovieCount > 1) {
-              let moreBtn = document.createElement('a');
-              moreBtn.setAttribute('href', '#eventMovie');
-              moreBtn.setAttribute('ahyahya', MovieCount);
-              moreBtn.classList.add('more');
-              moreBtn.innerText = "もっと見る";
-              TargetContainer.lastElementChild.previousElementSibling.appendChild(moreBtn);
-              console.log(MovieCount);
-            }
-          }
-          else if (elem["eventType"] == "live") {
-            TargetContainer = eventLive;
-            if (LiveCount % tilesOnePage == 0) {//新しいページ最初の企画
-              LivePageCount++; //ページ数
-
-              let newPaginationID = 'eventLive' + String(LivePageCount);
-              let newPaginationBtnHref = '#' + newPaginationID;
-
-              /* ページネーションボタンの追加 */
-              let newPaginationBtn = document.createElement('a');
-              newPaginationBtn.setAttribute('href', newPaginationBtnHref);
-              newPaginationBtn.innerText = LivePageCount;
-              if (LivePageCount == 1) newPaginationBtn.classList.add('active');
-              TargetContainer.getElementsByClassName('pagination')[0].appendChild(newPaginationBtn); //新しいページボタンの追加
-
-              /* 企画一覧ページの追加 */
-              let newPagination = document.createElement('div');
-              newPagination.classList.add('eventListPage');
-              if (LivePageCount == 1) newPagination.classList.add('active');
-              newPagination.id = newPaginationID;
-              TargetContainer.insertBefore(newPagination, TargetContainer.lastElementChild);
-            }
-            LiveCount++;
-            if (LiveCount % 5 == 1 && LiveCount > 1) {
-              let moreBtn = document.createElement('a');
-              moreBtn.setAttribute('href', '#eventLive');
-              moreBtn.classList.add('more');
-              moreBtn.innerText = "もっと見る";
-              TargetContainer.lastElementChild.previousElementSibling.appendChild(moreBtn);
-            }
-          }
           
+          //TargetContainer[type]
+
+          /* ページネーション管理 */
+          if (showedtiles[type] % tilesOnePage == 0) {//新しいページ最初の企画
+            showedPages[type]++; //ページ数
+
+            /* ページネーションボタンの追加 */
+            let newPaginationBtn = document.createElement('a');
+            newPaginationBtn.setAttribute('href', '#');
+            newPaginationBtn.innerText = showedPages[type];
+            if (showedPages[type] == 1) newPaginationBtn.classList.add('active');
+            TargetContainer[type].getElementsByClassName('pagination')[0].appendChild(newPaginationBtn); //新しいページボタンの追加
+
+            /* 企画一覧ページの追加 */
+            let newPagination = document.createElement('div');
+            newPagination.classList.add('eventListPage');
+            if (showedPages[type] == 1) newPagination.classList.add('active');
+            TargetContainer[type].insertBefore(newPagination, TargetContainer[type].lastElementChild);
+          }
+
+          showedtiles[type]++;
+          
+          if (showedtiles[type] % 5 == 1 && showedtiles[type] > 1) {
+            let moreBtn = document.createElement('a');
+            moreBtn.setAttribute('href', '#eventArticle');
+            moreBtn.classList.add('more');
+            moreBtn.innerText = "もっと見る";
+            TargetContainer[type].lastElementChild.previousElementSibling.appendChild(moreBtn);
+          }
+
+          /* タイル追加 */
           let EventListTile = document.createElement('a');
           EventListTile.setAttribute('href', eventURL);
           let EventListTileInner = '<div class = "eventTile"><div class = "eventTitle">' + elem["eventName"] + '</div><div class = "eventTime">' + elem["requiredTime"] + '</div>' + childrenTag + '<div class = "eventDesc">' + elem["eventDesc"] + '</div><div class = "eventView"><span>73</span></div><div class = "eventThumbsUp">3</div><div class = "eventGroupName">' + elem["groupName"] + '</div></div>';
 
           EventListTile.innerHTML = EventListTileInner;
 
-          TargetContainer.lastElementChild.previousElementSibling.appendChild(EventListTile);
+          TargetContainer[type].lastElementChild.previousElementSibling.appendChild(EventListTile);
         });
         resolve(EventDataShuffled);
       }
