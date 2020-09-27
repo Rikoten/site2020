@@ -351,11 +351,11 @@ body {
   bottom: 5px;
 }
 
-#eventTypeTab > a > div > span:nth-child(1) {
+#eventTypeTab > a > div > div:nth-child(1) {
   font-size: 26px;
 }
 
-#eventTypeTab > a > div > span:nth-child(2) {
+#eventTypeTab > a > div > div:nth-child(2) {
   font-size: 16px;
 }
 
@@ -1128,11 +1128,11 @@ footer #sns-btn {
     color: #121F4A;
   }
 
-  #eventTypeTab > a > div > span:nth-child(1) {
+  #eventTypeTab > a > div > div:nth-child(1) {
     display: none;
   }
 
-  #eventTypeTab > a > div > span:nth-child(3) {
+  #eventTypeTab > a > div > div:nth-child(2) {
     position: absolute;
     display: inline-block;
     font-size: 16px;
