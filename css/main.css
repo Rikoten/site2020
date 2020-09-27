@@ -135,17 +135,21 @@ body {
   width: 300px;
 }
 
-#topView-event-bar {
+.topView-bar {
   position: absolute;
   bottom: 0;
   display: flex;
 }
 
-#topView-event-bar > a{
+#topView-event-bar-mb {
+  display: none;
+}
+
+.topView-bar > a{
   text-decoration: none;
 }
 
-#topView-event-bar > a > .topView-event-tile {
+.topView-bar > a > .topView-event-tile {
   position: relative;
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.2);
@@ -166,29 +170,29 @@ body {
   transition: 200ms;
 }
 
-#topView-event-bar > a > .topView-event-tile:hover {
+.topView-bar > a > .topView-event-tile:hover {
   bottom: 10px;
 }
 
-#topView-event-bar > a > .topView-event-tile.article:hover {
+.topView-bar > a > .topView-event-tile.article:hover {
   box-shadow: 0px 10px #A3D4DC;
 }
 
-#topView-event-bar > a > .topView-event-tile.movie:hover {
+.topView-bar > a > .topView-event-tile.movie:hover {
   box-shadow: 0px 10px #E2AFBF;
 }
 
-#topView-event-bar > a > .topView-event-tile.live:hover {
+.topView-bar > a > .topView-event-tile.live:hover {
   box-shadow: 0px 10px #AFD7AA;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-type-container {
+.topView-bar > a > .topView-event-tile > .topView-event-type-container {
   grid-area: type;
   line-height: 30px;
   position: relative;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type {
+.topView-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type {
   position: relative;
   display: inline-block;
   border-left: 8px solid currentColor;
@@ -201,7 +205,7 @@ body {
   border-bottom-left-radius: 0px;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type::after {
+.topView-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -211,37 +215,37 @@ body {
   font-size: 16px;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.article {
+.topView-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.article {
   color: #B0D8E4;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.article::after {
+.topView-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.article::after {
   content: 'Article';
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.movie {
+.topView-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.movie {
   color: #E2AFBF;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.movie::after {
+.topView-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.movie::after {
   content: 'Movie';
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.live {
+.topView-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.live {
   color: #AFD7AA;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.live::after {
+.topView-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type.live::after {
   content: 'Live';
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-time {
+.topView-bar > a > .topView-event-tile > .topView-event-time {
   grid-area: time;
   font-size: 16px;
   text-align: right;
 }
 
-#topView-event-bar > a > .topView-event-tile > .topView-event-title {
+.topView-bar > a > .topView-event-tile > .topView-event-title {
   grid-area: title;
   font-size: 22px;
 }
@@ -991,7 +995,7 @@ footer #sns-btn {
     min-height: 558px;
   }
 
-  #topView-event-bar > a > .topView-event-tile {
+  .topView-bar > a > .topView-event-tile {
     width: 25vw;
     height: calc(25vw * 3 / 4.3);
   }
@@ -1042,11 +1046,20 @@ footer #sns-btn {
     width: auto;
   }
 
-  #topView-event-bar > a > .topView-event-tile {
+  #topView-event-bar {
+    display: none;
+  }
+
+  #topView-event-bar-mb {
+    display: flex;
+    overflow: scroll;
+  }
+
+  .topView-bar > a > .topView-event-tile {
     width: 140px;
     height: 185px;
-    bottom: 10px;
-    margin: 0 5px;
+    bottom: 0;
+    margin: 0 5px 10px;
 
     grid-template-areas: ". . ."
     "type type ."
@@ -1058,27 +1071,27 @@ footer #sns-btn {
     transition: 200ms;
   }
 
-  #topView-event-bar > a > .topView-event-tile:hover {
+  .topView-bar > a > .topView-event-tile:hover {
     box-shadow: none!important;
     bottom: 10px;
   }
 
-  #topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type {
+  .topView-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type {
     height: 25px;
     width: 60px;
   }
 
-  #topView-event-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type::after {
+  .topView-bar > a > .topView-event-tile > .topView-event-type-container > .topView-event-type::after {
     width: 60px;
     line-height: 25px;
     font-size: 14px;
   }
 
-  #topView-event-bar > a > .topView-event-tile > .topView-event-time {
+  .topView-bar > a > .topView-event-tile > .topView-event-time {
     font-size: 14px;
   }
 
-  #topView-event-bar > a > .topView-event-tile > .topView-event-title {
+  .topView-bar > a > .topView-event-tile > .topView-event-title {
     font-size: 16px;
   }
 

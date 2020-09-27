@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         /* ヘッダー部分 */
         const topViewEventBar = document.getElementById('topView-event-bar');
+        const topViewEventBarMb = document.getElementById('topView-event-bar-mb');
         /* 企画一覧部分 */
         const tilesOnePage = 7; //1ページあたりの企画数
         let TargetContainer = {article: document.getElementById('eventArticle'), movie: document.getElementById('eventMovie'), live: document.getElementById('eventLive')};  //コンテナ
@@ -35,7 +36,10 @@ document.addEventListener('DOMContentLoaded', function () {
           HeaderTileInner = '<div class = "topView-event-tile ' + elem["eventType"] + '"><div class = "topView-event-type-container"><div class = "topView-event-type ' + elem["eventType"] + '"></div></div><div class = "topView-event-time">' + elem["requiredTime"] + '</div><div class = "topView-event-title">' + elem["eventName"] + '</div></div>'
           HeaderTile.innerHTML = HeaderTileInner;
 
+          HeaderTileMb = HeaderTile.cloneNode(true);
+
           topViewEventBar.appendChild(HeaderTile);
+          topViewEventBarMb.appendChild(HeaderTileMb);
 
           /* 企画一覧部分 */
           let type = elem["eventType"]; //企画タイプ
