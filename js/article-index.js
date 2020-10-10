@@ -1,24 +1,25 @@
 document.addEventListener('DOMContentLoaded', function () {
-  var contentsList = document.getElementById('articleIndex'); // 目次を追加する先(table of contents)
-  var div = document.createElement('div'); // 作成する目次のコンテナ要素
+  let contentsList = document.getElementById('index'); // 目次を追加する先(table of contents)
+  let navPagination = document.getElementById('nav-pagination');
+  let div = document.createElement('div'); // 作成する目次のコンテナ要素
 
   // .entry-content配下のh2、h3要素を全て取得する
-  var matches = document.querySelectorAll('article h3, article h4');
+  let matches = document.querySelectorAll('article h2, article h3');
 
   h4Count = 0;
   // 取得した見出しタグ要素の数だけ以下の操作を繰り返す
   matches.forEach(function (value, i) {
     // 見出しタグ要素のidを取得し空の場合は内容をidにする
-    var id = value.id;
+    let id = value.id;
     if(id === '') {
       id = value.textContent.replace(/ /g, '').replace(/\./g, '');
       value.id = id;
     }
 
-    if(value.tagName === 'H3') {
-      var ul = document.createElement('ul');
-      var li = document.createElement('li');
-      var a = document.createElement('a');
+    if(value.tagName === 'H2') {
+      let ul = document.createElement('ul');
+      let li = document.createElement('li');
+      let a = document.createElement('a');
 
       // 追加する<ul><li><a>タイトル</a></li></ul>を準備する
       a.innerHTML = value.textContent;
@@ -30,14 +31,14 @@ document.addEventListener('DOMContentLoaded', function () {
       div.appendChild(ul);
     }
 
-    if(value.tagName === 'H4') {
-      var ul = document.createElement('ul');
-      var li = document.createElement('li');
-      var a = document.createElement('a');
+    if(value.tagName === 'H3') {
+      let ul = document.createElement('ul');
+      let li = document.createElement('li');
+      let a = document.createElement('a');
 
       // コンテナ要素である<div>の中から最後の<li>を取得する。
-      var lastUl = div.lastElementChild;
-      var lastLi = lastUl.lastElementChild;
+      let lastUl = div.lastElementChild;
+      let lastLi = lastUl.lastElementChild;
 
       // 追加する<ul><li><a>タイトル</a></li></ul>を準備する
       a.innerHTML = value.textContent;
@@ -55,20 +56,20 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // 最後に画面にレンダリング
-  contentsList.appendChild(div);
+  contentsList.insertBefore(div, navPagination);
 
   // 目次の色変える
   let matches2 = document.querySelectorAll('.box');
   matchCount = 0;
   matches2.forEach(function (value, i) {
-    var id2 = "articleBox" + String(matchCount);
+    let id2 = "articleBox" + String(matchCount);
     value.id = id2;
     matchCount++;
   });
 });
 
-var $window = $(window), //ウィンドウを指定
-$articleIndex = $("#articleIndex"),
+let $window = $(window), //ウィンドウを指定
+$articleIndex = $("#index"),
 articleIndexTop = $articleIndex.offset().top; //#contentの位置を取得
 
 $window.on("scroll", function () {
@@ -113,7 +114,7 @@ function doWhenIntersect(entries) {
  */
 function activateIndex(element) {
   // すでにアクティブになっている目次を選択
-  const currentActiveIndex = document.querySelector("#articleIndex .inView");
+  const currentActiveIndex = document.querySelector("#index .inView");
   // すでにアクティブになっているものが0個の時（=null）以外は、activeクラスを除去
   if (currentActiveIndex !== null) {
     currentActiveIndex.classList.remove("inView");
@@ -125,13 +126,33 @@ function activateIndex(element) {
 
 $(function(){
   $('a[href^="#"]').click(function(){
-    var speed = 500;
-    var href= $(this).attr("href");
-    var target = $(href == "#" || href == "" ? 'html' : href);
-    var position = target.offset().top;
+    let speed = 500;
+    let href= $(this).attr("href");
+    let target = $(href == "#" || href == "" ? 'html' : href);
+    let position = target.offset().top;
     if (target.prop("tagName") === 'H3') position -= 20;
     else position -= 10;
     $("html, body").animate({scrollTop:position}, speed, "swing");
     return false;
   });
 });
+
+
+/* 指定位置にcommon.htmlからheaderを読み込む */
+
+let xhr = new XMLHttpRequest(),
+    method = "GET",
+    url = "/common.html";
+let box = document.getElementById("common-header");
+
+xhr.responseType = "document";
+xhr.open(method, url, true);
+xhr.onreadystatechange = () => {
+  if(xhr.readyState === 4 && xhr.status === 200) {
+    let restxt = xhr.responseXML;
+    let int = restxt.getElementsByTagName("header")[0];
+    box.outerHTML = int.outerHTML;
+  }
+};
+
+xhr.send();
