@@ -1,392 +1,3 @@
-/* これは書き換える必要があります 
-body {
-  margin: 0;
-  font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
-  font-size: 16px;
-  line-height: 36px;
-  color: var(--color-font);
-  display: grid;
-  grid-template-rows: 700px auto auto auto;
-  grid-template-columns: auto auto;
-  grid-template-areas:
-      "header header"
-      "main nav"
-      "aside ."
-      "footer footer"
-      ;
-}
-
-h2{
-  font-size: 22px;
-}
-
-header {
-  grid-area: header;
-  background-color: #B0D8E4;
-}
-
-nav {
-  grid-area: nav;
-  width: 400px;
-  position: absolute;
-  right: 0;
-}
-
-nav.fixed {
-  position: fixed;
-  top: 0px;
-}
-
-main {
-  grid-area: main;
-  margin: 60px 0 60px auto;
-  width: 960px;
-}
-
-.title {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%)
-}
-
-.square{
-  color: #B0D8E4;
-  background-color: #fff;
-  padding: 0 20px 0 20px;
-  display: inline-block;
-  border-radius: 5px;
-}
-
-.sub-title h2{
-  width: 800px;
-  padding: 0 80px;
-  margin: 0;
-  height: 50px;
-  line-height: 50px;
-  background-color: var(--color-lightblue);
-}
-
-.sub-title2 h2{
-  width: 800px;
-  padding: 0 80px;
-  margin: 0;
-  height: 50px;
-  line-height: 50px;
-  background-color: #FDFAE1;
-}
-
-.sub-sub-title{
-  padding-top: 30px;
-}
-
-.sub-sub-title2{
-  padding-top: 30px;
-}
-
-.sub-sub-title h3{
-  width: 800px;
-  padding: 0 80px;
-  margin: 0;
-  height: 50px;
-  line-height: 50px;
-  background-color: var(--color-lightblue);
-  position: relative;
-}
-
-.sub-sub-title h3::before{
-  position: absolute;
-  content: "";
-  height: 50px;
-  width: calc(100% - 20px);
-  background-color: #fff;
-  left: 20px;
-}
-
-.h3-group::after{
-  position: absolute;
-  content: "空気遠近法";
-  height: 50px;
-  background-color: #fff;
-  width: calc(100% - 80px);
-  left: 80px;
-}
-
-
-.sub-sub-title2 h3{
-  width: 800px;
-  padding: 0 80px;
-  margin: 0;
-  height: 50px;
-  line-height: 50px;
-  background-color: #FDFAE1;
-  position: relative;
-}
-
-.sub-sub-title2 h3::before{
-  position: absolute;
-  content: "";
-  height: 50px;
-  width: calc(100% - 20px);
-  background-color: #fff;
-  left: 20px;
-}
-
-.h3-group4::after{
-  position: absolute;
-  content: "早稲田デザイン学振興会";
-  height: 50px;
-  background-color: #fff;
-  width: calc(100% - 80px);
-  left: 80px;
-}
-
-.h3-group5::after{
-  position: absolute;
-  content: "ゲームで遊べるプログラミング";
-  height: 50px;
-  background-color: #fff;
-  width: calc(100% - 80px);
-  left: 80px;
-}
-
-
-.h3-group2::after{
-  position: absolute;
-  content: "透視図法";
-  height: 50px;
-  background-color: #fff;
-  width: calc(100% - 80px);
-  left: 80px;
-}
-
-.h3-group3::after{
-  position: absolute;
-  content: "一点透視図法の性質";
-  height: 50px;
-  background-color: #fff;
-  width: calc(100% - 80px);
-  left: 80px;
-}
-
-h3.h3-float{
-  display: inline-block;
-  width: 555px;
-  height: 50px;
-  line-height: 50px;
-  padding: 0 80px 0 60px;
-  margin: 30px 0 ;
-  background:  #fff;
-  border-left: 20px solid  #FDFAE1
-}
-
-.button-area{
-  display: flex;
-  justify-content: center;
-  padding: 60px 0;
-}
-
-.button{
-  width: 34px;
-  height: auto;
-  display: inline-block;
-  border-radius: 50%;
-  border: 1px solid #000;
-}
-
-li{
-  list-style-type: none;
-  text-align: center;
-  margin: 0 9px;
-}
-
-.button-design{
-  text-decoration: none;
-}
-
-.icon {
-  display: inline-block;
-  width: 75px;
-  height: 30px;
-  color:  #B0D8E4;
-}
-
-.icon-text{
-  display: inline-block;
-  width: 110px;
-  height: 30px;
-  padding-left: 30px;
-}
-
-.article-text{
-  margin: 30px 80px;
-}
-
-.article-img{
-  margin: 30px 80px;
-}
-
-aside {
-  grid-area: aside;
-}
-
-footer {
-  height: 150px;
-  background-color: #1B2C6C;
-}
-
-article {
-  margin-bottom: 60px;
-}
-
-p {
-  margin: 0;
-}
-
-article > p {
-  margin: 1.5em 0;
-}
-
-.group-info {
-  display: none;
-}
-
-@media (max-width:567px) {
-  body {
-    font-size: 16px;
-
-    display: grid;
-    grid-template-rows: auto auto 50px auto 50px auto auto;
-    grid-template-areas:
-      "header"
-      "index"
-      "."
-      "main"
-      "."
-      "otherEvents"
-      "footer";
-  }
-
-  main {
-    grid-area: main;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto 50px 36px 50px auto;
-    grid-template-areas:
-      "article"
-      "."
-      "pagination"
-      "."
-      "groupInfo";
-  }
-
-  article {
-    grid-column: 1;
-    padding: 0px 10px;
-  }
-
-  h2 {
-    grid-row: 1;
-    margin: 0;
-    font-size: 16px;
-    line-height: 40px;
-    border-radius: 5px;
-    background-color: #59B4FF;
-    padding-left: 30px;
-    color: white;
-    position: relative;
-  }
-
-  h2::before {
-    position: absolute;
-    content: "";
-    height: 40px;
-    width: calc(100% - 7px);
-    border-radius: 5px;
-    background-color: #509AD5;
-    top: 0;
-    left: 7px;
-  }
-
-  .h2-group::after {
-    position: absolute;
-    content: "団体紹介";
-    height: 40px;
-    width: calc(100% - 14px);
-    border-radius: 5px;
-    background-color: #A1A1A1;
-    top: 0;
-    left: 14px;
-    padding-left: 16px;
-    box-sizing: border-box;
-  }
-
-  .group-info {
-    grid-area: groupInfo;
-    grid-column: 1 / -1;
-    background: linear-gradient(to bottom, white 20px, #EFEFEF 20px);
-
-    display: grid;
-    grid-template-rows: 40px 30px auto 30px auto 30px 45px 30px;
-  }
-
-  .group-name {
-    grid-row: 3;
-    font-weight: bold;
-    margin: 0;
-    padding: 0px 10px;
-  }
-
-  .group-desc {
-    grid-row: 5;
-    padding: 0px 10px;
-  }
-}
-
-h3 {
-  font-size: 18px;
-}
-
-h4 {
-  font-size: 24px;
-}
-
-h3 > span.h3-num {
-  font-size: 46px;
-}
-/* 指定されたptよりpxの方がサイズ的にしっくりきた 
-
-nav ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-
-nav > div > ul {
-  font-weight: bold;
-}
-
-nav > div > ul ul > li > a {
-  padding-left: 30px;
-  font-weight: 400;
-}
-
-nav ul a {
-  text-decoration: none;
-  color: var(--color-font);
-  width: 100%;
-  display: inline-block;
-  transition: 200ms;
-}
-
-nav ul a.inView {
-  background-color: #6EA9DB;
-  color: #fff;
-  font-weight: bold;
-}
-
-*/
 :root {
   --color-font: #454E53;
   --color-lightgray: #F9FAFA;
@@ -400,7 +11,7 @@ body {
   margin: 0;
   font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
   font-size: 16px;
-  line-height: 32px;
+  line-height: 2rem;
   color: var(--color-font);
   background: var(--color-lightgray);
   display: grid;
@@ -411,7 +22,6 @@ body {
       "video nav"
       "main nav"
       "aside nav"
-      "footer footer"
       ;
 }
 
@@ -448,7 +58,7 @@ article {
 .group-desc {
   grid-area: main;
   background-color: #FFF;
-  padding: 30px 0 30px;
+  padding: 30px 0;
 }
 
 aside {
@@ -466,13 +76,20 @@ iframe {
   margin: 0 0 60px auto;
 }
 
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
 p {
-  margin: 30px 80px;
+  margin: 30px 80px 0;
 }
 
 img {
   width: calc(100% - 160px);
-  margin: 0 80px;
+  margin: 30px 80px 0;
 }
 
 h2 {
@@ -480,9 +97,13 @@ h2 {
   height: 50px;
   line-height: 50px;
   padding: 0 80px;
+  margin: 60px 0 0;
   font-size: 22px;
   font-weight: normal;
-  margin: 0;
+}
+
+h2:first-child {
+  margin-top: 0;
 }
 
 h3 {
@@ -490,6 +111,7 @@ h3 {
   height: 50px;
   line-height: 50px;
   padding: 0 60px;
+  margin: 30px 0 0;
   font-weight: normal;
   font-size: 18px;
 }
@@ -508,20 +130,31 @@ ul {
   margin: 0;
 }
 
+button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+}
+
+button:focus {
+  outline: 0;
+}
+
 .caption {
   font-size: 13px;
   text-align: center;
   margin: 0 80px;
 }
 
-.pagination {
+ul.pagination {
   display: flex;
-  margin: 0 auto;
+  margin: 30px auto 0;
   list-style-type: none;
   justify-content: center;
 }
 
-.pagination li {
+ul.pagination li {
   width: 36px;
   height: 36px;
   margin: 0 9px;
@@ -531,9 +164,10 @@ ul {
   color: var(--color-font);
   border: 1px solid var(--color-font);
   cursor: pointer;
+  transition: 0.4s;
 }
 
-.pagination li:hover {
+ul.pagination li:hover {
   background-color: var(--color-lightgray);
 }
 
@@ -576,7 +210,6 @@ ul {
 }
 
 #index a {
-  text-decoration: none;
   color: var(--color-font);
   height: 35px;
   line-height: 35px;
@@ -613,13 +246,16 @@ aside section {
 }
 
 aside p {
-  margin-bottom: 15px; 
+  margin: 20px 80px 15px;
+  height: 6rem;
+  /* 3行以上は省略 */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 
 aside a {
-  display: block;
-  cursor: pointer;
-  text-decoration: none;
   color: var(--color-font);
   transition: 0.4s;
 }
@@ -680,10 +316,25 @@ aside .other-event-title .type-live {
   color: var(--color-articletype-live);
 }
 
+aside .more {
+  text-align: center;
+  margin-top: 30px;
+}
+
+aside .more button {
+  padding: 10px 20px;
+  background-color: var(--color-lightgray);
+  transition: 0.4s;
+}
+
+aside .more button:hover {
+  background-color: #f0f0f0;
+}
+
 nav #nav-pagination a {
   padding: 5px 15px;
   background-color: var(--color-lightgray);
-  transition: 0.5s;
+  transition: 0.4s;
 }
 
 nav #nav-pagination a:hover {
@@ -715,6 +366,7 @@ header .supplementary-info .for-children {
 
 header .supplementary-info .event-view,
 header .supplementary-info .event-thumbsup {
+  font-weight: bold;
   margin-left: 50px;
   color: #FFF;
 }
@@ -722,14 +374,58 @@ header .supplementary-info .event-thumbsup {
 header .supplementary-info .event-view::before {
   content: url(/img/eye.svg);
   display: inline-block;
-  margin-right: 20px;
+  margin-right: 15px;
   vertical-align: sub;
 }
 
 header .supplementary-info .event-thumbsup::before {
   content: url(/img/thumbsUp.svg);
   display: inline-block;
-  margin-right: 20px;
+  margin-right: 15px;
   vertical-align: sub;
 }
 
+.group-desc .group-link {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 80px;
+  margin-top: 10px;
+}
+
+.group-desc .group-link a {
+  padding: 5px 20px;
+  border: 1px solid var(--color-font);
+  border-radius: 5px;
+  margin: 20px 30px 0 0;
+  font-size: 14px;
+  transition: 0.4s;
+}
+
+.group-desc .group-link a:hover {
+  background-color: var(--color-lightgray);
+}
+
+.group-desc .group-link .link-twitter::before {
+  content: "";
+  display: inline-block;
+  background: url("/img/twitter.svg") no-repeat;
+  background-size: cover;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* 2カラムレイアウトの横幅1380px + 左右余白40px */
+@media screen and (max-width: 1420px) {
+  body {
+    grid-template-rows: 600px auto auto auto auto;
+    grid-template-areas:
+        "header"
+        "video"
+        "nav"
+        "main"
+        "aside"
+        ;
+  }
+}
