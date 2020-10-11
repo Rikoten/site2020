@@ -15,7 +15,7 @@ body {
   color: var(--color-font);
   background: var(--color-lightgray);
   display: grid;
-  grid-template-rows: 600px auto auto auto auto;
+  grid-template-rows: 600px auto auto auto;
   grid-template-columns: auto auto;
   grid-template-areas:
       "header header"
@@ -171,11 +171,11 @@ ul.pagination li:hover {
   background-color: var(--color-lightgray);
 }
 
-.title-wrapper {
+header .title-wrapper {
   max-width: 1000px;
 }
 
-.title-wrapper span {
+header .title-wrapper span {
   width: 95px;
   height: 35px;
   text-align: center;
@@ -187,7 +187,7 @@ ul.pagination li:hover {
   background-color: #FFF;
 }
 
-.title-wrapper h1 {
+header .title-wrapper h1 {
   font-size: 32px;
   font-weight: normal;
   color: #FFF;
@@ -393,10 +393,10 @@ header .supplementary-info .event-thumbsup::before {
 }
 
 .group-desc .group-link a {
-  padding: 5px 20px;
+  padding: 5px 15px;
   border: 1px solid var(--color-font);
   border-radius: 5px;
-  margin: 20px 30px 0 0;
+  margin: 20px 20px 0 0;
   font-size: 14px;
   transition: 0.4s;
 }
@@ -405,21 +405,43 @@ header .supplementary-info .event-thumbsup::before {
   background-color: var(--color-lightgray);
 }
 
-.group-desc .group-link .link-twitter::before {
+.group-desc .group-link .link-web::before,
+.group-desc .group-link .link-twitter::before,
+.group-desc .group-link .link-facebook::before,
+.group-desc .group-link .link-instagram::before {
   content: "";
   display: inline-block;
-  background: url("/img/twitter.svg") no-repeat;
-  background-size: cover;
   width: 25px;
   height: 25px;
-  margin-right: 10px;
-  vertical-align: middle;
+  margin: 2px 5px 0 0;
+  vertical-align: top;
+}
+
+.group-desc .group-link .link-web::before {
+  background: url("/img/web.svg") no-repeat;
+  background-size: cover;
+}
+
+.group-desc .group-link .link-twitter::before {
+  background: url("/img/twitter.svg") no-repeat;
+  background-size: cover;
+}
+
+.group-desc .group-link .link-facebook::before {
+  background: url("/img/facebook.svg") no-repeat;
+  background-size: cover;
+}
+
+.group-desc .group-link .link-instagram::before {
+  background: url("/img/instagram.svg") no-repeat;
+  background-size: cover;
 }
 
 /* 2カラムレイアウトの横幅1380px + 左右余白40px */
 @media screen and (max-width: 1420px) {
   body {
     grid-template-rows: 600px auto auto auto auto;
+    grid-template-columns: auto;
     grid-template-areas:
         "header"
         "video"
@@ -427,5 +449,114 @@ header .supplementary-info .event-thumbsup::before {
         "main"
         "aside"
         ;
+  }
+
+  iframe, nav, main, aside {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  nav {
+    width: 960px;
+    margin-bottom: 60px;
+  }
+
+  header .supplementary-info {
+    width: 960px;
+  }
+}
+
+/* 記事幅960px + 左右余白40px */
+@media screen and (max-width: 1000px) {
+  iframe, nav, main, aside {
+    width: calc(100% - 40px);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    line-height: 1.8rem;
+  }
+
+  iframe, nav, main, aside {
+    width: 100%;
+  }
+
+  iframe {
+    height: calc(100%/16*9);
+  }
+
+  header {
+    height: 300px;
+  }
+
+  header, main, article, nav {
+    margin-bottom: 30px;
+  }
+
+  article {
+    padding-bottom: 30px;
+  }
+
+  h2 {
+    padding: 0 30px;
+    margin: 30px 0 0;
+  }
+
+  h3 {
+    border-left: 10px solid var(--color-lightblue);
+    padding: 0 20px;
+    margin: 15px 0 0;
+  }
+
+  p {
+    margin: 15px 10px 0;
+  }
+
+  img {
+    width: 100%;
+    margin: 30px 0 0;
+  }
+
+  header .supplementary-info {
+    width: calc(100% - 20px);
+  }
+
+  header .title-wrapper span {
+    width: 80px;
+    height: 35px;
+  }
+  
+  header .title-wrapper h1 {
+    font-size: 26px;
+    font-weight: normal;
+    color: #FFF;
+  }
+
+  aside h3 {
+    border-left: 10px solid #FDFAE1;
+  }
+
+  aside p {
+    margin: 20px 10px 15px;
+    height: 5.4rem;
+  }
+
+  aside .other-event-title {
+    flex-wrap: wrap;
+    padding-right: 0;
+  }
+
+  .caption {
+    margin: 0 10px;
+  }
+
+  .group-desc .group-link {
+    padding: 0 10px;
+  }
+
+  .group-desc .group-link a {
+    padding: 5px 10px;
+    margin: 10px 10px 0 0;
   }
 }
