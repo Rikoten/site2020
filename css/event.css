@@ -19,13 +19,13 @@ body {
   grid-template-columns: auto auto;
   grid-template-areas:
       "header header"
-      "video nav"
+      "video video"
       "main nav"
       "aside nav"
       ;
 }
 
-header {
+#title-header {
   grid-area: header;
   position: relative;
   background: #B0D8E4;
@@ -52,7 +52,7 @@ article {
   grid-area: main;
   background-color: #FFF;
   margin-bottom: 60px;
-  padding: 30px 0 60px;
+  padding-bottom: 60px;
 }
 
 .group-desc {
@@ -69,11 +69,28 @@ aside {
   background-color: #FFF;
 }
 
-iframe {
+.iframe-wrapper {
   grid-area: video;
+  position: relative;
   width: 960px;
-  height: calc(980px/16*9);
-  margin: 0 0 60px auto;
+  margin: 0 auto 60px;
+}
+.iframe-wrapper:before {
+  content:"";
+  display: block;
+  padding-top: calc(100%/16*9);
+}
+.iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+article .iframe-wrapper {
+  width: calc(100% - 160px);
+  margin: 30px auto 0;
 }
 
 a {
@@ -85,35 +102,34 @@ a {
 
 p {
   margin: 30px 80px 0;
+  text-align: justify;
 }
 
-img {
+article img {
   width: calc(100% - 160px);
   margin: 30px 80px 0;
 }
 
 h2 {
   background-color: var(--color-lightblue);
-  height: 50px;
-  line-height: 50px;
-  padding: 0 80px;
+  padding: 10px 80px;
   margin: 60px 0 0;
   font-size: 22px;
+  line-height: calc(22px*1.6);
   font-weight: normal;
 }
 
-h2:first-child {
+h2:first-of-type {
   margin-top: 0;
 }
 
 h3 {
   border-left: 20px solid var(--color-lightblue);
-  height: 50px;
-  line-height: 50px;
-  padding: 0 60px;
+  padding: 10px 80px 10px 60px;
   margin: 30px 0 0;
   font-weight: normal;
   font-size: 18px;
+  line-height: calc(18px*1.6);
 }
 
 aside h2 {
@@ -171,11 +187,12 @@ ul.pagination li:hover {
   background-color: var(--color-lightgray);
 }
 
-header .title-wrapper {
+#title-header .title-wrapper {
   max-width: 1000px;
+  margin: 0 20px;
 }
 
-header .title-wrapper span {
+#title-header .title-wrapper span {
   width: 95px;
   height: 35px;
   text-align: center;
@@ -187,8 +204,9 @@ header .title-wrapper span {
   background-color: #FFF;
 }
 
-header .title-wrapper h1 {
+#title-header .title-wrapper h1 {
   font-size: 32px;
+  line-height: calc(32px*1.6);
   font-weight: normal;
   color: #FFF;
 }
@@ -198,7 +216,7 @@ header .title-wrapper h1 {
   font-weight: bold;
   padding: 30px 0;
   position: sticky;
-  top: 20px;
+  top: 80px;
   background-color: #FFF;
 }
 
@@ -222,11 +240,11 @@ header .title-wrapper h1 {
 }
 
 #index ul li a {
-  padding-left: 30px;
+  padding: 0 30px;
 }
 
 #index ul li ul li a {
-  padding-left: 50px;
+  padding: 0 30px 0 50px;
   font-weight: normal;
 }
 
@@ -349,7 +367,7 @@ nav #nav-pagination {
   font-weight: normal;
 }
 
-header .supplementary-info {
+#title-header .supplementary-info {
   position: absolute;
   bottom: 30px;
   width: 1380px;
@@ -357,28 +375,27 @@ header .supplementary-info {
   justify-content: flex-end;
 }
 
-header .supplementary-info .for-children {
+#title-header .supplementary-info .for-children {
   padding: 2px 10px;
   background-color: #FFF;
   color: #B0D8E4;
   border-radius: 30px;
 }
 
-header .supplementary-info .event-view,
-header .supplementary-info .event-thumbsup {
+#title-header .supplementary-info span:not(:first-child) {
   font-weight: bold;
   margin-left: 50px;
   color: #FFF;
 }
 
-header .supplementary-info .event-view::before {
+#title-header .supplementary-info .event-view::before {
   content: url(/img/eye.svg);
   display: inline-block;
   margin-right: 15px;
   vertical-align: sub;
 }
 
-header .supplementary-info .event-thumbsup::before {
+#title-header .supplementary-info .event-thumbsup::before {
   content: url(/img/thumbsUp.svg);
   display: inline-block;
   margin-right: 15px;
@@ -437,60 +454,113 @@ header .supplementary-info .event-thumbsup::before {
   background-size: cover;
 }
 
+article .bar {
+  height: 50px;
+  background-color: #F2F2F2;
+  padding: 0 20px;
+  margin-bottom: 30px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 2px -2px#454E53;
+}
+
+article .bar span {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+article .bar button {
+  padding: 0 10px;
+  height: 30px;
+  line-height: 30px;
+  background-color: #FFF;
+  border-radius: 3px;
+  margin-left: 10px;
+  color: inherit;
+}
+
+article .bar span:last-of-type {
+  margin-right: auto;
+}
+
+article .bar button.thumbs-up::before,
+article .bar button.pin::before {
+  content: "";
+  display: inline-block;
+  margin-right: 5px;
+}
+
+article .bar button.thumbs-up::before {
+  width: 18px;
+  height: 18px;
+  background: url("/img/thumbsUp-gray.svg") no-repeat;
+  background-size: contain;
+  vertical-align: sub;
+}
+
+article .bar button.pin::before {
+  width: 25px;
+  height: 30px;
+  background: url("/img/pin.svg") no-repeat;
+  background-size: contain;
+  vertical-align: bottom;
+}
+
+
 /* 2カラムレイアウトの横幅1380px + 左右余白40px */
 @media screen and (max-width: 1420px) {
   body {
-    grid-template-rows: 600px auto auto auto auto;
+    grid-template-rows: 600px auto auto auto;
     grid-template-columns: auto;
     grid-template-areas:
         "header"
         "video"
-        "nav"
         "main"
         "aside"
         ;
   }
 
-  iframe, nav, main, aside {
+  nav, main, aside, .iframe-wrapper {
     margin-left: auto;
     margin-right: auto;
   }
 
   nav {
+    /*
     width: 960px;
     margin-bottom: 60px;
+    */
+    display: none;
   }
 
-  header .supplementary-info {
+  #title-header .supplementary-info {
     width: 960px;
   }
 }
 
 /* 記事幅960px + 左右余白40px */
 @media screen and (max-width: 1000px) {
-  iframe, nav, main, aside {
+  nav, main, aside, .iframe-wrapper, #title-header .supplementary-info {
     width: calc(100% - 40px);
   }
 }
 
 @media screen and (max-width: 700px) {
   body {
+    grid-template-rows: 350px auto auto auto;
     line-height: 1.8rem;
   }
 
-  iframe, nav, main, aside {
+  nav, main, aside, .iframe-wrapper {
     width: 100%;
   }
 
-  iframe {
-    height: calc(100%/16*9);
+  article .iframe-wrapper {
+    width: 100%;
   }
 
-  header {
-    height: 300px;
-  }
-
-  header, main, article, nav {
+  #title-header, main, article, nav {
     margin-bottom: 30px;
   }
 
@@ -499,13 +569,13 @@ header .supplementary-info .event-thumbsup::before {
   }
 
   h2 {
-    padding: 0 30px;
+    padding: 10px 30px;
     margin: 30px 0 0;
   }
 
   h3 {
     border-left: 10px solid var(--color-lightblue);
-    padding: 0 20px;
+    padding: 10px 20px;
     margin: 15px 0 0;
   }
 
@@ -513,23 +583,31 @@ header .supplementary-info .event-thumbsup::before {
     margin: 15px 10px 0;
   }
 
-  img {
+  article img {
     width: 100%;
     margin: 30px 0 0;
   }
 
-  header .supplementary-info {
+  #title-header .supplementary-info {
     width: calc(100% - 20px);
+    bottom: 10px;
   }
 
-  header .title-wrapper span {
+  #title-header .title-wrapper span {
     width: 80px;
     height: 35px;
   }
   
-  header .title-wrapper h1 {
+  #title-header .title-wrapper h1 {
     font-size: 26px;
+    line-height: calc(26px*1.6);
     font-weight: normal;
+    color: #FFF;
+  }
+
+  #title-header .supplementary-info span:not(:first-child) {
+    font-weight: bold;
+    margin-left: 20px;
     color: #FFF;
   }
 
@@ -558,5 +636,9 @@ header .supplementary-info .event-thumbsup::before {
   .group-desc .group-link a {
     padding: 5px 10px;
     margin: 10px 10px 0 0;
+  }
+
+  .iframe-wrapper {
+    margin-bottom: 30px;
   }
 }

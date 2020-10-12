@@ -1,5 +1,98 @@
-header {
+#sticky-header {
   position: fixed;
-  height: 100px;
-  background: #FFF;
+  display: flex;
+  width: calc(100% - 40px);
+  height: 50px;
+  padding: 20px 20px;
+  z-index: 1000;
+  pointer-events: none;
+  align-items: center;
+}
+
+#sticky-header .icon {
+  height: 50px;
+  width: calc(50px/490*662);
+}
+
+#sticky-header .text {
+  height: 40px;
+  margin: 0 auto 0 20px;
+}
+
+#sticky-header select {
+  font-family: inherit;
+  font-size: inherit;
+  height: 40px;
+  background: none;
+  border: none;
+  pointer-events: all;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#sticky-header select option {
+  background: none;
+}
+
+#sticky-header .header-menu-btn {
+  margin: 0 0 10px 20px;
+  height: 30px;
+  width: 30px;
+  padding: 5px;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+#sticky-header .line,
+#sticky-header .line::before,
+#sticky-header .line::after {
+  display: inline-block;
+  width: 30px;
+  height: 3px;
+  background: #454E53;
+  transition: 0.3s;
+}
+
+#sticky-header .line {
+  position: relative;
+  pointer-events: all;
+}
+
+#sticky-header .line:before {
+  content: "";
+  position: absolute;
+  transform: translateY(-12px) rotate(0deg);
+}
+
+#sticky-header .line:after {
+  content: "";
+  position: absolute;
+  transform: translateY(12px) rotate(0deg);
+}
+
+@media screen and (max-width: 700px) {
+  #sticky-header {
+    position: fixed;
+    display: flex;
+    width: calc(100% - 20px);
+    height: 35px;
+    padding: 20px 10px;
+  }
+
+  #sticky-header .icon {
+    height: 35px;
+    width: calc(35px/490*662);
+  }
+  
+  #sticky-header .text {
+    height: 30px;
+    margin-left: 10px;
+  }
+
+  #sticky-header select {
+    display: none;
+  }
 }
