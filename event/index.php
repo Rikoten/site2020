@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang = "ja">
 <head>
+<meta name = "viewport" content = "width = device-width, initial-scale = 1, shrink-to-fit = no">
 <meta charset = "utf-8">
 <title>参加団体ページ</title>
 <meta name = "keywords" content = "">
@@ -40,7 +41,7 @@
           </div>
           <div style="padding-top: 30px;">
             <p>こういった性質を利用して空気遠近法では、遠景にあるものほど形態をぼやかして描いたり、色彩をより大気の色に近づけるなどして、空間の奥行きを表現します。</p>
-          </div>  
+          </div>
         </div>
         <div class="article-img">
           <img src="../img/millet.jpg" width="800px" height="auto" alt="ミレー作「落ち穂拾い」">
@@ -59,7 +60,7 @@
           </div>
           <div style="padding-top: 30px;">
             <p>図法として一点透視図法、二点透視図法、三点透視図法などがあります。これらは美術にとどまらず、建築、映画、アニメ、コンピュータグラフィックスなど、視覚表現の分野で広く使用されています。法では、遠景にあるものほど形態をぼやかして描いたり、色彩をより大気の色に近づけるなどして、空間の奥行きを表現します。</p>
-          </div>  
+          </div>
         </div>
 
         <div class="sub-title">
