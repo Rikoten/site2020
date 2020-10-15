@@ -141,7 +141,7 @@ body {
   display: flex;
 }
 
-#topView-event-bar-mb {
+#topView-event-bar-container-mb {
   display: none;
 }
 
@@ -1048,6 +1048,10 @@ footer #sns-btn {
 
   #topView-event-bar {
     display: none;
+  }
+
+  #topView-event-bar-container-mb {
+    display: flex;
   }
 
   #topView-event-bar-mb {
