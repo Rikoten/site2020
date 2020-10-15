@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (k >= EventDataShuffled.length) k = 0;
       }
       let clientAppendedRect = topViewEventBar.getElementsByClassName('appended')[0].getBoundingClientRect();
-      if (clientRect.left <= 0) {
+      if (clientAppendedRect.left <= 0) {
         topViewPos = 0;
       }
     }
