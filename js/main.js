@@ -268,9 +268,11 @@ document.addEventListener('DOMContentLoaded', function () {
         k++;
         if (k >= EventDataShuffled.length) k = 0;
       }
-      let clientAppendedRect = topViewEventBar.getElementsByClassName('appended')[0].getBoundingClientRect();
-      if (clientAppendedRect.left <= 0) {
-        topViewPos = 0;
+      if (topViewEventBar.getElementsByClassName('appended').length) {  //後から追加されたタイルのうち最初のやつ
+        let clientAppendedRect = topViewEventBar.getElementsByClassName('appended')[0].getBoundingClientRect();
+        if (clientAppendedRect.left <= 0) {
+          topViewPos = 0;
+        }
       }
     }
   });
