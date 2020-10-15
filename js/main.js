@@ -261,12 +261,16 @@ document.addEventListener('DOMContentLoaded', function () {
         let HeaderTile = document.createElement('a');
         let eventURL = '/event/?id=' + String(elem["eventID"]);
         HeaderTile.setAttribute('href', eventURL);
-        HeaderTileInner = '<div class = "topView-event-tile ' + elem["eventType"] + '"><div class = "topView-event-type-container"><div class = "topView-event-type ' + elem["eventType"] + '"></div></div><div class = "topView-event-time">' + elem["requiredTime"] + '</div><div class = "topView-event-title">' + elem["eventName"] + '</div></div>'
+        HeaderTileInner = '<div class = "topView-event-tile appended ' + elem["eventType"] + '"><div class = "topView-event-type-container"><div class = "topView-event-type ' + elem["eventType"] + '"></div></div><div class = "topView-event-time">' + elem["requiredTime"] + '</div><div class = "topView-event-title">' + elem["eventName"] + '</div></div>'
         HeaderTile.innerHTML = HeaderTileInner;
 
         topViewEventBar.appendChild(HeaderTile);
         k++;
         if (k >= EventDataShuffled.length) k = 0;
+      }
+      let clientAppendedRect = topViewEventBar.getElementsByClassName('appended')[0].getBoundingClientRect();
+      if (clientRect.left <= 0) {
+        topViewPos = 0;
       }
     }
   });
