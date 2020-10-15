@@ -250,28 +250,30 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(frame, 25); 
     
     function frame() { 
-      //if (topViewPos == 150) { topViewPos = 0; }
-      topViewPos -= 0.5;
-      topViewEventBar.style.left = topViewPos + 'px';
+      if (document.defaultView.getComputedStyle(topViewEventBar,null).display) {
+        //if (topViewPos == 150) { topViewPos = 0; }
+        topViewPos -= 0.5;
+        topViewEventBar.style.left = topViewPos + 'px';
 
-      /* 右端の追加 */
-      let clientRect = topViewEventBar.lastElementChild.firstElementChild.getBoundingClientRect();
-      if (clientRect.left < (200 + window.innerWidth)) {
-        let elem = EventDataShuffled[k];
-        let HeaderTile = document.createElement('a');
-        let eventURL = '/event/?id=' + String(elem["eventID"]);
-        HeaderTile.setAttribute('href', eventURL);
-        HeaderTileInner = '<div class = "topView-event-tile appended ' + elem["eventType"] + '"><div class = "topView-event-type-container"><div class = "topView-event-type ' + elem["eventType"] + '"></div></div><div class = "topView-event-time">' + elem["requiredTime"] + '</div><div class = "topView-event-title">' + elem["eventName"] + '</div></div>'
-        HeaderTile.innerHTML = HeaderTileInner;
+        /* 右端の追加 */
+        let clientRect = topViewEventBar.lastElementChild.firstElementChild.getBoundingClientRect();
+        if (clientRect.left < (200 + window.innerWidth)) {
+          let elem = EventDataShuffled[k];
+          let HeaderTile = document.createElement('a');
+          let eventURL = '/event/?id=' + String(elem["eventID"]);
+          HeaderTile.setAttribute('href', eventURL);
+          HeaderTileInner = '<div class = "topView-event-tile appended ' + elem["eventType"] + '"><div class = "topView-event-type-container"><div class = "topView-event-type ' + elem["eventType"] + '"></div></div><div class = "topView-event-time">' + elem["requiredTime"] + '</div><div class = "topView-event-title">' + elem["eventName"] + '</div></div>'
+          HeaderTile.innerHTML = HeaderTileInner;
 
-        topViewEventBar.appendChild(HeaderTile);
-        k++;
-        if (k >= EventDataShuffled.length) k = 0;
-      }
-      if (topViewEventBar.getElementsByClassName('appended').length) {  //後から追加されたタイルのうち最初のやつ
-        let clientAppendedRect = topViewEventBar.getElementsByClassName('appended')[0].getBoundingClientRect();
-        if (clientAppendedRect.left <= 0) {
-          topViewPos = 0;
+          topViewEventBar.appendChild(HeaderTile);
+          k++;
+          if (k >= EventDataShuffled.length) k = 0;
+        }
+        if (topViewEventBar.getElementsByClassName('appended').length) {  //後から追加されたタイルのうち最初のやつ
+          let clientAppendedRect = topViewEventBar.getElementsByClassName('appended')[0].getBoundingClientRect();
+          if (clientAppendedRect.left <= 0) {
+            topViewPos = 0;
+          }
         }
       }
     }

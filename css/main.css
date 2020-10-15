@@ -1059,6 +1059,15 @@ footer #sns-btn {
     overflow: scroll;
   }
 
+  .topView-bar {
+    -ms-overflow-style: none;    /* IE, Edge 対応 */
+    scrollbar-width: none;       /* Firefox 対応 */
+  }
+  
+  .topView-bar::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+      display:none;
+  }
+
   .topView-bar > a > .topView-event-tile {
     width: 140px;
     height: 185px;
