@@ -13,9 +13,9 @@
       "alt": "株式会社アゴスジャパン"
     },
     {
-      "img": "lemon.png",
-      "url": "",
-      "bgcolor": "",
+      "img": "lemon.jpg",
+      "url": "https://lemongasui.co.jp/",
+      "bgcolor": "#C8C8C8",
       "alt": "レモン画翠"
     },
     {
@@ -37,10 +37,28 @@
       "alt": "株式会社ヒット"
     },
     {
-      "img": "pco.png",
-      "url": "",
+      "img": "pco.gif",
+      "url": "http://www.pcoworks.jp/",
       "bgcolor": "",
       "alt": "株式会社ピーシーオーワークス"
+    },
+    {
+      "img": "rise.png",
+      "url": "",
+      "bgcolor": "",
+      "alt": "株式会社ライズグループ"
+    },
+    {
+      "img": "riso.png",
+      "url": "",
+      "bgcolor": "",
+      "alt": "株式会社リソー教育"
+    },
+    {
+      "img": "maxell.png",
+      "url": "",
+      "bgcolor": "",
+      "alt": "マクセル株式会社"
     }
   ],
   [
@@ -49,6 +67,18 @@
       "url": "http://www.nok.co.jp/",
       "bgcolor": "",
       "alt": "NOK株式会社"
+    },
+    {
+      "img": "kokoro.jpg",
+      "url": "",
+      "bgcolor": "",
+      "alt": "麺屋こころ"
+    },
+    {
+      "img": "diamond.jpg",
+      "url": "",
+      "bgcolor": "",
+      "alt": "株式会社ダイヤモンド・ヒューマンリソース"
     }
   ]
 ]
