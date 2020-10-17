@@ -1,12 +1,13 @@
 :root {
   --color-font: #454E53;
   --color-lightgray: #F9FAFA;
+  --color-gray: #F2F2F2;
   --color-lightblue: #E9F5FA;
   --color-articletype-article: #B0D8E4;
   --color-articletype-movie: #AFD7AA;
   --color-articletype-live: #E2AFBF;
 
-  --font-size-small: 13px;
+  --font-size-small: 14px;
   --font-size-normal: 16px;
 }
 
@@ -459,7 +460,7 @@ nav #nav-pagination {
 
 article .bar {
   height: 50px;
-  background-color: #F2F2F2;
+  background-color: var(--color-gray);
   padding: 0 20px;
   font-size: var(--font-size-small);
   display: flex;
@@ -513,7 +514,7 @@ article .bar button.pin::before {
 
 article section:not(.article) {
   padding: 30px 80px;
-  background: #F2F2F2;
+  background: var(--color-gray);
 }
 
 article section:not(.article) h2 {
@@ -552,6 +553,70 @@ article section.zoom a:hover {
   background: var(--color-lightgray);
 }
 
+article .file-wrapper {
+  font-size: var(--font-size-small);
+  background-color: var(--color-gray);
+  border-radius: 5px;
+  max-width: 350px;
+  width: 100%;
+  margin: 30px 0 0 80px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  line-height: 24px;
+}
+
+article .file-wrapper a {
+  margin-left: auto;
+  padding: 0 15px;
+  height: 35px;
+  line-height: 35px;
+  background-color: #FFF;
+  min-width: 84px;
+  transition: 0.4s;
+}
+
+article .file-wrapper a:hover {
+  background-color: var(--color-lightgray);
+}
+
+article .file-wrapper p {
+  margin: 0;
+}
+
+article .file-wrapper p:first-child {
+  font-weight: bold;
+}
+
+article .file-wrapper p:nth-child(2) {
+  margin-right: 20px;
+}
+
+article .file {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+article .file h2 {
+  flex-basis: 100%;
+  margin-bottom: 20px;
+}
+
+article .file .file-wrapper {
+  background-color: #FFF;
+  margin: 0;
+  margin: 10px 0 0 0;
+}
+
+article .file .file-wrapper a {
+  background-color: var(--color-gray);
+}
+
+article .file .file-wrapper a:hover {
+  background-color: var(--color-lightgray);
+}
 
 /* 2カラムレイアウトの横幅1380px + 左右余白40px */
 @media screen and (max-width: 1420px) {
@@ -640,6 +705,17 @@ article section.zoom a:hover {
   article .bar button {
     width: 40px;
     overflow: hidden;
+  }
+
+  article .file-wrapper {
+    margin: 15px 0 0 10px;
+    width: calc(100% - 60px);
+    max-width: calc(100% - 60px);
+  }
+
+  article .file .file-wrapper {
+    width: calc(100% - 40px);
+    max-width: calc(100% - 40px);
   }
 
   #title-header .supplementary-info {
