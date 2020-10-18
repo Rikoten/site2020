@@ -66,6 +66,30 @@ document.addEventListener('DOMContentLoaded', function () {
     value.id = id2;
     matchCount++;
   });
+
+
+  /* クイズ */
+  const options = document.querySelectorAll('.quiz li');
+    
+  for(const option of options) {
+    option.addEventListener('click', () => {
+      const commentary = option.parentNode.nextElementSibling;
+
+      if(!commentary.classList.contains('commentary-open')) {
+        if(option.classList.contains('correct-answer')) {
+          option.classList.add('correct');
+        } else {
+          option.classList.add('incorrect');
+        }
+        commentary.classList.add('commentary-open');
+        commentary.style.height = commentary.scrollHeight + 40 + 'px';
+        setTimeout(() => {
+          commentary.style.height = 'auto';
+        }, 800);
+      }
+    });
+  }
+
 });
 
 let $window = $(window), //ウィンドウを指定

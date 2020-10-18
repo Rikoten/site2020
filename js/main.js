@@ -343,23 +343,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* 指定位置にcommon.htmlからheaderを読み込む */
+
+  let xhr = new XMLHttpRequest(),
+      method = "GET",
+      url = "/common.html";
+  let box = document.getElementById("common-header");
+
+  xhr.responseType = "document";
+  xhr.open(method, url, true);
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState === 4 && xhr.status === 200) {
+      let restxt = xhr.responseXML;
+      let int = restxt.getElementsByTagName("header")[0];
+      box.outerHTML = int.outerHTML;
+    }
+  };
+
+  xhr.send();
 });
-
-/* 指定位置にcommon.htmlからheaderを読み込む */
-
-let xhr = new XMLHttpRequest(),
-    method = "GET",
-    url = "/common.html";
-let box = document.getElementById("common-header");
-
-xhr.responseType = "document";
-xhr.open(method, url, true);
-xhr.onreadystatechange = () => {
-  if(xhr.readyState === 4 && xhr.status === 200) {
-    let restxt = xhr.responseXML;
-    let int = restxt.getElementsByTagName("header")[0];
-    box.outerHTML = int.outerHTML;
-  }
-};
-
-xhr.send();
