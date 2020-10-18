@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         commentary.classList.add('commentary-open');
         commentary.style.height = commentary.scrollHeight + 40 + 'px';
+        commentary.previousElementSibling.classList.add('open');
         setTimeout(() => {
           commentary.style.height = 'auto';
         }, 800);

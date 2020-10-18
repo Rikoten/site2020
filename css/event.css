@@ -637,12 +637,15 @@ article .quiz section:not(:last-child) {
   border-bottom: 1px solid #E4E4E4;
 }
 
-article .quiz h4 {
-  counter-increment: quiz-number;
+article .quiz section {
+  counter-increment: quiz-number 1;
+}
+
+article .quiz section h4 {
   margin: 30px 0 0;
 }
 
-article .quiz h4::before {
+article .quiz section h4::before {
   content: "Q" counter(quiz-number) ". ";
   font-size: 20px;
   font-weight: 500;
@@ -656,6 +659,7 @@ article .quiz ul {
   width: 100%;
   max-width: 660px;
   margin: 0 auto 30px;
+  position: relative;
 }
 
 article .quiz li {
@@ -734,6 +738,14 @@ article .quiz div span:last-of-type {
 
 article .quiz div p {
   margin-top: 10px;
+}
+
+article .quiz ul.open::before {
+  content: url("/img/triangle.svg");
+  position: absolute;
+  bottom: -41.5px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* 2カラムレイアウトの横幅1380px + 左右余白40px */
