@@ -1,3 +1,5 @@
+/*****************   sticky-header   ****************/
+
 #sticky-header {
   position: fixed;
   display: flex;
@@ -94,5 +96,85 @@
 
   #sticky-header select {
     display: none;
+  }
+}
+
+/*****************   bottom-navigation   ****************/
+
+
+#bottom-nav {
+  display: none;
+}
+
+@media screen and (max-width: 700px) {
+  #bottom-nav {
+    position: fixed;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    background-color: #FFF;
+    margin: 0;
+    display: block;
+  }
+
+  #bottom-nav ul {
+    display: flex;
+    justify-content: space-around;
+    font-size: 10px;
+    height: 50px;
+    align-items: flex-end;
+    padding: 5px 0;
+    box-shadow: 0 0 4px 0px #b0b0b0;
+  }
+
+  #bottom-nav li {
+    width: 70px;
+    line-height: 1em;
+    position: relative;
+    text-align: center;
+    height: 1em;
+    padding-top: 40px;
+  }
+
+  #bottom-nav li.pin::before,
+  #bottom-nav li.live::before,
+  #bottom-nav li.guidance::before,
+  #bottom-nav li.language::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #bottom-nav li.pin::before {
+    background: url("/img/pinWhite.svg") no-repeat;
+    background-size: contain;
+    width: 26px;
+    height: 34px;
+    top: 2px;
+  }
+
+  #bottom-nav li.live::before {
+    background: url("/img/live.svg") no-repeat;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    top: 2px;
+  }
+
+  #bottom-nav li.guidance::before {
+    background: url("/img/questionMark.svg") no-repeat;
+    background-size: contain;
+    width: 18px;
+    height: 40px;
+    top: -1px;
+  }
+
+  #bottom-nav li.language::before {
+    background: url("/img/language.svg") no-repeat;
+    background-size: contain;
+    width: 30px;
+    height: 36px;
+    top: -1px;
   }
 }

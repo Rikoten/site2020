@@ -137,6 +137,7 @@ h3 {
 
 aside h2 {
   background-color: #FDFAE1;
+  margin:10px 0 15px 0;
 }
 
 aside h3 {
@@ -264,10 +265,6 @@ nav ul a.inView {
   background-color: var(--color-lightblue);
   color: #FFF;
   font-weight: bold;
-}
-
-aside h2 {
-  margin-bottom:15px;
 }
 
 aside section {
@@ -412,6 +409,10 @@ nav #nav-pagination {
   display: inline-block;
   margin-right: 15px;
   vertical-align: sub;
+}
+
+.group-desc h2 {
+  margin-top: 10px;
 }
 
 .group-desc .group-link {
@@ -740,9 +741,9 @@ article .quiz div p {
 article .quiz ul.open::before {
   content: url("/img/triangle.svg");
   position: absolute;
-  bottom: -41.5px;
+  bottom: -42.5px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) scaleY(0.7);
 }
 
 /* 2カラムレイアウトの横幅1380px + 左右余白40px */
@@ -799,10 +800,6 @@ article .quiz ul.open::before {
 
   #title-header, main, article, nav {
     margin-bottom: 30px;
-  }
-
-  article {
-    padding-bottom: 30px;
   }
 
   h2 {
@@ -865,6 +862,10 @@ article .quiz ul.open::before {
 
   article .quiz div.commentary-open {
     padding: 20px 10px;
+  }
+
+  article .quiz li {
+    line-height: 2rem;
   }
 
   #title-header .supplementary-info {
