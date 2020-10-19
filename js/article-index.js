@@ -163,7 +163,7 @@ $(function(){
 });
 
 
-/* 指定位置にcommon.htmlからheaderを読み込む */
+/* 指定位置にcommon.htmlからheaderおよびbottom-navを読み込む */
 
 let xhr = new XMLHttpRequest(),
     method = "GET",
@@ -185,4 +185,22 @@ xhr.onreadystatechange = () => {
 
 xhr.send();
 
-/* 指定位置にcommon.htmlからbottom-navを読み込む */
+/* ボトムナビゲーション */
+
+window.onload = function () {
+  const foldButton = document.querySelector("#bottom-nav .fold-button");
+
+  foldButton.addEventListener('click', () => {
+    const bottomNav = document.getElementById("bottom-nav");
+    bottomNav.classList.toggle("close");
+  });
+
+  const navButton = document.querySelectorAll("#bottom-nav li");
+  const boardWrapper = document.querySelector("#bottom-nav .board-wrapper");
+
+  for(let i = 0; i < navButton.length; i++) {
+    navButton[i].addEventListener('click', ()=> {
+      boardWrapper.style.transform = `translateX(-${100 * i}vw)`;
+    });
+  }
+};

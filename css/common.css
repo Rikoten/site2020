@@ -115,16 +115,19 @@
     background-color: #FFF;
     margin: 0;
     display: block;
+    transition: 0.4s ease-out;
   }
 
   #bottom-nav ul {
     display: flex;
     justify-content: space-around;
     font-size: 10px;
-    height: 50px;
+    height: 60px;
     align-items: flex-end;
-    padding: 5px 0;
     box-shadow: 0 0 4px 0px #b0b0b0;
+    font-weight: bold;
+    position: relative;
+    z-index: 1000;
   }
 
   #bottom-nav li {
@@ -133,7 +136,12 @@
     position: relative;
     text-align: center;
     height: 1em;
-    padding-top: 40px;
+    padding: 42px 0 5px 0;
+    border-bottom: 3px solid #FFF;
+  }
+
+  #bottom-nav li:first-child {
+    margin-left: 26px;
   }
 
   #bottom-nav li.pin::before,
@@ -151,7 +159,7 @@
     background-size: contain;
     width: 26px;
     height: 34px;
-    top: 2px;
+    top: 5px;
   }
 
   #bottom-nav li.live::before {
@@ -159,7 +167,7 @@
     background-size: contain;
     width: 30px;
     height: 30px;
-    top: 2px;
+    top: 5px;
   }
 
   #bottom-nav li.guidance::before {
@@ -167,7 +175,7 @@
     background-size: contain;
     width: 18px;
     height: 40px;
-    top: -1px;
+    top: 0px;
   }
 
   #bottom-nav li.language::before {
@@ -175,6 +183,39 @@
     background-size: contain;
     width: 30px;
     height: 36px;
-    top: -1px;
+    top: 1px;
+  }
+
+  #bottom-nav span.fold-button {
+    background: url("/img/foldButton.svg") no-repeat;
+    background-size: contain;
+    width: 26px;
+    height: 60px;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2000;
+  }
+
+  #bottom-nav.close {
+    transform: translateX(105%);
+  }
+
+  #bottom-nav .board-wrapper {
+    height: 85vh;
+    width: 400vw;
+    display: flex;
+    background-color: #FFF;
+    position: absolute;
+    bottom: -85vh;
+  }
+
+  #bottom-nav .board-wrapper.open {
+    bottom: 0;
+  }
+
+  #bottom-nav .board-wrapper section {
+    width: 100vw;
   }
 }
