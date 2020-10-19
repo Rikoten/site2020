@@ -632,11 +632,11 @@ article .file .file-wrapper a:hover {
 article .quiz section {
   padding: 0;
 }
-
+/*
 article .quiz section:not(:last-child) {
   border-bottom: 1px solid #E4E4E4;
 }
-
+*/
 article .quiz section {
   counter-increment: quiz-number 1;
 }
@@ -717,18 +717,15 @@ article .quiz div {
   height: 0;
   padding: 0 80px;
   overflow: hidden;
-  border-top: 0px solid #E4E4E4;
+  border-top: 1px solid #E4E4E4;
+  border-bottom: 0px solid #E4E4E4;
   transition: 0.8s;
   box-sizing: border-box;
 }
 
 article .quiz div.commentary-open {
-  border-top: 1px solid #E4E4E4;
-  padding: 20px 80px;
-}
-
-article .quiz section:last-of-type div {
   border-bottom: 1px solid #E4E4E4;
+  padding: 20px 80px;
 }
 
 article .quiz div span:last-of-type {
@@ -859,6 +856,15 @@ article .quiz ul.open::before {
 
   article .quiz section {
     padding: 0;
+  }
+
+  article .quiz div {
+    margin: 0 -10px;
+    padding: 0 10px;
+  }
+
+  article .quiz div.commentary-open {
+    padding: 20px 10px;
   }
 
   #title-header .supplementary-info {
