@@ -102,12 +102,4 @@
     -ms-grid-columns: 1fr 10px 1fr 10px 1fr;
     grid-row-gap: 10px;
   }
-  #goldBanner > a {
-    /*height: calc(68px - 12px);*/
-    height: calc(100vw / 7.393);
-  }
-  #silverBanner > a {
-    /*height: calc(48px - 12px);*/
-    height: calc(100vw / 11.5);
-  }
 }
