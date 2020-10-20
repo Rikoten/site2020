@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(frame, 25); 
     
     function frame() { 
-      if (document.defaultView.getComputedStyle(topViewEventBar,null).display) {
+      if (window.innerWidth > 992) {
         //if (topViewPos == 150) { topViewPos = 0; }
         topViewPos -= 0.5;
         topViewEventBar.style.left = topViewPos + 'px';
