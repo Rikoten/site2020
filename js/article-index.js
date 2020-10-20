@@ -200,7 +200,25 @@ window.onload = function () {
 
   for(let i = 0; i < navButton.length; i++) {
     navButton[i].addEventListener('click', ()=> {
+      const left = navButton[i].getBoundingClientRect().left;
+      const activeBar = document.querySelector(".active-bar");
+
       boardWrapper.style.transform = `translateX(-${100 * i}vw)`;
+      if(boardWrapper.classList.contains("open")) {
+        activeBar.animate([
+          { left: `${left}px` }
+        ], {
+          duration: 200,
+          easing: "ease-out"
+        });
+        setTimeout(() => {
+          activeBar.style.left = `${left}px`;
+        }, 200);
+      } else {
+        boardWrapper.classList.add("open");
+        activeBar.style.left = `${left}px`;
+        activeBar.style.display = "block";
+      }
     });
   }
 };

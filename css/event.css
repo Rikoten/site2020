@@ -896,13 +896,27 @@ article .quiz ul.open::before {
   }
 
   aside p {
-    margin: 20px 10px 15px;
+    margin: 10px 10px 15px;
     height: 5.4rem;
   }
 
   aside .other-event-title {
     flex-wrap: wrap;
     padding-right: 0;
+  }
+
+  aside .other-event-title h3 {
+    flex-basis: 100%;
+    margin-bottom: 10px;
+  }
+
+  aside .other-event-title .article-type {
+    margin-left: 30px;
+  }
+
+  aside .other-event-title .time {
+    margin-left: 10px;
+    width: auto;
   }
 
   .caption {
