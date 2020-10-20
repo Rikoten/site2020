@@ -9,7 +9,7 @@
     {
       "img": "agos.png",
       "url": "",
-      "bgcolor": "",
+      "bgcolor": "#003894",
       "alt": "株式会社アゴスジャパン"
     },
     {
@@ -56,7 +56,7 @@
     },
     {
       "img": "maxell.png",
-      "url": "",
+      "url": "https://www.maxell.co.jp/",
       "bgcolor": "",
       "alt": "マクセル株式会社"
     }
@@ -69,7 +69,7 @@
       "alt": "NOK株式会社"
     },
     {
-      "img": "kokoro.jpg",
+      "img": "cocoro-black.png",
       "url": "",
       "bgcolor": "",
       "alt": "麺屋こころ"
