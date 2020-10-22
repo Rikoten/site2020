@@ -205,7 +205,7 @@ window.onload = () => {
 }
 
 
-/* JSON読み込み */
+/********** JSON読み込み **********/
 
 const getJSON = new Promise ((resolve, reject) => {
   let data = null;
@@ -223,13 +223,9 @@ const getJSON = new Promise ((resolve, reject) => {
   xhr.send();
 });
 
-/* 読み込んだJSONデータをセット */
+/********** 読み込んだJSONデータをセット **********/
 
-const setData = getJSON.then((obj) => {
-  const article = document.querySelector("article section.article");
-  const quiz = document.querySelector("article section.quiz");
-  let html = [];
-
+const placeData = getJSON.then((obj) => {
   /* URLパラメータを連想配列に格納 */
   const param = {}
   const text = location.search.slice(1).split(/[&|=]/);
@@ -237,6 +233,7 @@ const setData = getJSON.then((obj) => {
     param[text[i]] = text[i + 1];
   }
 
+  /* 表示すべき企画データを抽出 */
   const eventID = param["id"];
   let eventData = null;
   for(const data of obj) {
@@ -246,13 +243,47 @@ const setData = getJSON.then((obj) => {
     }
   }
 
-  /* 記事データ */
+  /* 企画名 */
+  const title = document.querySelector("header .title-wrapper");
+  const barSpan = document.querySelector("article .bar span");
+  title.insertAdjacentHTML("beforeend", `<span>${eventData["eventType"]}</span><h1>${eventData["eventName"]}</h1>`);
+  barSpan.innerText = eventData["eventName"];
+
+  /* データがあればHTMLを生成し挿入 */
+  if(eventData["articleData"]) placeArticle(eventData);
+  if(eventData["quiz"]) placeQuiz(eventData);
+});
+
+/********** イベントリスナの設定 **********/
+
+placeData.then(() => {
+  if (storageAvailable('localStorage')) {
+    if(localStorage.getItem("good") && localStorage.getItem("good") == "true") {
+      const goodButton = document.querySelectorAll("article .bar button")[0];
+      goodButton.classList.add("thumbs-up-clicked");
+    }
+  }
+
+  barEvent();
+  quizEvent();
+});
+
+
+/********** HTMLを生成・挿入する関数 **********/
+
+const placeArticle = (eventData) => {
+  const article = document.querySelector("article section.article");
+  const html = [];
+
   for(const data of eventData["articleData"]) {
-    html.push(data["code"]);
+    html.push(`<${data["tag"]}>${data["code"]}</${data["tag"]}>`);
   }
   article.insertAdjacentHTML("beforeend", html.join(""));
+}
 
-  /* クイズ */
+const placeQuiz = (eventData) => {
+  const quiz = document.querySelector("article section.quiz");
+
   for(const data of eventData["quiz"]) {
     const section = document.createElement("section");
     const h4 = document.createElement("h4");
@@ -261,6 +292,7 @@ const setData = getJSON.then((obj) => {
     const span1 = document.createElement("span");
     const span2 = document.createElement("span");
     const p = document.createElement("p");
+    let cnt = 0;
 
     h4.innerText = data["q"];
     span1.innerText = "正解は";
@@ -271,6 +303,10 @@ const setData = getJSON.then((obj) => {
       if(q["correct"]) {
         span2.innerText = q["sentence"];
         li.classList.add("correct-answer");
+        cnt++;
+      }
+      if(cnt == 4) {
+        span2.innerText = "全て";
       }
       ul.appendChild(li);
     }
@@ -283,33 +319,75 @@ const setData = getJSON.then((obj) => {
 
     quiz.appendChild(section);
   }
+}
 
-  /* 団体説明 */
-});
+/********** イベントリスナを設定する関数 **********/
 
-/* イベントリスナの設定 */
+const barEvent = () => {
+  const barButton = document.querySelectorAll("article .bar button");
 
-setData.then(() => {
-  /* クイズ */
-  const options = document.querySelectorAll('.quiz li');
+  barButton[0].addEventListener("click", () => {
+    if (storageAvailable('localStorage')) {
+      if(!localStorage.getItem("good")) {
+        localStorage.setItem('good', "true");
+        barButton[0].classList.add("thumbs-up-clicked");
+      } else {
+        if(localStorage.getItem("good") == "true") {
+          localStorage.setItem('good', "false");
+          barButton[0].classList.remove("thumbs-up-clicked");
+        } else {
+          localStorage.setItem('good', "true");
+          barButton[0].classList.add("thumbs-up-clicked");
+        }
+      }
+    }
+  });
+  barButton[1].addEventListener("click", () => {
+    barButton[1].classList.add("pin-clicked");
+  });
+}
+
+const quizEvent = () => {
+  const options = document.querySelectorAll(".quiz li");
       
   for(const option of options) {
-    option.addEventListener('click', () => {
+    option.addEventListener("click", () => {
       const commentary = option.parentNode.nextElementSibling;
 
-      if(!commentary.classList.contains('commentary-open')) {
-        if(option.classList.contains('correct-answer')) {
-          option.classList.add('correct');
+      if(!commentary.classList.contains("commentary-open")) {
+        if(option.classList.contains("correct-answer")) {
+          option.classList.add("correct");
         } else {
-          option.classList.add('incorrect');
+          option.classList.add("incorrect");
         }
-        commentary.classList.add('commentary-open');
-        commentary.style.height = commentary.scrollHeight + 40 + 'px';
-        commentary.previousElementSibling.classList.add('open');
+        commentary.classList.add("commentary-open");
+        commentary.style.height = commentary.scrollHeight + 40 + "px";
+        commentary.previousElementSibling.classList.add("open");
         setTimeout(() => {
-          commentary.style.height = 'auto';
+          commentary.style.height = "auto";
         }, 800);
       }
     });
   }
-});
+}
+
+/********** ローカルストレージ **********/
+
+const storageAvailable = (type) => {
+  let storage;
+  try {
+    storage = window[type];
+    let x = '__storage_test__';
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  }
+  catch(e) {
+    return e instanceof DOMException && (
+      e.code === 22 ||
+      e.code === 1014 ||
+      e.name === 'QuotaExceededError' ||
+      e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+      (storage && storage.length !== 0);
+  }
+}

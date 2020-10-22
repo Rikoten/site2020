@@ -496,11 +496,12 @@ article .bar {
 article .bar span {
   display: inline-block;
   margin-right: auto;
+  font-weight: 500;
 }
 
 article .bar button {
   padding: 1px 10px 0 7px;
-  height: 30px;
+  height: 33px;
   line-height: 30px;
   background-color: #FFF;
   border-radius: 3px;
@@ -514,9 +515,7 @@ article .bar button:hover {
 }
 
 article .bar button.thumbs-up::before,
-article .bar button.pin::before,
-article .bar button.thums-up-clicked::before,
-article .bar button.pin-clicked::before {
+article .bar button.pin::before {
   content: "";
   display: inline-block;
   margin-right: 5px;
@@ -541,12 +540,19 @@ article .bar button.pin::before {
   vertical-align: middle;
 }
 
-article .bar button.thums-up-clicked::before {
+article .bar button.thumbs-up-clicked,
+article .bar button.pin-clicked {
+  background-color: #3BA2E7;
+  color: white;
+  font-weight: bold;
+}
+
+article .bar button.thumbs-up-clicked::before {
   background-position: -90px -32px;
 }
 
 article .bar button.pin-clicked::before {
-  background-position: -30px -30px;
+  background-position: -150px -30px;
 }
 
 article section:not(.article) {
