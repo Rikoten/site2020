@@ -230,14 +230,30 @@ const setData = getJSON.then((obj) => {
   const quiz = document.querySelector("article section.quiz");
   let html = [];
 
+  /* URLパラメータを連想配列に格納 */
+  const param = {}
+  const text = location.search.slice(1).split(/[&|=]/);
+  for(let i = 0; i < text.length; i = i + 2) {
+    param[text[i]] = text[i + 1];
+  }
+
+  const eventID = param["id"];
+  let eventData = null;
+  for(const data of obj) {
+    if(eventID == data["eventID"]) {
+      eventData = data;
+      break;
+    }
+  }
+
   /* 記事データ */
-  for(const data of obj[0]["articleData"]) {
+  for(const data of eventData["articleData"]) {
     html.push(data["code"]);
   }
   article.insertAdjacentHTML("beforeend", html.join(""));
 
   /* クイズ */
-  for(const data of obj[0]["quiz"]) {
+  for(const data of eventData["quiz"]) {
     const section = document.createElement("section");
     const h4 = document.createElement("h4");
     const ul = document.createElement("ul");
