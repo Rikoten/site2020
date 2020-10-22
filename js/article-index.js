@@ -1,3 +1,5 @@
+//const { resolve } = require("dns");
+
 document.addEventListener('DOMContentLoaded', function () {
   let contentsList = document.getElementById('index'); // 目次を追加する先(table of contents)
   let navPagination = document.getElementById('nav-pagination');
@@ -68,28 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 
-  /* クイズ */
-  const options = document.querySelectorAll('.quiz li');
-    
-  for(const option of options) {
-    option.addEventListener('click', () => {
-      const commentary = option.parentNode.nextElementSibling;
-
-      if(!commentary.classList.contains('commentary-open')) {
-        if(option.classList.contains('correct-answer')) {
-          option.classList.add('correct');
-        } else {
-          option.classList.add('incorrect');
-        }
-        commentary.classList.add('commentary-open');
-        commentary.style.height = commentary.scrollHeight + 40 + 'px';
-        commentary.previousElementSibling.classList.add('open');
-        setTimeout(() => {
-          commentary.style.height = 'auto';
-        }, 800);
-      }
-    });
-  }
+  
 
 });
 
@@ -181,13 +162,13 @@ xhr.onreadystatechange = () => {
     box.outerHTML = int.outerHTML;
     box2.outerHTML = int2.outerHTML;
   }
-};
+}
 
 xhr.send();
 
 /* ボトムナビゲーション */
 
-window.onload = function () {
+window.onload = () => {
   const foldButton = document.querySelector("#bottom-nav .fold-button");
 
   foldButton.addEventListener('click', () => {
@@ -205,15 +186,15 @@ window.onload = function () {
 
       boardWrapper.style.transform = `translateX(-${100 * i}vw)`;
       if(boardWrapper.classList.contains("open")) {
-        activeBar.animate([
+        let animate = activeBar.animate([
           { left: `${left}px` }
         ], {
           duration: 200,
           easing: "ease-out"
         });
-        setTimeout(() => {
+        animate.addEventListener('finish', () => {
           activeBar.style.left = `${left}px`;
-        }, 200);
+        });
       } else {
         boardWrapper.classList.add("open");
         activeBar.style.left = `${left}px`;
@@ -221,4 +202,98 @@ window.onload = function () {
       }
     });
   }
-};
+}
+
+
+/* JSON読み込み */
+
+const getJSON = new Promise ((resolve, reject) => {
+  let data = null;
+  let xhr = new XMLHttpRequest(),
+      method = "GET",
+      url = "/data/eventData-test.json";
+
+  xhr.responseType = "json";
+  xhr.open(method, url, true);
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState == 4 && xhr.status == 200) {
+      resolve(xhr.response);
+    }
+  }
+  xhr.send();
+});
+
+/* 読み込んだJSONデータをセット */
+
+const setData = getJSON.then((obj) => {
+  const article = document.querySelector("article section.article");
+  const quiz = document.querySelector("article section.quiz");
+  let html = [];
+
+  /* 記事データ */
+  for(const data of obj[0]["articleData"]) {
+    html.push(data["code"]);
+  }
+  article.insertAdjacentHTML("beforeend", html.join(""));
+
+  /* クイズ */
+  for(const data of obj[0]["quiz"]) {
+    const section = document.createElement("section");
+    const h4 = document.createElement("h4");
+    const ul = document.createElement("ul");
+    const div = document.createElement("div");
+    const span1 = document.createElement("span");
+    const span2 = document.createElement("span");
+    const p = document.createElement("p");
+
+    h4.innerText = data["q"];
+    span1.innerText = "正解は";
+    p.innerText = data["acomment"];
+    for(const q of data["choice"]) {
+      const li = document.createElement("li");
+      li.innerText = q["sentence"];
+      if(q["correct"]) {
+        span2.innerText = q["sentence"];
+        li.classList.add("correct-answer");
+      }
+      ul.appendChild(li);
+    }
+    div.appendChild(span1);
+    div.appendChild(span2);
+    div.appendChild(p);
+    section.appendChild(h4);
+    section.appendChild(ul);
+    section.appendChild(div);
+
+    quiz.appendChild(section);
+  }
+
+  /* 団体説明 */
+});
+
+/* イベントリスナの設定 */
+
+setData.then(() => {
+  /* クイズ */
+  const options = document.querySelectorAll('.quiz li');
+      
+  for(const option of options) {
+    option.addEventListener('click', () => {
+      const commentary = option.parentNode.nextElementSibling;
+
+      if(!commentary.classList.contains('commentary-open')) {
+        if(option.classList.contains('correct-answer')) {
+          option.classList.add('correct');
+        } else {
+          option.classList.add('incorrect');
+        }
+        commentary.classList.add('commentary-open');
+        commentary.style.height = commentary.scrollHeight + 40 + 'px';
+        commentary.previousElementSibling.classList.add('open');
+        setTimeout(() => {
+          commentary.style.height = 'auto';
+        }, 800);
+      }
+    });
+  }
+});

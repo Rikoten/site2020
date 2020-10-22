@@ -398,14 +398,24 @@ nav #nav-pagination {
 }
 
 #title-header .supplementary-info .event-view::before {
-  content: url(/img/eye.svg);
+  content: "";
+  background: url("/img/iconset.svg");
+  background-size: 180px 120px;
+  background-position: -120px -30px;
+  width: 30px;
+  height: 30px;
   display: inline-block;
   margin-right: 15px;
   vertical-align: sub;
 }
 
 #title-header .supplementary-info .event-thumbsup::before {
-  content: url(/img/thumbsUp.svg);
+  content: "";
+  background: url("/img/iconset.svg");
+  background-size: 180px 120px;
+  background-position: -90px -30px;
+  width: 30px;
+  height: 30px;
   display: inline-block;
   margin-right: 15px;
   vertical-align: sub;
@@ -423,7 +433,7 @@ nav #nav-pagination {
 }
 
 .group-desc .group-link a {
-  padding: 5px 15px;
+  padding: 5px 15px 5px 12px;
   border: 1px solid var(--color-font);
   border-radius: 5px;
   margin: 20px 20px 0 0;
@@ -441,30 +451,35 @@ nav #nav-pagination {
 .group-desc .group-link .link-instagram::before {
   content: "";
   display: inline-block;
-  width: 25px;
-  height: 25px;
-  margin: 2px 5px 0 0;
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
   vertical-align: top;
+  transform: scale(0.85);
 }
 
 .group-desc .group-link .link-web::before {
-  background: url("/img/web.svg") no-repeat;
-  background-size: cover;
+  background: url("/img/iconset.svg") no-repeat;
+  background-size: 180px 120px;
+  background-position: 0px 0px;
 }
 
 .group-desc .group-link .link-twitter::before {
-  background: url("/img/twitter.svg") no-repeat;
-  background-size: cover;
+  background: url("/img/iconset.svg") no-repeat;
+  background-size: 180px 120px;
+  background-position: -30px 0px;
 }
 
 .group-desc .group-link .link-facebook::before {
-  background: url("/img/facebook.svg") no-repeat;
-  background-size: cover;
+  background: url("/img/iconset.svg") no-repeat;
+  background-size: 180px 120px;
+  background-position: -60px 0px;
 }
 
 .group-desc .group-link .link-instagram::before {
-  background: url("/img/instagram.svg") no-repeat;
-  background-size: cover;
+  background: url("/img/iconset.svg") no-repeat;
+  background-size: 180px 120px;
+  background-position: -90px 0px;
 }
 
 article .bar {
@@ -484,7 +499,7 @@ article .bar span {
 }
 
 article .bar button {
-  padding: 0 10px;
+  padding: 1px 10px 0 7px;
   height: 30px;
   line-height: 30px;
   background-color: #FFF;
@@ -499,26 +514,39 @@ article .bar button:hover {
 }
 
 article .bar button.thumbs-up::before,
-article .bar button.pin::before {
+article .bar button.pin::before,
+article .bar button.thums-up-clicked::before,
+article .bar button.pin-clicked::before {
   content: "";
   display: inline-block;
   margin-right: 5px;
 }
 
 article .bar button.thumbs-up::before {
-  width: 18px;
-  height: 18px;
-  background: url("/img/thumbsUp-gray.svg") no-repeat;
-  background-size: contain;
-  vertical-align: sub;
+  width: 30px;
+  height: 30px;
+  background: url("/img/iconSet.svg") no-repeat;
+  background-position: -60px -32px;
+  background-size: 180px 120px;
+  vertical-align: middle;
+  transform: scale(0.85);
 }
 
 article .bar button.pin::before {
-  width: 25px;
+  width: 30px;
   height: 30px;
-  background: url("/img/pin.svg") no-repeat;
-  background-size: contain;
-  vertical-align: bottom;
+  background: url("/img/iconSet.svg") no-repeat;
+  background-position: 0px -30px;
+  background-size: 180px 120px;
+  vertical-align: middle;
+}
+
+article .bar button.thums-up-clicked::before {
+  background-position: -90px -32px;
+}
+
+article .bar button.pin-clicked::before {
+  background-position: -30px -30px;
 }
 
 article section:not(.article) {
@@ -686,13 +714,18 @@ article .quiz li.correct {
 }
 
 article .quiz li.correct::before {
-  content: url("/img/correct.svg");
+  content: "";
+  background: url("/img/iconset.svg");
+  background-position: -120px 0px;
+  background-size: 180px 120px;
+  width: 30px;
+  height: 30px;
   position: absolute;
   left: 20px;
   top: 0;
   bottom: 0;
   margin: auto 0;
-  height: 23px;
+  transform: scale(0.8);
 }
 
 article .quiz li.incorrect {
@@ -703,13 +736,19 @@ article .quiz li.incorrect {
 }
 
 article .quiz li.incorrect::before {
-  content: url("/img/incorrect.svg");
+  content: "";
+  background: url("/img/iconset.svg");
+  background-position: -150px 0px;
+  background-size: 180px 120px;
+  width: 30px;
+  height: 30px;
   position: absolute;
   left: 20px;
   top: 0;
   bottom: 0;
   margin: auto 0;
   height: 30px;
+  transform: scale(0.6);
 }
 
 article .quiz div {

@@ -154,35 +154,39 @@
   }
 
   #bottom-nav li.pin::before {
-    background: url("/img/pinWhite.svg") no-repeat;
-    background-size: contain;
-    width: 26px;
-    height: 34px;
+    background: url("/img/iconset.svg") no-repeat;
+    background-position: -30px -30px;
+    background-size: 180px 120px;
+    width: 30px;
+    height: 30px;
     top: 5px;
   }
 
   #bottom-nav li.live::before {
-    background: url("/img/live.svg") no-repeat;
-    background-size: contain;
+    background: url("/img/iconset.svg") no-repeat;
+    background-position: 0px -60px;
+    background-size: 180px 120px;
     width: 30px;
     height: 30px;
     top: 5px;
   }
 
   #bottom-nav li.guidance::before {
-    background: url("/img/questionMark.svg") no-repeat;
-    background-size: contain;
-    width: 18px;
-    height: 40px;
-    top: 0px;
+    background: url("/img/iconset.svg") no-repeat;
+    background-position: -30px -60px;
+    background-size: 180px 120px;
+    width: 30px;
+    height: 30px;
+    top: 5px;
   }
 
   #bottom-nav li.language::before {
-    background: url("/img/language.svg") no-repeat;
-    background-size: contain;
+    background: url("/img/iconset.svg") no-repeat;
+    background-position: -60px -60px;
+    background-size: 180px 120px;
     width: 30px;
-    height: 36px;
-    top: 1px;
+    height: 30px;
+    top: 5px;
   }
 
   #bottom-nav span.fold-button {
