@@ -4,7 +4,12 @@ body {
     font-size: 18px;
     line-height: 36px;
     color: #000000fd;
-    background-color: #fdfdfd;
+}
+
+
+.message{
+    background-color: #919197f6;
+    text-align: center;
 }
 
 .box1{
@@ -15,7 +20,7 @@ body {
     border: dashed 2px  #2a3033;
     border-radius: 10px;
     display: inline-block;
-    
+    text-align: center;
 }
 
 .box1 p {
