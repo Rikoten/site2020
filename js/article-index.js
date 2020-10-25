@@ -211,7 +211,7 @@ const getJSON = new Promise ((resolve, reject) => {
   let data = null;
   let xhr = new XMLHttpRequest(),
       method = "GET",
-      url = "/data/eventData-test.json";
+      url = "/data/eventData.json";
 
   xhr.responseType = "json";
   xhr.open(method, url, true);
