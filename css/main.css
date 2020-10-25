@@ -452,13 +452,23 @@ body {
   text-align: center;
 }
 
-#eventList .eventTile > .eventChild > div {
+#eventList .eventTile > .eventChild.child > div {
   display: inline-block;
   height: 30px;
   width: 100px;
   background: #fff;
   border-radius: 15px;
   color: #243D7D;
+}
+
+#eventList .eventTile > .eventChild.student > div {
+  display: inline-block;
+  height: 30px;
+  width: 100px;
+  background: transparent;
+  border-radius: 15px;
+  color: #fff;
+  border: #fff solid 1px;
 }
 
 #eventList .eventTile > .eventDesc {
