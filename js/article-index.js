@@ -1,5 +1,7 @@
 //const { resolve } = require("dns");
 
+let eventID = null;
+
 document.addEventListener('DOMContentLoaded', function () {
   let contentsList = document.getElementById('index'); // 目次を追加する先(table of contents)
   let navPagination = document.getElementById('nav-pagination');
@@ -208,7 +210,6 @@ window.onload = () => {
 /********** JSON読み込み **********/
 
 const getJSON = new Promise ((resolve, reject) => {
-  let data = null;
   let xhr = new XMLHttpRequest(),
       method = "GET",
       url = "/data/eventData.json";
@@ -234,7 +235,7 @@ const placeData = getJSON.then((obj) => {
   }
 
   /* 表示すべき企画データを抽出 */
-  const eventID = param["id"];
+  eventID = param["id"];
   let eventData = null;
   for(const data of obj) {
     if(eventID == data["eventID"]) {
@@ -243,15 +244,15 @@ const placeData = getJSON.then((obj) => {
     }
   }
 
-  /* 企画名 */
+  /* 企画名 
   const title = document.querySelector("header .title-wrapper");
   const barSpan = document.querySelector("article .bar span");
   title.insertAdjacentHTML("beforeend", `<span>${eventData["eventType"]}</span><h1>${eventData["eventName"]}</h1>`);
-  barSpan.innerText = eventData["eventName"];
+  barSpan.innerText = eventData["eventName"];*/
 
   /* データがあればHTMLを生成し挿入 */
-  if(eventData["articleData"]) placeArticle(eventData);
-  if(eventData["quiz"]) placeQuiz(eventData);
+  if(eventData["articleData"]) placeArticle(eventData["articleData"]);
+  if(eventData["quiz"]) placeQuiz(eventData["quiz"]);
 });
 
 /********** イベントリスナの設定 **********/
@@ -271,20 +272,20 @@ placeData.then(() => {
 
 /********** HTMLを生成・挿入する関数 **********/
 
-const placeArticle = (eventData) => {
+const placeArticle = (articleData) => {
   const article = document.querySelector("article section.article");
   const html = [];
 
-  for(const data of eventData["articleData"]) {
+  for(const data of articleData) {
     html.push(`<${data["tag"]}>${data["code"]}</${data["tag"]}>`);
   }
   article.insertAdjacentHTML("beforeend", html.join(""));
 }
 
-const placeQuiz = (eventData) => {
+const placeQuiz = (quizData) => {
   const quiz = document.querySelector("article section.quiz");
 
-  for(const data of eventData["quiz"]) {
+  for(const data of quizData) {
     const section = document.createElement("section");
     const h4 = document.createElement("h4");
     const ul = document.createElement("ul");
@@ -325,26 +326,28 @@ const placeQuiz = (eventData) => {
 
 const barEvent = () => {
   const barButton = document.querySelectorAll("article .bar button");
-
-  barButton[0].addEventListener("click", () => {
+/*
+  barButton[1].addEventListener("click", () => {
     if (storageAvailable('localStorage')) {
-      if(!localStorage.getItem("good")) {
-        localStorage.setItem('good', "true");
-        barButton[0].classList.add("thumbs-up-clicked");
+      if(!localStorage.getItem("pin")) {
+        let data = null;
+        data = {`${eventID}`: "true"};
+        localStorage.setItem('pin', JSON.stringify(data));
+        barButton[1].classList.add("pin-clicked");
       } else {
-        if(localStorage.getItem("good") == "true") {
-          localStorage.setItem('good', "false");
-          barButton[0].classList.remove("thumbs-up-clicked");
+        if(localStorage.getItem("pin")[eventID] == "true") {
+          const data = {eventID: "false"};
+          localStorage.setItem('pin', JSON.stringify(data));
+          barButton[1].classList.remove("pin-clicked");
         } else {
-          localStorage.setItem('good', "true");
-          barButton[0].classList.add("thumbs-up-clicked");
+          const data = {eventID: "true"};
+          localStorage.setItem('good', JSON.stringify(data));
+          barButton[1].classList.add("pin-clicked");
         }
       }
     }
   });
-  barButton[1].addEventListener("click", () => {
-    barButton[1].classList.add("pin-clicked");
-  });
+*/
 }
 
 const quizEvent = () => {
@@ -371,7 +374,7 @@ const quizEvent = () => {
   }
 }
 
-/********** ローカルストレージ **********/
+/********** ローカルストレージが使用可能か判定 **********/
 
 const storageAvailable = (type) => {
   let storage;
