@@ -172,16 +172,23 @@ document.addEventListener('DOMContentLoaded', function () {
           paginationBtnClicked.classList.add('active');
   
           /* タブの動作 */
-          let indexClicked = [].slice.call(eventPaginationBtn).indexOf(paginationBtnClicked) + 1; //押されたボタンの示すページネーション
-          eventListPage.forEach(function(listPage){
+          let indexClicked = [].slice.call(eventPaginationBtn).indexOf(paginationBtnClicked); //押されたボタンの示すページネーション
+          // console.log(indexClicked);
+
+          let eventType = paginationBtnClicked.parentElement.parentElement.parentElement.parentElement;
+          eventListPageInType = Array.from(eventType.getElementsByClassName("eventListPage"));
+
+          eventListPageInType.forEach(function(listPage){
             listPage.classList.remove('active');
           });
 
-          eventListPage[indexClicked].classList.add('active');
-          eventTile.forEach(function(tiles) {
+          eventListPageInType[indexClicked].classList.add('active');
+
+          eventTilePageInType = Array.from(eventType.getElementsByClassName("eventTile"));
+          eventTilePageInType.forEach(function(tiles) {
             tiles.classList.remove('active');
           });
-          eventListPage[indexClicked].getElementsByClassName('eventTile')[0].classList.add('active');  // 一番上をホバー状態に
+          eventListPageInType[indexClicked].getElementsByClassName('eventTile')[0].classList.add('active');  // 一番上をホバー状態に
         });
       });
         
