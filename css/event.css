@@ -32,11 +32,12 @@ body {
 #title-header {
   grid-area: header;
   position: relative;
-  background: #B0D8E4;
+  background: linear-gradient(to right, #E9F5FA, #F8FAE9);
   margin-bottom: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 main {
@@ -203,27 +204,34 @@ ul.pagination li:hover {
 #title-header .title-wrapper {
   max-width: 1000px;
   margin: 0 20px;
+  color: var(--color-font);
+  padding: 0 10px;
+  z-index: 1000;
 }
 
-#title-header .title-wrapper span {
+#title-header .title-wrapper > span {
   width: 95px;
   height: 35px;
   text-align: center;
   line-height: 35px;
   display: inline-block;
   border-radius: 5px;
-  font-weight: bold;
-  color: #B0D8E4;
-  background-color: #FFF;
+  font-weight: 500;
+  background-color: #E9F5FA;
+  box-shadow: 0 2px 3px 0px rgba(0, 0, 0, .15);
 }
 
 #title-header .title-wrapper h1 {
   font-size: 32px;
   line-height: calc(32px*1.6);
   font-weight: normal;
-  color: #FFF;
+  margin: 20px 0 10px 0;
 }
 
+#title-header .title-wrapper p {
+  max-width: 550px;
+  margin: 0;
+}
 
 #index {
   font-weight: bold;
@@ -376,25 +384,33 @@ nav #nav-pagination {
   font-weight: normal;
 }
 
-#title-header .supplementary-info {
+#title-header::before {
+  content: "";
+  width: 100%;
+  height: 100%;
   position: absolute;
-  bottom: 30px;
-  width: 1380px;
+  background: url(/img/magicHour.svg) no-repeat center;
+  z-index: 100;
+  background-size: contain;
+  opacity: 50%;
+}
+
+#title-header .supplementary-info {
   display: flex;
-  justify-content: flex-end;
+  margin-top: 20px;
 }
 
 #title-header .supplementary-info .for-children {
-  padding: 2px 10px;
+  font-size: 13px;
   background-color: #FFF;
-  color: #B0D8E4;
   border-radius: 30px;
+  padding: 2px 10px;
+  box-shadow: 0 2px 3px 0px rgba(0, 0, 0, .15);
 }
 
 #title-header .supplementary-info span:not(:first-child) {
-  font-weight: bold;
-  margin-left: 50px;
-  color: #FFF;
+  margin-left: 70px;
+  position: relative;
 }
 
 #title-header .supplementary-info .event-view::before {
@@ -402,11 +418,11 @@ nav #nav-pagination {
   background: url("/img/iconset.svg");
   background-size: 180px 120px;
   background-position: -120px -30px;
+  position: absolute;
   width: 30px;
   height: 30px;
-  display: inline-block;
-  margin-right: 15px;
-  vertical-align: sub;
+  left: -35px;
+  filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, .15));
 }
 
 #title-header .supplementary-info .event-thumbsup::before {
@@ -414,11 +430,13 @@ nav #nav-pagination {
   background: url("/img/iconset.svg");
   background-size: 180px 120px;
   background-position: -90px -30px;
+  position: absolute;
   width: 30px;
   height: 30px;
-  display: inline-block;
-  margin-right: 15px;
-  vertical-align: sub;
+  top: -2px;
+  left: -35px;
+  transform: scale(.8);
+  filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, .15));
 }
 
 .group-desc h2 {
@@ -816,22 +834,22 @@ article .quiz ul.open::before {
     */
     display: none;
   }
-
-  #title-header .supplementary-info {
-    width: 960px;
-  }
 }
 
 /* 記事幅960px + 左右余白40px */
 @media screen and (max-width: 1000px) {
-  nav, main, aside, .iframe-wrapper, #title-header .supplementary-info {
+  nav, main, aside, .iframe-wrapper {
     width: calc(100% - 40px);
+  }
+
+  #title-header .title-wrapper {
+    margin: 0 auto;
   }
 }
 
 @media screen and (max-width: 700px) {
   body {
-    grid-template-rows: 350px auto auto auto;
+    grid-template-rows: 500px auto auto auto;
     line-height: 1.8rem;
   }
 
@@ -913,27 +931,14 @@ article .quiz ul.open::before {
     line-height: 2rem;
   }
 
-  #title-header .supplementary-info {
-    width: calc(100% - 20px);
-    bottom: 10px;
-  }
-
-  #title-header .title-wrapper span {
-    width: 80px;
-    height: 35px;
-  }
-  
   #title-header .title-wrapper h1 {
     font-size: 26px;
     line-height: calc(26px*1.6);
     font-weight: normal;
-    color: #FFF;
   }
 
   #title-header .supplementary-info span:not(:first-child) {
-    font-weight: bold;
-    margin-left: 20px;
-    color: #FFF;
+    margin-left: 50px;
   }
 
   aside h3 {
