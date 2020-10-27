@@ -264,12 +264,18 @@ const placeData = getJSON.then((obj) => {
 
   /* ファイル */
   if(eventData["dl"]) {
-    const $file = document.querySelector("article .file");
+    const $article = document.getElementsByTagName("article")[0];
     const html = [];
     for(const data of eventData["dl"]) {
-      html.push(`<div class = "file-wrapper"><div><p>${data.name}</p><p>${data.desc}</p></div><a href = "${data.url}">ダウンロード</a></div>`);
+      html.push(
+        `<div class = "file-wrapper"><div>
+            <p>${data.name}</p>
+            <p>${data.desc}</p>
+          </div>
+          <a href = "${data.url}">ダウンロード</a>
+        </div>`);
     }
-    $file.insertAdjacentHTML("beforeend", html.join(""));
+    $article.insertAdjacentHTML("beforeend", `<section class = "file"><h2>ファイル配布</h2>${html.join("")}</section>`);
   }
 
   /* 団体紹介 */
@@ -319,43 +325,36 @@ const placeArticle = (articleData) => {
 }
 
 const placeQuiz = (quizData) => {
-  const quiz = document.querySelector("article section.quiz");
+  const $article = document.getElementsByClassName("article")[0];
+  const html = [];
 
   for(const data of quizData) {
-    const section = document.createElement("section");
-    const h4 = document.createElement("h4");
-    const ul = document.createElement("ul");
-    const div = document.createElement("div");
-    const span1 = document.createElement("span");
-    const span2 = document.createElement("span");
-    const p = document.createElement("p");
+    const choices = [];
+    let answer = null;
     let cnt = 0;
-
-    h4.innerHTML = data["q"];
-    span1.innerText = "正解は";
-    p.innerText = data["acomment"];
     for(const q of data["choice"]) {
-      const li = document.createElement("li");
-      li.innerText = q["sentence"];
-      if(q["correct"]) {
-        span2.innerText = q["sentence"];
-        li.classList.add("correct-answer");
+      if(q.correct) {
         cnt++;
+        choices.push(`<li class = "correct-answer">${q.sentence}</li>`);
+        answer = q.sentence;
+      } else {
+        choices.push(`<li>${q.sentence}</li>`);
       }
-      if(cnt == 4) {
-        span2.innerText = "全て";
-      }
-      ul.appendChild(li);
     }
-    div.appendChild(span1);
-    div.appendChild(span2);
-    div.appendChild(p);
-    section.appendChild(h4);
-    section.appendChild(ul);
-    section.appendChild(div);
+    if(cnt == Object.keys(data["choice"]).length) answer = "すべて";
 
-    quiz.appendChild(section);
+    html.push(`
+      <section>
+      <h4>${data.q}</h4>
+      <ul>${choices.join("")}</ul>
+      <div>
+        <span>正解は</span>
+        <span>${answer}</span>
+        <P>${data.acomment}</P>
+      </div>
+    </section>`);
   }
+  $article.insertAdjacentHTML("beforeend", `<section class = "quiz"><h2>クイズ</h2>${html.join("")}</section>`);
 }
 
 /********** イベントリスナを設定する関数 **********/
