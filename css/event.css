@@ -36,7 +36,6 @@ body {
   grid-area: header;
   position: relative;
   background: linear-gradient(to right, #E9F5FA, #F8FAE9);
-  margin-bottom: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,6 +59,8 @@ article {
   grid-area: main;
   background-color: #FFF;
   margin-bottom: 60px;
+  position: relative;
+  z-index: 1000;
 }
 
 .group-desc {
@@ -395,6 +396,15 @@ nav #nav-pagination {
   z-index: 100;
   background-size: contain;
   opacity: 50%;
+}
+
+#title-header::after {
+  content: "";
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  bottom: -100px;
+  background: linear-gradient(to bottom, rgba(249, 250, 250, 0), rgba(249, 250, 250, 1)), linear-gradient(to right, #E9F5FA, #F8FAE9);
 }
 
 #title-header .supplementary-info {
@@ -828,6 +838,11 @@ article .quiz ul.open::before {
   bottom: -42.5px;
   left: 50%;
   transform: translateX(-50%) scaleY(0.7);
+}
+
+article a.other-link {
+  display: inline-block;
+  word-break: break-all;
 }
 
 /* 2カラムレイアウトの横幅1380px + 左右余白40px */

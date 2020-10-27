@@ -259,24 +259,10 @@ const placeData = getJSON.then((obj) => {
   else $info.firstElementChild.classList.add("first-span");
 
   /* データがあればHTMLを生成し挿入 */
+  if(eventData["mainMovie"]) placeMovie(eventData["mainMovie"]);
   if(eventData["articleData"]) placeArticle(eventData["articleData"]);
   if(eventData["quiz"]) placeQuiz(eventData["quiz"]);
-
-  /* ファイル */
-  if(eventData["dl"]) {
-    const $article = document.getElementsByTagName("article")[0];
-    const html = [];
-    for(const data of eventData["dl"]) {
-      html.push(
-        `<div class = "file-wrapper"><div>
-            <p>${data.name}</p>
-            <p>${data.desc}</p>
-          </div>
-          <a href = "${data.url}">ダウンロード</a>
-        </div>`);
-    }
-    $article.insertAdjacentHTML("beforeend", `<section class = "file"><h2>ファイル配布</h2>${html.join("")}</section>`);
-  }
+  if(eventData["dl"]) placeFile(eventData["dl"]);
 
   /* 団体紹介 */
   const $groupDesc = document.querySelector("main .group-desc");
@@ -314,18 +300,27 @@ placeData.then(() => {
 
 /********** HTMLを生成・挿入する関数 **********/
 
+const placeMovie = (movieData) => {
+  const $main = document.getElementsByTagName("main")[0];
+
+  $main.insertAdjacentHTML("beforebegin",
+    `<div class = "iframe-wrapper">
+      <iframe src="https://www.youtube.com/embed/${movieData}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>`);
+}
+
 const placeArticle = (articleData) => {
-  const article = document.querySelector("article section.article");
+  const $article = document.querySelector("article section.article");
   const html = [];
 
   for(const data of articleData) {
     html.push(`<${data["tag"]}>${data["code"]}</${data["tag"]}>`);
   }
-  article.insertAdjacentHTML("beforeend", html.join(""));
+  $article.insertAdjacentHTML("beforeend", html.join(""));
 }
 
 const placeQuiz = (quizData) => {
-  const $article = document.getElementsByClassName("article")[0];
+  const $article = document.getElementsByTagName("article")[0];
   const html = [];
 
   for(const data of quizData) {
@@ -355,6 +350,21 @@ const placeQuiz = (quizData) => {
     </section>`);
   }
   $article.insertAdjacentHTML("beforeend", `<section class = "quiz"><h2>クイズ</h2>${html.join("")}</section>`);
+}
+
+const placeFile = (fileData) => {
+  const $article = document.getElementsByTagName("article")[0];
+  const html = [];
+  for(const data of fileData) {
+    html.push(
+      `<div class = "file-wrapper"><div>
+          <p>${data.name}</p>
+          <p>${data.desc}</p>
+        </div>
+        <a href = "${data.url}">ダウンロード</a>
+      </div>`);
+  }
+  $article.insertAdjacentHTML("beforeend", `<section class = "file"><h2>ファイル配布</h2>${html.join("")}</section>`);
 }
 
 /********** イベントリスナを設定する関数 **********/
