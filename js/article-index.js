@@ -171,12 +171,14 @@ xhr.send();
 /* ボトムナビゲーション */
 
 window.onload = () => {
+  /*
   const foldButton = document.querySelector("#bottom-nav .fold-button");
 
   foldButton.addEventListener('click', () => {
     const bottomNav = document.getElementById("bottom-nav");
     bottomNav.classList.toggle("close");
   });
+  */
 
   const navButton = document.querySelectorAll("#bottom-nav li");
   const boardWrapper = document.querySelector("#bottom-nav .board-wrapper");
@@ -260,6 +262,16 @@ const placeData = getJSON.then((obj) => {
   if(eventData["articleData"]) placeArticle(eventData["articleData"]);
   if(eventData["quiz"]) placeQuiz(eventData["quiz"]);
 
+  /* ファイル */
+  if(eventData["dl"]) {
+    const $file = document.querySelector("article .file");
+    const html = [];
+    for(const data of eventData["dl"]) {
+      html.push(`<div class = "file-wrapper"><div><p>${data.name}</p><p>${data.desc}</p></div><a href = "${data.url}">ダウンロード</a></div>`);
+    }
+    $file.insertAdjacentHTML("beforeend", html.join(""));
+  }
+
   /* 団体紹介 */
   const $groupDesc = document.querySelector("main .group-desc");
   const html = [];
@@ -274,8 +286,8 @@ const placeData = getJSON.then((obj) => {
   if(eventData["twitter"]) link.push(`<a class = "link-twitter" href = "https://twitter.com/${eventData["twitter"]}">Twitter</a>`);
   if(eventData["facebook"]) link.push(`<a class = "link-facebook" href = "${eventData["facebook"]}">Facebook</a>`);
   if(eventData["instagram"]) link.push(`<a class = "link-instagram" href = "https://www.instagram.com/${eventData["instagram"]}">Instagram</a>`);
-  
-  html.push(`<h3>${eventData["groupName"]}</h3><p>${eventData["groupDesc"]}</p><div class = "group-link">${link}</div>`);
+
+  html.push(`<h3>${eventData["groupName"]}</h3><p>${eventData["groupDesc"]}</p><div class = "group-link">${link.join("")}</div>`);
   $groupDesc.insertAdjacentHTML("beforeend", html);
 });
 
@@ -319,7 +331,7 @@ const placeQuiz = (quizData) => {
     const p = document.createElement("p");
     let cnt = 0;
 
-    h4.innerText = data["q"];
+    h4.innerHTML = data["q"];
     span1.innerText = "正解は";
     p.innerText = data["acomment"];
     for(const q of data["choice"]) {
