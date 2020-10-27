@@ -73,7 +73,11 @@ document.addEventListener('DOMContentLoaded', function () {
           /* もっと見るボタン、5個の区切りずつで出力（PC版の仕様との干渉のため1つのボタンにできなかった） */
           if (showedtiles[type] % 5 == 1 && showedtiles[type] > 1) {
             let moreBtn = document.createElement('a');
-            moreBtn.setAttribute('href', '#eventArticle');
+            let href_moreBtn = "";
+            if (type == "article") href_moreBtn = "#eventArticle";
+            else if (type == "movie") href_moreBtn = "#eventMovie";
+            else if (type == "live") href_moreBtn = "#eventLive";
+            moreBtn.setAttribute('href', href_moreBtn);
             moreBtn.classList.add('more');
             moreBtn.innerText = "もっと見る";
             TargetContainer[type].lastElementChild.previousElementSibling.appendChild(moreBtn);
