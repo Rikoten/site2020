@@ -6,6 +6,9 @@
   --color-articletype-article: #B0D8E4;
   --color-articletype-movie: #AFD7AA;
   --color-articletype-live: #E2AFBF;
+  --color-articletype-article-light: #E9F5FA;
+  --color-articletype-movie-light: #E9FAEA;
+  --color-articletype-live-light: #FAE9E9;
 
   --font-size-small: 14px;
   --font-size-normal: 16px;
@@ -217,7 +220,6 @@ ul.pagination li:hover {
   display: inline-block;
   border-radius: 5px;
   font-weight: 500;
-  background-color: #E9F5FA;
   box-shadow: 0 2px 3px 0px rgba(0, 0, 0, .15);
 }
 
@@ -400,7 +402,7 @@ nav #nav-pagination {
   margin-top: 20px;
 }
 
-#title-header .supplementary-info .for-children {
+#title-header .supplementary-info .target {
   font-size: 13px;
   background-color: #FFF;
   border-radius: 30px;
@@ -408,9 +410,16 @@ nav #nav-pagination {
   box-shadow: 0 2px 3px 0px rgba(0, 0, 0, .15);
 }
 
+#title-header .supplementary-info span {
+  position: relative;
+}
+
 #title-header .supplementary-info span:not(:first-child) {
   margin-left: 70px;
-  position: relative;
+}
+
+#title-header .supplementary-info span.first-span {
+  margin-left: 35px;
 }
 
 #title-header .supplementary-info .event-view::before {
@@ -437,6 +446,18 @@ nav #nav-pagination {
   left: -35px;
   transform: scale(.8);
   filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, .15));
+}
+
+.type-article-light {
+  background-color: var(--color-articletype-article-light);
+}
+
+.type-live-light {
+  background-color: var(--color-articletype-live-light);
+}
+
+.type-movie-light {
+  background-color: var(--color-articletype-movie-light);
 }
 
 .group-desc h2 {

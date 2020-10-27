@@ -244,11 +244,17 @@ const placeData = getJSON.then((obj) => {
     }
   }
 
-  /* 企画名 
-  const title = document.querySelector("header .title-wrapper");
-  const barSpan = document.querySelector("article .bar span");
-  title.insertAdjacentHTML("beforeend", `<span>${eventData["eventType"]}</span><h1>${eventData["eventName"]}</h1>`);
-  barSpan.innerText = eventData["eventName"];*/
+  /* 企画名 */
+  const $title = document.querySelector("header .title-wrapper");
+  const $barSpan = document.querySelector("article .bar span");
+  const $info = document.querySelector("header .title-wrapper .supplementary-info");
+  
+  $title.insertAdjacentHTML("afterbegin", `<span class = "type-${eventData["eventType"]}-light">${eventData["eventType"]}</span><h1>${eventData["eventName"]}</h1><p>${eventData["pamphDesc"]}</p>`);
+  $barSpan.innerText = eventData["eventName"];
+  
+  if(eventData["age"] == "child") $info.insertAdjacentHTML("afterbegin", "<span class = 'target'>子ども向け</span>");
+  else if(eventData["age"] == "student") $info.insertAdjacentHTML("afterbegin", "<span class = 'target'>高校生向け</span>");
+  else $info.firstElementChild.classList.add("first-span");
 
   /* データがあればHTMLを生成し挿入 */
   if(eventData["articleData"]) placeArticle(eventData["articleData"]);
