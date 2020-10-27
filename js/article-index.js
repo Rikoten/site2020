@@ -259,6 +259,24 @@ const placeData = getJSON.then((obj) => {
   /* データがあればHTMLを生成し挿入 */
   if(eventData["articleData"]) placeArticle(eventData["articleData"]);
   if(eventData["quiz"]) placeQuiz(eventData["quiz"]);
+
+  /* 団体紹介 */
+  const $groupDesc = document.querySelector("main .group-desc");
+  const html = [];
+  const link = [];
+
+  if(eventData["link"]) {
+    for(const data of eventData["link"]) {
+      link.push(`<a class = "link-web" href = "${data.url}">${data.name}</a>`);
+    }
+  }
+  
+  if(eventData["twitter"]) link.push(`<a class = "link-twitter" href = "https://twitter.com/${eventData["twitter"]}">Twitter</a>`);
+  if(eventData["facebook"]) link.push(`<a class = "link-facebook" href = "${eventData["facebook"]}">Facebook</a>`);
+  if(eventData["instagram"]) link.push(`<a class = "link-instagram" href = "https://www.instagram.com/${eventData["instagram"]}">Instagram</a>`);
+  
+  html.push(`<h3>${eventData["groupName"]}</h3><p>${eventData["groupDesc"]}</p><div class = "group-link">${link}</div>`);
+  $groupDesc.insertAdjacentHTML("beforeend", html);
 });
 
 /********** イベントリスナの設定 **********/
