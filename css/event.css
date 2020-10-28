@@ -51,7 +51,7 @@ main {
 
 nav {
   grid-area: nav;
-  width: 400px;
+  width: 350px;
   margin: 0 auto 0 20px;
 }
 
@@ -244,40 +244,143 @@ ul.pagination li:hover {
   position: sticky;
   top: 80px;
   background-color: #FFF;
+  counter-reset: page-number 1;
+}
+
+#index::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 0;
+  left: 0;
+  border-style: solid;
+  border-width: 30px 30px 0 0;
+  border-color: #575f65 transparent transparent transparent;
 }
 
 #index h4 {
   text-align: center;
   font-size: var(--font-size-normal);
   font-weight: bold;
+  font-size: 18px;
   margin: 0 0 30px;
+  filter: drop-shadow(0px 2px 3px rgba(0,0,0,.15));
+}
+
+#index h4::before {
+  content: "";
+  background: url("/img/iconset.svg");
+  background-size: 180px 120px;
+  background-position: -150px -61.5px;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
+  transform: scale(1.1);
+}
+
+#index > ul {
+  max-height: 300px;
+  overflow-y: scroll;
 }
 
 #index a {
   color: var(--color-font);
   height: 35px;
-  line-height: 35px;
+  line-height: 38px;
   transition: 200ms;
   display: block;
+  position: relative;
 }
 
-#index a:hover {
-  background-color: var(--color-lightblue);
+#index li:not(.in-view) a:hover span {
+  filter: drop-shadow(0px 2px 3px rgba(0,0,0,.15));
 }
 
-#index ul li a {
-  padding: 0 30px;
+#index > ul > li {
+  margin: 0 35px;
 }
 
-#index ul li ul li a {
-  padding: 0 30px 0 50px;
-  font-weight: normal;
+#index ul li span {
+  padding: 0 30px 0 15px;
 }
 
-nav ul a.inView {
-  background-color: var(--color-lightblue);
-  color: #FFF;
-  font-weight: bold;
+#index ul li ul li span {
+  padding: 0 15px 0 30px;
+  font-weight: 500;
+}
+
+#index .in-view a span {
+  color: #21CCE7;
+  filter: drop-shadow(0px 2px 3px rgba(0,0,0,.15));
+}
+
+#index .other-page a {
+  color: rgba(87, 95, 101, .5);
+}
+
+#index .page-end a::before {
+  background-image: linear-gradient(to right, rgba(87, 95, 101, .5), rgba(87, 95, 101, .5) 20px, transparent 20px, transparent 22px);
+  filter: drop-shadow(0px 2px 3px rgba(0,0,0,.3));
+}
+
+#index a::before {
+  content: "";
+  background-image: linear-gradient(to right, rgba(87, 95, 101, .1), rgba(87, 95, 101, .1) 20px, transparent 20px, transparent 22px);
+  background-size: 22px 0.5px;
+  background-repeat: repeat-x;
+  position: absolute;
+  width: 100%;
+  height: 0.5px;
+  bottom: 0;
+  left: 0;
+}
+
+#index li.page-end ~ li a {
+  color: rgba(87, 95, 101, .5);
+}
+
+#index li.page-end {
+  counter-increment: page-number 1;
+}
+
+#index li.page-end a::after {
+  content: counter(page-number) "ページ目";
+  position: absolute;
+  display: inline-block;
+  padding: 2px 0px 2px 10px;
+  color: rgba(87, 95, 101, .5);
+  background-color: #FFF;
+  font-size: 12px;
+  line-height: 12px;
+  height: 12px;
+  bottom: 0;
+  right: 0;
+  transform: translateY(50%);
+  filter: none;
+}
+
+#index li.page-start ~ li a span {
+  color: var(--color-font);
+}
+
+#index ::-webkit-scrollbar {
+  width: 5px;
+}
+
+/*スクロールバーの軌道*/
+#index ::-webkit-scrollbar-track {
+border-radius: 5px;
+box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+}
+
+/*スクロールバーの動く部分*/
+#index ::-webkit-scrollbar-thumb {
+background-color: var(--color-font);
+border-radius: 5px;
+box-shadow:0 0 0 1px rgba(255, 255, 255, .3);
 }
 
 aside section {
