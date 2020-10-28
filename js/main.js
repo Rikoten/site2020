@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           let childrenTag = ""; //子ども向けの企画タグ
           if (elem["age"] == "child") childrenTag = '<div class = "eventChild child"><div>子ども向け</div></div>';
-          if (elem["age"] == "student") childrenTag = '<div class = "eventChild student"><div>高校生向け</div></div>';
+          if (elem["age"] == "student") childrenTag = '<div class = "eventChild student"><div>受験生向け</div></div>';
           
           //TargetContainer[type]
 
