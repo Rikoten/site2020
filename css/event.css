@@ -229,11 +229,13 @@ ul.pagination li:hover {
   line-height: calc(32px*1.6);
   font-weight: normal;
   margin: 20px 0 10px 0;
+  filter: drop-shadow(0px 2px 3px rgba(0,0,0,.3));
 }
 
 #title-header .title-wrapper p {
   max-width: 550px;
   margin: 0;
+  filter: drop-shadow(0px 2px 3px rgba(0,0,0,.3));
 }
 
 #index {
@@ -428,6 +430,10 @@ nav #nav-pagination {
   margin-left: 70px;
 }
 
+#title-header .supplementary-info span:not(.target) {
+  filter: drop-shadow(0px 2px 3px rgba(0,0,0,.3));
+}
+
 #title-header .supplementary-info span.first-span {
   margin-left: 35px;
 }
@@ -441,7 +447,6 @@ nav #nav-pagination {
   width: 30px;
   height: 30px;
   left: -35px;
-  filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, .15));
 }
 
 #title-header .supplementary-info .event-thumbsup::before {
@@ -455,7 +460,6 @@ nav #nav-pagination {
   top: -2px;
   left: -35px;
   transform: scale(.8);
-  filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, .15));
 }
 
 .type-article-light {

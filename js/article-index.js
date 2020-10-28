@@ -1,6 +1,6 @@
 //const { resolve } = require("dns");
 
-let eventID = null;
+const param = {};
 
 document.addEventListener('DOMContentLoaded', function () {
   let contentsList = document.getElementById('index'); // 目次を追加する先(table of contents)
@@ -230,17 +230,17 @@ const getJSON = new Promise ((resolve, reject) => {
 
 const placeData = getJSON.then((obj) => {
   /* URLパラメータを連想配列に格納 */
-  const param = {}
   const text = location.search.slice(1).split(/[&|=]/);
   for(let i = 0; i < text.length; i = i + 2) {
     param[text[i]] = text[i + 1];
   }
 
   /* 表示すべき企画データを抽出 */
-  eventID = param["id"];
+  if(!param["page"]) param["page"] = 1;
+
   let eventData = null;
   for(const data of obj) {
-    if(eventID == data["eventID"]) {
+    if(param["id"] == data["eventID"]) {
       eventData = data;
       break;
     }
@@ -311,12 +311,49 @@ const placeMovie = (movieData) => {
 
 const placeArticle = (articleData) => {
   const $article = document.querySelector("article section.article");
-  const html = [];
+  const $index = document.getElementById("index");
+  const html = [], index = [], li = [];
+  let pageCount = 1;
 
   for(const data of articleData) {
-    html.push(`<${data["tag"]}>${data["code"]}</${data["tag"]}>`);
+    if(data.tag == "pagination") pageCount++;
+    else if(pageCount == param["page"]) html.push(`<${data.tag}>${data.code}</${data.tag}>`)
+    /*
+    if(data.tag == "h2") {
+      let ul = document.createElement('ul');
+      let li = document.createElement('li');
+      let a = document.createElement('a');
+
+      // 追加する<ul><li><a>タイトル</a></li></ul>を準備する
+      a.innerHTML = value.textContent;
+      a.href = '#' + value.id;
+      li.appendChild(a)
+      ul.appendChild(li);
+
+      // コンテナ要素である<div>の中に要素を追加する
+      div.appendChild(ul);
+    } else if(data.tag == "h3") {
+      
+    }
+    */
+  }
+
+  li.length = 0;
+  /* ページネーション */
+  if(pageCount > 1) {
+    for(let i = 1; i <= pageCount; i++) {
+      if(i == 1) li.push(`<li><a href = "/event/?id=${param["id"]}">${i}</a></li>`);
+      else li.push(`<li><a href = "/event/?id=${param["id"]}&page=${i}">${i}</a></li>`);
+    }
+    html.push(`<ul class = "pagination">${li.join("")}</ul>`);
   }
   $article.insertAdjacentHTML("beforeend", html.join(""));
+
+
+  /*
+  index.push(`${li.join("")}</ul>`);
+  $index.insertAdjacentHTML("beforeend", index.join(""));
+  */
 }
 
 const placeQuiz = (quizData) => {
