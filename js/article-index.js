@@ -295,6 +295,7 @@ placeData.then(() => {
 
   barEvent();
   quizEvent();
+  indexEvent();
 });
 
 
@@ -314,29 +315,47 @@ const placeArticle = (articleData) => {
   const $index = document.getElementById("index");
   const html = [], index = [], li = [];
   let pageCount = 1;
+  let isFirst = true;
+  let h2 = null;
+  let Class = "";
+  let h2Class = "";
+  let h2Page = 0;
 
-  for(const data of articleData) {
+  for(const [i, data] of articleData.entries()) {
+    Class = "";
+
+    /* 記事本文を生成 */
     if(data.tag == "pagination") pageCount++;
-    else if(pageCount == param["page"]) html.push(`<${data.tag}>${data.code}</${data.tag}>`)
-    /*
-    if(data.tag == "h2") {
-      let ul = document.createElement('ul');
-      let li = document.createElement('li');
-      let a = document.createElement('a');
+    else if(pageCount == param["page"]) {
+      if(data.tag != "p") html.push(`<${data.tag} id = "${URLEscape(data.code)}">${data.code}</${data.tag}>`);
+      else html.push(`<${data.tag}>${data.code}</${data.tag}>`);
 
-      // 追加する<ul><li><a>タイトル</a></li></ul>を準備する
-      a.innerHTML = value.textContent;
-      a.href = '#' + value.id;
-      li.appendChild(a)
-      ul.appendChild(li);
-
-      // コンテナ要素である<div>の中に要素を追加する
-      div.appendChild(ul);
-    } else if(data.tag == "h3") {
-      
+      Class = "class = 'display'";
     }
-    */
+
+    /* 目次を生成 */
+    if(articleData[i + 2] && articleData[i + 2].tag == "pagination") {
+      if(pageCount == param.page) Class = "class = 'display page-end end-counter'";
+      else if(pageCount + 1 == param.page) Class = "class = 'page-end start-counter'";
+      else Class = "class = 'page-end'";
+    }
+
+    if(data.tag == "h2") {
+      if(li.length != 0) index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a><ul>${li.join("")}</ul></li>`);
+      else if(!isFirst) index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a></li>`);
+      
+      li.length = 0;
+      isFirst = false;
+      h2 = data.code;
+      h2Class = Class;
+      h2Page = pageCount;
+    } else if(data.tag == "h3") {
+      li.push(`<li ${Class}><a href = "${generateURL(param.id, pageCount, URLEscape(data.code))}"><span>${data.code}</span></a></li>`);
+    }
   }
+
+  if(li.length != 0) index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a><ul>${li.join("")}</ul></li>`);
+  $index.insertAdjacentHTML("beforeend", `<ul>${index.join("")}</ul>`);
 
   li.length = 0;
   /* ページネーション */
@@ -433,9 +452,9 @@ const barEvent = () => {
 }
 
 const quizEvent = () => {
-  const options = document.querySelectorAll(".quiz li");
+  const $options = document.querySelectorAll(".quiz li");
       
-  for(const option of options) {
+  for(const option of $options) {
     option.addEventListener("click", () => {
       const commentary = option.parentNode.nextElementSibling;
 
@@ -452,6 +471,20 @@ const quizEvent = () => {
           commentary.style.height = "auto";
         }, 800);
       }
+    });
+  }
+}
+
+const indexEvent = () => {
+  const $a = document.querySelectorAll("#index a");
+
+  for(const a of $a) {
+    a.addEventListener("click", () => {
+      const $inView = document.querySelector("#index .in-view");
+      console.log("hey")
+
+      if($inView) $inView.classList.remove("in-view");
+      a.parentNode.classList.add("in-view");
     });
   }
 }
@@ -475,4 +508,21 @@ const storageAvailable = (type) => {
       e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
       (storage && storage.length !== 0);
   }
+}
+
+/********** URL関連 **********/
+
+const URLEscape = (id) => {
+  let del = id.replace(/[\<|\>|\(|\)|\{|\}|\[|\]|\"|\^|\`|\||\\|\']/g, "");
+  let replace = del.replace(/[ |　]/g, "-");
+  return replace;
+}
+
+const generateURL = (id, page, anchor) => {
+  let p = "";
+  let a = "";
+
+  if(page && page > 1) p = `&page=${page}`;
+  if(anchor) a = `#${anchor}`;
+  return "/event/?id=" + id + p + a;
 }
