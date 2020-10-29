@@ -1,6 +1,6 @@
 //const { resolve } = require("dns");
 
-let eventID = null;
+const param = {};
 
 document.addEventListener('DOMContentLoaded', function () {
   let contentsList = document.getElementById('index'); // 目次を追加する先(table of contents)
@@ -230,17 +230,17 @@ const getJSON = new Promise ((resolve, reject) => {
 
 const placeData = getJSON.then((obj) => {
   /* URLパラメータを連想配列に格納 */
-  const param = {}
   const text = location.search.slice(1).split(/[&|=]/);
   for(let i = 0; i < text.length; i = i + 2) {
     param[text[i]] = text[i + 1];
   }
 
   /* 表示すべき企画データを抽出 */
-  eventID = param["id"];
+  if(!param["page"]) param["page"] = 1;
+
   let eventData = null;
   for(const data of obj) {
-    if(eventID == data["eventID"]) {
+    if(param["id"] == data["eventID"]) {
       eventData = data;
       break;
     }
@@ -295,6 +295,7 @@ placeData.then(() => {
 
   barEvent();
   quizEvent();
+  indexEvent();
 });
 
 
@@ -311,12 +312,67 @@ const placeMovie = (movieData) => {
 
 const placeArticle = (articleData) => {
   const $article = document.querySelector("article section.article");
-  const html = [];
+  const $index = document.getElementById("index");
+  const html = [], index = [], li = [];
+  let pageCount = 1;
+  let isFirst = true;
+  let h2 = null;
+  let Class = "";
+  let h2Class = "";
+  let h2Page = 0;
 
-  for(const data of articleData) {
-    html.push(`<${data["tag"]}>${data["code"]}</${data["tag"]}>`);
+  for(const [i, data] of articleData.entries()) {
+    Class = "";
+
+    /* 記事本文を生成 */
+    if(data.tag == "pagination") pageCount++;
+    else if(pageCount == param["page"]) {
+      if(data.tag != "p") html.push(`<${data.tag} id = "${URLEscape(data.code)}">${data.code}</${data.tag}>`);
+      else html.push(`<${data.tag}>${data.code}</${data.tag}>`);
+
+      Class = "class = 'display'";
+    }
+
+    /* 目次を生成 */
+    if(articleData[i + 2] && articleData[i + 2].tag == "pagination") {
+      if(pageCount == param.page) Class = "class = 'display page-end end-counter'";
+      else if(pageCount + 1 == param.page) Class = "class = 'page-end start-counter'";
+      else Class = "class = 'page-end'";
+    }
+
+    if(data.tag == "h2") {
+      if(li.length != 0) index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a><ul>${li.join("")}</ul></li>`);
+      else if(!isFirst) index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a></li>`);
+      
+      li.length = 0;
+      isFirst = false;
+      h2 = data.code;
+      h2Class = Class;
+      h2Page = pageCount;
+    } else if(data.tag == "h3") {
+      li.push(`<li ${Class}><a href = "${generateURL(param.id, pageCount, URLEscape(data.code))}"><span>${data.code}</span></a></li>`);
+    }
+  }
+
+  if(li.length != 0) index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a><ul>${li.join("")}</ul></li>`);
+  $index.insertAdjacentHTML("beforeend", `<ul>${index.join("")}</ul>`);
+
+  li.length = 0;
+  /* ページネーション */
+  if(pageCount > 1) {
+    for(let i = 1; i <= pageCount; i++) {
+      if(i == 1) li.push(`<li><a href = "/event/?id=${param["id"]}">${i}</a></li>`);
+      else li.push(`<li><a href = "/event/?id=${param["id"]}&page=${i}">${i}</a></li>`);
+    }
+    html.push(`<ul class = "pagination">${li.join("")}</ul>`);
   }
   $article.insertAdjacentHTML("beforeend", html.join(""));
+
+
+  /*
+  index.push(`${li.join("")}</ul>`);
+  $index.insertAdjacentHTML("beforeend", index.join(""));
+  */
 }
 
 const placeQuiz = (quizData) => {
@@ -396,9 +452,9 @@ const barEvent = () => {
 }
 
 const quizEvent = () => {
-  const options = document.querySelectorAll(".quiz li");
+  const $options = document.querySelectorAll(".quiz li");
       
-  for(const option of options) {
+  for(const option of $options) {
     option.addEventListener("click", () => {
       const commentary = option.parentNode.nextElementSibling;
 
@@ -415,6 +471,20 @@ const quizEvent = () => {
           commentary.style.height = "auto";
         }, 800);
       }
+    });
+  }
+}
+
+const indexEvent = () => {
+  const $a = document.querySelectorAll("#index a");
+
+  for(const a of $a) {
+    a.addEventListener("click", () => {
+      const $inView = document.querySelector("#index .in-view");
+      console.log("hey")
+
+      if($inView) $inView.classList.remove("in-view");
+      a.parentNode.classList.add("in-view");
     });
   }
 }
@@ -438,4 +508,21 @@ const storageAvailable = (type) => {
       e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
       (storage && storage.length !== 0);
   }
+}
+
+/********** URL関連 **********/
+
+const URLEscape = (id) => {
+  let del = id.replace(/[\<|\>|\(|\)|\{|\}|\[|\]|\"|\^|\`|\||\\|\']/g, "");
+  let replace = del.replace(/[ |　]/g, "-");
+  return replace;
+}
+
+const generateURL = (id, page, anchor) => {
+  let p = "";
+  let a = "";
+
+  if(page && page > 1) p = `&page=${page}`;
+  if(anchor) a = `#${anchor}`;
+  return "/event/?id=" + id + p + a;
 }
