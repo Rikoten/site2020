@@ -291,12 +291,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  /* 指定位置にcommon.htmlからheaderを読み込む */
+  /* 指定位置にcommon.htmlからheader, footerを読み込む */
 
   let xhr = new XMLHttpRequest(),
       method = "GET",
       url = "/common.html";
   let box = document.getElementById("common-header");
+  let box2 = document.getElementsByTagName("footer")[0];
 
   xhr.responseType = "document";
   xhr.open(method, url, true);
@@ -304,7 +305,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if(xhr.readyState === 4 && xhr.status === 200) {
       let restxt = xhr.responseXML;
       let int = restxt.getElementsByTagName("header")[0];
+      let int2 = restxt.getElementsByTagName("footer")[0];
       box.outerHTML = int.outerHTML;
+      box2.outerHTML = int2.outerHTML;
     }
   };
 
