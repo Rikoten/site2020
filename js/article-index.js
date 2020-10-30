@@ -261,6 +261,7 @@ const placeData = getJSON.then((obj) => {
   for(let i = 0; i < text.length; i = i + 2) {
     param[text[i]] = text[i + 1];
   }
+  if(location.hash) param["anchor"] = location.hash;
 
   /* 表示すべき企画データを抽出 */
   if(!param["page"]) param["page"] = 1;
@@ -272,6 +273,7 @@ const placeData = getJSON.then((obj) => {
       break;
     }
   }
+
 
   /* 企画名 */
   const $title = document.querySelector("header .title-wrapper");
@@ -332,7 +334,17 @@ placeData.then((obj) => {
   indexEvent();
   morebuttonEvent(obj);
   languageEvent();
+
+  /* アンカがあればその位置までスクロール */
+  if(param.anchor) {
+    const target = document.getElementById(param.anchor.substring(1));
+    var elemtop = target.getBoundingClientRect().top + window.pageYOffset;
+    document.documentElement.scrollTop = elemtop;
+  }
 });
+
+
+
 
 
 /********** HTMLを生成・挿入する関数 **********/
@@ -397,8 +409,10 @@ const placeArticle = (articleData) => {
   /* ページネーション */
   if(pageCount > 1) {
     for(let i = 1; i <= pageCount; i++) {
-      if(i == 1) li.push(`<li><a href = "/event/?id=${param["id"]}">${i}</a></li>`);
-      else li.push(`<li><a href = "/event/?id=${param["id"]}&page=${i}">${i}</a></li>`);
+      let Class = "";
+      if(i == param.page) Class = "class = 'current'";
+      if(i == 1) li.push(`<li ${Class}><a href = "/event/?id=${param["id"]}">${i}</a></li>`);
+      else li.push(`<li ${Class}><a href = "/event/?id=${param["id"]}&page=${i}">${i}</a></li>`);
     }
     html.push(`<ul class = "pagination">${li.join("")}</ul>`);
   }
@@ -645,9 +659,8 @@ const languageEvent = () => {
 /********** URL関連 **********/
 
 const URLEscape = (id) => {
-  let del = id.replace(/\<|\>|\(|\)|\{|\}|\[|\]|\"|\^|\`|\||\\|\'/g, "");
-  let replace = del.replace(/ |　/g, "-");
-  return replace;
+  let replace = id.replace(/ |　/g, "-");
+  return encodeURIComponent(replace);
 }
 
 const generateURL = (id, page, anchor) => {
