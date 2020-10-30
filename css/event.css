@@ -741,24 +741,52 @@ article section.zoom {
   flex-wrap: wrap;
 }
 
-article section.zoom h2 {
+article section.zoom h2, small, p {
   flex-basis: 100%;
 }
 
-article section.zoom small {
-  flex-basis: 100%;
+article section.zoom p {
+  margin-top: 20px;
+}
+
+article section.zoom span {
+  font-size: var(--font-size-small);
+}
+
+article section.zoom span:first-child {
+  margin-right: 10px;
 }
 
 article section.zoom a {
   background: #FFF;
-  padding: 2px 10px;
+  padding: 2px 15px;
   border-radius: 3px;
   margin: 10px 20px 0 0;
   transition: 0.4s;
 }
 
+article section.zoom a::after {
+  content: "";
+  background: url("/img/iconset.svg");
+  background-position: 0px -90px;
+  background-size: 180px 120px;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 10px;
+}
+
 article section.zoom a:hover {
   background: var(--color-lightgray);
+}
+
+article section.zoom a.day1 {
+  border-left: 2px solid #6FB7FF;
+}
+
+article section.zoom a.day2 {
+  border-left: 2px solid #FF6F6F;
 }
 
 article .file-wrapper {
@@ -958,8 +986,8 @@ article a.other-link {
   word-break: break-all;
 }
 
-/* 2カラムレイアウトの横幅1380px + 左右余白40px */
-@media screen and (max-width: 1420px) {
+/* 2カラムレイアウトの横幅1330px + 左右余白40px */
+@media screen and (max-width: 1370px) {
   body {
     grid-template-rows: 600px auto auto auto auto;
     grid-template-columns: auto;
