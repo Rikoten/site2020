@@ -1082,7 +1082,7 @@ a.detailButton:hover::before {
     width: 90px;
     height: 25px;
     border-radius: 12.5px;
-    line-height: 25px;
+    line-height: 30px;
   }
 
   #eventList .eventTile > .eventView::before {
