@@ -607,6 +607,7 @@ nav #nav-pagination {
   background-color: var(--color-lightgray);
 }
 
+article a.link-web-article::before,
 .group-desc .group-link .link-web::before,
 .group-desc .group-link .link-twitter::before,
 .group-desc .group-link .link-facebook::before,
@@ -620,6 +621,7 @@ nav #nav-pagination {
   transform: scale(0.85);
 }
 
+article a.link-web-article::before,
 .group-desc .group-link .link-web::before {
   background: url("/img/iconset.svg") no-repeat;
   background-size: 180px 120px;
@@ -765,7 +767,8 @@ article section.zoom a {
   transition: 0.4s;
 }
 
-article section.zoom a::after {
+article section.zoom a::after,
+article a.link-zoom-web-article::after {
   content: "";
   background: url("/img/iconset.svg");
   background-position: 0px -90px;
@@ -787,6 +790,18 @@ article section.zoom a.day1 {
 
 article section.zoom a.day2 {
   border-left: 2px solid #FF6F6F;
+}
+
+article a.link-zoom-web-article {
+  background: var(--color-gray);
+  padding: 5px 15px;
+  border-radius: 3px;
+  transition: 0.4s;
+  display: inline-block;
+}
+
+article a.link-zoom-web-article:hover {
+  background: var(--color-lightgray);
 }
 
 article .file-wrapper {
@@ -982,8 +997,23 @@ article .quiz ul.open::before {
 }
 
 article a.other-link {
-  display: inline-block;
+  display: inline;
   word-break: break-all;
+  border-bottom: 1px solid var(--color-font);
+}
+
+article a.link-web-article {
+  padding: 5px 15px 5px 12px;
+  border: 1px solid var(--color-font);
+  border-radius: 5px;
+  margin: 20px 20px 0 0;
+  font-size: 14px;
+  transition: 0.4s;
+  display: inline-block;
+}
+
+article a.link-web-article:hover {
+  background-color: var(--color-lightgray);
 }
 
 /* 2カラムレイアウトの横幅1330px + 左右余白40px */
