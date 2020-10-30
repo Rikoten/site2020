@@ -209,6 +209,26 @@ window.onload = () => {
   }
 }
 
+/********** ローカルストレージが使用可能か判定 **********/
+
+const storageAvailable = (type) => {
+  let storage;
+  try {
+    storage = window[type];
+    let x = '__storage_test__';
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  }
+  catch(e) {
+    return e instanceof DOMException && (
+      e.code === 22 ||
+      e.code === 1014 ||
+      e.name === 'QuotaExceededError' ||
+      e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+      (storage && storage.length !== 0);
+  }
+}
 
 /********** JSON読み込み **********/
 
@@ -216,6 +236,12 @@ const getJSON = new Promise ((resolve, reject) => {
   let xhr = new XMLHttpRequest(),
       method = "GET",
       url = "/data/eventData.json";
+  let lang = "ja";
+
+  if(storageAvailable('localStorage')) {
+    if(localStorage.getItem("lang")) lang = localStorage.getItem("lang");
+  }
+  if(lang == "en") url = "/data/eventData_en.json";
 
   xhr.responseType = "json";
   xhr.open(method, url, true);
@@ -252,7 +278,7 @@ const placeData = getJSON.then((obj) => {
   const $barSpan = document.querySelector("article .bar span");
   const $info = document.querySelector("header .title-wrapper .supplementary-info");
   
-  $title.insertAdjacentHTML("afterbegin", `<span class = "type-${eventData["eventType"]}-light">${eventData["eventType"]}</span><h1>${eventData["eventName"]}</h1><p>${eventData["pamphDesc"]}</p>`);
+  $title.insertAdjacentHTML("afterbegin", `<span class = "type-${eventData["eventType"]}-light">${eventData["eventType"].charAt(0).toUpperCase() + eventData["eventType"].substring(1)}</span><h1>${eventData["eventName"]}</h1><p>${eventData["pamphDesc"]}</p>`);
   $barSpan.innerText = eventData["eventName"];
   
   if(eventData["age"] == "child") $info.insertAdjacentHTML("afterbegin", "<span class = 'target'>子ども向け</span>");
@@ -305,6 +331,7 @@ placeData.then((obj) => {
   quizEvent();
   indexEvent();
   morebuttonEvent(obj);
+  languageEvent();
 });
 
 
@@ -595,24 +622,23 @@ const morebuttonEvent = (data) => {
   });
 }
 
-/********** ローカルストレージが使用可能か判定 **********/
+const languageEvent = () => {
+  const $select = document.querySelector("header select");
 
-const storageAvailable = (type) => {
-  let storage;
-  try {
-    storage = window[type];
-    let x = '__storage_test__';
-    storage.setItem(x, x);
-    storage.removeItem(x);
-    return true;
-  }
-  catch(e) {
-    return e instanceof DOMException && (
-      e.code === 22 ||
-      e.code === 1014 ||
-      e.name === 'QuotaExceededError' ||
-      e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-      (storage && storage.length !== 0);
+  $select.onchange = function(){
+    const language = this.value;
+
+    if(language == "english") {
+      if (storageAvailable('localStorage')) {
+        localStorage.setItem('lang', "en");
+      }
+    } else {
+      if (storageAvailable('localStorage')) {
+        localStorage.setItem('lang', "ja");
+      }
+    }
+
+    location.reload();
   }
 }
 
@@ -625,8 +651,7 @@ const URLEscape = (id) => {
 }
 
 const generateURL = (id, page, anchor) => {
-  let p = "";
-  let a = "";
+  let p = "", a = "";
 
   if(page && page > 1) p = `&page=${page}`;
   if(anchor) a = `#${anchor}`;
