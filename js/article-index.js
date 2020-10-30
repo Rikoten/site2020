@@ -1,6 +1,7 @@
 //const { resolve } = require("dns");
 
 const param = {};
+const ShuffledID = [];
 
 document.addEventListener('DOMContentLoaded', function () {
   let contentsList = document.getElementById('index'); // 目次を追加する先(table of contents)
@@ -282,11 +283,17 @@ const placeData = getJSON.then((obj) => {
 
   html.push(`<h3>${eventData["groupName"]}</h3><p>${eventData["groupDesc"]}</p><div class = "group-link">${link.join("")}</div>`);
   $groupDesc.insertAdjacentHTML("beforeend", html);
+
+  placeOtherEvent(obj);
+  
+  return new Promise((resolve, reject) => {
+    resolve(obj);
+  })
 });
 
 /********** イベントリスナの設定 **********/
 
-placeData.then(() => {
+placeData.then((obj) => {
   if (storageAvailable('localStorage')) {
     if(localStorage.getItem("good") && localStorage.getItem("good") == "true") {
       const goodButton = document.querySelectorAll("article .bar button")[0];
@@ -297,6 +304,7 @@ placeData.then(() => {
   barEvent();
   quizEvent();
   indexEvent();
+  morebuttonEvent(obj);
 });
 
 
@@ -454,6 +462,65 @@ const placeFile = (fileData) => {
   $article.insertAdjacentHTML("beforeend", `<section class = "file"><h2>ファイル配布</h2>${html.join("")}</section>`);
 }
 
+const placeOtherEvent = (data) => {
+  const $more = document.querySelector("aside .more");
+
+  generateShuffledID(data);
+  $more.insertAdjacentHTML("beforebegin", generateEventTile(data));
+}
+
+const generateShuffledID = (data) => {
+  let ID = [];
+  for(i = 0; i < data.length; i++) {
+    if(data[i].eventID != param.id) ID.push(i);
+  }
+
+  /* シャッフル */
+  for(let i = data.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let tmp = ID[i];
+    ID[i] = ID[j];
+    ID[j] = tmp;
+  }
+
+  Object.assign(ShuffledID, ID.filter(Boolean));
+}
+
+const generateEventTile = (data) => {
+  const $eventTile = document.querySelectorAll("aside a");
+  const html = [];
+
+  const tileNum = $eventTile.length;
+
+  for(let i = $eventTile.length; i < $eventTile.length + 5; i++) {
+    if(i == data.length - 2) {
+      removeMoreButton(html);
+      return "";
+    }
+
+    html.push(`
+    <a href = "${generateURL(data[ShuffledID[i]].eventID)}">
+      <section>
+        <div class = "other-event-title">
+          <h3>${data[ShuffledID[i]].eventName}</h3>
+          <span class = "article-type type-${data[ShuffledID[i]].eventType}">${data[ShuffledID[i]].eventType.charAt(0).toUpperCase() + data[ShuffledID[i]].eventType.substring(1)}</span>
+          <span class = "time">${data[ShuffledID[i]].requiredTime}</span>
+        </div>
+        <p>${data[ShuffledID[i]].pamphDesc}</p>
+      </section>
+    </a>
+    `);
+  }
+
+  return html.join("");
+}
+
+const removeMoreButton = (html) => {
+  const $aside = document.getElementsByTagName("aside")[0];
+  $aside.lastElementChild.insertAdjacentHTML("beforebegin", html.join(""));
+  $aside.removeChild($aside.lastElementChild);
+}
+
 /********** イベントリスナを設定する関数 **********/
 
 const barEvent = () => {
@@ -518,6 +585,14 @@ const indexEvent = () => {
       a.parentNode.classList.add("in-view");
     });
   }
+}
+
+const morebuttonEvent = (data) => {
+  const $more = document.querySelector("aside .more");
+
+  $more.addEventListener("click", () => {
+    $more.insertAdjacentHTML("beforebegin", generateEventTile(data));
+  });
 }
 
 /********** ローカルストレージが使用可能か判定 **********/
