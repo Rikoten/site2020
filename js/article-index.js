@@ -261,6 +261,7 @@ const placeData = getJSON.then((obj) => {
   /* データがあればHTMLを生成し挿入 */
   if(eventData["mainMovie"]) placeMovie(eventData["mainMovie"]);
   if(eventData["articleData"]) placeArticle(eventData["articleData"]);
+  if(eventData["zoomDesc"]) placeZoom(eventData);
   if(eventData["quiz"]) placeQuiz(eventData["quiz"]);
   if(eventData["dl"]) placeFile(eventData["dl"]);
 
@@ -354,7 +355,7 @@ const placeArticle = (articleData) => {
     }
   }
 
-  if(li.length != 0) index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a><ul>${li.join("")}</ul></li>`);
+  index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a><ul>${li.join("")}</ul></li>`);
   $index.insertAdjacentHTML("beforeend", `<ul>${index.join("")}</ul>`);
 
   li.length = 0;
@@ -367,12 +368,42 @@ const placeArticle = (articleData) => {
     html.push(`<ul class = "pagination">${li.join("")}</ul>`);
   }
   $article.insertAdjacentHTML("beforeend", html.join(""));
+}
 
+const placeZoom = (data) => {
+  let day1 = [], day2 = [], cnt = 0;
+  const url = [], html = [], p = [];
+  const $article = document.getElementsByTagName("article")[0];
 
-  /*
-  index.push(`${li.join("")}</ul>`);
-  $index.insertAdjacentHTML("beforeend", index.join(""));
-  */
+  if(data.zoomDesc.day1) day1 = data.zoomDesc.day1.split(/, |:|~/);
+  if(data.zoomDesc.day2) day2 = data.zoomDesc.day2.split(/, |:|~/);
+  
+  for(let i = 0; i < day1.length; i = i + 4) {
+    url.push(`<a class = "day1" href = "${returnZoomURL(data.zoom, cnt)}">7<span>日</span>${day1[i]}:<span>${day1[i+1]}</span> ~ ${day1[i+2]}:<span>${day1[i+3]}</span></a>`);
+    cnt++;
+  }
+  for(let i = 0; i < day2.length; i = i + 4) {
+    url.push(`<a class = "day2" href = "${returnZoomURL(data.zoom, cnt)}">8<span>日</span>${day1[i]}:<span>${day1[i+1]}</span> ~ ${day1[i+2]}:<span>${day1[i+3]}</span></a>`);
+    cnt++;
+  }
+
+  if(data.zoomDesc.remark) p.push(`<p>${data.zoomDesc.desc} (${data.zoomDesc.remark})</p>`);
+  else p.push(`<p>${data.zoomDesc.desc}</p>`);
+
+  html.push(`
+    <section class = "zoom">
+      <h2>Zoomリンク</h2>
+      <small>※ この企画はZoomで配信を行います。</small>
+      ${p.join("")}${url.join("")}
+    </section>
+  `)
+
+  $article.insertAdjacentHTML("beforeend", html);
+}
+
+const returnZoomURL = (data, num) => {
+  if(data.length == 1) return data[0].url;
+  else return data[num].url;
 }
 
 const placeQuiz = (quizData) => {
@@ -513,8 +544,8 @@ const storageAvailable = (type) => {
 /********** URL関連 **********/
 
 const URLEscape = (id) => {
-  let del = id.replace(/[\<|\>|\(|\)|\{|\}|\[|\]|\"|\^|\`|\||\\|\']/g, "");
-  let replace = del.replace(/[ |　]/g, "-");
+  let del = id.replace(/\<|\>|\(|\)|\{|\}|\[|\]|\"|\^|\`|\||\\|\'/g, "");
+  let replace = del.replace(/ |　/g, "-");
   return replace;
 }
 
