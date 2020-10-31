@@ -11,6 +11,8 @@ body {
     background-color: #0D163B;
     background-size: contain;
     text-align: center;
+    background-image: url(../Overtime_page_back.svg);
+    background-size: 100%;
 }
 
 .message h1{
