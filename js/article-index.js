@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
 
 });
-
+/*
 let $window = $(window), //ウィンドウを指定
 $articleIndex = $("#index"),
 articleIndexTop = $articleIndex.offset().top; //#contentの位置を取得
@@ -89,7 +89,7 @@ $window.on("scroll", function () {
     $articleIndex.removeClass("fixed");
   }
 });
-
+*/
 // 今回の交差を監視する要素
 const boxes = document.querySelectorAll(".box");
 
@@ -132,7 +132,7 @@ function activateIndex(element) {
   const newActiveIndex = document.querySelector(`a[correnspondbox='${element.id}']`);
   newActiveIndex.classList.add("inView");
 }
-
+/*
 $(function(){
   $('a[href^="#"]').click(function(){
     let speed = 500;
@@ -145,7 +145,7 @@ $(function(){
     return false;
   });
 });
-
+*/
 
 /* 指定位置にcommon.htmlからheaderおよびbottom-navを読み込む */
 
@@ -312,7 +312,7 @@ const placeData = getJSON.then((obj) => {
   html.push(`<h3>${eventData["groupName"]}</h3><p>${eventData["groupDesc"]}</p><div class = "group-link">${link.join("")}</div>`);
   $groupDesc.insertAdjacentHTML("beforeend", html);
 
-  placeOtherEvent(obj);
+  //placeOtherEvent(obj);
   
   return new Promise((resolve, reject) => {
     resolve(obj);
@@ -402,7 +402,7 @@ const placeArticle = (articleData) => {
     }
   }
 
-  index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a><ul>${li.join("")}</ul></li>`);
+  if(h2) index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a><ul>${li.join("")}</ul></li>`);
   $index.insertAdjacentHTML("beforeend", `<ul>${index.join("")}</ul>`);
 
   li.length = 0;
@@ -426,13 +426,13 @@ const placeZoom = (data) => {
 
   if(data.zoomDesc.day1) day1 = data.zoomDesc.day1.split(/, |:|~/);
   if(data.zoomDesc.day2) day2 = data.zoomDesc.day2.split(/, |:|~/);
-  
+
   for(let i = 0; i < day1.length; i = i + 4) {
     url.push(`<a class = "day1" href = "${returnZoomURL(data.zoom, cnt)}">7<span>日</span>${day1[i]}:<span>${day1[i+1]}</span> ~ ${day1[i+2]}:<span>${day1[i+3]}</span></a>`);
     cnt++;
   }
   for(let i = 0; i < day2.length; i = i + 4) {
-    url.push(`<a class = "day2" href = "${returnZoomURL(data.zoom, cnt)}">8<span>日</span>${day1[i]}:<span>${day1[i+1]}</span> ~ ${day1[i+2]}:<span>${day1[i+3]}</span></a>`);
+    url.push(`<a class = "day2" href = "${returnZoomURL(data.zoom, cnt)}">8<span>日</span>${day2[i]}:<span>${day2[i+1]}</span> ~ ${day2[i+2]}:<span>${day2[i+3]}</span></a>`);
     cnt++;
   }
 
