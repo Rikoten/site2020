@@ -288,7 +288,8 @@ const placeData = getJSON.then((obj) => {
   else $info.firstElementChild.classList.add("first-span");
 
   /* データがあればHTMLを生成し挿入 */
-  if(eventData["mainMovie"]) placeMovie(eventData["mainMovie"]);
+  //if(eventData["mainMovie"]) placeMovie(eventData["mainMovie"]);
+  if(eventData["youtubeLive"]) placeLive(eventData["youtubeLive"]);
   if(eventData["articleData"]) placeArticle(eventData["articleData"]);
   if(eventData["zoomDesc"]) placeZoom(eventData);
   if(eventData["quiz"]) placeQuiz(eventData["quiz"]);
@@ -356,6 +357,27 @@ const placeMovie = (movieData) => {
     `<div class = "iframe-wrapper">
       <iframe src="https://www.youtube.com/embed/${movieData}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>`);
+}
+
+const placeLive = (liveData) => {
+  const $main = document.getElementsByTagName("main")[0];
+  const li = [], iframe = [];
+
+
+  for(const data of liveData) {
+    iframe.push(`<iframe src="https://www.youtube.com/embed/${data.youtubeID}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
+    li.push(`<li class = "done"><div>配信済み</div><div>${data.day}<span>日</span>${data.start.slice(0, 3)}<span>${data.start.slice(3)}</span> ~ ${data.end.slice(0, 3)}<span>${data.end.slice(3)}</span></div></li>`)
+  }
+
+  $main.insertAdjacentHTML("beforebegin",
+    `<div class = "youtube-live">
+      <div class = "iframe-wrapper">
+      </div>
+      <div class = "iframe-changer">
+        <ul>${li.join("")}</ul>
+      </div>
+    </div>`);
+
 }
 
 const placeArticle = (articleData) => {
