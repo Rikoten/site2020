@@ -5,15 +5,16 @@ const queries = location.search.slice(1).split('&').map(it => ({
     key: it.split('=')[0],
     value: it.split('=')[1]
 }))
+const eventId = queries.find(it => it.key == 'id').value
 
-(async () => {
-    const likes = await fetch('/api/like')
-    const likeCount = (likes[queries[id]] && likes[queries[id]].likes) || 0
-    likeCount.textContent = likeCount
+;(async () => {
+    const likes = await fetch('/api/like').then(res => res.json())
+    const likeCount = (likes[eventId] && likes[eventId].likes) || 0
+    likeCounter.textContent = likeCount
 })()
 
 likeButton.addEventListener('click', async () => {
-    await fetch('/api/like/' + queries[id], {
+    await fetch('/api/like/' + eventId, {
         credentials: 'include',
         method: 'POST'
     })
