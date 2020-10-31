@@ -9,10 +9,10 @@ body {
 
 .message{
     background-color: #0D163B;
-    background-size: contain;
     text-align: center;
     background-image: url(../Overtime_page_back.svg);
-    background-size: 100%;
+    background-size: cover;
+    background-position: center center;
 }
 
 .message h1{
@@ -45,3 +45,10 @@ body {
     color: white;
 }
 
+@media screen and (max-width: 920px){
+    .message{
+        background-color: #0D163B;
+        text-align: center;
+        background-image: none;
+    }
+}

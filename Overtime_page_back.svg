@@ -1,13 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="535" viewBox="0 0 1920 535">
-  <g id="グループ_2" data-name="グループ 2" transform="translate(-0.5 -1466.5)">
-    <line id="線_1" data-name="線 1" x2="206" transform="translate(0.5 1769.5)" fill="none" stroke="#fff" stroke-width="15"/>
-    <line id="線_2" data-name="線 2" y1="535" transform="translate(206.5 1466.5)" fill="none" stroke="#fff" stroke-width="15"/>
-    <line id="線_4" data-name="線 4" x2="488" transform="translate(206.5 1706.5)" fill="none" stroke="#fff" stroke-width="15"/>
-    <line id="線_5" data-name="線 5" x2="488" transform="translate(1214.5 1878.5)" fill="none" stroke="#fff" stroke-width="15"/>
-    <line id="線_6" data-name="線 6" y1="535" transform="translate(1702.5 1466.5)" fill="none" stroke="#fff" stroke-width="15"/>
-    <line id="線_7" data-name="線 7" y1="295" transform="translate(549.5 1706.5)" fill="none" stroke="#fff" stroke-width="15"/>
-    <line id="線_8" data-name="線 8" x2="218" transform="translate(1702.5 1553.5)" fill="none" stroke="#fff" stroke-width="15"/>
-    <line id="線_9" data-name="線 9" x2="488" transform="translate(1214.5 1706.5)" fill="none" stroke="#fff" stroke-width="15"/>
-    <line id="線_10" data-name="線 10" y1="87" transform="translate(1850.5 1466.5)" fill="none" stroke="#fff" stroke-width="15"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="535.047" viewBox="0 0 1920 535.047">
+  <g id="グループ_3" data-name="グループ 3" transform="translate(-1 -1034.453)">
+    <g id="グループ_2" data-name="グループ 2" transform="translate(0.5 -432)">
+      <line id="線_1" data-name="線 1" x2="206" transform="translate(0.5 1769.5)" fill="none" stroke="#fff" stroke-width="15"/>
+      <line id="線_2" data-name="線 2" y1="535" transform="translate(206.5 1466.5)" fill="none" stroke="#fff" stroke-width="15"/>
+      <line id="線_4" data-name="線 4" x2="488" transform="translate(206.5 1706.5)" fill="none" stroke="#fff" stroke-width="15"/>
+      <line id="線_5" data-name="線 5" x2="488" transform="translate(1214.5 1878.5)" fill="none" stroke="#fff" stroke-width="15"/>
+      <line id="線_6" data-name="線 6" y1="535" transform="translate(1702.5 1466.5)" fill="none" stroke="#fff" stroke-width="15"/>
+      <line id="線_7" data-name="線 7" y1="295" transform="translate(549.5 1706.5)" fill="none" stroke="#fff" stroke-width="15"/>
+      <line id="線_8" data-name="線 8" x2="218" transform="translate(1702.5 1553.5)" fill="none" stroke="#fff" stroke-width="15"/>
+      <line id="線_9" data-name="線 9" x2="488" transform="translate(1214.5 1706.5)" fill="none" stroke="#fff" stroke-width="15"/>
+      <line id="線_10" data-name="線 10" y1="87" transform="translate(1850.5 1466.5)" fill="none" stroke="#fff" stroke-width="15"/>
+      <line id="線_11" data-name="線 11" y1="240" x2="1.5" transform="translate(1278.5 1466.5)" fill="none" stroke="#fff" stroke-width="15"/>
+      <line id="線_12" data-name="線 12" y1="123" transform="translate(1493.5 1878.5)" fill="none" stroke="#fff" stroke-width="15"/>
+    </g>
   </g>
 </svg>
