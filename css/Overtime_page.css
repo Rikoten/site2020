@@ -8,8 +8,22 @@ body {
 
 
 .message{
-    background-color: #919197f6;
+    background-color: #243D7D;
+    background-image: url(../Overtime_page_back.svg);
+    background-size: contain;
     text-align: center;
+}
+
+.message h1{
+    font-size: 40px;
+    color: #ece90efd;
+    padding: 20px 0 0 0;
+}
+
+.message h2{
+    font-size: 25px;
+    color: black;
+    margin-left: 20px;
 }
 
 .box1{
