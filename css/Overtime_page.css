@@ -16,13 +16,13 @@ body {
 
 .message h1{
     font-size: 40px;
-    color: #ece90efd;
+    color: white;
     padding: 20px 0 0 0;
 }
 
 .message h2{
     font-size: 25px;
-    color: black;
+    color: white;
     margin-left: 20px;
 }
 
@@ -30,6 +30,7 @@ body {
     padding: 0.2em 0.5em;
     margin: 2em 0;
     background: #ffffff;
+    background-color: #314d9bf0;
     box-shadow: 0px 0px 0px 10px #ffffff;
     border: dashed 2px  #2a3033;
     border-radius: 10px;
@@ -40,4 +41,5 @@ body {
 .box1 p {
     margin: 0; 
     padding: 0;
+    color: white;
 }
