@@ -1,96 +1,5 @@
-//const { resolve } = require("dns");
-
 const param = {};
 const ShuffledID = [];
-/*
-document.addEventListener('DOMContentLoaded', function () {
-  let contentsList = document.getElementById('index'); // 目次を追加する先(table of contents)
-  let navPagination = document.getElementById('nav-pagination');
-  let div = document.createElement('div'); // 作成する目次のコンテナ要素
-
-  // .entry-content配下のh2、h3要素を全て取得する
-  let matches = document.querySelectorAll('article h2, article h3');
-
-  h4Count = 0;
-  // 取得した見出しタグ要素の数だけ以下の操作を繰り返す
-  matches.forEach(function (value, i) {
-    // 見出しタグ要素のidを取得し空の場合は内容をidにする
-    let id = value.id;
-    if(id === '') {
-      id = value.textContent.replace(/ /g, '').replace(/\./g, '');
-      value.id = id;
-    }
-
-    if(value.tagName === 'H2') {
-      let ul = document.createElement('ul');
-      let li = document.createElement('li');
-      let a = document.createElement('a');
-
-      // 追加する<ul><li><a>タイトル</a></li></ul>を準備する
-      a.innerHTML = value.textContent;
-      a.href = '#' + value.id;
-      li.appendChild(a)
-      ul.appendChild(li);
-
-      // コンテナ要素である<div>の中に要素を追加する
-      div.appendChild(ul);
-    }
-
-    if(value.tagName === 'H3') {
-      let ul = document.createElement('ul');
-      let li = document.createElement('li');
-      let a = document.createElement('a');
-
-      // コンテナ要素である<div>の中から最後の<li>を取得する。
-      let lastUl = div.lastElementChild;
-      let lastLi = lastUl.lastElementChild;
-
-      // 追加する<ul><li><a>タイトル</a></li></ul>を準備する
-      a.innerHTML = value.textContent;
-      a.href = '#' + value.id;
-      // 目次の色変える
-      a.setAttribute("correnspondBox", ("articleBox" + String(h4Count)))
-
-      li.appendChild(a)
-      ul.appendChild(li);
-
-      // 最後の<li>の中に要素を追加する
-      lastLi.appendChild(ul);
-      h4Count++;
-    }
-  });
-
-  // 最後に画面にレンダリング
-  contentsList.insertBefore(div, navPagination);
-
-  // 目次の色変える
-  let matches2 = document.querySelectorAll('.box');
-  matchCount = 0;
-  matches2.forEach(function (value, i) {
-    let id2 = "articleBox" + String(matchCount);
-    value.id = id2;
-    matchCount++;
-  });
-
-
-  
-
-});
-/*
-let $window = $(window), //ウィンドウを指定
-$articleIndex = $("#index"),
-articleIndexTop = $articleIndex.offset().top; //#contentの位置を取得
-
-$window.on("scroll", function () {
-  if ($window.scrollTop() > articleIndexTop) {
-    $articleIndex.addClass("fixed");
-  }
-  else {
-    $articleIndex.removeClass("fixed");
-  }
-});
-*/
-
 
 /* ボトムナビゲーション */
 
@@ -287,6 +196,9 @@ placeData.then((obj) => {
   intersectEvent();
   linkClickEvent();
 
+  const $liveIframe = document.querySelectorAll(".youtube-live iframe");
+  if($liveIframe) liveEvent($liveIframe);
+
   /* アンカがあればその位置までスクロール */
   if(param.anchor) {
     const target = document.getElementById(param.anchor.substring(1));
@@ -318,14 +230,13 @@ const placeLive = (liveData) => {
 
 
   for(const data of liveData) {
-    iframe.push(`<iframe src="https://www.youtube.com/embed/${data.youtubeID}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
-    li.push(`<li class = "done"><div>配信済み</div><div>${data.day}<span>日</span>${data.start.slice(0, 3)}<span>${data.start.slice(3)}</span> ~ ${data.end.slice(0, 3)}<span>${data.end.slice(3)}</span></div></li>`)
+    iframe.push(`<iframe src="https://www.youtube.com/embed/${data.youtubeID}" id = "iframe-${data.youtubeID}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
+    li.push(`<li class = "done" id = "${data.youtubeID}"><div>配信済み</div><div>${data.day}<span>日</span>${data.start.slice(0, 3)}<span>${data.start.slice(3)}</span> ~ ${data.end.slice(0, 3)}<span>${data.end.slice(3)}</span></div></li>`)
   }
 
   $main.insertAdjacentHTML("beforebegin",
     `<div class = "youtube-live">
-      <div class = "iframe-wrapper">
-      </div>
+      <div class = "iframe-wrapper">${iframe.join("")}</div>
       <div class = "iframe-changer">
         <ul>${li.join("")}</ul>
       </div>
@@ -675,6 +586,21 @@ const linkClickEvent = () => {
           behavior: 'smooth'
         });
       }
+    });
+  }
+}
+
+const liveEvent = ($liveIframe) => {
+  const $li = document.querySelectorAll(".youtube-live li");
+
+  for(const li of $li) {
+    li.addEventListener("click", () => {
+      const $target = document.getElementById(`iframe-${li.id}`);
+      const $visible = document.querySelector(".youtube-live .visible");
+      console.log($target);
+
+      if($visible) $visible.classList.remove("visible");
+      $target.classList.add("visible");
     });
   }
 }
