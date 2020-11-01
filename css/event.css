@@ -96,15 +96,24 @@ aside {
 }
 
 .iframe-changer {
-  margin-bottom: 30px;
+  margin-bottom: 60px;
   white-space: nowrap;
   width: 100%;
   height: 124px;
   position: relative;
 }
 
-.iframe-changer ul {
+.time-line {
   overflow-x: auto;
+  width: 100%;
+  height: inherit;
+  background-color: var(--color-gray);
+  position: relative;
+}
+
+.iframe-changer ul {
+  background-color: var(--color-gray);
+  height: inherit;
 }
 
 .iframe-changer li {
@@ -181,7 +190,7 @@ aside {
 
 .iframe-changer > span {
   position: absolute;
-  height: 100%;
+  height: 124px;
   width: 50px;
   top: 0;
   background-color: var(--color-gray);
@@ -189,6 +198,7 @@ aside {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  z-index: 5;
 }
 
 .iframe-changer > span.left {

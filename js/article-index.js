@@ -253,6 +253,9 @@ const placeLive = (liveData) => {
       }
     }
 
+    /* 全て配信済みなら最後の配信を表示させる */
+    if(data == liveData[liveData.length - 1] && flg) Class += " active";
+
     iframe.push(`<iframe src="https://www.youtube.com/embed/${data.youtubeID}?enablejsapi=1" id = "iframe-${data.youtubeID}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
     li.push(`<li class = "${Class}" id = "${data.youtubeID}"><div>${text}</div><div>${data.day}<span>日</span>${data.start.slice(0, 3)}<span>${data.start.slice(3)}</span> ~ ${data.end.slice(0, 3)}<span>${data.end.slice(3)}</span></div></li>`)
   }
@@ -262,7 +265,9 @@ const placeLive = (liveData) => {
       <div class = "iframe-wrapper">${iframe.join("")}</div>
       <div class = "iframe-changer">
         <span class = "left"></span>
-        <ul>${li.join("")}</ul>
+        <div class = "time-line">
+          <ul>${li.join("")}</ul>
+        </div>
         <span class = "right"></span>
       </div>
     </div>`);
@@ -477,7 +482,20 @@ const removeMoreButton = (html) => {
 /********** 初期化する関数 **********/
 
 const liveInit = () => {
-  
+  const $active = document.querySelector(".youtube-live .active");
+  const $iframe = document.getElementById(`iframe-${$active.id}`);
+  const $scrollBtn = document.querySelectorAll(".youtube-live .left, .youtube-live .right");
+  const $timeLine = document.querySelector(".youtube-live .time-line");
+
+  $iframe.classList.add("visible");
+
+  $scrollBtn[0].addEventListener("click", () => {
+    $timeLine.scrollLeft -= 100;
+  });
+
+  $scrollBtn[1].addEventListener("click", () => {
+    $timeLine.scrollLeft += 100;
+  });
 }
 
 /********** イベントリスナを設定する関数 **********/
