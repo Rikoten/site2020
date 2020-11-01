@@ -2,7 +2,7 @@
 
 const param = {};
 const ShuffledID = [];
-
+/*
 document.addEventListener('DOMContentLoaded', function () {
   let contentsList = document.getElementById('index'); // 目次を追加する先(table of contents)
   let navPagination = document.getElementById('nav-pagination');
@@ -90,84 +90,7 @@ $window.on("scroll", function () {
   }
 });
 */
-// 今回の交差を監視する要素
-const boxes = document.querySelectorAll(".box");
 
-const options = {
-  root: null, // 今回はビューポートをルート要素とする
-  rootMargin: "-50% 0px", // ビューポートの中心を判定基準にする
-  threshold: 0 // 閾値は0
-};
-const observer = new IntersectionObserver(doWhenIntersect, options);
-// それぞれのboxを監視する
-boxes.forEach(box => {
-  observer.observe(box);
-});
-
-/**
- * 交差したときに呼び出す関数
- * @param entries
- */
-function doWhenIntersect(entries) {
-  // 交差検知をしたもののなかで、isIntersectingがtrueのDOMを色を変える関数に渡す
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      activateIndex(entry.target);
-    }
-  });
-}
-
-/**
- * 目次の色を変える関数
- * @param element
- */
-function activateIndex(element) {
-  // すでにアクティブになっている目次を選択
-  const currentActiveIndex = document.querySelector("#index .inView");
-  // すでにアクティブになっているものが0個の時（=null）以外は、activeクラスを除去
-  if (currentActiveIndex !== null) {
-    currentActiveIndex.classList.remove("inView");
-  }
-  // 引数で渡されたDOMが飛び先のaタグを選択し、activeクラスを付与
-  const newActiveIndex = document.querySelector(`a[correnspondbox='${element.id}']`);
-  newActiveIndex.classList.add("inView");
-}
-/*
-$(function(){
-  $('a[href^="#"]').click(function(){
-    let speed = 500;
-    let href= $(this).attr("href");
-    let target = $(href == "#" || href == "" ? 'html' : href);
-    let position = target.offset().top;
-    if (target.prop("tagName") === 'H3') position -= 20;
-    else position -= 10;
-    $("html, body").animate({scrollTop:position}, speed, "swing");
-    return false;
-  });
-});
-*/
-
-/* 指定位置にcommon.htmlからheaderおよびbottom-navを読み込む */
-
-let xhr = new XMLHttpRequest(),
-    method = "GET",
-    url = "/common.html";
-let box = document.getElementById("common-header"),
-    box2 = document.getElementById("bottom-nav");
-
-xhr.responseType = "document";
-xhr.open(method, url, true);
-xhr.onreadystatechange = () => {
-  if(xhr.readyState === 4 && xhr.status === 200) {
-    let restxt = xhr.responseXML;
-    let int = restxt.getElementsByTagName("header")[0],
-        int2 = restxt.getElementsByTagName("nav")[0];
-    box.outerHTML = int.outerHTML;
-    box2.outerHTML = int2.outerHTML;
-  }
-}
-
-xhr.send();
 
 /* ボトムナビゲーション */
 
@@ -230,27 +153,54 @@ const storageAvailable = (type) => {
   }
 }
 
-/********** JSON読み込み **********/
+/********** 指定位置にcommon.htmlからheaderおよびbottom-navを読み込む **********/
 
-const getJSON = new Promise ((resolve, reject) => {
+const placeCommonParts = new Promise ((resolve, reject) => {
   let xhr = new XMLHttpRequest(),
       method = "GET",
-      url = "/data/eventData.json";
-  let lang = "ja";
+      url = "/common.html";
+  let box = document.getElementById("common-header"),
+      box2 = document.getElementById("bottom-nav");
 
-  if(storageAvailable('localStorage')) {
-    if(localStorage.getItem("lang")) lang = localStorage.getItem("lang");
-  }
-  if(lang == "en") url = "/data/eventData_en.json";
-
-  xhr.responseType = "json";
+  xhr.responseType = "document";
   xhr.open(method, url, true);
   xhr.onreadystatechange = () => {
-    if(xhr.readyState == 4 && xhr.status == 200) {
-      resolve(xhr.response);
+    if(xhr.readyState === 4 && xhr.status === 200) {
+      let restxt = xhr.responseXML;
+      let int = restxt.getElementsByTagName("header")[0],
+          int2 = restxt.getElementsByTagName("nav")[0];
+      box.outerHTML = int.outerHTML;
+      box2.outerHTML = int2.outerHTML;
     }
   }
+
   xhr.send();
+  resolve();
+});
+
+/********** JSON読み込み **********/
+
+const getJSON = placeCommonParts.then(() => {
+  return new Promise ((resolve) => {
+    let xhr = new XMLHttpRequest(),
+        method = "GET",
+        url = "/data/eventData.json";
+    let lang = "ja";
+
+    if(storageAvailable('localStorage')) {
+      if(localStorage.getItem("lang")) lang = localStorage.getItem("lang");
+    }
+    if(lang == "en") url = "/data/eventData_en.json";
+
+    xhr.responseType = "json";
+    xhr.open(method, url, true);
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState == 4 && xhr.status == 200) {
+        resolve(xhr.response);
+      }
+    }
+    xhr.send();
+  });
 });
 
 /********** 読み込んだJSONデータをセット **********/
@@ -329,21 +279,24 @@ placeData.then((obj) => {
       goodButton.classList.add("thumbs-up-clicked");
     }
   }
-
   barEvent();
   quizEvent();
   indexEvent();
   morebuttonEvent(obj);
   languageEvent();
+  intersectEvent();
+  linkClickEvent();
 
   /* アンカがあればその位置までスクロール */
   if(param.anchor) {
     const target = document.getElementById(param.anchor.substring(1));
-    var elemtop = target.getBoundingClientRect().top + window.pageYOffset;
-    document.documentElement.scrollTop = elemtop;
+    var elemTop = target.getBoundingClientRect().top + window.pageYOffset - 100;
+    window.scrollTo({
+      top: elemTop,
+      behavior: 'smooth'
+    });
   }
 });
-
 
 
 
@@ -642,7 +595,6 @@ const indexEvent = () => {
   for(const a of $a) {
     a.addEventListener("click", () => {
       const $inView = document.querySelector("#index .in-view");
-      console.log("hey")
 
       if($inView) $inView.classList.remove("in-view");
       a.parentNode.classList.add("in-view");
@@ -659,7 +611,7 @@ const morebuttonEvent = (data) => {
 }
 
 const languageEvent = () => {
-  const $select = document.querySelector("header select");
+  const $select = document.querySelector("#sticky-header select");
 
   $select.onchange = function(){
     const language = this.value;
@@ -675,6 +627,55 @@ const languageEvent = () => {
     }
 
     location.reload();
+  }
+}
+
+const intersectEvent = () => {
+  const h = document.querySelectorAll('h2, h3');
+  const options = {
+    root: null,
+    rootMargin: "15% 0px -85%",
+    threshold: 0
+  };
+  const observer = new IntersectionObserver(intersect, options);
+  
+  h.forEach((h) => {
+    observer.observe(h);
+  });
+}
+
+const intersect = (entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      activateIndex(entry.target);
+    }
+  });
+}
+
+const activateIndex = (elem) => {
+  const $inView = document.querySelector("#index .in-view");
+  const newActiveIndex = document.querySelector(`a[href='${generateURL(param.id, param.page, elem.id)}']`);
+
+  if($inView) $inView.classList.remove("in-view");
+  newActiveIndex.parentNode.classList.add("in-view");
+}
+
+const linkClickEvent = () => {
+  const $a = document.querySelectorAll('#index a');
+  
+  for(const a of $a) {
+    a.addEventListener("click", (event) => {
+      const id = a.href.split("#")[1];
+      const target = document.getElementById(id);
+      if(target) {
+        event.preventDefault();
+        const targetPosition = window.pageYOffset + target.getBoundingClientRect().top - 100;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
   }
 }
 
