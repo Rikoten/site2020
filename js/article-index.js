@@ -288,7 +288,7 @@ const placeData = getJSON.then((obj) => {
   else $info.firstElementChild.classList.add("first-span");
 
   /* データがあればHTMLを生成し挿入 */
-  //if(eventData["mainMovie"]) placeMovie(eventData["mainMovie"]);
+  if(eventData["mainMovie"]) placeMovie(eventData["mainMovie"]);
   if(eventData["youtubeLive"]) placeLive(eventData["youtubeLive"]);
   if(eventData["articleData"]) placeArticle(eventData["articleData"]);
   if(eventData["zoomDesc"]) placeZoom(eventData);
@@ -313,7 +313,7 @@ const placeData = getJSON.then((obj) => {
   html.push(`<h3>${eventData["groupName"]}</h3><p>${eventData["groupDesc"]}</p><div class = "group-link">${link.join("")}</div>`);
   $groupDesc.insertAdjacentHTML("beforeend", html);
 
-  //placeOtherEvent(obj);
+  placeOtherEvent(obj);
   
   return new Promise((resolve, reject) => {
     resolve(obj);

@@ -93,14 +93,9 @@ aside {
 
 .iframe-changer {
   margin-bottom: 30px;
-  overflow-x: scroll;
-}
-
-.iframe-changer ul {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  width: 1400px;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .iframe-changer li {
@@ -111,6 +106,7 @@ aside {
   margin-right: 30px;
   padding: 5px 20px 5px 10px;
   box-shadow: 0 3px 6px 0px rgba(0, 0, 0, .16);
+  display: inline-block;
 }
 
 .iframe-changer li:last-child {
@@ -274,7 +270,6 @@ button:focus {
 ul.pagination {
   display: flex;
   margin: 30px auto 0;
-  padding-bottom: 60px;
   list-style-type: none;
   justify-content: center;
 }
@@ -769,10 +764,12 @@ article .bar button {
   height: 33px;
   line-height: 30px;
   background-color: #FFF;
-  border-radius: 3px;
+  border-radius: 5px;
   margin-left: 10px;
-  color: inherit;
+  color: #4ED2E7;
   transition: 0.4s;
+  font-weight: bold;
+  border: 2px solid #4ED2E7;
 }
 
 article .bar button:hover {
@@ -790,7 +787,7 @@ article .bar button.thumbs-up::before {
   width: 30px;
   height: 30px;
   background: url("/img/iconSet.svg") no-repeat;
-  background-position: -60px -32px;
+  background-position: -60px -94px;
   background-size: 180px 120px;
   vertical-align: middle;
   transform: scale(0.85);
@@ -800,16 +797,15 @@ article .bar button.pin::before {
   width: 30px;
   height: 30px;
   background: url("/img/iconSet.svg") no-repeat;
-  background-position: 0px -30px;
+  background-position: -30px -92px;
   background-size: 180px 120px;
   vertical-align: middle;
 }
 
 article .bar button.thumbs-up-clicked,
 article .bar button.pin-clicked {
-  background-color: #3BA2E7;
+  background-color: #4ED2E7;
   color: white;
-  font-weight: bold;
 }
 
 article .bar button.thumbs-up-clicked::before {
@@ -817,7 +813,7 @@ article .bar button.thumbs-up-clicked::before {
 }
 
 article .bar button.pin-clicked::before {
-  background-position: -150px -30px;
+  background-position: -150px -32px;
 }
 
 article section:not(.article) {
@@ -1116,6 +1112,89 @@ article a.link-web-article:hover {
   background-color: var(--color-lightgray);
 }
 
+article .share {
+  padding: 30px 0 60px 0;
+  margin-top: 60px;
+  background-color: var(--color-gray);
+}
+
+article .share p {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #A6A6A5;
+  margin-bottom: 30px;
+}
+
+article .share p::before,
+article .share p::after {
+  content: "";
+  height: 23px;
+  width: 3px;
+  border-radius: 5px;
+  background-color: #A6A6A5;
+  display: inline-block;
+  vertical-align: text-bottom;
+}
+
+article .share p::before {
+  margin-right: 20px;
+  transform: rotateZ(-30deg);
+}
+
+article .share p::after {
+  margin-left: 20px;
+  transform: rotateZ(30deg);
+}
+
+article .share ul {
+  display: flex;
+  justify-content: center;
+}
+
+article .share li {
+  width: 60px;
+}
+
+article .share li:not(:last-child) {
+  margin-right: 20px;
+}
+
+article .share span {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+article .share .fa-twitter,
+article .share .fa-twitter ~ span {
+  color: #1DA1F2;
+}
+
+article .share .fa-facebook-f,
+article .share .fa-facebook-f ~ span {
+  color: #3b5998;
+}
+
+article .share .fa-line,
+article .share .fa-line ~ span {
+  color: #1dcd00;
+  transform: scale(1.3);
+}
+
+article .share .fa-link,
+article .share .fa-link ~ span {
+  color: #f1ab2c
+}
+
+article .share a {
+  text-align: center;
+}
+
+article .share i {
+  display: block;
+}
+
+
 /* 2カラムレイアウトの横幅1330px + 左右余白40px */
 @media screen and (max-width: 1370px) {
   main, aside, .iframe-wrapper {
@@ -1180,6 +1259,10 @@ article a.link-web-article:hover {
   #title-header .title-wrapper {
     margin: 0 auto;
   }
+
+  .youtube-live {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 790px) {
@@ -1225,8 +1308,9 @@ article a.link-web-article:hover {
   }
 
   article .bar button {
-    width: 40px;
+    width: 35px;
     overflow: hidden;
+    padding-left: 1px;
   }
 
   article .file-wrapper {
