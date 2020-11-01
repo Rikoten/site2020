@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
 
 });
-
+/*
 let $window = $(window), //ウィンドウを指定
 $articleIndex = $("#index"),
 articleIndexTop = $articleIndex.offset().top; //#contentの位置を取得
@@ -89,7 +89,7 @@ $window.on("scroll", function () {
     $articleIndex.removeClass("fixed");
   }
 });
-
+*/
 // 今回の交差を監視する要素
 const boxes = document.querySelectorAll(".box");
 
@@ -132,7 +132,7 @@ function activateIndex(element) {
   const newActiveIndex = document.querySelector(`a[correnspondbox='${element.id}']`);
   newActiveIndex.classList.add("inView");
 }
-
+/*
 $(function(){
   $('a[href^="#"]').click(function(){
     let speed = 500;
@@ -145,7 +145,7 @@ $(function(){
     return false;
   });
 });
-
+*/
 
 /* 指定位置にcommon.htmlからheaderおよびbottom-navを読み込む */
 
@@ -261,6 +261,7 @@ const placeData = getJSON.then((obj) => {
   for(let i = 0; i < text.length; i = i + 2) {
     param[text[i]] = text[i + 1];
   }
+  if(location.hash) param["anchor"] = location.hash;
 
   /* 表示すべき企画データを抽出 */
   if(!param["page"]) param["page"] = 1;
@@ -272,6 +273,7 @@ const placeData = getJSON.then((obj) => {
       break;
     }
   }
+
 
   /* 企画名 */
   const $title = document.querySelector("header .title-wrapper");
@@ -286,7 +288,8 @@ const placeData = getJSON.then((obj) => {
   else $info.firstElementChild.classList.add("first-span");
 
   /* データがあればHTMLを生成し挿入 */
-  if(eventData["mainMovie"]) placeMovie(eventData["mainMovie"]);
+  //if(eventData["mainMovie"]) placeMovie(eventData["mainMovie"]);
+  if(eventData["youtubeLive"]) placeLive(eventData["youtubeLive"]);
   if(eventData["articleData"]) placeArticle(eventData["articleData"]);
   if(eventData["zoomDesc"]) placeZoom(eventData);
   if(eventData["quiz"]) placeQuiz(eventData["quiz"]);
@@ -310,7 +313,7 @@ const placeData = getJSON.then((obj) => {
   html.push(`<h3>${eventData["groupName"]}</h3><p>${eventData["groupDesc"]}</p><div class = "group-link">${link.join("")}</div>`);
   $groupDesc.insertAdjacentHTML("beforeend", html);
 
-  placeOtherEvent(obj);
+  //placeOtherEvent(obj);
   
   return new Promise((resolve, reject) => {
     resolve(obj);
@@ -332,7 +335,17 @@ placeData.then((obj) => {
   indexEvent();
   morebuttonEvent(obj);
   languageEvent();
+
+  /* アンカがあればその位置までスクロール */
+  if(param.anchor) {
+    const target = document.getElementById(param.anchor.substring(1));
+    var elemtop = target.getBoundingClientRect().top + window.pageYOffset;
+    document.documentElement.scrollTop = elemtop;
+  }
 });
+
+
+
 
 
 /********** HTMLを生成・挿入する関数 **********/
@@ -344,6 +357,27 @@ const placeMovie = (movieData) => {
     `<div class = "iframe-wrapper">
       <iframe src="https://www.youtube.com/embed/${movieData}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>`);
+}
+
+const placeLive = (liveData) => {
+  const $main = document.getElementsByTagName("main")[0];
+  const li = [], iframe = [];
+
+
+  for(const data of liveData) {
+    iframe.push(`<iframe src="https://www.youtube.com/embed/${data.youtubeID}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
+    li.push(`<li class = "done"><div>配信済み</div><div>${data.day}<span>日</span>${data.start.slice(0, 3)}<span>${data.start.slice(3)}</span> ~ ${data.end.slice(0, 3)}<span>${data.end.slice(3)}</span></div></li>`)
+  }
+
+  $main.insertAdjacentHTML("beforebegin",
+    `<div class = "youtube-live">
+      <div class = "iframe-wrapper">
+      </div>
+      <div class = "iframe-changer">
+        <ul>${li.join("")}</ul>
+      </div>
+    </div>`);
+
 }
 
 const placeArticle = (articleData) => {
@@ -390,15 +424,17 @@ const placeArticle = (articleData) => {
     }
   }
 
-  index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a><ul>${li.join("")}</ul></li>`);
+  if(h2) index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a><ul>${li.join("")}</ul></li>`);
   $index.insertAdjacentHTML("beforeend", `<ul>${index.join("")}</ul>`);
 
   li.length = 0;
   /* ページネーション */
   if(pageCount > 1) {
     for(let i = 1; i <= pageCount; i++) {
-      if(i == 1) li.push(`<li><a href = "/event/?id=${param["id"]}">${i}</a></li>`);
-      else li.push(`<li><a href = "/event/?id=${param["id"]}&page=${i}">${i}</a></li>`);
+      let Class = "";
+      if(i == param.page) Class = "class = 'current'";
+      if(i == 1) li.push(`<li ${Class}><a href = "/event/?id=${param["id"]}">${i}</a></li>`);
+      else li.push(`<li ${Class}><a href = "/event/?id=${param["id"]}&page=${i}">${i}</a></li>`);
     }
     html.push(`<ul class = "pagination">${li.join("")}</ul>`);
   }
@@ -412,13 +448,13 @@ const placeZoom = (data) => {
 
   if(data.zoomDesc.day1) day1 = data.zoomDesc.day1.split(/, |:|~/);
   if(data.zoomDesc.day2) day2 = data.zoomDesc.day2.split(/, |:|~/);
-  
+
   for(let i = 0; i < day1.length; i = i + 4) {
     url.push(`<a class = "day1" href = "${returnZoomURL(data.zoom, cnt)}">7<span>日</span>${day1[i]}:<span>${day1[i+1]}</span> ~ ${day1[i+2]}:<span>${day1[i+3]}</span></a>`);
     cnt++;
   }
   for(let i = 0; i < day2.length; i = i + 4) {
-    url.push(`<a class = "day2" href = "${returnZoomURL(data.zoom, cnt)}">8<span>日</span>${day1[i]}:<span>${day1[i+1]}</span> ~ ${day1[i+2]}:<span>${day1[i+3]}</span></a>`);
+    url.push(`<a class = "day2" href = "${returnZoomURL(data.zoom, cnt)}">8<span>日</span>${day2[i]}:<span>${day2[i+1]}</span> ~ ${day2[i+2]}:<span>${day2[i+3]}</span></a>`);
     cnt++;
   }
 
@@ -645,9 +681,8 @@ const languageEvent = () => {
 /********** URL関連 **********/
 
 const URLEscape = (id) => {
-  let del = id.replace(/\<|\>|\(|\)|\{|\}|\[|\]|\"|\^|\`|\||\\|\'/g, "");
-  let replace = del.replace(/ |　/g, "-");
-  return replace;
+  let replace = id.replace(/ |　/g, "-");
+  return encodeURIComponent(replace);
 }
 
 const generateURL = (id, page, anchor) => {
