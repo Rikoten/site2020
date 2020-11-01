@@ -156,4 +156,6 @@
 	<rect x="161.313" y="74.988" fill="#575F65" width="15" height="2"/>
 	<rect x="161.313" y="81.988" fill="#575F65" width="15" height="2"/>
 </g>
+<polyline fill="none" stroke="#575F65" stroke-width="3" stroke-miterlimit="10" points="129.972,114.801 140.028,105.138 
+	129.972,95.791 "/>
 </svg>
