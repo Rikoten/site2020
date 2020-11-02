@@ -188,6 +188,9 @@ placeData.then((obj) => {
       goodButton.classList.add("thumbs-up-clicked");
     }
   }
+
+  liveInit();
+
   barEvent();
   quizEvent();
   indexEvent();
@@ -197,7 +200,7 @@ placeData.then((obj) => {
   linkClickEvent();
 
   const $liveIframe = document.querySelectorAll(".youtube-live iframe");
-  if($liveIframe) liveEvent($liveIframe);
+  if($liveIframe) liveEvent();
 
   /* アンカがあればその位置までスクロール */
   if(param.anchor) {
@@ -227,18 +230,45 @@ const placeMovie = (movieData) => {
 const placeLive = (liveData) => {
   const $main = document.getElementsByTagName("main")[0];
   const li = [], iframe = [];
-
+  const date = new Date();
+  const time = Math.floor(date.getTime() / 1000);
+  let flg = true;
 
   for(const data of liveData) {
-    iframe.push(`<iframe src="https://www.youtube.com/embed/${data.youtubeID}" id = "iframe-${data.youtubeID}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
-    li.push(`<li class = "done" id = "${data.youtubeID}"><div>配信済み</div><div>${data.day}<span>日</span>${data.start.slice(0, 3)}<span>${data.start.slice(3)}</span> ~ ${data.end.slice(0, 3)}<span>${data.end.slice(3)}</span></div></li>`)
+    let Class = "", text = "";
+
+    if(data.timestampStart < time) {
+      Class = "done";
+      text = "配信済み";
+    } else if(data.timestampStart >= time && data.timestampEnd <= time) {
+      Class = "on-air active";
+      text = "配信中";
+      flg = false;
+    } else {
+      Class = "scheduled";
+      text = "配信予定";
+      if(flg) {
+        Class += " active";
+        flg = false;
+      }
+    }
+
+    /* 全て配信済みなら最後の配信を表示させる */
+    if(data == liveData[liveData.length - 1] && flg) Class += " active";
+
+    iframe.push(`<iframe src="https://www.youtube.com/embed/${data.youtubeID}?enablejsapi=1" id = "iframe-${data.youtubeID}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
+    li.push(`<li class = "${Class}" id = "${data.youtubeID}"><div>${text}</div><div>${data.day}<span>日</span>${data.start.slice(0, 3)}<span>${data.start.slice(3)}</span> ~ ${data.end.slice(0, 3)}<span>${data.end.slice(3)}</span></div></li>`)
   }
 
   $main.insertAdjacentHTML("beforebegin",
     `<div class = "youtube-live">
       <div class = "iframe-wrapper">${iframe.join("")}</div>
       <div class = "iframe-changer">
-        <ul>${li.join("")}</ul>
+        <span class = "left"></span>
+        <div class = "time-line">
+          <ul>${li.join("")}</ul>
+        </div>
+        <span class = "right"></span>
       </div>
     </div>`);
 
@@ -448,6 +478,26 @@ const removeMoreButton = (html) => {
   $aside.removeChild($aside.lastElementChild);
 }
 
+
+/********** 初期化する関数 **********/
+
+const liveInit = () => {
+  const $active = document.querySelector(".youtube-live .active");
+  const $iframe = document.getElementById(`iframe-${$active.id}`);
+  const $scrollBtn = document.querySelectorAll(".youtube-live .left, .youtube-live .right");
+  const $timeLine = document.querySelector(".youtube-live .time-line");
+
+  $iframe.classList.add("visible");
+
+  $scrollBtn[0].addEventListener("click", () => {
+    $timeLine.scrollLeft -= 100;
+  });
+
+  $scrollBtn[1].addEventListener("click", () => {
+    $timeLine.scrollLeft += 100;
+  });
+}
+
 /********** イベントリスナを設定する関数 **********/
 
 const barEvent = () => {
@@ -590,17 +640,23 @@ const linkClickEvent = () => {
   }
 }
 
-const liveEvent = ($liveIframe) => {
+const liveEvent = () => {
   const $li = document.querySelectorAll(".youtube-live li");
 
   for(const li of $li) {
     li.addEventListener("click", () => {
       const $target = document.getElementById(`iframe-${li.id}`);
       const $visible = document.querySelector(".youtube-live .visible");
-      console.log($target);
+      const $active = document.querySelector(".iframe-changer .active");
 
-      if($visible) $visible.classList.remove("visible");
+      if($visible) {
+        /* 再生されていたら強制的に停止 */
+        $visible.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*')
+        $visible.classList.remove("visible");
+      }
+      if($active) $active.classList.remove("active");
       $target.classList.add("visible");
+      li.classList.add("active");
     });
   }
 }
