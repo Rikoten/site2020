@@ -154,11 +154,10 @@ body {
 .topView-bar > a > .topView-event-tile {
   position: relative;
   bottom: 0;
+  margin: 0 1px;
   background-color: rgba(255, 255, 255, 0.2);
   width: 20vw;
   height: calc(20vw * 3 / 4.3);
-  border-left: rgba(112, 112, 112, 0.2) solid 1px;
-  border-right: rgba(112, 112, 112, 0.2) solid 1px;
   color: #fff;
   font-weight: 500;
   display: grid;
@@ -1175,7 +1174,9 @@ a.detailButton:hover::before {
     border: none!important;
     margin: 10px 0;
     height: 100px;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
   }
 
@@ -1200,20 +1201,14 @@ a.detailButton:hover::before {
   }
   /* 正直ここら辺ゴミ、グリッドで書き直すか？ */
   #about > div.about-tile > div:nth-child(1) {
-    position: absolute;
-    display: inline-block;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
+    max-width: 150px;
+    width: 40%;
     font-size: 22px;
   }
 
   #about > div.about-tile > div:nth-child(2) {
-    position: absolute;
-    display: inline-block;
-    right: 13%;
-    top: 50%;
-    transform: translateY(-50%);
+    max-width: 280px;
+    width: 60%;
     font-size: 14px;
   }
 
@@ -1250,6 +1245,12 @@ a.detailButton:hover::before {
 }
 
 @media screen and (max-width: 576px) {
+}
+
+@media screen and (max-width: 340px) {
+  #about > div.about-tile > div:nth-child(2) {
+    font-size: 12px;
+  }
 }
 
 .supplementary-info {
