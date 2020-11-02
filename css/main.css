@@ -122,12 +122,14 @@ body {
 
 #topView > #themeText {
   position: absolute;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: #fff;
   font-weight: 500;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  width: 100%;
+  height: calc(100% - 20vw * 3 / 4.3);
   text-align: center;
 }
 
@@ -165,8 +167,8 @@ body {
   ". type time ."
   ". title title ."
   ". . . .";
-  grid-template-columns: 15% 90px calc(70% - 90px) 15%;
-  grid-template-rows: 20% 1fr 100px 20%;
+  grid-template-columns: 10% 90px 1fr 10%;
+  grid-template-rows: 20% 30px 1fr 30px 20%;
   transition: 200ms;
 }
 
@@ -248,6 +250,8 @@ body {
 .topView-bar > a > .topView-event-tile > .topView-event-title {
   grid-area: title;
   font-size: 22px;
+  display: flex;
+  align-items: center;
 }
 
 #main {
@@ -416,6 +420,7 @@ body {
   grid-area: title;
   font-weight: bold;
   font-size: 18px;
+  overflow: hidden;
 }
 
 #eventList .eventTile > .eventTitle::before {
@@ -913,15 +918,9 @@ a.detailButton:hover::before {
   }
 
   #topView > #themeText {
-    position: absolute;
-    display: inline-block;
-    color: #fff;
-    font-weight: 500;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
     text-align: center;
     font-size: 16px;
+    
   }
   
   #topView > #themeText > img {
@@ -1117,18 +1116,6 @@ a.detailButton:hover::before {
     height: 25px;
     border-radius: 12.5px;
     line-height: 30px;
-  }
-
-  #eventList .eventTile > .eventView::before {
-    height: 12px;
-    margin: 9px 0;
-    width: 30px;
-  }
-
-  #eventList .eventTile > .eventThumbsUp::before {
-    margin: 7px 0;
-    height: 16px;
-    width: 20px;
   }
 
   #eventList .foot {
