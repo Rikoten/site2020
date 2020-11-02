@@ -585,7 +585,7 @@ body {
 
 /* ページネーションボタン */
 #eventList .foot {
-  margin-top: 80px;
+  margin-top: 30px;
   display: grid;
   grid-template-columns: 20% 60% 20%;
 }
