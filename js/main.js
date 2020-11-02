@@ -19,6 +19,30 @@ const storageAvailable = (type) => {
   }
 }
 
+const languageEvent = () => {
+  const $fieldset = document.querySelector("#sticky-header fieldset");
+  if(storageAvailable('localStorage') && localStorage.getItem("lang")) {
+    if(localStorage.getItem("lang") == "en") document.getElementById("en").checked = true;
+  }
+  
+
+  $fieldset.onchange = function(){
+    const language = document.querySelector("#sticky-header :checked").value;
+
+    if(language == "en") {
+      if (storageAvailable('localStorage')) {
+        localStorage.setItem('lang', "en");
+      }
+    } else {
+      if (storageAvailable('localStorage')) {
+        localStorage.setItem('lang', "ja");
+      }
+    }
+
+    location.reload();
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   function eventLoad() {
     return new Promise (function (resolve, reject) {
@@ -127,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ここからは企画データ表示後の対応が必要！ */
   eventLoad().then(function(EventDataShuffled) {
+    languageEvent();
     /* イベント一覧のホバーアニメーション */
     const eventList = document.getElementById('eventList');
     const eventTile = Array.from( eventList.getElementsByClassName('eventTile') );
