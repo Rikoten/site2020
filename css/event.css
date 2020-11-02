@@ -114,6 +114,7 @@ aside {
 .iframe-changer ul {
   background-color: var(--color-gray);
   height: inherit;
+  text-align: center;
 }
 
 .iframe-changer li {
@@ -127,6 +128,14 @@ aside {
   display: inline-block;
   cursor: pointer;
   transition: .3s;
+}
+
+.youtube-live .iframe-changer li:first-child {
+  margin-left: 80px;
+}
+
+.youtube-live .iframe-changer li:last-child {
+  margin-right: 80px;
 }
 
 .iframe-changer li div {

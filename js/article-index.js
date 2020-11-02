@@ -202,15 +202,18 @@ placeData.then((obj) => {
   const $liveIframe = document.querySelectorAll(".youtube-live iframe");
   if($liveIframe) liveEvent();
 
-  /* アンカがあればその位置までスクロール */
-  if(param.anchor) {
-    const target = document.getElementById(param.anchor.substring(1));
-    var elemTop = target.getBoundingClientRect().top + window.pageYOffset - 100;
-    window.scrollTo({
-      top: elemTop,
-      behavior: 'smooth'
-    });
-  }
+  setTimeout(() => {
+    /* アンカがあればその位置までスクロール */
+    if(param.anchor) {
+      const target = document.getElementById(param.anchor.substring(1));console.log(target.getBoundingClientRect());
+      var elemTop = target.getBoundingClientRect().top + window.pageYOffset - 100;
+      window.scrollTo({
+        top: elemTop,
+        behavior: 'smooth'
+      });
+    }
+  }, 100);
+  
 });
 
 
@@ -572,12 +575,16 @@ const morebuttonEvent = (data) => {
 }
 
 const languageEvent = () => {
-  const $select = document.querySelector("#sticky-header select");
+  const $fieldset = document.querySelector("#sticky-header fieldset");
+  if(storageAvailable('localStorage') && localStorage.getItem("lang")) {
+    if(localStorage.getItem("lang") == "en") document.getElementById("en").checked = true;
+  }
+  
 
-  $select.onchange = function(){
-    const language = this.value;
+  $fieldset.onchange = function(){
+    const language = document.querySelector("#sticky-header :checked").value;
 
-    if(language == "english") {
+    if(language == "en") {
       if (storageAvailable('localStorage')) {
         localStorage.setItem('lang', "en");
       }
