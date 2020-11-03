@@ -37,7 +37,7 @@ const languageEvent = () => {
       document.querySelector("#about > div:nth-child(1) > div:nth-child(2)").innerHTML = "Waseda University<br>Faculties of Science and Engineering<br>School Festival";
       document.querySelector("#about > div:nth-child(2) > div:nth-child(1)").innerText = "Theme";
       document.querySelector("#about > div:nth-child(2) > div:nth-child(2) div").innerText = "A world surrounded by magic";
-      document.querySelector("#about > div:nth-child(3) > div:nth-child(1)").innerText = "Message from the Representative";
+      document.querySelector("#about > div:nth-child(3) > div:nth-child(1)").innerText = "Message";
       document.querySelector("#about > div:nth-child(3) > div:nth-child(2)").innerHTML = "Representative of Rikoten Executive committee<br>Shuntaro Funasaka";
       document.querySelector("#support h3").innerText = "Sponsorship";
       let queryList2 = document.querySelectorAll("div.eventChild.student div");
