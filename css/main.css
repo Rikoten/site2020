@@ -1094,6 +1094,55 @@ a.detailButton:hover::before {
     background-color: #A3D4DC;
   }*/
 
+  #eventTypeTab {
+    border: none;
+    display: block;
+    text-align: center;
+    grid-column: 1 / -1;
+  }
+
+  #eventTypeTab > a {
+    border: none!important;
+    padding: 0;
+    margin: 0 10px;
+    display: inline-block;
+  }
+
+  #eventTypeTab > a.active {
+    background: transparent;
+  }
+
+  #eventTypeTab > a.active {
+    background-color: #A3D4DC;
+    color: #121F4A;
+  }
+
+  #eventTypeTab > a {
+    position: relative;
+    height: 30px;
+    width: 100px;
+    border-radius: 15px;
+    border: none;
+    background-color: #A1A8BC;
+    color: #121F4A;
+  }
+
+  #eventTypeTab > a > div:nth-child(1) {
+    display: none;
+  }
+
+  #eventTypeTab > a > div:nth-child(2) {
+    position: absolute;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 30px;
+    width: 100%;
+    height: 30px;
+    top: 0;
+    left: 0;
+    text-align: center;
+  }
+
   #eventList .eventListPage {
     display: block;
   }
