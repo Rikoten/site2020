@@ -1349,6 +1349,11 @@ a.detailButton:hover::before {
   #about > div.about-tile > div:nth-child(2) {
     font-size: 12px;
   }
+  #eventTypeTab > a {
+    position: relative;
+    width: 90px;
+    margin: 0 5px;
+  }
 }
 
 .supplementary-info {
