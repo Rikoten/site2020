@@ -700,6 +700,10 @@ body {
   grid-template-columns: 12.5% 25% 25% 25% 12.5%;
 }
 
+#about-mb {
+  display: none;
+}
+
 /*#about > div.about-bg {
   grid-column: 2 / 4;
   grid-row: 1 / -2;
@@ -754,13 +758,13 @@ body {
   border-left: #FFF solid 2px;
 }
 
-#about > div.about-tile > div:nth-child(1) {
+#about > div.about-tile > div:nth-child(1), #about-mb > div.about-tile > a > div:nth-child(1) {
   grid-row: 2;
   color: #A3D4DC;
   font-size: 30px;
 }
 
-#about > div.about-tile > div:nth-child(2) {
+#about > div.about-tile > div:nth-child(2), #about-mb > div.about-tile > a > div:nth-child(2) {
   grid-row: 4;
   color: #FFF;
   font-size: 18px;
@@ -1262,60 +1266,72 @@ a.detailButton:hover::before {
   }
 
   #about {
+    display: none;
+  }
+
+  #about-mb {
+    display: grid;
     grid-template-rows: auto auto auto 40px;
     grid-template-columns: 100%;
   }
 
-  #about > div.about-tile {
+  #about-mb > div.about-tile {
     grid-column: 1!important;
     background: linear-gradient(to right, rgba(36, 61, 125, 1), rgba(36, 61, 125, 0))!important;
     border: none!important;
     margin: 10px 0;
     height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
   }
 
-  #about > div.about-tile::before, #about > div.about-tile::after {
+  #about-mb > div.about-tile > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #about-mb > div.about-tile::before, #about-mb > div.about-tile::after {
     box-shadow: none!important;
   }
 
-  #about > div.about-tile:nth-child(1) {
+  #about-mb > div.about-tile:nth-child(1) {
     grid-row: 1;
   }
 
-  #about > div.about-tile:nth-child(2) {
+  #about-mb > div.about-tile:nth-child(2) {
     grid-row: 2;
   }
 
-  #about > div.about-tile:nth-child(3) {
+  #about-mb > div.about-tile:nth-child(3) {
     grid-row: 3;
   }
 
-  #about > div.about-tile > div:nth-child(3) {
+  #about-mb > div.about-tile > a > div:nth-child(3) {
     display: none;
   }
   /* 正直ここら辺ゴミ、グリッドで書き直すか？ */
-  #about > div.about-tile > div:nth-child(1) {
+  #about-mb > div.about-tile > a > div:nth-child(1) {
     max-width: 150px;
     width: 40%;
     font-size: 22px;
   }
 
-  #about > div.about-tile > div:nth-child(2) {
+  #about-mb > div.about-tile > a > div:nth-child(2) {
     max-width: 280px;
     width: 60%;
     font-size: 14px;
   }
 
-  #about > div.about-tile > div:nth-child(2) > img {
+  #about-mb > div.about-tile > a > div:nth-child(2) > img {
     height: 30px;
     width: auto;
   }
 
-  #about > div.about-tile:nth-child(1)::after, #about > div.about-tile:nth-child(2)::after, #about > div.about-tile:nth-child(3)::after {
+  #about-mb > div.about-tile:nth-child(1)::after, #about-mb > div.about-tile:nth-child(2)::after, #about-mb > div.about-tile:nth-child(3)::after {
     position: absolute;
     display: inline-block;
     right: 15px;
@@ -1346,7 +1362,7 @@ a.detailButton:hover::before {
 }
 
 @media screen and (max-width: 340px) {
-  #about > div.about-tile > div:nth-child(2) {
+  #about-mb > div.about-tile > a > div:nth-child(2) {
     font-size: 12px;
   }
   #eventTypeTab > a {
