@@ -1,5 +1,6 @@
 const param = {};
 const ShuffledID = [];
+let language = "ja";
 
 /* ボトムナビゲーション */
 
@@ -79,7 +80,7 @@ const placeCommonParts = new Promise ((resolve, reject) => {
       let int = restxt.getElementsByTagName("header")[0],
           int2 = restxt.getElementsByTagName("nav")[0];
       box.outerHTML = int.outerHTML;
-      box2.outerHTML = int2.outerHTML;
+      //box2.outerHTML = int2.outerHTML;
     }
   }
 
@@ -94,12 +95,11 @@ const getJSON = placeCommonParts.then(() => {
     let xhr = new XMLHttpRequest(),
         method = "GET",
         url = "/data/eventData.json";
-    let lang = "ja";
 
     if(storageAvailable('localStorage')) {
-      if(localStorage.getItem("lang")) lang = localStorage.getItem("lang");
+      if(localStorage.getItem("lang")) language = localStorage.getItem("lang");
     }
-    if(lang == "en") url = "/data/eventData_en.json";
+    if(language == "en") url = "/data/eventData_en.json";
 
     xhr.responseType = "json";
     xhr.open(method, url, true);
@@ -143,7 +143,7 @@ const placeData = getJSON.then((obj) => {
   $barSpan.innerText = eventData["eventName"];
   
   if(eventData["age"] == "child") $info.insertAdjacentHTML("afterbegin", "<span class = 'target'>子ども向け</span>");
-  else if(eventData["age"] == "student") $info.insertAdjacentHTML("afterbegin", "<span class = 'target'>高校生向け</span>");
+  else if(eventData["age"] == "student") $info.insertAdjacentHTML("afterbegin", "<span class = 'target'>受験生向け</span>");
   else $info.firstElementChild.classList.add("first-span");
 
   /* データがあればHTMLを生成し挿入 */
@@ -243,13 +243,16 @@ const placeLive = (liveData) => {
     if(data.timestampStart < time) {
       Class = "done";
       text = "配信済み";
+      if(language == "en") text = "Streamed live";
     } else if(data.timestampStart >= time && data.timestampEnd <= time) {
       Class = "on-air active";
       text = "配信中";
+      if(language == "en") text = "Live";
       flg = false;
     } else {
       Class = "scheduled";
       text = "配信予定";
+      if(language == "en") text = "Scheduled";
       if(flg) {
         Class += " active";
         flg = false;
@@ -258,9 +261,12 @@ const placeLive = (liveData) => {
 
     /* 全て配信済みなら最後の配信を表示させる */
     if(data == liveData[liveData.length - 1] && flg) Class += " active";
+    let day = "";
+    if(language == "ja") day = `${data.day}<span>日</span>`;
+    else day = `${data.day}`;
 
     iframe.push(`<iframe src="https://www.youtube.com/embed/${data.youtubeID}?enablejsapi=1" id = "iframe-${data.youtubeID}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
-    li.push(`<li class = "${Class}" id = "${data.youtubeID}"><div>${text}</div><div>${data.day}<span>日</span>${data.start.slice(0, 3)}<span>${data.start.slice(3)}</span> ~ ${data.end.slice(0, 3)}<span>${data.end.slice(3)}</span></div></li>`)
+    li.push(`<li class = "${Class}" id = "${data.youtubeID}"><div>${text}</div><div>${day}<span>日</span>${data.start.slice(0, 3)}<span>${data.start.slice(3)}</span> ~ ${data.end.slice(0, 3)}<span>${data.end.slice(3)}</span></div></li>`)
   }
 
   $main.insertAdjacentHTML("beforebegin",
@@ -591,6 +597,19 @@ const languageEvent = () => {
       const text = ["tweet", "share", "send", "link"];
       for(let i = 0; i < $share.length; i++) {
         $share[i].innerText = text[i];
+      }
+
+      const $zoom = document.querySelector("section.zoom h2");
+      const $quiz = document.querySelector("section.quiz h2");
+      const $file = document.querySelector("section.file h2");
+      if($zoom) $zoom.innerText = "Zoom";
+      if($quiz) $quiz.innerText = "Quiz";
+      if($file) $file.innerText = "File";
+
+      const $target = document.querySelector(".supplementary-info .target");
+      if($target) {
+        if($target.innerText == "子ども向け") $target.innerText = "for kids";
+        else $target.innerText = "for exam candidates";
       }
     }
   }
