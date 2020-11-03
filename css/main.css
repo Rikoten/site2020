@@ -421,9 +421,9 @@ body {
   grid-template-rows: 15px 30px 0px 0px 15px;
   grid-template-columns: 20% 30px calc(30% - 30px) calc(7.5% - 15px) calc(7.5% - 15px) 30px 30px calc(7.5% - 30px) calc(7.5% - 30px) 30px 20%;
   grid-template-areas: ". . . . . . . . . . ."
-  ". . title time child . . view thumb . ."
-  ". . . . . . . . . . ."
-  ". . desc desc desc . . group group . ."
+  ". . title time child border . view thumb . ."
+  ". . . . . border . . . . ."
+  ". . desc desc desc border . group group . ."
   ". . . . . . . . . . .";
   transition: 250ms;
   font-size: 16px;
@@ -441,6 +441,16 @@ body {
   background: #243D7D;
   z-index: 20;
   opacity: 1;
+}
+
+#eventList .eventTile .border {
+  display: none;
+}
+
+#eventList .eventTile.active .border {
+  display: block;
+  grid-area: border;
+  border-right: 2px dashed #A3D4DC;
 }
 
 /*#eventList .eventTile.active::before {
