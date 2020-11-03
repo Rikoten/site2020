@@ -376,6 +376,7 @@ const placeZoom = (data) => {
 }
 
 const returnZoomURL = (data, num) => {
+  if(!data) return "";
   if(data.length == 1) return data[0].url;
   else return data[num].url;
 }
