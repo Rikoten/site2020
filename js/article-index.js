@@ -263,10 +263,10 @@ const placeLive = (liveData) => {
     if(data == liveData[liveData.length - 1] && flg) Class += " active";
     let day = "";
     if(language == "ja") day = `${data.day}<span>日</span>`;
-    else day = `${data.day}`;
+    else day = `${data.day}, `;
 
     iframe.push(`<iframe src="https://www.youtube.com/embed/${data.youtubeID}?enablejsapi=1" id = "iframe-${data.youtubeID}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`);
-    li.push(`<li class = "${Class}" id = "${data.youtubeID}"><div>${text}</div><div>${day}<span>日</span>${data.start.slice(0, 3)}<span>${data.start.slice(3)}</span> ~ ${data.end.slice(0, 3)}<span>${data.end.slice(3)}</span></div></li>`)
+    li.push(`<li class = "${Class}" id = "${data.youtubeID}"><div>${text}</div><div>${day}${data.start.slice(0, 3)}<span>${data.start.slice(3)}</span> ~ ${data.end.slice(0, 3)}<span>${data.end.slice(3)}</span></div></li>`)
   }
 
   $main.insertAdjacentHTML("beforebegin",
