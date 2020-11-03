@@ -866,7 +866,7 @@ article .bar button.pin::before {
 article .bar button.thumbs-up::before {
   width: 30px;
   height: 30px;
-  background: url("/img/iconSet.svg") no-repeat;
+  background: url("/img/iconset.svg") no-repeat;
   background-position: -60px -94px;
   background-size: 180px 120px;
   vertical-align: middle;
@@ -876,7 +876,7 @@ article .bar button.thumbs-up::before {
 article .bar button.pin::before {
   width: 30px;
   height: 30px;
-  background: url("/img/iconSet.svg") no-repeat;
+  background: url("/img/iconset.svg") no-repeat;
   background-position: -30px -92px;
   background-size: 180px 120px;
   vertical-align: middle;
