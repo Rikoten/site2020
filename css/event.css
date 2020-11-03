@@ -403,6 +403,11 @@ ul.pagination li.current {
   max-width: 550px;
   margin: 0;
   filter: drop-shadow(0px 2px 3px rgba(0,0,0,.3));
+  /* 3行以上は省略 */
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
 }
 
 #index {
@@ -1300,6 +1305,10 @@ article .share i {
   .group-desc .group-link {
     padding: 0 40px;
   }
+
+  aside p {
+    margin: 20px 40px 15px;
+  }
 }
 
 /* 記事幅960px + 左右余白40px */
@@ -1358,6 +1367,10 @@ article .share i {
 
   #title-header, main, article, nav {
     margin-bottom: 30px;
+  }
+
+  #title-header .title-wrapper {
+    margin-top: 80px;
   }
 
   h2 {
