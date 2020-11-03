@@ -189,7 +189,7 @@ placeData.then((obj) => {
     }
   }
 
-  liveInit();
+  if(document.querySelector(".youtube-live")) liveInit();
 
   barEvent();
   quizEvent();
@@ -577,7 +577,22 @@ const morebuttonEvent = (data) => {
 const languageEvent = () => {
   const $fieldset = document.querySelector("#sticky-header fieldset");
   if(storageAvailable('localStorage') && localStorage.getItem("lang")) {
-    if(localStorage.getItem("lang") == "en") document.getElementById("en").checked = true;
+    if(localStorage.getItem("lang") == "en") {
+      document.getElementById("en").checked = true;
+
+      document.querySelector(".bar .thumbs-up").innerText = "Like!";
+      document.querySelector(".bar .pin").innerText = "Add to Favourites";
+      document.querySelector(".share p").innerText = "Share!";
+      document.querySelector(".group-desc h2").innerText = "Group Introduction";
+      document.querySelector("nav h4").innerText = "Index";
+      document.querySelector("aside h2").innerText = "Other Events";
+      document.querySelector("aside button").innerText = "more";
+      const $share = document.querySelectorAll(".share span");
+      const text = ["tweet", "share", "send", "link"];
+      for(let i = 0; i < $share.length; i++) {
+        $share[i].innerText = text[i];
+      }
+    }
   }
   
 
