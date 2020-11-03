@@ -1292,6 +1292,7 @@ a.detailButton:hover::before {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
   }
 
   #about-mb > div.about-tile::before, #about-mb > div.about-tile::after {
