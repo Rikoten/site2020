@@ -314,13 +314,13 @@ body {
   grid-template-rows: 100px 80px 110px 30px auto;
 }
 
-#eventTypeTab {
+/*#eventTypeTab {
   grid-row: 3;
   grid-column: 2;
   display: grid;
-  /*height: 100%;*/
+  
   grid-template-columns: 16% 16% 16% 52%;
-  /*grid-template-columns: 20% 20% 20% 40%;*/
+  
   border-bottom: 2px #A1A8BC solid;
 }
 
@@ -340,7 +340,7 @@ body {
   display: block;
   text-decoration: none;
   position: relative;
-  border-bottom: 9px solid transparent; /* 微妙 */
+  border-bottom: 9px solid transparent;
   font-weight: bold;
   color: #A1A8BC;
   padding-left: 30px;
@@ -364,6 +364,45 @@ body {
 
 #eventTypeTab > a > div > div:nth-child(2) {
   font-size: 16px;
+}*/
+
+#eventTypeTab {
+  grid-row: 3;
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+}
+
+#eventTypeTab a {
+  width: 150px;
+  height: 80px;
+  border-radius: 10px;
+  background-color: #12204D;
+  margin: 0 40px;
+  color: #9FA4B6;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#eventTypeTab a.active {
+  background-color: #243D7D;
+  color: #A3D4DC;
+}
+
+#eventTypeTab a div:nth-child(1) {
+  font-size: 26px;
+  line-height: 34px;
+}
+
+#eventTypeTab a div:nth-child(2) {
+  font-size: 16px;
+  line-height: 24px;
 }
 
 #eventList {
@@ -1007,7 +1046,7 @@ a.detailButton:hover::before {
     height: 70px;
   }
 
-  #eventTypeTab {
+  /*#eventTypeTab {
     border: none;
     display: block;
     text-align: center;
@@ -1053,7 +1092,7 @@ a.detailButton:hover::before {
 
   #eventTypeTab > a.active > div {
     background-color: #A3D4DC;
-  }
+  }*/
 
   #eventList .eventListPage {
     display: block;
