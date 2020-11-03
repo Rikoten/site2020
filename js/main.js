@@ -74,7 +74,8 @@ const placeCommonParts = new Promise ((resolve, reject) => {
       method = "GET",
       url = "/common.html";
   let box = document.getElementById("common-header"),
-      box2 = document.getElementById("bottom-nav");
+      box2 = document.getElementById("bottom-nav"),
+      box3 = document.getElementsByTagName("footer")[0];
 
   xhr.responseType = "document";
   xhr.open(method, url, true);
@@ -82,9 +83,11 @@ const placeCommonParts = new Promise ((resolve, reject) => {
     if(xhr.readyState === 4 && xhr.status === 200) {
       let restxt = xhr.responseXML;
       let int = restxt.getElementsByTagName("header")[0],
-          int2 = restxt.getElementsByTagName("nav")[0];
+          int2 = restxt.getElementsByTagName("nav")[0],
+          int3 = restxt.getElementsByTagName("footer")[0];
       box.outerHTML = int.outerHTML;
       //box2.outerHTML = int2.outerHTML;
+      box3.outerHTML = int3.outerHTML;
     }
   }
 
