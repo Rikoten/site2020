@@ -31,7 +31,7 @@ const languageEvent = () => {
       for (let i = 0; i < queryList.length; i++) {
         queryList[i].innerText = "Time table";
       }
-      document.querySelectorAll(".foot div.pagination-container > a").innerText = "Time table";
+      document.querySelectorAll(".foot div.pagination-container > a").innerHTML = "Time table<img src = '/img/timeTableArrow.svg'>";
       document.querySelector("#timetable-mb").innerText = "Time table";
       document.querySelector("#about > div:nth-child(1) > div:nth-child(1)").innerText = "About Rikoten";
       document.querySelector("#about > div:nth-child(1) > div:nth-child(2)").innerHTML = "Waseda University<br>Faculties of Science and Engineering<br>School Festival";
