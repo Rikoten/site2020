@@ -412,7 +412,7 @@ ul.pagination li.current {
 
 #index {
   font-weight: bold;
-  padding: 30px 0;
+  padding: 20px 0 30px;
   position: sticky;
   top: 80px;
   background-color: #FFF;
@@ -436,7 +436,7 @@ ul.pagination li.current {
   font-size: var(--font-size-normal);
   font-weight: bold;
   font-size: 18px;
-  margin: 0 0 30px;
+  margin: 0 0 20px;
   filter: drop-shadow(0px 2px 3px rgba(0,0,0,.15));
 }
 
@@ -985,16 +985,6 @@ article section.zoom a.day2 {
   border-left: 2px solid #FF6F6F;
 }
 
-/*
-article a.link-zoom-web-article {
-  background: var(--color-gray);
-  padding: 5px 15px;
-  border-radius: 3px;
-  transition: 0.4s;
-  display: inline-block;
-}
-*/
-
 article .link-zoom-container {
   margin-top: 0;
 }
@@ -1439,7 +1429,7 @@ article .link-zoom-container + .link-zoom-container {
 
   article .file .file-wrapper {
     width: calc(100% - 40px);
-    max-width: calc(100% - 40px);
+    max-width: 370px;
   }
 
   article .quiz ul {
