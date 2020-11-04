@@ -13,4 +13,6 @@ window.onload = () => {
     }
     startPos = currentPos;
   });
+
+  
 }

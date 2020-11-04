@@ -49,6 +49,8 @@
   background: #FFF;
   padding: 5px 20px 5px;
   position: relative;
+  font-size: 14px;
+  height: 30px;
 }
 
 #sticky-header fieldset::before {
@@ -109,43 +111,6 @@
   pointer-events: none;
 }
 
-/*
-#sticky-header .header-menu-btn {
-  margin: 0 0 10px 20px;
-  height: 30px;
-  width: 30px;
-  padding: 5px;
-  cursor: pointer;
-  pointer-events: all;
-}
-
-#sticky-header .line,
-#sticky-header .line::before,
-#sticky-header .line::after {
-  display: inline-block;
-  width: 30px;
-  height: 3px;
-  background: #454E53;
-  transition: 0.3s;
-}
-
-#sticky-header .line {
-  position: relative;
-  pointer-events: all;
-}
-
-#sticky-header .line:before {
-  content: "";
-  position: absolute;
-  transform: translateY(-12px) rotate(0deg);
-}
-
-#sticky-header .line:after {
-  content: "";
-  position: absolute;
-  transform: translateY(12px) rotate(0deg);
-}
-*/
 @media screen and (max-width: 700px) {
   #sticky-header {
     position: fixed;

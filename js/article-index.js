@@ -173,6 +173,7 @@ const placeData = getJSON.then((obj) => {
   $groupDesc.insertAdjacentHTML("beforeend", html);
 
   placeOtherEvent(obj);
+  placeOGP(eventData);
   
   return new Promise((resolve, reject) => {
     resolve(obj);
@@ -436,6 +437,22 @@ const placeOtherEvent = (data) => {
   $more.insertAdjacentHTML("beforebegin", generateEventTile(data));
 }
 
+const placeOGP = (data) => {
+  const $head = document.getElementsByTagName("head")[0];
+
+  const text = `
+    <meta property = "og:url" content = "${generateURL(param.id, param.page)}" />
+    <meta property = "og:type" content = "article" />
+    <meta property = "og:title" content = "${data.eventName}" />
+    <meta property = "og:description" content = "${data.pamphDesc.replace(/\n/g, "")}" />
+    <meta property = "og:site_name" content = "早稲田理工の学園祭 第67回理工展" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@rikoten_waseda" />
+  `
+
+  $head.insertAdjacentHTML("beforeend", text);
+}
+
 const generateShuffledID = (data) => {
   let ID = [];
   for(i = 0; i < data.length; i++) {
@@ -660,7 +677,7 @@ const activateIndex = (elem) => {
   const newActiveIndex = document.querySelector(`a[href='${generateURL(param.id, param.page, elem.id)}']`);
 
   if($inView) $inView.classList.remove("in-view");
-  newActiveIndex.parentNode.classList.add("in-view");
+  if(newActiveIndex) newActiveIndex.parentNode.classList.add("in-view");
 }
 
 const linkClickEvent = () => {
