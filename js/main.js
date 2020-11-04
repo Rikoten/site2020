@@ -200,9 +200,31 @@ const eventLoad = placeCommonParts.then(() => {
   });
 });
 
+function loadLike(EventDataShuffled) {
+  for (let i = 0; i < EventDataShuffled.length; i++) {
+    let eventId = EventDataShuffled[i]["eventID"];
+    let targetTile = document.getElementById(EventDataShuffled[i]["eventID"]);
+    let likeCounter = targetTile.getElementsByClassName('eventThumbsUp')[0]
+    let viewsCounter = targetTile.getElementsByClassName('eventView')[0]
+  
+    ;(async () => {
+        const likes = await fetch('/api/like').then(res => res.json())
+        const likeCount = (likes[eventId] && likes[eventId].likes) || 0
+  
+        const views = await fetch('/api/views/' + eventId).then(res => res.json())
+        // console.log(views)
+
+  
+        likeCounter.textContent = likeCount
+        viewsCounter.textContent = views.views
+    })()
+  }
+}
+
 /* ここからは企画データ表示後の対応が必要！ */
 eventLoad.then((EventDataShuffled) => {
   languageEvent();
+  loadLike(EventDataShuffled);
   /* イベント一覧のホバーアニメーション */
   const eventList = document.getElementById('eventList');
   const eventTile = Array.from( eventList.getElementsByClassName('eventTile') );
