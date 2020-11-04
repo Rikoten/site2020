@@ -200,6 +200,8 @@ placeData.then((obj) => {
   intersectEvent();
   linkClickEvent();
 
+  copyEvent();
+
   const $liveIframe = document.querySelectorAll(".youtube-live iframe");
   if($liveIframe) liveEvent();
 
@@ -441,13 +443,9 @@ const placeOGP = (data) => {
   const $head = document.getElementsByTagName("head")[0];
 
   const text = `
-    <meta property = "og:url" content = "${generateURL(param.id, param.page)}" />
-    <meta property = "og:type" content = "article" />
+    <meta property = "og:url" content = "https://rikoten.com${generateURL(param.id, param.page)}" />
     <meta property = "og:title" content = "${data.eventName}" />
     <meta property = "og:description" content = "${data.pamphDesc.replace(/\n/g, "")}" />
-    <meta property = "og:site_name" content = "早稲田理工の学園祭 第67回理工展" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@rikoten_waseda" />
   `
 
   $head.insertAdjacentHTML("beforeend", text);
@@ -697,6 +695,23 @@ const linkClickEvent = () => {
       }
     });
   }
+}
+
+const copyEvent = () => {
+  const linkButton = document.querySelector(".share .link-button");
+  const link = "https://rikoten.com" + generateURL(param.id);
+
+  linkButton.addEventListener("click", (e) => {
+    const temp = document.createElement('div');
+    temp.appendChild(document.createElement('pre')).textContent = link;
+    let s = temp.style;
+    s.position = 'fixed';
+    s.left = '-100%';
+    document.body.appendChild(temp);
+    document.getSelection().selectAllChildren(temp);
+    const result = document.execCommand('copy');
+    document.body.removeChild(temp);
+  })
 }
 
 const liveEvent = () => {
