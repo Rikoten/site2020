@@ -938,16 +938,20 @@ article section.zoom span:first-child {
   margin-right: 10px;
 }
 
-article section.zoom a {
+article section.zoom a,
+article a.day1,
+article a.day2 {
   background: #FFF;
   padding: 2px 15px;
   border-radius: 3px;
   margin: 10px 20px 0 0;
   transition: 0.4s;
+  display: inline-block;
 }
 
 article section.zoom a::after,
-article a.link-zoom-web-article::after {
+article a.day1::after,
+article a.day2::after {
   content: "";
   background: url("/img/iconset.svg");
   background-position: 0px -90px;
@@ -959,24 +963,40 @@ article a.link-zoom-web-article::after {
   margin-left: 10px;
 }
 
-article section.zoom a:hover {
+article section.zoom a:hover,
+article a.day1:hover,
+article a.day2:hover {
   background: var(--color-lightgray);
 }
 
+
+article a.day1,
+article a.day2 {
+  background: var(--color-gray);
+}
+
+article a.day1,
 article section.zoom a.day1 {
   border-left: 2px solid #6FB7FF;
 }
 
+article a.day2,
 article section.zoom a.day2 {
   border-left: 2px solid #FF6F6F;
 }
 
+/*
 article a.link-zoom-web-article {
   background: var(--color-gray);
   padding: 5px 15px;
   border-radius: 3px;
   transition: 0.4s;
   display: inline-block;
+}
+*/
+
+article .link-zoom-container {
+  margin-top: 0;
 }
 
 article a.link-zoom-web-article:hover {
