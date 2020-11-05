@@ -1,3 +1,18 @@
+#logo {
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+#logo img.icon {
+  height: 100px;
+  width: calc(100px/490*662);
+}
+
+#logo img.text {
+  height: 80px;
+  margin: 0 auto 0 40px;
+}
+
 @keyframes fade-in {
   0% {
     display: none;
