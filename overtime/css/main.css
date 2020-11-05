@@ -869,7 +869,7 @@ a.detailButton:hover::before {
   grid-area: appImg;
 }
 
-#other #collaboration {
+/*#other #collaboration {
   grid-area: collaboration;
   display: grid;
   grid-template-columns: 20% 40% 20% 20%;
@@ -882,6 +882,16 @@ a.detailButton:hover::before {
 
 #other #collaboration #collaboImg {
   grid-area: collaboImg;
+}*/
+
+#other #collaboration {
+  grid-area: collaboration;
+  padding: 0 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
 }
 
 #other a.detailButton {
@@ -1370,6 +1380,16 @@ a.detailButton:hover::before {
     height: 32px;
     z-index: 100;
     transform: translateY(-50%);
+  }
+
+  #other #collaboration {
+    grid-area: collaboration;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
   }
 
   #goldBanner, #silverBanner {
