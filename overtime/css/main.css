@@ -1515,17 +1515,6 @@ a.detailButton:hover::before {
   margin-bottom: 50px;
 }
 
-.app-band div:nth-child(2) a {
-  display: inline-block;
-  width: 130px;
-  height: 50px;
-  line-height: 46px;
-  transform: rotate(0.03deg);
-  text-align: center;
-  text-decoration: none;
-  border: 2px solid currentColor;
-}
-
 .app-band div:nth-child(3) img {
   width: 300px;
 }
@@ -1612,10 +1601,6 @@ a.detailButton:hover::before {
       line-height: 45px;
       font-weight: bold;
       margin-bottom: 45px;
-  }
-
-  .app-band div:nth-child(2) a {
-      width: 130px;
   }
 
 }
