@@ -1185,6 +1185,16 @@ article .quiz ul.open::before {
   transform: translateX(-50%) scaleY(0.7);
 }
 
+article section.zoom,
+article section.quiz,
+article section.file {
+  border-top: 1px solid #E4E4E4;
+}
+
+article section.quiz + section.file {
+  border-top: none;
+}
+
 article a.other-link {
   display: inline;
   word-break: break-all;

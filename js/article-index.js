@@ -2,46 +2,6 @@ const param = {};
 const ShuffledID = [];
 let language = "ja";
 
-/* ボトムナビゲーション */
-
-window.onload = () => {
-  /*
-  const foldButton = document.querySelector("#bottom-nav .fold-button");
-
-  foldButton.addEventListener('click', () => {
-    const bottomNav = document.getElementById("bottom-nav");
-    bottomNav.classList.toggle("close");
-  });
-  */
-
-  const navButton = document.querySelectorAll("#bottom-nav li");
-  const boardWrapper = document.querySelector("#bottom-nav .board-wrapper");
-
-  for(let i = 0; i < navButton.length; i++) {
-    navButton[i].addEventListener('click', ()=> {
-      const left = navButton[i].getBoundingClientRect().left;
-      const activeBar = document.querySelector(".active-bar");
-
-      boardWrapper.style.transform = `translateX(-${100 * i}vw)`;
-      if(boardWrapper.classList.contains("open")) {
-        let animate = activeBar.animate([
-          { left: `${left}px` }
-        ], {
-          duration: 200,
-          easing: "ease-out"
-        });
-        animate.addEventListener('finish', () => {
-          activeBar.style.left = `${left}px`;
-        });
-      } else {
-        boardWrapper.classList.add("open");
-        activeBar.style.left = `${left}px`;
-        activeBar.style.display = "block";
-      }
-    });
-  }
-}
-
 /********** ローカルストレージが使用可能か判定 **********/
 
 const storageAvailable = (type) => {
@@ -174,6 +134,7 @@ const placeData = getJSON.then((obj) => {
 
   placeOtherEvent(obj);
   placeOGP(eventData);
+  //placeShareLink();
   
   return new Promise((resolve, reject) => {
     resolve(obj);
@@ -449,6 +410,14 @@ const placeOGP = (data) => {
   `
 
   $head.insertAdjacentHTML("beforeend", text);
+}
+
+const placeShareLink = () => {
+  const $a = document.querySelectorAll(".share a");
+
+  $a[0].href = `https://twiter.com/share?url=https://rikoten.com${generateURL(param.id)}`;
+  $a[1].href = `http://www.facebook.com/share.php?u=https://rikoten.com${generateURL(param.id)}`;
+  $a[2].href = `https://social-plugins.line.me/lineit/share?url=http://rikoten.com${generateURL(param.id)}`;
 }
 
 const generateShuffledID = (data) => {

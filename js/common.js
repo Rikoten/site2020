@@ -7,9 +7,9 @@ window.onload = () => {
     let currentPos = scrollTop;
 
     if (currentPos > startPos) {
-      $fieldset.classList.add("fold");
+      if($fieldset) $fieldset.classList.add("fold");
     } else {
-      $fieldset.classList.remove("fold");
+      if($fieldset) $fieldset.classList.remove("fold");
     }
     startPos = currentPos;
   });
