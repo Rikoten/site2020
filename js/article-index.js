@@ -1,6 +1,7 @@
 const param = {};
 const ShuffledID = [];
-let language = "ja";
+let language = "";
+const SwitchToJaData = /D-04|D-18|E-0[7-9]|E-1[0-7]/;
 
 /********** ローカルストレージが使用可能か判定 **********/
 
@@ -23,24 +24,21 @@ const storageAvailable = (type) => {
   }
 }
 
-/********** 指定位置にcommon.htmlからheaderおよびbottom-navを読み込む **********/
+/********** 指定位置にcommon.htmlからheaderを読み込む **********/
 
 const placeCommonParts = new Promise ((resolve, reject) => {
   let xhr = new XMLHttpRequest(),
       method = "GET",
       url = "/common.html";
-  let box = document.getElementById("common-header"),
-      box2 = document.getElementById("bottom-nav");
+  let box = document.getElementById("common-header");
 
   xhr.responseType = "document";
   xhr.open(method, url, true);
   xhr.onreadystatechange = () => {
     if(xhr.readyState === 4 && xhr.status === 200) {
       let restxt = xhr.responseXML;
-      let int = restxt.getElementsByTagName("header")[0],
-          int2 = restxt.getElementsByTagName("nav")[0];
+      let int = restxt.getElementsByTagName("header")[0];
       box.outerHTML = int.outerHTML;
-      //box2.outerHTML = int2.outerHTML;
     }
   }
 
@@ -51,15 +49,28 @@ const placeCommonParts = new Promise ((resolve, reject) => {
 /********** JSON読み込み **********/
 
 const getJSON = placeCommonParts.then(() => {
+  /* URLパラメータを連想配列に格納 */
+  const text = location.search.slice(1).split(/[&|=]/);
+  for(let i = 0; i < text.length; i = i + 2) {
+    param[text[i]] = text[i + 1];
+  }
+  if(location.hash) param.anchor = location.hash;
+
+  /* 表示すべき企画データを抽出 */
+  if(!param.page) param.page = 1;
+
   return new Promise ((resolve) => {
     let xhr = new XMLHttpRequest(),
         method = "GET",
         url = "/data/eventData.json";
 
-    if(storageAvailable('localStorage')) {
-      if(localStorage.getItem("lang")) language = localStorage.getItem("lang");
-    }
+    if(storageAvailable('localStorage')) if(localStorage.getItem("lang")) language = localStorage.getItem("lang");
+    else language = "ja"
     if(language == "en") url = "/data/eventData_en.json";
+    if(param.id.match(SwitchToJaData)) {
+      url = "/data/eventData.json";
+      //showModal();
+    }
 
     xhr.responseType = "json";
     xhr.open(method, url, true);
@@ -75,16 +86,6 @@ const getJSON = placeCommonParts.then(() => {
 /********** 読み込んだJSONデータをセット **********/
 
 const placeData = getJSON.then((obj) => {
-  /* URLパラメータを連想配列に格納 */
-  const text = location.search.slice(1).split(/[&|=]/);
-  for(let i = 0; i < text.length; i = i + 2) {
-    param[text[i]] = text[i + 1];
-  }
-  if(location.hash) param["anchor"] = location.hash;
-
-  /* 表示すべき企画データを抽出 */
-  if(!param["page"]) param["page"] = 1;
-
   let eventData = null;
   for(const data of obj) {
     if(param["id"] == data["eventID"]) {
