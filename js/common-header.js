@@ -1,6 +1,8 @@
 (() => {
     const pinToggleButton = document.getElementById('toggle-pin')
+    const liveToggleButton = document.getElementById('toggle-live')
     const pinListElement = document.getElementById('pin-list')
+    const liveListElement = document.getElementById('streaming-list')
 
     let data =[]
 
@@ -49,6 +51,104 @@
                 localStorage.setItem('pin', JSON.stringify(preveousPinned))
                 pinToggleEventListener()
             })
+        }
+    })
+
+    let streams = []
+    /*
+        type liveStreamingEvent = {
+            date: 6 | 7 | 8
+            platform: 'youtube' | 'zoom'
+            eventId: string
+            startAt: unixTime
+            endAt: unixTime
+        }
+    */
+    fetchData().then(res => {
+        for (const item of res) {
+            if ('youtubeLive' in item) {
+                for (const live of item.youtubeLive) {
+                    const liveEvent = {
+                        date: Number.parseInt(live.day),
+                        platform: 'youtube',
+                        eventId: item.eventID,
+                        startAt: Number.parseInt(live.timestampStart) * 1000,
+                        endAt: Number.parseInt(live.timestampEnd) * 1000
+                    }
+                    streams.push(liveEvent)
+                }
+            }
+            if ('zoomTimestamp' in item && 'day1' in item.zoomTimestamp) {
+                for (const [ startAt, endAt ] of item.zoomTimestamp.day1) {
+                    const liveEvent = {
+                        date: 7,
+                        platform: 'zoom',
+                        eventId: item.eventID,
+                        startAt: Number.parseInt(startAt) * 1000,
+                        endAt: Number.parseInt(endAt) * 1000
+                    }
+                    streams.push(liveEvent)
+                }
+            }
+            if ('zoomTimestamp' in item && 'day2' in item.zoomTimestamp) {
+                for (const [ startAt, endAt ] of item.zoomTimestamp.day2) {
+                    const liveEvent = {
+                        date: 8,
+                        platform: 'zoom',
+                        eventId: item.eventID,
+                        startAt: Number.parseInt(startAt) * 1000,
+                        endAt: Number.parseInt(endAt) * 1000
+                    }
+                    streams.push(liveEvent)
+                }
+            }
+        }
+        streams.sort((a, b) => a.startAt - b.startAt)
+
+        console.log(streams)
+    })
+
+    function convertUnixtimeToReadableTime(unixTime) {
+        const date = new Date(unixTime)
+        const hour = ('00' + date.getHours()).slice(-2)
+        const minutes = ('00' + date.getMinutes()).slice(-2)
+        return hour + ':' + minutes
+    }
+
+    function streamingItemElement(stream) {
+        const event = data.find(it => it.eventID == stream.eventId)
+
+        const innerHTML =  `
+            <a href='/event/?id=${ stream.eventId } }'>
+                <span class='time'>${ convertUnixtimeToReadableTime(stream.startAt) } ~ ${ convertUnixtimeToReadableTime(stream.endAt) }</span>
+                <img src='${ stream.platform == 'youtube' ? '/img/youtube.svg' : '/img/zoom.svg' }'>
+                <h2 class='title'>${ event.eventName }</h2>
+                <p>${ event.eventDesc && event.eventDesc.length > 100 ? event.eventDesc.slice(0, 100) + '...' : event.eventDesc }</p>
+            </a>
+        `
+        const el = document.createElement('li')
+        el.innerHTML = innerHTML
+        return el
+    }
+
+    liveToggleButton.addEventListener('click', () => {
+        liveListElement.classList.toggle('hidden')
+
+        const time = Date.now()
+        const liveStreams = streams.filter(it => it.startAt <= time && time <= it.endAt)
+
+        const liveStreamsUl = document.querySelector('#streaming-list .live ul')
+        liveStreamsUl.innerHTML = ''
+        for (const liveStream of liveStreams) {
+            liveStreamsUl.appendChild(streamingItemElement(liveStream))
+        }
+
+        const upcomingStreamsUl = document.querySelector('#streaming-list .upcoming ul')
+        upcomingStreamsUl.innerHTML = ''
+        const upcomingStreams = streams.filter(it => time <= it.startAt && new Date(time).getDate() == new Date(it.startAt).getDate()).slice(0, 5)
+        console.log(upcomingStreams)
+        for (const liveStream of upcomingStreams) {
+            upcomingStreamsUl.appendChild(streamingItemElement(liveStream))
         }
     })
 

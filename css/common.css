@@ -148,7 +148,7 @@ div#pin-list {
   box-sizing: border-box;
   display: block;
   position: fixed;
-  top: 45px;
+  top: 60px;
   right: 0;
   background: #F9FAFA;
   color: black;
@@ -226,6 +226,83 @@ div#pin-list.hidden {
   font-size: 2rem;
   border: none;
   background: inherit;
+}
+
+
+div#streaming-list {
+  box-sizing: border-box;
+  display: block;
+  position: fixed;
+  top: 60px;
+  right: 0;
+  background: #F9FAFA;
+  color: #575F65;
+  max-width: 30rem;
+  height: calc(100vh - 45px);
+  overflow-y: auto;
+  transition: transform .1s ease-out;
+}
+
+div#streaming-list.hidden {
+  transform: translateX(100%);
+}
+
+#streaming-list .live > h2 {
+  color: #FF5252;
+  font-size: 1.2rem;
+  padding: .5rem 0;
+  margin: 0;
+  border-bottom: solid 1px black;
+  padding-left: 2rem;
+}
+
+#streaming-list .live > h2 img {
+  line-height: 1.2rem;
+  vertical-align: sub;
+  margin-right: .8rem;
+}
+
+#streaming-list .upcoming > h2 {
+  font-size: 1.2rem;
+  padding: .5rem 0;
+  margin: 0;
+  border-bottom: solid 1px black;
+  padding-left: 2rem;
+}
+
+#streaming-list ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+#streaming-list li {
+  border-bottom: solid 1px black;
+  padding-bottom: 1.5rem;
+  padding: 0 2rem 1.5rem 2rem;
+}
+
+#streaming-list li a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+#streaming-list .time {
+  font-weight: bold;
+}
+
+#streaming-list .title {
+  background: inherit;
+  margin: .5rem 0;
+  padding: 0;
+  font-size: 1.2rem;
+}
+
+#streaming-list p {
+  margin: .5rem 0;
+  line-height: 1.5;
+  font-size: 1rem;
 }
 
 /*****************   bottom-navigation   ****************/
