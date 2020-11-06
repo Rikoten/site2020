@@ -51,19 +51,19 @@ body > main > div > div{
     padding:30px 20px 2px 20px;
     
 }
-h1{
+main h1{
     font-size: 16px;
     padding:0px 0px 15px 0px;
     margin: 0px;
     text-align: center;
 }
-p{
+main p{
     position: auto;
     font-size: 14px;
     margin: 0px;
     padding-bottom: 15px;
 }
-a{
+main a{
     text-decoration: none;
     color: #454E53;
 }
@@ -86,16 +86,16 @@ main > div > div > div:hover{
 img{
     margin-left: auto;
 }
-ul{
+main ul{
     padding-left:0px;
 }
-li{
+main li{
     display:flex;
     height:45px;
     line-height:52px;
     position: relative;
 }
-span{
+main span{
     padding-left: 5px;
     font-size:16px;
 }

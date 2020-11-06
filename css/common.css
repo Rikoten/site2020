@@ -9,6 +9,17 @@
   height: 60px;
   z-index: 10000;
   align-items: center;
+  font-weight: normal;
+  font-family: "Yu Gothic", "游ゴシック", "YuGothic", "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
+}
+
+#sticky-header p,
+#sticky-header h2 {
+  color: #454E53;
+}
+
+#sticky-header h2 {
+  line-height: calc(22px*1.6);
 }
 
 #sticky-header .icon {
@@ -192,6 +203,7 @@ div#pin-list.hidden {
 #pin-list ul {
   list-style: none;
   padding: 0 0 1rem;
+  margin: 0;
 }
 
 #pin-list li {
@@ -261,6 +273,7 @@ div#pin-list.hidden {
   font-size: 2rem;
   border: none;
   background: inherit;
+  font-family: "Yu Gothic", "游ゴシック", "YuGothic", "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
 }
 
 
@@ -312,7 +325,7 @@ div#streaming-list.hidden {
 #streaming-list ul {
   list-style: none;
   padding: 0;
-  margin-bottom: 0;
+  margin: 0 0 1rem;
 }
 
 #streaming-list li {
@@ -376,6 +389,19 @@ div#streaming-list.hidden {
 
 #streaming-list p.shown {
   display: block;
+}
+
+#streaming-list > a {
+  margin: 2rem auto;
+  padding: .6rem 2rem;
+  color: #454E53;
+  background-color: #F2F2F2;
+  font-weight: bold;
+  width: 7rem;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
 /*****************   bottom-navigation   ****************/
@@ -519,6 +545,8 @@ footer {
   background: #121F4A;
   padding: 20px 0 10px;
   font-size: 14px;
+  font-weight: normal;
+  font-family: "Yu Gothic", "游ゴシック", "YuGothic", "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
 }
 
 footer .copyright {

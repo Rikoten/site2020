@@ -10,7 +10,7 @@ body > section {
     color: white;
 }
 
-ul {
+section ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 1fr;
@@ -21,7 +21,7 @@ ul {
     list-style-type: none;
 }
   
-li {
+section li {
     padding: 10px;
     margin-right: 2px;
     margin-bottom: 2px;

@@ -4,7 +4,11 @@ html {
     box-sizing: border-box;
 }
 
-body > * {
+body {
+    margin: 0;
+}
+
+body main > * {
     color: white;
     line-height: 1.8;
     max-width: 800px;
@@ -15,22 +19,26 @@ body > * {
     margin-bottom: 2rem;
 }
 
-.address {
+main {
+    padding: 8rem 0 4rem;
+}
+
+main .address {
     margin-top: 4rem;
 }
 
-h1 {
-    margin: 4rem auto;
+main h1 {
+    margin: 0 auto 4rem;
     border-left: solid 1rem white;
     padding-left: 1rem;
 }
 
 @media screen and (max-width: 500px) {
-    h1 {
+    main h1 {
         font-size: 1.5rem;
     }
 }
 
-a {
+main a {
     color: #9999fa;
 }

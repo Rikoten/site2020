@@ -3,12 +3,11 @@
       background-color: #0D163B;
       margin: 0;
       width: 100%;
-      padding:0px 0px 100px 0px;
       font-family: "Yu Gothic", "游ゴシック", "YuGothic", "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
   }
 
   .back1{
-      background-image: url(back.png);
+      background-image: url(/img/back.png);
       height: 500px;
       width: 100%;
       top: 0px;
@@ -18,7 +17,7 @@
   }
 
   .back2{
-      background-image: url(back.png);
+      background-image: url(/img/back.png);
       height: 500px;
       width: 100%;
       background-size: cover;
@@ -28,7 +27,7 @@
   }
 
   .back3{
-      background-image: url(back.png);
+      background-image: url(/img/back.png);
       height: 500px;
       width: 100%;
       background-size: cover;
@@ -43,7 +42,7 @@
       height: 300px;
       margin: 0px 0px 100px 0px;
       margin-top: 0;
-      background-image: url(back.png);
+      background-image: url(/img/back.png);
       background-size: cover;
   }
 
@@ -202,7 +201,6 @@
   body{
       background-color: #0D163B;
       margin: 0;
-      padding:0px 0px 100px 0px;
   }
 
   .theme{

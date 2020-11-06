@@ -54,19 +54,19 @@ body > main > div > div{
     padding:30px 20px 2px 20px;
     
 }
-h1{
+main h1{
     font-size: 16px;
     padding:0px 0px 15px 0px;
     margin: 0px;
     text-align: center;
 }
-p{
+main p{
     position: auto;
     font-size: 14px;
     margin: 0px;
     padding-bottom: 15px;
 }
-a{
+main a{
     text-decoration: none;
     color: #454E53;
 }
