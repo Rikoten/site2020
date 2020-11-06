@@ -80,9 +80,6 @@ body {
     transition: .4s;
 }
 
-.btn-design:hover {
-    
-}
 
 @media screen and (max-width: 920px){
     .message{
