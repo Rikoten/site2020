@@ -29,7 +29,13 @@
 
 #sticky-header .text {
   height: 40px;
-  margin: 0 auto 0 20px;
+  margin-left: 10px;
+}
+
+#sticky-header .head a {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
 }
 
 #sticky-header select {
@@ -156,7 +162,7 @@
   }
 
   #sticky-header .text {
-    height: 35px;
+    height: 32px;
     margin-left: 5px;
   }
 
@@ -546,6 +552,7 @@ footer {
   padding: 20px 0 10px;
   font-size: 14px;
   font-weight: normal;
+  position: relative;
   font-family: "Yu Gothic", "游ゴシック", "YuGothic", "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
 }
 
@@ -555,7 +562,10 @@ footer .copyright {
 }
 
 footer .jasrac {
-  
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  margin: 0;
 }
 
 footer a {
@@ -571,6 +581,7 @@ footer ul {
   justify-content: center;
   margin-bottom: 10px;
   list-style-type: none;
+  padding: 0;
 }
 
 footer ul.link li {
@@ -650,6 +661,21 @@ footer ul.social-icon .instagram-icon img {
 
 footer ul.social-icon .youtube-icon:hover {
   background: #FF0000;
+}
+
+@media screen and (max-width: 900px) {
+  footer .jasrac {
+    position: absolute;
+    bottom: 105px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 270px;
+  }
+
+  footer .social-icon {
+    margin-top: 45px;
+  }
 }
 
 

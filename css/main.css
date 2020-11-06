@@ -716,6 +716,9 @@ body {
   text-align: center;
   line-height: 40px;
   text-decoration: none;
+  background: #FFF;
+  color: #0D163B;
+  font-weight: bold;
 }
 
 #eventList a.more {
@@ -822,6 +825,7 @@ a.detailButton {
   overflow: hidden;
   z-index: 10;
   text-align: center;
+  margin-top: 40px;
 }
 
 a.detailButton::before {
@@ -858,7 +862,7 @@ a.detailButton:hover::before {
   grid-area: other;
   background-color: #A3D4DC;
   display: grid;
-  grid-template-rows: auto 50px auto 100px;
+  grid-template-rows: auto 50px auto 50px;
   grid-template-areas: 
   "app"
   "."

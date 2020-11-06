@@ -8,6 +8,7 @@ body > section {
     font-size: 18px;
     line-height: 36px;
     color: white;
+    padding: 100px 0;
 }
 
 section ul {
