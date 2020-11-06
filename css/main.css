@@ -955,6 +955,13 @@ a.detailButton:hover::before {
   #other #collaboration {
     grid-template-columns: 10% 53% 27% 10%;
   }
+
+  .topView-bar > a > .topView-event-tile > .topView-event-title {
+    grid-area: title;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+  }
 }
 
 /* ここからスマホ */
