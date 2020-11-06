@@ -200,8 +200,8 @@ const eventLoad = placeCommonParts.then(() => {
               let zoomDay1 = elem["zoomDesc"]["day1"].split(', ');
               for (let i = 0; i < elem["zoomTimestamp"]["day1"].length; i++) {
                 if (elem["zoomTimestamp"]["day1"][i][1] > nowTimestamp) {
-                  console.log(elem["eventID"]);
-                  console.log(i);
+                  //console.log(elem["eventID"]);
+                  //console.log(i);
                   let zoomDay1s = zoomDay1[i].split('~');
                   requiredTime = "7日 " + zoomDay1s[0] + "~";
                   break;

@@ -20,6 +20,7 @@
 
 #sticky-header h2 {
   line-height: calc(22px*1.6);
+  border: none;
 }
 
 #sticky-header .icon {
@@ -310,7 +311,7 @@ div#streaming-list.hidden {
   padding: .5rem 0;
   margin: 0;
   border-bottom: solid 1px #DFDFDF;
-  padding-left: 2rem;
+  padding-left: 1.5rem;
   font-weight: bold;
 }
 
@@ -384,6 +385,11 @@ div#streaming-list.hidden {
 #streaming-list .upcoming > h2 {
   font-weight: bold;
   background-color: #F9FAFA;
+}
+
+#streaming-list .scheduled {
+  transform: scale(1.3);
+  margin-right: 15px;
 }
 
 #streaming-list p {
