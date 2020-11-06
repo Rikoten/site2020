@@ -2,6 +2,8 @@ const likeButton = document.getElementById('like-button')
 const likeCounter = document.getElementById('like-count')
 const viewsCounter = document.getElementById('views')
 
+let liked = false
+
 const queries = location.search.slice(1).split('&').map(it => ({
     key: it.split('=')[0],
     value: it.split('=')[1]
@@ -24,5 +26,7 @@ likeButton.addEventListener('click', async () => {
         credentials: 'include',
         method: 'POST'
     })
+    liked = true
+    if (liked) return
     likeCounter.textContent = Number.parseInt(likeCounter.textContent) + 1
 })
