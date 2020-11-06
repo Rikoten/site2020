@@ -4,6 +4,9 @@
     const pinListElement = document.getElementById('pin-list')
     const liveListElement = document.getElementById('streaming-list')
 
+    let pinOpen = false
+    let liveOpen = false
+
     let data =[]
 
     fetchData().then(res => {
@@ -21,7 +24,19 @@
     `
 
     pinToggleButton.addEventListener('click', function pinToggleEventListener(e) {
-        if (e) pinListElement.classList.toggle('hidden')
+        if (e) {
+            if (pinOpen) {
+                pinListElement.classList.add('hidden')
+                pinOpen = false
+                return
+            }
+            if (liveOpen) {
+                liveListElement.classList.add('hidden')
+                liveOpen = false
+            }
+            pinListElement.classList.remove('hidden')
+            pinOpen = true
+        }
 
         const pins = JSON.parse(localStorage.getItem('pin') || '[]')
         console.log(pins.length == 0)
@@ -132,7 +147,17 @@
     }
 
     liveToggleButton.addEventListener('click', () => {
-        liveListElement.classList.toggle('hidden')
+        if (liveOpen) {
+            liveListElement.classList.add('hidden')
+            liveOpen = false
+            return
+        }
+        if (pinOpen) {
+            pinListElement.classList.add('hidden')
+            pinOpen = false
+        }
+        liveListElement.classList.remove('hidden')
+        liveOpen = true
 
         const time = Date.now()
         const liveStreams = streams.filter(it => it.startAt <= time && time <= it.endAt)
