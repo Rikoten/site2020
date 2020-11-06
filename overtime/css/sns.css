@@ -1,0 +1,113 @@
+/* SNSボタン */
+.circle_fl {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  text-decoration: none;
+  width: 50px;
+  height: 50px;
+  line-height: 30px;
+  padding: 5px;
+  margin: 0px 10px;
+  font-size: 18px;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  background: #121F4A;
+  padding: 10px;
+	transition-duration: 200ms;
+}
+
+.circle_fl-color.circle_fl-twitter {
+	background: #55acee;
+}
+
+.circle_fl-color.circle_fl-facebook {
+	background: #3B5998;
+}
+
+.circle_fl-color.circle_fl-youtube {
+	background: #FF0000;
+}
+
+.circle_fl-instagram {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  margin: 0;
+}
+.circle_fl-instagram-gradient {
+  background: transparent;
+}
+.circle_fl-instagram-gradient > div {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  top: 1px;
+  left: 1px;
+  position: absolute;
+  overflow: hidden;
+	background: -webkit-linear-gradient(135deg, #427eff 0%, #f13f79 70%) no-repeat;
+  background: linear-gradient(135deg, #427eff 0%, #f13f79 70%) no-repeat;/*グラデーション①*/
+  z-index: 1;
+}
+.circle_fl-instagram-gradient > div::before {
+  content: '';
+  position: absolute;/*絶対配置*/
+  top: 23px;/*ずらす*/
+  left: -18px;/*ずらす*/
+  width: 60px;/*グラデーションカバーの幅*/
+  height: 60px;/*グラデーションカバーの高さ*/
+  background: -webkit-radial-gradient(#ffdb2c 10%, rgba(255, 105, 34, 0.65) 55%, rgba(255, 88, 96, 0) 70%);
+  background: radial-gradient(#ffdb2c 10%, rgba(255, 105, 34, 0.65) 55%, rgba(255, 88, 96, 0) 70%);/*グラデーション②*/
+  z-index: 1;
+}
+
+@media screen and (min-width: 576px) {
+  .circle_fl-twitter:hover {
+    background: #55acee;
+  }
+  
+  .circle_fl-facebook:hover {
+    background: #3B5998;
+  }
+  .circle_fl-youtube:hover {
+    background: #FF0000;
+  }
+  .circle_fl-instagram:hover {
+    background: transparent;
+  }
+}
+
+.social-icon {
+  position: absolute;
+  width: 27px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  z-index: 3;
+}
+
+/*
+<!-- HTML -->
+<div id = "sns-btn" class="sns-btn">
+  <!--<span class = "SNS">official SNS</span><br>-->
+  <a href="https://twitter.com/rikoten_waseda" target="_blank" rel = "noopener" class="circle_fl circle_fl-twitter" style="text-decoration: none;">
+    <img src = "/img/sns-icon/twitter.svg" class = "social-icon">
+  </a>
+  <a href="https://www.facebook.com/WasedaRikoten" target="_blank" rel = "noopener" class="circle_fl circle_fl-facebook" style="text-decoration: none;">
+    <img src = "/img/sns-icon/facebook.svg" class = "social-icon">
+  </a>
+  <div class = "circle_fl circle_fl-instagram-gradient">
+    <div></div>
+    <a href="https://www.instagram.com/waseda_rikoten/" target="_blank" class="circle_fl circle_fl-instagram" rel = "noopener" style="text-decoration: none;">
+      <img src = "/img/sns-icon/instagram.svg" class = "social-icon">
+    </a>
+  </div>
+  <a href="https://www.youtube.com/channel/UCdBEdqUB9DvgHShFqzxswdA" target="_blank" rel = "noopener" class="circle_fl circle_fl-youtube" style="text-decoration: none;">
+    <img src = "/img/sns-icon/youtube.svg" class = "social-icon">
+  </a>
+</div>
+*/
