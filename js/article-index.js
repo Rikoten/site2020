@@ -100,6 +100,7 @@ const placeData = getJSON.then((obj) => {
     }
   }
 
+  if (!eventData) location.replace('/')
 
   /* 企画名 */
   const $title = document.querySelector("header .title-wrapper");
@@ -709,7 +710,7 @@ const copyEvent = () => {
     document.getSelection().selectAllChildren(temp);
     const result = document.execCommand('copy');
     document.body.removeChild(temp);
- 
+
     const $linkCopy = document.querySelector(".link-copy");
     $linkCopy.classList.add("show-notification");
     setTimeout(() => {
