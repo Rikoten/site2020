@@ -143,6 +143,88 @@
   }
 }
 
+
+div#pin-list {
+  box-sizing: border-box;
+  display: block;
+  position: fixed;
+  top: 45px;
+  right: 0;
+  background: #F9FAFA;
+  color: black;
+  max-width: 30rem;
+  height: calc(100vh - 45px);
+  overflow-y: auto;
+  transition: transform .1s ease-out;
+}
+
+div#pin-list.hidden {
+  transform: translateX(100%);
+}
+
+#pin-list .no-pins {
+  margin-top: 2rem;
+  text-align: center;
+  display: none;
+}
+
+#pin-list .no-pins.shown {
+  display: block;
+}
+
+#pin-list ul {
+  list-style: none;
+  padding: 1rem 2rem;
+}
+
+#pin-list li {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+#pin-list a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+#pin-list .type {
+  display: inline-block;
+  background: white;
+  height: 2rem;
+  line-height: 2rem;
+  padding-right: .81rem;
+  padding-left: .81rem;
+  font-size: 1rem;
+}
+
+#pin-list .time {
+  line-height: 2rem;
+  margin-left: 1rem;
+}
+
+#pin-list h2 {
+  background: inherit;
+  margin: .5rem 0;
+  padding: 0;
+  font-size: 1.2rem;
+}
+
+#pin-list .item p {
+  margin: .5rem 0;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+#pin-list .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  border: none;
+  background: inherit;
+}
+
 /*****************   bottom-navigation   ****************/
 
 
