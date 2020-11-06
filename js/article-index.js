@@ -427,7 +427,7 @@ const placeOGP = (data) => {
 const placeShareLink = () => {
   const $a = document.querySelectorAll(".share a");
 
-  $a[0].href = `https://twitter.com/share?url=https://rikoten.com${generateURL(param.id)}?hashtags=rikoten2020`;
+  $a[0].href = `https://twitter.com/share?url=https://rikoten.com${generateURL(param.id)}&hashtags=rikoten2020`;
   $a[1].href = `http://www.facebook.com/share.php?u=https://rikoten.com${generateURL(param.id)}`;
   $a[2].href = `https://social-plugins.line.me/lineit/share?url=http://rikoten.com${generateURL(param.id)}`;
 }
@@ -709,6 +709,12 @@ const copyEvent = () => {
     document.getSelection().selectAllChildren(temp);
     const result = document.execCommand('copy');
     document.body.removeChild(temp);
+ 
+    const $linkCopy = document.querySelector(".link-copy");
+    $linkCopy.classList.add("show-notification");
+    setTimeout(() => {
+      $linkCopy.classList.remove("show-notification");
+    }, 3000)
   })
 }
 
