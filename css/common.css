@@ -93,7 +93,9 @@
   align-items: center;
 }
 
-#sticky-header > div > div {
+
+#toggle-pin, #toggle-live {
+  border: none;
   background-color: #454E53;
   padding: 2px 10px;
   border-radius: 20px;
@@ -124,7 +126,7 @@
     height: 35px;
     width: calc(35px/490*662);
   }
-  
+
   #sticky-header .text {
     height: 35px;
     margin-left: 5px;
@@ -287,7 +289,7 @@ footer {
   color: #fff;
   grid-template-rows: 80px auto 30px auto 30px auto auto;
   grid-template-columns: 50% 50%;
-  grid-template-areas: 
+  grid-template-areas:
   ". ."
   "logo logo"
   ". ."
@@ -353,7 +355,7 @@ footer #sns-btn {
     color: #fff;
     grid-template-rows: 80px auto 30px auto 30px auto auto;
     grid-template-columns: 50% 50%;
-    grid-template-areas: 
+    grid-template-areas:
     ". ."
     "logo logo"
     ". ."
@@ -363,7 +365,7 @@ footer #sns-btn {
     "copyright copyright";
     text-align: center;
   }
-  
+
   footer #footer-no1 {
     display: none;
   }
