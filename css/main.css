@@ -129,7 +129,8 @@ body {
   color: #fff;
   font-weight: 500;
   width: 100%;
-  height: calc(100% - 20vw * 3 / 4.3);
+  height: calc(100% - 20vw * 3 / 4.3 - 60px);
+  padding-top: 60px;
   text-align: center;
 }
 
