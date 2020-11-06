@@ -1578,8 +1578,7 @@ article .link-zoom-container + .link-zoom-container {
 
   #title-header .notice {
     font-size: 14px;
-    margin-bottom: 0;
-    margin-top: 60px;
+    margin: 60px 10px 0;
   }
 
   #title-header .contain-notice {
