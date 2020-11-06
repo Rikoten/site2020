@@ -46,7 +46,7 @@
         }
 
         const pins = JSON.parse(localStorage.getItem('pin') || '[]')
-        console.log(pins.length == 0)
+        // console.log(pins.length == 0)
         if (pins.length == 0) {
             document.querySelector('#pin-list .no-pins').classList.add('shown')
         } else {
@@ -127,7 +127,7 @@
         }
         streams.sort((a, b) => a.startAt - b.startAt)
 
-        console.log(streams)
+        // console.log(streams)
     })
 
     function convertUnixtimeToReadableTime(unixTime) {
@@ -191,7 +191,7 @@
         const upcomingStreamsUl = document.querySelector('#streaming-list .upcoming ul')
         upcomingStreamsUl.innerHTML = ''
         const upcomingStreams = streams.filter(it => time <= it.startAt && new Date(time).getDate() == new Date(it.startAt).getDate()).slice(0, 5)
-        console.log(upcomingStreams)
+        // console.log(upcomingStreams)
         for (const liveStream of upcomingStreams) {
             upcomingStreamsUl.appendChild(streamingItemElement(liveStream))
         }

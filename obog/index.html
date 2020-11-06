@@ -18,6 +18,7 @@
         <link rel = "stylesheet" href = "/css/main.css">
         <link rel = "stylesheet" href = "/css/obog.css">
         <link rel = "stylesheet" href = "https://rikoten.github.io/2020-bannerData/banner.css">
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
         <meta property="og:url" content="https://rikoten.com">
         <meta property="og:type" content="website">
@@ -25,7 +26,7 @@
         <meta property="og:title" content="OB・OG協賛 - 第67回理工展">
         <meta property="og:description" content="ご協力いただいたOB・OGの皆様のご紹介です。">
         <meta property="og:image" content="https://rikoten.com/img/twitter-card/top.png">
-    
+
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@rikoten_waseda">
         <meta name="twitter:creator" content="@rikoten_waseda">
@@ -58,8 +59,8 @@
                 <li>65期 平出 瑠璃子様</li>
                 <li>その他 杉澤 建様</li>
                 <li>66期 多田 秀介様</li>
-                <li>他併せて27名のOB・OGの<br>皆様にご協賛を賜りました。</li>
             </ul>
+            <p>他併せて27名のOB・OGの皆様にご協賛を賜りました。</p>
         </section>
         <footer></footer>
         <script>
@@ -69,7 +70,7 @@
             let box = document.getElementById("common-header"),
                   box2 = document.getElementById("bottom-nav"),
                   box3 = document.getElementsByTagName("footer")[0];
-            
+
             xhr.responseType = "document";
             xhr.open(method, url, true);
             xhr.onreadystatechange = () => {
@@ -81,13 +82,13 @@
                   box.outerHTML = int.outerHTML;
                   //box2.outerHTML = int2.outerHTML;
                   box3.outerHTML = int3.outerHTML;
-            
+
                   const script = document.createElement('script')
                   script.src = '/js/common-header.js'
                   document.head.appendChild(script)
                 }
             }
-            
+
               xhr.send();
         </script>
         <script type="text/javascript" src='/js/common.js'></script>
