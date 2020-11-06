@@ -1557,6 +1557,10 @@ a.detailButton:hover::before {
   .app-band div:nth-child(1) p, .app-band div:nth-child(3) p {
       font-size: 14px;
   }
+
+  #topView > #themeText {
+    height: calc(100% - 195px - 60px);
+  }
 }
 
 @media screen and (max-width: 900px) {

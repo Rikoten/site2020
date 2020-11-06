@@ -15,7 +15,7 @@
 
     const pinItem = (eventId, type, time, title, description) => `
         <a href='/event/?id=${eventId}'>
-            <span class='type type-${type}'>${type}</span>
+            <span class='type type-${type}'>${type.charAt(0).toUpperCase() + type.substring(1)}</span>
             <span class='time'>${time}</span>
             <h2>${title}</h2>
             <p>${description}</p>
@@ -182,12 +182,24 @@
             liveStreamsUl.appendChild(streamingItemElement(liveStream))
         }
 
+        if (liveStreams.length == 0) {
+            document.querySelector('#streaming-list .no-live').classList.add('shown');
+        } else {
+            document.querySelector('#streaming-list .no-live').classList.remove('shown');
+        }
+
         const upcomingStreamsUl = document.querySelector('#streaming-list .upcoming ul')
         upcomingStreamsUl.innerHTML = ''
         const upcomingStreams = streams.filter(it => time <= it.startAt && new Date(time).getDate() == new Date(it.startAt).getDate()).slice(0, 5)
         console.log(upcomingStreams)
         for (const liveStream of upcomingStreams) {
             upcomingStreamsUl.appendChild(streamingItemElement(liveStream))
+        }
+
+        if (upcomingStreams.length == 0) {
+            document.querySelector('#streaming-list .no-upcoming').classList.add('shown');
+        } else {
+            document.querySelector('#streaming-list .no-upcoming').classList.remove('shown');
         }
     })
 

@@ -213,7 +213,7 @@ div#pin-list.hidden {
   line-height: 2rem;
   padding-right: .81rem;
   padding-left: .81rem;
-  font-size: 1rem;
+  font-size: .875rem;
   font-weight: bold;
   border-radius: 3px;
   width: 3rem;
@@ -237,19 +237,20 @@ div#pin-list.hidden {
 #pin-list .time {
   line-height: 2rem;
   margin-left: 1rem;
+  font-size: .875rem;
 }
 
 #pin-list h2 {
   background: inherit;
   margin: .5rem 0;
   padding: 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
 #pin-list .item p {
   line-height: 1.5;
-  font-size: 1rem;
+  font-size: .875rem;
   margin: 0;
 }
 
@@ -322,7 +323,7 @@ div#streaming-list.hidden {
   text-decoration: none;
   color: inherit;
   display: block;
-  padding: 1rem 1.5rem;
+  padding: .5rem 1rem;
   transition: 0.4s;
 }
 
@@ -337,13 +338,14 @@ div#streaming-list.hidden {
 
 #streaming-list .time {
   font-weight: bold;
+  font-size: .875rem;
 }
 
 #streaming-list .title {
   background: inherit;
   margin: 0;
   padding: 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -356,8 +358,6 @@ div#streaming-list.hidden {
 #streaming-list a > img {
   margin-left: 1rem;
   margin-top: .2rem;
-  transform: scale(1.2);
-  vertical-align: top;
 }
 
 #streaming-list .live > h2,
@@ -521,9 +521,18 @@ footer {
   font-size: 14px;
 }
 
-footer p {
+footer .copyright {
   margin: 0 auto;
   text-align: center;
+}
+
+footer .jasrac {
+  
+}
+
+footer a {
+  text-decoration: none;
+  color: #FFF;
 }
 
 footer ul {
@@ -533,6 +542,7 @@ footer ul {
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 10px;
+  list-style-type: none;
 }
 
 footer ul.link li {

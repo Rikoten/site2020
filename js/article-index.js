@@ -165,7 +165,6 @@ placeData.then((obj) => {
 
   if(document.querySelector(".youtube-live")) liveInit();
 
-  barEvent();
   quizEvent();
   indexEvent();
   morebuttonEvent(obj);
@@ -525,32 +524,6 @@ const liveInit = () => {
 }
 
 /********** イベントリスナを設定する関数 **********/
-
-const barEvent = () => {
-  const barButton = document.querySelectorAll("article .bar button");
-/*
-  barButton[1].addEventListener("click", () => {
-    if (storageAvailable('localStorage')) {
-      if(!localStorage.getItem("pin")) {
-        let data = null;
-        data = {`${eventID}`: "true"};
-        localStorage.setItem('pin', JSON.stringify(data));
-        barButton[1].classList.add("pin-clicked");
-      } else {
-        if(localStorage.getItem("pin")[eventID] == "true") {
-          const data = {eventID: "false"};
-          localStorage.setItem('pin', JSON.stringify(data));
-          barButton[1].classList.remove("pin-clicked");
-        } else {
-          const data = {eventID: "true"};
-          localStorage.setItem('good', JSON.stringify(data));
-          barButton[1].classList.add("pin-clicked");
-        }
-      }
-    }
-  });
-*/
-}
 
 const quizEvent = () => {
   const $options = document.querySelectorAll(".quiz li");
