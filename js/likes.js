@@ -27,8 +27,8 @@ likeButton.addEventListener('click', async () => {
         credentials: 'include',
         method: 'POST'
     })
-    liked = true
     if (liked) return
+    liked = true
     likeCounter.textContent = Number.parseInt(likeCounter.textContent) + 1
 })
 
