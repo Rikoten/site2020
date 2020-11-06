@@ -422,6 +422,7 @@ const placeOGP = (data) => {
     <meta property = "og:url" content = "https://rikoten.com${generateURL(param.id, param.page)}" />
     <meta property = "og:title" content = "${data.eventName}" />
     <meta property = "og:description" content = "${data.pamphDesc.replace(/\n/g, "")}" />
+    <meta property="og:image" content="https://rikoten.com/img/thumbnail/【${param.id}】.jpg">
   `
 
   $head.insertAdjacentHTML("beforeend", text);
