@@ -50,11 +50,7 @@
 
         for (const pin of pins) {
             const item = data.find(it => it.eventID == pin)
-<<<<<<< HEAD
-            const description = iten.eventDesc && item.eventDesc.length > 100 ? item.eventDesc.slice(0, 100) + '...' : item.eventDesc
-=======
-            const description = item.eventDesc.length > 70 ? item.eventDesc.slice(0, 70) + '...' : item.eventDesc
->>>>>>> 11db4697181b1fae845d0acc052af14815add5d6
+            const description = item.eventDesc && item.eventDesc.length > 100 ? item.eventDesc.slice(0, 100) + '...' : item.eventDesc
 
             const li = document.createElement('li')
             li.innerHTML = pinItem(pin, item.eventType, item.requiredTime || '', item.eventName, description)
