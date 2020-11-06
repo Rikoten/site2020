@@ -1,0 +1,93 @@
+<header id = "sticky-header">
+  <div>
+    <img src = "/img/logo-gray.png" alt = "ロゴ" class = "icon">
+    <img src = "/img/第67回理工展.png" alt = "ロゴ" class = "text">
+    <button id='toggle-live'>ライブ中</button>
+    <button id='toggle-pin'>ピン止め企画</button>
+  </div>
+  <fieldset>
+    <input type="radio" name="lang" value="ja" checked="checked" id = "ja"><label for="ja">Ja</label>
+    <span>/</span>
+    <input type="radio" name="lang" value="en" id = "en"><label for="en">En</label>
+  </fieldset>
+
+  <div id='pin-list' class='hidden'>
+    <p id='' class='no-pins hidden'>ピン止めはありません</p>
+    <ul></ul>
+  </div>
+
+  <div id='streaming-list' class='hidden'>
+    <div class='live'>
+      <h2><img src='/img/live.svg'>配信中</h2>
+      <ul></ul>
+    </div>
+    <div class='upcoming'>
+      <h2>配信予定</h2>
+      <ul></ul>
+    </div>
+  </div>
+</header>
+
+<nav id = "bottom-nav">
+  <span class = "active-bar"></span>
+  <ul>
+    <li class = "pin">ピン止め</li>
+    <li class = "live">ライブ</li>
+    <li class = "guidance">理工展の歩き方</li>
+    <li class = "language">言語 / lang</li>
+  </ul>
+
+  <div class = "board-wrapper">
+    <section class = "pin-board">
+      <h4>ピン止めした企画</h4>
+    </section>
+    <section class = "live-board">
+      <h4>現在ライブ中</h4>
+    </section>
+    <section class = "guidance-board">
+      <h4>理工展の歩き方</h4>
+    </section>
+    <section class = "language-board">
+      <h4>言語選択</h4>
+    </section>
+  </div>
+</nav>
+
+<footer>
+  <div id = "footerLogo">
+    <img src = "/img/logo.png" alt = "ロゴ" class = "icon"><br>
+    <img src = "/img/logo-text.svg" alt = "ロゴ" class = "text">
+  </div>
+  <div id = "footerSiteMap">
+    <a href = "/about/">理工展とは</a>
+    <a href = "/about/#2">テーマ</a>
+    <a href = "/about/#3">代表挨拶</a>
+    <a href = "/timetable/">タイムテーブル</a>
+    <a href = "https://collab-2020.rikoten.com#link">リンク</a>
+    <a href = "https://collab-2020.rikoten.com#collab">飲食店コラボ</a>
+    <a href = "/obog/">OB・OG協賛</a>
+    <a href = "/privacy.html">プライバシーポリシー</a>
+  </div>
+  <div id = "footer-no1">
+    <img src = "/img/rikoten-no1.svg" class = "rikoten-no1">
+  </div>
+  <div id = "sns-btn" class="sns-btn">
+    <!--<span class = "SNS">official SNS</span><br>-->
+    <a href="https://twitter.com/rikoten_waseda" target="_blank" rel = "noopener" class="circle_fl circle_fl-twitter" style="text-decoration: none;">
+      <img src = "/img/sns-icon/twitter.svg" class = "social-icon">
+    </a>
+    <a href="https://www.facebook.com/WasedaRikoten" target="_blank" rel = "noopener" class="circle_fl circle_fl-facebook" style="text-decoration: none;">
+      <img src = "/img/sns-icon/facebook.svg" class = "social-icon">
+    </a>
+    <div class = "circle_fl circle_fl-instagram-gradient">
+      <div></div>
+      <a href="https://www.instagram.com/waseda_rikoten/" target="_blank" class="circle_fl circle_fl-instagram" rel = "noopener" style="text-decoration: none;">
+        <img src = "/img/sns-icon/instagram.svg" class = "social-icon">
+      </a>
+    </div>
+    <a href="https://www.youtube.com/channel/UCdBEdqUB9DvgHShFqzxswdA" target="_blank" rel = "noopener" class="circle_fl circle_fl-youtube" style="text-decoration: none;">
+      <img src = "/img/sns-icon/youtube.svg" class = "social-icon">
+    </a>
+  </div>
+  <p id = "footerCopyright">(c) 2020 理工展連絡会 All Rights Reserved.</p>
+</footer>
