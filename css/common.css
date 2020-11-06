@@ -152,7 +152,7 @@ div#pin-list {
   right: 0;
   background: #F9FAFA;
   color: black;
-  max-width: 30rem;
+  max-width: 25rem;
   height: calc(100vh - 45px);
   overflow-y: auto;
   transition: transform .1s ease-out;
@@ -237,7 +237,7 @@ div#streaming-list {
   right: 0;
   background: #F9FAFA;
   color: #575F65;
-  max-width: 30rem;
+  max-width: 25rem;
   height: calc(100vh - 45px);
   overflow-y: auto;
   transition: transform .1s ease-out;
@@ -252,8 +252,9 @@ div#streaming-list.hidden {
   font-size: 1.2rem;
   padding: .5rem 0;
   margin: 0;
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px #DFDFDF;
   padding-left: 2rem;
+  font-weight: bold;
 }
 
 #streaming-list .live > h2 img {
@@ -266,8 +267,9 @@ div#streaming-list.hidden {
   font-size: 1.2rem;
   padding: .5rem 0;
   margin: 0;
-  border-bottom: solid 1px black;
+  border-bottom: solid 1px #DFDFDF;
   padding-left: 2rem;
+  font-weight: bold;
 }
 
 #streaming-list ul {
@@ -277,15 +279,14 @@ div#streaming-list.hidden {
 }
 
 #streaming-list li {
-  border-bottom: solid 1px black;
-  padding-bottom: 1.5rem;
-  padding: 0 2rem 1.5rem 2rem;
+  border-bottom: solid 1px #DFDFDF;
 }
 
 #streaming-list li a {
   text-decoration: none;
   color: inherit;
   display: block;
+  padding: 1rem 1.5rem;
 }
 
 #streaming-list .time {
@@ -294,15 +295,29 @@ div#streaming-list.hidden {
 
 #streaming-list .title {
   background: inherit;
-  margin: .5rem 0;
+  margin: 0;
   padding: 0;
   font-size: 1.2rem;
+  font-weight: bold;
 }
 
 #streaming-list p {
-  margin: .5rem 0;
+  margin: 0;
   line-height: 1.5;
   font-size: 1rem;
+}
+
+#streaming-list a > img {
+  margin-left: 1rem;
+  margin-top: .2rem;
+  transform: scale(1.2);
+  vertical-align: top;
+}
+
+#streaming-list .live > h2,
+#streaming-list .upcoming > h2 {
+  font-weight: bold;
+  background-color: #F9FAFA;
 }
 
 /*****************   bottom-navigation   ****************/
@@ -530,6 +545,13 @@ footer #sns-btn {
 
   footer #footer-no1 {
     display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  div#pin-list,
+  div#streaming-list {
+    top: 55px;
   }
 }
 

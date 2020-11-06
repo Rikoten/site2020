@@ -27,8 +27,8 @@ likeButton.addEventListener('click', async () => {
         credentials: 'include',
         method: 'POST'
     })
-    liked = true
     if (liked) return
+    liked = true
     likeCounter.textContent = Number.parseInt(likeCounter.textContent) + 1
 })
 
@@ -46,7 +46,7 @@ function addPin(id) {
 }
 
 function isPinned(id) {
-    const preveousPinned = JSON.parse(localStorage.getItem('pin'))
+    const preveousPinned = JSON.parse(localStorage.getItem('pin') || '[]')
     return Boolean(preveousPinned.find(it => it == id))
 }
 

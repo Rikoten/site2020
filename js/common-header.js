@@ -50,7 +50,11 @@
 
         for (const pin of pins) {
             const item = data.find(it => it.eventID == pin)
-            const description = item.eventDesc.length > 100 ? item.eventDesc.slice(0, 100) + '...' : item.eventDesc
+<<<<<<< HEAD
+            const description = iten.eventDesc && item.eventDesc.length > 100 ? item.eventDesc.slice(0, 100) + '...' : item.eventDesc
+=======
+            const description = item.eventDesc.length > 70 ? item.eventDesc.slice(0, 70) + '...' : item.eventDesc
+>>>>>>> 11db4697181b1fae845d0acc052af14815add5d6
 
             const li = document.createElement('li')
             li.innerHTML = pinItem(pin, item.eventType, item.requiredTime || '', item.eventName, description)
@@ -138,7 +142,7 @@
                 <span class='time'>${ convertUnixtimeToReadableTime(stream.startAt) } ~ ${ convertUnixtimeToReadableTime(stream.endAt) }</span>
                 <img src='${ stream.platform == 'youtube' ? '/img/youtube.svg' : '/img/zoom.svg' }'>
                 <h2 class='title'>${ event.eventName }</h2>
-                <p>${ event.eventDesc && event.eventDesc.length > 100 ? event.eventDesc.slice(0, 100) + '...' : event.eventDesc }</p>
+                <p>${ event.eventDesc && event.eventDesc.length > 70 ? event.eventDesc.slice(0, 70) + '...' : event.eventDesc }</p>
             </a>
         `
         const el = document.createElement('li')
