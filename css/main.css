@@ -164,10 +164,9 @@ body {
 
   grid-template-areas: ". . . ."
   ". type time ."
-  ". title title ."
-  ". . . .";
+  ". title title .";
   grid-template-columns: 10% 90px 1fr 10%;
-  grid-template-rows: 20% 30px 1fr 30px 20%;
+  grid-template-rows: 17.5% 30px 1fr;
   transition: 200ms;
 }
 
@@ -927,11 +926,6 @@ a.detailButton:hover::before {
 @media screen and (max-width: 1600px) {
   #topView {
     min-height: 558px;
-  }
-
-  .topView-bar > a > .topView-event-tile {
-    width: 25vw;
-    height: calc(25vw * 3 / 4.3);
   }
 }
 
