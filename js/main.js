@@ -49,7 +49,11 @@ const languageEvent = () => {
 
       document.querySelector("#themeText div").innerText = "A world surrounded by magic";
       document.querySelector("#eventH3 div").innerText = "Event list";
-      let queryList = document.querySelectorAll(".foot div.pagination-container > a");
+      let queryList = document.querySelectorAll(".foot div.pagination-container > a.timetable.pamph");
+      for (let i = 0; i < queryList.length; i++) {
+        queryList[i].innerText = "Pamphlet";
+      }
+      queryList = document.querySelectorAll(".foot div.pagination-container > a.timetable:not(.pamph)");
       for (let i = 0; i < queryList.length; i++) {
         queryList[i].innerText = "Time table";
       }
@@ -266,7 +270,7 @@ const eventLoad = placeCommonParts.then(() => {
         /* タイル追加 */
         let EventListTile = document.createElement('a');
         EventListTile.setAttribute('href', eventURL);
-        let EventListTileInner = '<div class = "eventTile" id = "' + elem["eventID"] + '"><div class = "eventTitle">' + elem["eventName"] + '</div><div class = "eventTime">' + requiredTime + '</div>' + childrenTag + '<div class = "eventDesc">' + elem["pamphDesc"] + '</div><div class = "eventView"><span>0</span></div><div class = "eventThumbsUp">0</div><div class = "eventGroupName">' + elem["groupName"] + '</div><div class = "border"></div></div>';
+        let EventListTileInner = '<div class = "eventTile ' + elem["eventType"] + '" id = "' + elem["eventID"] + '"><div class = "eventTitle">' + elem["eventName"] + '</div><div class = "eventTime">' + requiredTime + '</div>' + childrenTag + '<div class = "eventDesc">' + elem["pamphDesc"] + '</div><div class = "eventView"><span>0</span></div><div class = "eventThumbsUp">0</div><div class = "eventGroupName">' + elem["groupName"] + '</div><div class = "border"></div></div>';
 
         EventListTile.innerHTML = EventListTileInner;
 
