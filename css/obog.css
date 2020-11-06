@@ -1,10 +1,13 @@
 body {
     margin: 0;
     font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
+    background: linear-gradient(#1A2D63, #0D163B);
+}
+
+body > section {
     font-size: 18px;
     line-height: 36px;
     color: white;
-    background: linear-gradient(#1A2D63, #0D163B);
 }
 
 ul {
