@@ -73,7 +73,7 @@ const getJSON = placeCommonParts.then(() => {
     if(storageAvailable('localStorage')) if(localStorage.getItem("lang")) language = localStorage.getItem("lang");
     else language = "ja"
     if(language == "en") url = "/data/eventData_en.json";
-    if(param.id.match(switchToJaData)) {
+    if(param.id.match(switchToJaData) && language == "en") {
       url = "/data/eventData.json";
       switchToJaDataFlag = true;
     }
