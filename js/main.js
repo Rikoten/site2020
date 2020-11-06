@@ -4,15 +4,15 @@ function loadLike(EventDataShuffled) {
     let targetTile = document.getElementById(EventDataShuffled[i]["eventID"]);
     let likeCounter = targetTile.getElementsByClassName('eventThumbsUp')[0]
     let viewsCounter = targetTile.getElementsByClassName('eventView')[0]
-  
+
     ;(async () => {
         const likes = await fetch('/api/like').then(res => res.json())
         const likeCount = (likes[eventId] && likes[eventId].likes) || 0
-  
+
         const views = await fetch('/api/views/' + eventId).then(res => res.json())
         // console.log(views)
 
-  
+
         likeCounter.textContent = likeCount
         viewsCounter.textContent = views.views
     })()
@@ -72,7 +72,7 @@ const languageEvent = () => {
       }
     }
   }
-  
+
 
   $fieldset.onchange = function(){
     const language = document.querySelector("#sticky-header :checked").value;
@@ -110,6 +110,10 @@ const placeCommonParts = new Promise ((resolve, reject) => {
       box.outerHTML = int.outerHTML;
       //box2.outerHTML = int2.outerHTML;
       box3.outerHTML = int3.outerHTML;
+
+      const script = document.createElement('script')
+      script.src = '/js/common-header.js'
+      document.head.appendChild(script)
     }
   }
 
@@ -122,7 +126,7 @@ const eventLoad = placeCommonParts.then(() => {
     /* 企画ロード */
     let URLEventData = 'data/eventData.json';
     let lang = "ja";
-    
+
     if(storageAvailable('localStorage')) {
       if(localStorage.getItem("lang")) lang = localStorage.getItem("lang");
     }
@@ -143,7 +147,7 @@ const eventLoad = placeCommonParts.then(() => {
         let rand = Math.floor(Math.random() * (i + 1));
         [EventDataShuffled[i], EventDataShuffled[rand]] = [EventDataShuffled[rand], EventDataShuffled[i]];
       }
-      
+
       /* ヘッダー部分 */
       const topViewEventBar = document.getElementById('topView-event-bar');
       const topViewEventBarMb = document.getElementById('topView-event-bar-mb');
@@ -172,7 +176,7 @@ const eventLoad = placeCommonParts.then(() => {
         let childrenTag = ""; //子ども向けの企画タグ
         if (elem["age"] == "child") childrenTag = '<div class = "eventChild child"><div>子ども向け</div></div>';
         if (elem["age"] == "student") childrenTag = '<div class = "eventChild student"><div>受験生向け</div></div>';
-        
+
         //TargetContainer[type]
 
         /* ページネーション管理 */
@@ -194,7 +198,7 @@ const eventLoad = placeCommonParts.then(() => {
         }
 
         showedtiles[type]++;
-        
+
         /* もっと見るボタン、5個の区切りずつで出力（PC版の仕様との干渉のため1つのボタンにできなかった） */
         if (showedtiles[type] % 5 == 1 && showedtiles[type] > 1) {
           let moreBtn = document.createElement('a');
@@ -221,6 +225,27 @@ const eventLoad = placeCommonParts.then(() => {
     }
   });
 });
+
+function loadLike(EventDataShuffled) {
+  for (let i = 0; i < EventDataShuffled.length; i++) {
+    let eventId = EventDataShuffled[i]["eventID"];
+    let targetTile = document.getElementById(EventDataShuffled[i]["eventID"]);
+    let likeCounter = targetTile.getElementsByClassName('eventThumbsUp')[0]
+    let viewsCounter = targetTile.getElementsByClassName('eventView')[0]
+
+    ;(async () => {
+        const likes = await fetch('/api/like').then(res => res.json())
+        const likeCount = (likes[eventId] && likes[eventId].likes) || 0
+
+        const views = await fetch('/api/views/' + eventId).then(res => res.json())
+        // console.log(views)
+
+
+        likeCounter.textContent = likeCount
+        viewsCounter.textContent = views.views
+    })()
+  }
+}
 
 /* ここからは企画データ表示後の対応が必要！ */
 eventLoad.then((EventDataShuffled) => {
@@ -266,7 +291,7 @@ eventLoad.then((EventDataShuffled) => {
       eventTypePage.forEach(function(elem2){
         if (elem2.id == href) {
           elem2.classList.add('active');  //タブ自体をactiveに
-          
+
           eventListPage.forEach(function(elem4) {
             elem4.classList.remove('active'); //全てのページを消す
           });
@@ -275,7 +300,6 @@ eventLoad.then((EventDataShuffled) => {
             elem4.classList.remove('active'); //全てのタイルのホバーを取る
           });
           elem2.getElementsByClassName('eventTile')[0].classList.add('active');  // 一番上のタイルをホバー状態に
-          
           let eventPaginationBtn2 = Array.from(elem2.getElementsByClassName('pagination')[0].getElementsByTagName('a')); //ページネーションボタン
           eventPaginationBtn2.forEach(function(elem4) {
             elem4.classList.remove('active'); //全てのページネーションボタンのactive消す
@@ -322,13 +346,13 @@ eventLoad.then((EventDataShuffled) => {
         eventListPageInType[indexClicked].getElementsByClassName('eventTile')[0].classList.add('active');  // 一番上をホバー状態に
       });
     });
-      
+
   });
 
   /* モバイルのもっと見るボタン */
   const eventContainer = document.getElementById('eventContainer');
   const eventMoreBtn = Array.from(eventContainer.getElementsByClassName('more'));
-  
+
   /* 最初の5つを表示 */
   eventTypePage.forEach(function(elem){
     let tileList = elem.getElementsByClassName('eventTile');
@@ -370,7 +394,7 @@ eventLoad.then((EventDataShuffled) => {
               if (typeof moreBtns[(eventMbActive[href] / 5 - 2)] != "undefined") moreBtns[(eventMbActive[href] / 5 - 2)].classList.add('disabled');
               if (typeof moreBtns[(eventMbActive[href] / 5 - 1)] != "undefined") moreBtns[(eventMbActive[href] / 5 - 1)].classList.remove('disabled');
             }
-            
+
             // console.log(eventMbActive[href]);
             if (eventMbActive[href] >= tileList.length) {
               elem.classList.add('disabled');
@@ -386,9 +410,9 @@ eventLoad.then((EventDataShuffled) => {
   let topViewPos = 0;
   let k = 0;
 
-  setInterval(frame, 25); 
-  
-  function frame() { 
+  setInterval(frame, 25);
+
+  function frame() {
     if (window.innerWidth > 992) {
       //if (topViewPos == 150) { topViewPos = 0; }
       topViewPos -= 0.5;
@@ -417,5 +441,3 @@ eventLoad.then((EventDataShuffled) => {
     }
   }
 });
-
-  

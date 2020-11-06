@@ -41,6 +41,10 @@ const placeCommonParts = new Promise ((resolve, reject) => {
       let restxt = xhr.responseXML;
       let int = restxt.getElementsByTagName("header")[0];
       box.outerHTML = int.outerHTML;
+
+      const script = document.createElement('script')
+      script.src = '/js/common-header.js'
+      document.head.appendChild(script)
     }
   }
 
@@ -101,10 +105,10 @@ const placeData = getJSON.then((obj) => {
   const $title = document.querySelector("header .title-wrapper");
   const $barSpan = document.querySelector("article .bar span");
   const $info = document.querySelector("header .title-wrapper .supplementary-info");
-  
+
   $title.insertAdjacentHTML("afterbegin", `<span class = "type-${eventData["eventType"]}-light">${eventData["eventType"].charAt(0).toUpperCase() + eventData["eventType"].substring(1)}</span><h1>${eventData["eventName"]}</h1><p>${eventData["pamphDesc"]}</p>`);
   $barSpan.innerText = eventData["eventName"];
-  
+
   if(eventData["age"] == "child") $info.insertAdjacentHTML("afterbegin", "<span class = 'target'>子ども向け</span>");
   else if(eventData["age"] == "student") $info.insertAdjacentHTML("afterbegin", "<span class = 'target'>受験生向け</span>");
   else $info.firstElementChild.classList.add("first-span");
@@ -127,7 +131,7 @@ const placeData = getJSON.then((obj) => {
       link.push(`<a class = "link-web" href = "${data.url}">${data.name}</a>`);
     }
   }
-  
+
   if(eventData["twitter"]) link.push(`<a class = "link-twitter" href = "https://twitter.com/${eventData["twitter"]}">Twitter</a>`);
   if(eventData["facebook"]) link.push(`<a class = "link-facebook" href = "${eventData["facebook"]}">Facebook</a>`);
   if(eventData["instagram"]) link.push(`<a class = "link-instagram" href = "https://www.instagram.com/${eventData["instagram"]}">Instagram</a>`);
@@ -139,7 +143,7 @@ const placeData = getJSON.then((obj) => {
   placeOGP(eventData);
   placeShareLink();
   if(switchToJaDataFlag) placeNotice();
-  
+
   return new Promise((resolve, reject) => {
     resolve(obj);
   })
@@ -181,7 +185,7 @@ placeData.then((obj) => {
       });
     }
   }, 100);
-  
+
 });
 
 
@@ -284,7 +288,7 @@ const placeArticle = (articleData) => {
     if(data.tag == "h2") {
       if(li.length != 0) index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a><ul>${li.join("")}</ul></li>`);
       else if(!isFirst) index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a></li>`);
-      
+
       li.length = 0;
       isFirst = false;
       h2 = data.code;
@@ -544,7 +548,7 @@ const barEvent = () => {
 
 const quizEvent = () => {
   const $options = document.querySelectorAll(".quiz li");
-      
+
   for(const option of $options) {
     option.addEventListener("click", () => {
       const commentary = option.parentNode.nextElementSibling;
@@ -623,7 +627,7 @@ const languageEvent = () => {
       }
     }
   }
-  
+
 
   $fieldset.onchange = function(){
     const language = document.querySelector("#sticky-header :checked").value;
@@ -650,7 +654,7 @@ const intersectEvent = () => {
     threshold: 0
   };
   const observer = new IntersectionObserver(intersect, options);
-  
+
   h.forEach((h) => {
     observer.observe(h);
   });
@@ -674,7 +678,7 @@ const activateIndex = (elem) => {
 
 const linkClickEvent = () => {
   const $a = document.querySelectorAll('#index a');
-  
+
   for(const a of $a) {
     a.addEventListener("click", (event) => {
       const id = a.href.split("#")[1];

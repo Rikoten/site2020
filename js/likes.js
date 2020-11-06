@@ -1,4 +1,5 @@
 const likeButton = document.getElementById('like-button')
+const pinButton = document.getElementById('pin')
 const likeCounter = document.getElementById('like-count')
 const viewsCounter = document.getElementById('views')
 
@@ -29,4 +30,10 @@ likeButton.addEventListener('click', async () => {
     liked = true
     if (liked) return
     likeCounter.textContent = Number.parseInt(likeCounter.textContent) + 1
+})
+
+pinButton.addEventListener('click', () => {
+    const preveousPinned = new Set(JSON.parse(localStorage.getItem('pin')) || [])
+    preveousPinned.add(eventId)
+    localStorage.setItem('pin', JSON.stringify(Array.from(preveousPinned)))
 })
