@@ -129,7 +129,8 @@ body {
   color: #fff;
   font-weight: 500;
   width: 100%;
-  height: calc(100% - 20vw * 3 / 4.3);
+  height: calc(100% - 20vw * 3 / 4.3 - 60px);
+  padding-top: 60px;
   text-align: center;
 }
 
@@ -1285,9 +1286,12 @@ a.detailButton:hover::before {
   }
 
   #about-mb {
-    display: grid;
-    grid-template-rows: auto auto auto 40px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
     grid-template-columns: 100%;
+    justify-content: center;
+    align-items: center;
   }
 
   #about-mb > div.about-tile {
@@ -1296,6 +1300,8 @@ a.detailButton:hover::before {
     border: none!important;
     margin: 10px 0;
     height: 100px;
+    max-width: 500px;
+    width: 100%;
     position: relative;
   }
 
