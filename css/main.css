@@ -405,6 +405,38 @@ body {
   line-height: 24px;
 }
 
+#eventTypeTab a.arrow {
+  width: 40px;
+  height: 80px;
+  pointer-events: none;
+  opacity: 0;
+  transition: background-image opacity .2s;
+}
+
+#eventTypeTab a.arrow.visible {
+  pointer-events: initial;
+  content: '';
+  background: url(../img/triangle-light.svg) no-repeat;
+  background-size: 15px 30px;
+  background-position: center;
+  opacity: 1;
+  transition: background-image opacity .2s;
+}
+
+#eventTypeTab a.arrow.visible.disabled {
+  content: '';
+  background: url(../img/triangle-dark.svg) no-repeat;
+  background-size: 15px 30px;
+  background-position: center;
+  opacity: 1;
+  transition: background-image opacity .2s;
+  pointer-events: none;
+}
+
+#eventTypeTab a.arrow.prev {
+  transform: rotate(-180deg);
+}
+
 #eventList {
   grid-row: 5;
   grid-column: 1 / -1;
@@ -1090,23 +1122,23 @@ a.detailButton:hover::before {
     grid-column: 1 / -1;
   }
 
-  #eventTypeTab > a {
+  #eventTypeTab > a.type {
     border: none!important;
     padding: 0;
     margin: 0 10px;
     display: inline-block;
   }
 
-  #eventTypeTab > a.active {
+  #eventTypeTab > a.type.active {
     background: transparent;
   }
 
-  #eventTypeTab > a.active {
+  #eventTypeTab > a.type.active {
     background-color: #A3D4DC;
     color: #121F4A;
   }
 
-  #eventTypeTab > a {
+  #eventTypeTab > a.type {
     position: relative;
     height: 30px;
     width: 100px;
@@ -1116,11 +1148,11 @@ a.detailButton:hover::before {
     color: #121F4A;
   }
 
-  #eventTypeTab > a > div:nth-child(1) {
+  #eventTypeTab > a.type > div:nth-child(1) {
     display: none;
   }
 
-  #eventTypeTab > a > div:nth-child(2) {
+  #eventTypeTab > a.type > div:nth-child(2) {
     position: absolute;
     display: inline-block;
     font-size: 16px;
@@ -1130,6 +1162,10 @@ a.detailButton:hover::before {
     top: 0;
     left: 0;
     text-align: center;
+  }
+
+  #eventTypeTab a.arrow {
+    display: none;
   }
 
   #eventList .eventListPage {
@@ -1352,7 +1388,7 @@ a.detailButton:hover::before {
   #about-mb > div.about-tile > a > div:nth-child(2) {
     font-size: 12px;
   }
-  #eventTypeTab > a {
+  #eventTypeTab > a.type {
     position: relative;
     width: 90px;
     margin: 0 5px;

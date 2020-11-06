@@ -19,10 +19,12 @@
   <div id='streaming-list' class='hidden'>
     <div class='live'>
       <h2><img src='/img/live.svg'>配信中</h2>
+      <p id='' class='no-live hidden'>配信中の企画はありません</p>
       <ul></ul>
     </div>
     <div class='upcoming'>
       <h2>配信予定</h2>
+      <p id='' class='no-upcoming hidden'>今日配信予定の企画はありません</p>
       <ul></ul>
     </div>
   </div>
@@ -54,10 +56,12 @@
 </nav>
 
 <footer>
+  <!--
   <div id = "footerLogo">
     <img src = "/img/logo.png" alt = "ロゴ" class = "icon"><br>
     <img src = "/img/logo-text.svg" alt = "ロゴ" class = "text">
   </div>
+  
   <div id = "footerSiteMap">
     <a href = "/about/">理工展とは</a>
     <a href = "/about/#2">テーマ</a>
@@ -68,11 +72,28 @@
     <a href = "/obog/">OB・OG協賛</a>
     <a href = "/privacy.html">プライバシーポリシー</a>
   </div>
-  <div id = "footer-no1">
-    <img src = "/img/rikoten-no1.svg" class = "rikoten-no1">
-  </div>
+  -->
+
+  <ul class = "link">
+    <li><a href = "/about/">理工展とは</a></li>
+    <li><a href = "/about/#2">テーマ</a></li>
+    <li><a href = "/about/#3">代表挨拶</a></li>
+    <li><a href = "/timetable/">タイムテーブル</a></li>
+    <li><a href = "https://collab-2020.rikoten.com#link">相互リンク</a></li>
+    <li><a href = "https://collab-2020.rikoten.com#collab">飲食店コラボ</a></li>
+    <li><a href = "/obog/">OB・OG協賛</a></li>
+    <li><a href = "/privacy.html">プライバシーポリシー</a></li>
+  </ul>
+
+  <ul class = "social-icon">
+    <li class = "twitter-icon"><a href="https://twitter.com/rikoten_waseda" target="_blank" rel = "noopener"><img src = "/img/sns-icon/twitter.svg"></a></li>
+    <li class = "facebook-icon"><a href="https://www.facebook.com/WasedaRikoten" target="_blank" rel = "noopener"><img src = "/img/sns-icon/facebook.svg"></a></li>
+    <li class = "instagram-icon"><a href="https://www.instagram.com/waseda_rikoten/" target="_blank" rel = "noopener"><img src = "/img/sns-icon/instagram.svg"></a></li>
+    <li class = "youtube-icon"><a href="https://www.youtube.com/channel/UCdBEdqUB9DvgHShFqzxswdA" target="_blank" rel = "noopener"><img src = "/img/sns-icon/youtube.svg"></a></li>
+  </ul>
+<!--
   <div id = "sns-btn" class="sns-btn">
-    <!--<span class = "SNS">official SNS</span><br>-->
+    <!--<span class = "SNS">official SNS</span><br>
     <a href="https://twitter.com/rikoten_waseda" target="_blank" rel = "noopener" class="circle_fl circle_fl-twitter" style="text-decoration: none;">
       <img src = "/img/sns-icon/twitter.svg" class = "social-icon">
     </a>
@@ -89,5 +110,6 @@
       <img src = "/img/sns-icon/youtube.svg" class = "social-icon">
     </a>
   </div>
+  -->
   <p id = "footerCopyright">(c) 2020 理工展連絡会 All Rights Reserved.</p>
 </footer>

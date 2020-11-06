@@ -320,17 +320,21 @@ eventLoad.then((EventDataShuffled) => {
   /* タイプ表示切替 */
   const eventTypePage = Array.from(eventList.getElementsByClassName('eventTypePage') );
   const eventTypeTab = document.getElementById('eventTypeTab');
-  const eventTypeTabBtn = Array.from(eventTypeTab.getElementsByTagName("a"));
+  const eventTypeTabBtn = Array.from(eventTypeTab.querySelectorAll("a.type"));
+  const eventTypeTabArrow = Array.from(eventTypeTab.getElementsByClassName('arrow'));
 
   /* ページネーション表示切替 */
   const eventPagination = Array.from(document.getElementsByClassName('pagination'));
   const eventListPage = Array.from(document.getElementsByClassName('eventListPage'));
 
+  let pagenum = 0;
+  let eventType = 'eventLive';
+
   /* タイプのタブの表示切り替え */
   eventTypeTabBtn.forEach(function(elem) {
     elem.addEventListener('click', function (e) {
       event.preventDefault();
-
+      pagenum = 0;
       /* ボタンの動作 */
       eventTypeTabBtn.forEach(function(elem2) {
         elem2.classList.remove('active');
@@ -339,6 +343,7 @@ eventLoad.then((EventDataShuffled) => {
 
       /* タブの動作 */
       href = elem.getAttribute('href').substr(1);
+      eventType = href;
       eventTypePage.forEach(function(elem2){
         if (elem2.id == href) {
           elem2.classList.add('active');  //タブ自体をactiveに
@@ -359,11 +364,23 @@ eventLoad.then((EventDataShuffled) => {
         }
         else elem2.classList.remove('active');
       });
+
+      /* ページネーション矢印 */
+      eventTypeTabArrow.forEach(function(elem2) {
+        elem2.classList.remove('visible');
+        elem2.classList.remove('disabled');
+      });
+      eventTypeTabArrow.forEach(function(elem2) {
+        if (elem2.getAttribute('target') == href) { //目的のタイプ
+          elem2.classList.add('visible');
+          if (elem2.classList.contains('prev')) elem2.classList.add('disabled');
+        }
+      });
     });
   });
 
 
-  /* ページネーション表示切替 */
+  /* ページネーション表示切替・ページごと */
   eventPagination.forEach(function(paginationBtnsContainer) {
     let eventPaginationBtn = Array.from(paginationBtnsContainer.getElementsByTagName('a'));
 
@@ -380,9 +397,11 @@ eventLoad.then((EventDataShuffled) => {
         /* タブの動作 */
         let indexClicked = [].slice.call(eventPaginationBtn).indexOf(paginationBtnClicked); //押されたボタンの示すページネーション
         // console.log(indexClicked);
+        pagenum = indexClicked;
 
-        let eventType = paginationBtnClicked.parentElement.parentElement.parentElement.parentElement;
-        eventListPageInType = Array.from(eventType.getElementsByClassName("eventListPage"));
+        let eventTypeDivs = paginationBtnClicked.parentElement.parentElement.parentElement.parentElement;
+        //let eventType = paginationBtnClicked.parentElement.parentElement.parentElement.parentElement.id;
+        eventListPageInType = Array.from(eventTypeDivs.getElementsByClassName("eventListPage"));
 
         eventListPageInType.forEach(function(listPage){
           listPage.classList.remove('active');
@@ -390,14 +409,65 @@ eventLoad.then((EventDataShuffled) => {
 
         eventListPageInType[indexClicked].classList.add('active');
 
-        eventTilePageInType = Array.from(eventType.getElementsByClassName("eventTile"));
+        eventTilePageInType = Array.from(eventTypeDivs.getElementsByClassName("eventTile"));
         eventTilePageInType.forEach(function(tiles) {
           tiles.classList.remove('active');
         });
         eventListPageInType[indexClicked].getElementsByClassName('eventTile')[0].classList.add('active');  // 一番上をホバー状態に
+
+        // ページ送り三角形の色
+        eventTypeTabArrow.forEach(function(arrow) {
+          arrow.classList.remove('disabled');
+        });
+        if (indexClicked + 1 == eventListPageInType.length) { //そのタイプ最後のページ
+          eventTypeTabArrow.forEach(function(arrow) {
+            if (arrow.getAttribute('target') == eventType && arrow.classList.contains('next')) arrow.classList.add('disabled');
+          });
+        }
+        else if (indexClicked == 0) { //そのタイプ最初の仕事
+          eventTypeTabArrow.forEach(function(arrow) {
+            if (arrow.getAttribute('target') == eventType && arrow.classList.contains('prev')) arrow.classList.add('disabled');
+          });
+        }
       });
     });
 
+  });
+
+  eventTypeTabArrow.forEach(function(arrow) {
+    arrow.addEventListener('click', function(e) {
+      event.preventDefault();
+
+      if (arrow.classList.contains('prev')) pagenum--;
+      else if (arrow.classList.contains('next')) pagenum++;
+
+      let eventListPagesArray = Array.from(document.getElementById(eventType).getElementsByClassName('eventListPage'));
+      eventListPagesArray.forEach(function(eventListPageOne) {
+        eventListPageOne.classList.remove('active');
+      });
+      eventListPagesArray[pagenum].classList.add('active');
+      eventListPagesArray[pagenum].getElementsByTagName('a')[0].getElementsByClassName('eventTile')[0].classList.add('active');
+
+      let targetPaginationBtns = Array.from(document.getElementById(eventType).getElementsByClassName('foot')[0].getElementsByClassName('pagination-container')[0].getElementsByTagName('a'));
+      targetPaginationBtns.forEach(function(targetPagination) {
+        targetPagination.classList.remove('active');
+      });
+      targetPaginationBtns[pagenum].classList.add('active');
+
+      eventTypeTabArrow.forEach(function(arrow) {
+        arrow.classList.remove('disabled');
+      });
+      if (pagenum + 1 == eventListPagesArray.length) { //そのタイプ最後のページ
+        eventTypeTabArrow.forEach(function(arrow) {
+          if (arrow.getAttribute('target') == eventType && arrow.classList.contains('next')) arrow.classList.add('disabled');
+        });
+      }
+      else if (pagenum == 0) { //そのタイプ最初の仕事
+        eventTypeTabArrow.forEach(function(arrow) {
+          if (arrow.getAttribute('target') == eventType && arrow.classList.contains('prev')) arrow.classList.add('disabled');
+        });
+      }
+    });
   });
 
   /* モバイルのもっと見るボタン */
