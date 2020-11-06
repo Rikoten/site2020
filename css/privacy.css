@@ -1,0 +1,36 @@
+html {
+    background-color: #0D163B;
+    font-family: "Yu Gothic", "游ゴシック", "YuGothic", "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
+    box-sizing: border-box;
+}
+
+body > * {
+    color: white;
+    line-height: 1.8;
+    max-width: 800px;
+    width: 80vw;
+    margin-right: auto;
+    margin-left: auto;
+
+    margin-bottom: 2rem;
+}
+
+.address {
+    margin-top: 4rem;
+}
+
+h1 {
+    margin: 4rem auto;
+    border-left: solid 1rem white;
+    padding-left: 1rem;
+}
+
+@media screen and (max-width: 500px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+
+a {
+    color: #9999fa;
+}
