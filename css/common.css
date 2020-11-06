@@ -108,7 +108,7 @@
 }
 
 #sticky-header fieldset.fold {
-  transform: translateY(-100%);
+  transform: translateY(-120%);
   z-index: 9000;
   pointer-events: none;
 }

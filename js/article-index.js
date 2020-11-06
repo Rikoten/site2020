@@ -427,7 +427,7 @@ const placeOGP = (data) => {
 const placeShareLink = () => {
   const $a = document.querySelectorAll(".share a");
 
-  $a[0].href = `https://twiter.com/share?url=https://rikoten.com${generateURL(param.id)}`;
+  $a[0].href = `https://twitter.com/share?url=https://rikoten.com${generateURL(param.id)}?hashtags=rikoten2020`;
   $a[1].href = `http://www.facebook.com/share.php?u=https://rikoten.com${generateURL(param.id)}`;
   $a[2].href = `https://social-plugins.line.me/lineit/share?url=http://rikoten.com${generateURL(param.id)}`;
 }
