@@ -968,7 +968,7 @@ a.detailButton:hover::before {
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1350px) {
   #event > #eventContainer {
     grid-template-columns: 10% 80% 10%;
   }
