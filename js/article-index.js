@@ -212,11 +212,11 @@ const placeLive = (liveData) => {
   for(const data of liveData) {
     let Class = "", text = "";
 
-    if(data.timestampStart < time) {
+    if(data.timestampEnd < time) {
       Class = "done";
       text = "配信済み";
       if(language == "en") text = "Streamed live";
-    } else if(data.timestampStart >= time && data.timestampEnd <= time) {
+    } else if(data.timestampStart <= time && time <= data.timestampEnd) {
       Class = "on-air active";
       text = "配信中";
       if(language == "en") text = "Live";
