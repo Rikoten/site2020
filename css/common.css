@@ -200,6 +200,7 @@ div#pin-list.hidden {
   text-align: center;
   display: none;
   font-weight: bold;
+  font-size: 1rem;
 }
 
 #pin-list .no-pins.shown {
@@ -408,6 +409,23 @@ div#streaming-list.hidden {
   display: block;
   text-decoration: none;
   font-size: 1rem;
+}
+
+#sticky-header ::-webkit-scrollbar {
+  width: 5px;
+}
+
+/*スクロールバーの軌道*/
+#sticky-header ::-webkit-scrollbar-track {
+border-radius: 5px;
+box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+}
+
+/*スクロールバーの動く部分*/
+#sticky-header ::-webkit-scrollbar-thumb {
+background-color: var(--color-font);
+border-radius: 5px;
+box-shadow:0 0 0 1px rgba(255, 255, 255, .3);
 }
 
 /*****************   bottom-navigation   ****************/
@@ -678,120 +696,9 @@ footer ul.social-icon .youtube-icon:hover {
   }
 }
 
-
-/* Footer 
-footer {
-  grid-area: footer;
-  display: grid;
-  background-color: #243D7D;
-  color: #fff;
-  grid-template-rows: 80px auto 30px auto 30px auto auto;
-  grid-template-columns: 50% 50%;
-  grid-template-areas:
-  ". ."
-  "logo logo"
-  ". ."
-  "sitemap no1"
-  ". ."
-  "sns sns"
-  "copyright copyright";
-  text-align: center;
-}
-
-footer #footerLogo {
-  grid-area: logo;
-}
-
-footer #footerLogo > img.icon, footer #footerLogo > img.text {
-  width: 150px;
-}
-
-footer #footerSiteMap {
-  grid-area: sitemap;
-  padding: 30px 10%;
-  display: grid;
-  grid-template-columns: calc(100% / 3) calc(100% / 3) calc(100% / 3);
-  border-right: solid 1px #fff;
-}
-
-footer #footerSiteMap > a {
-  display: block;
-  text-align: left;
-  text-decoration: none;
-  height: 50px;
-  line-height: 50px;
-  color: #fff;
-}
-
-footer #footer-no1 {
-  grid-area: no1;
-  display: flex;
-  justify-content: center; /*左右中央揃え
-  align-items: center;     /*上下中央揃え
-}
-
-footer #footer-no1 img.rikoten-no1 {
-  height: 180px;
-  max-width: 90%;
-}
-
-footer #footerCopyright {
-  grid-area: copyright;
-  font-size: 14px;
-}
-
-footer #sns-btn {
-  grid-area: sns;
-  text-align: center;
-}
-
-footer ul {
-  font-size: 14px;
-  display: flex;
-}
-
-footer li {
-  margin: 20px;
-  border-right: 1px solid #FFF;
-}
-
-footer li:not(:last-child) {
-  border-right: none;
-}
-
-@media screen and (max-width: 992px) {
-  footer {
-    grid-area: footer;
-    display: grid;
-    background-color: #243D7D;
-    color: #fff;
-    grid-template-rows: 80px auto 30px auto 30px auto auto;
-    grid-template-columns: 50% 50%;
-    grid-template-areas:
-    ". ."
-    "logo logo"
-    ". ."
-    "sitemap sitemap"
-    ". ."
-    "sns sns"
-    "copyright copyright";
-    text-align: center;
-  }
-
-  footer #footer-no1 {
-    display: none;
+@media screen and (max-width: 432px) {
+  header #streaming-list,
+  header #pin-list {
+    max-width: 27rem;
   }
 }
-
-@media screen and (max-width: 768px) {
-  footer #footerSiteMap {
-    margin: 0 5%;
-    grid-template-columns: 50% 50%;
-    border-right: none;
-  }
-  footer #footerSiteMap a {
-    text-align: center;
-  }
-}
-
-*/
