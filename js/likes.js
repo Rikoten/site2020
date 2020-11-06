@@ -46,7 +46,7 @@ function addPin(id) {
 }
 
 function isPinned(id) {
-    const preveousPinned = JSON.parse(localStorage.getItem('pin'))
+    const preveousPinned = JSON.parse(localStorage.getItem('pin') || '[]')
     return Boolean(preveousPinned.find(it => it == id))
 }
 
