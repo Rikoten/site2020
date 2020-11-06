@@ -825,7 +825,6 @@ a.detailButton {
   overflow: hidden;
   z-index: 10;
   text-align: center;
-  margin-top: 40px;
 }
 
 a.detailButton::before {
@@ -918,6 +917,7 @@ a.detailButton:hover::before {
 #other a.detailButton {
   border: 3px solid #fff;
   color: #fff;
+  margin-top: 40px;
 }
 
 #other a.detailButton:hover {
@@ -931,6 +931,7 @@ a.detailButton:hover::before {
 #other #app a.detailButton {
   border: 3px solid #243D7D;
   color: #243D7D;
+  margin-top: 0;
 }
 
 #other #app a.detailButton:hover {
@@ -951,6 +952,7 @@ a.detailButton:hover::before {
 #support > h3 {
   font-weight: 500;
   font-size: 30px;
+  margin-top: 80px;
 }
 
 /* PC全般（今後整理） */
@@ -1379,6 +1381,16 @@ a.detailButton:hover::before {
   #goldBanner, #silverBanner {
     margin: 0 0 40px 0;
   }
+
+  #other h3,
+  #support h3 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  #support h3 {
+    margin: 60px 0 0 0;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -1614,6 +1626,11 @@ a.detailButton:hover::before {
 
   .app-band::after {
       display: none;
+  }
+
+  #other #app {
+    padding-top: 50px;
+    padding-bottom: 0;
   }
 }
 
