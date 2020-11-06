@@ -25,6 +25,12 @@
 
     pinToggleButton.addEventListener('click', function pinToggleEventListener(e) {
         if (e) {
+            if(pinToggleButton.classList.contains("toggle-pin-clicked")) {
+                pinToggleButton.classList.remove("toggle-pin-clicked");
+            } else {
+                pinToggleButton.classList.add("toggle-pin-clicked");
+            }
+
             if (pinOpen) {
                 pinListElement.classList.add('hidden')
                 pinOpen = false
@@ -32,6 +38,7 @@
             }
             if (liveOpen) {
                 liveListElement.classList.add('hidden')
+                liveToggleButton.classList.remove("toggle-live-clicked")
                 liveOpen = false
             }
             pinListElement.classList.remove('hidden')
@@ -50,7 +57,7 @@
 
         for (const pin of pins) {
             const item = data.find(it => it.eventID == pin)
-            const description = item.eventDesc && item.eventDesc.length > 70 ? item.eventDesc.slice(0, 70) + '...' : item.eventDesc
+            const description = item.pamphDesc && item.pamphDesc.length > 70 ? item.pamphDesc.slice(0, 70) + '...' : item.pamphDesc
 
             const li = document.createElement('li')
             li.innerHTML = pinItem(pin, item.eventType, item.requiredTime || '', item.eventName, description)
@@ -138,7 +145,7 @@
                 <span class='time'>${ convertUnixtimeToReadableTime(stream.startAt) } ~ ${ convertUnixtimeToReadableTime(stream.endAt) }</span>
                 <img src='${ stream.platform == 'youtube' ? '/img/youtube.svg' : '/img/zoom.svg' }'>
                 <h2 class='title'>${ event.eventName }</h2>
-                <p>${ event.eventDesc && event.eventDesc.length > 70 ? event.eventDesc.slice(0, 70) + '...' : event.eventDesc }</p>
+                <p>${ event.pamphDesc && event.pamphDesc.length > 70 ? event.pamphDesc.slice(0, 70) + '...' : event.pamphDesc }</p>
             </a>
         `
         const el = document.createElement('li')
@@ -147,6 +154,12 @@
     }
 
     liveToggleButton.addEventListener('click', () => {
+        if(liveToggleButton.classList.contains("toggle-live-clicked")) {
+            liveToggleButton.classList.remove("toggle-live-clicked");
+        } else {
+            liveToggleButton.classList.add("toggle-live-clicked");
+        }
+
         if (liveOpen) {
             liveListElement.classList.add('hidden')
             liveOpen = false
@@ -154,6 +167,7 @@
         }
         if (pinOpen) {
             pinListElement.classList.add('hidden')
+            pinToggleButton.classList.remove("toggle-pin-clicked")
             pinOpen = false
         }
         liveListElement.classList.remove('hidden')
