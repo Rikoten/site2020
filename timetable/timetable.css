@@ -2,9 +2,12 @@ body{
     background: -moz-linear-gradient(top, #1A2D63,#0D163B);
     background: -webkit-linear-gradient(top, #1A2D63,#0D163B);
     background: linear-gradient(to bottom, #1A2D63,#0D163B);
-    padding-bottom: 100px;
     margin: 0px;
     font-weight: bold;
+}
+
+main {
+  padding-bottom: 50px;
 }
 
 body main header div{
@@ -83,23 +86,23 @@ main > div > div > div{
 main > div > div > div:hover{
   background-color: rgba(255, 255, 255, .8);;
 }
-img{
+main img{
     margin-left: auto;
 }
-ul{
+main ul{
     padding-left:0px;
 }
-li{
+main li{
     display:flex;
     height:45px;
     line-height:52px;
     position: relative;
 }
-span{
+main span{
     padding-left: 5px;
     font-size:16px;
 }
-span:nth-of-type(2){
+main span:nth-of-type(2){
      padding-left: 0px;
 }
 .seven{
