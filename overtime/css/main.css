@@ -282,6 +282,7 @@ body {
   grid-column: 1 / -1;
   height: 100%;
   text-align: center;
+  margin: 20px 0;
 }
 
 #eventH3 > div {
