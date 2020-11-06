@@ -61,3 +61,11 @@ pinButton.addEventListener('click', () => {
         removePin(eventId)
     }
 })
+
+likeButton.addEventListener('click', () => {
+    if(likeButton.classList.contains("thumbs-up-clicked")) {
+        likeButton.classList.remove("thumbs-up-clicked");
+    } else {
+        likeButton.classList.add("thumbs-up-clicked");
+    }
+})

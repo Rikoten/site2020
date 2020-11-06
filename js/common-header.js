@@ -15,7 +15,7 @@
 
     const pinItem = (eventId, type, time, title, description) => `
         <a href='/event/?id=${eventId}'>
-            <span class='type'>${type}</span>
+            <span class='type type-${type}'>${type}</span>
             <span class='time'>${time}</span>
             <h2>${title}</h2>
             <p>${description}</p>
@@ -50,7 +50,7 @@
 
         for (const pin of pins) {
             const item = data.find(it => it.eventID == pin)
-            const description = item.eventDesc && item.eventDesc.length > 100 ? item.eventDesc.slice(0, 100) + '...' : item.eventDesc
+            const description = item.eventDesc && item.eventDesc.length > 70 ? item.eventDesc.slice(0, 70) + '...' : item.eventDesc
 
             const li = document.createElement('li')
             li.innerHTML = pinItem(pin, item.eventType, item.requiredTime || '', item.eventName, description)
@@ -134,7 +134,7 @@
         const event = data.find(it => it.eventID == stream.eventId)
 
         const innerHTML =  `
-            <a href='/event/?id=${ stream.eventId } }'>
+            <a href='/event/?id=${ stream.eventId }'>
                 <span class='time'>${ convertUnixtimeToReadableTime(stream.startAt) } ~ ${ convertUnixtimeToReadableTime(stream.endAt) }</span>
                 <img src='${ stream.platform == 'youtube' ? '/img/youtube.svg' : '/img/zoom.svg' }'>
                 <h2 class='title'>${ event.eventName }</h2>

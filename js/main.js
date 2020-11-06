@@ -172,6 +172,57 @@ const eventLoad = placeCommonParts.then(() => {
 
         /* 企画一覧部分 */
         let type = elem["eventType"]; //企画タイプ
+        let requiredTime = "";
+        if (type != "live") requiredTime = elem["requiredTime"];  //要求時間
+        else {
+          let date = new Date();
+          let nowTimestamp = Math.floor(date.getTime() / 1000);
+          if (elem["youtubeLive"]) {  //YouTube Live
+            for (let i = 0; i < elem["youtubeLive"].length; i++) {
+              if (elem["youtubeLive"][i]["timestampEnd"] > nowTimestamp) {
+                // まだ企画が行われていない
+                requiredTime = elem["youtubeLive"][i]["day"] + "日 " + elem["youtubeLive"][i]["start"] + "~";
+                // requiredTime = elem["youtubeLive"][i]["day"] + "日 " + elem["youtubeLive"][i]["start"] + "～" + elem["youtubeLive"][i]["end"];
+                break;
+              }
+            }
+            if (requiredTime == "") {
+              // 全企画終了
+              requiredTime = "録画あり";
+            }
+          }
+          else { //Zoom
+            if (elem["zoomDesc"]["day1"]) {
+              let zoomDay1 = elem["zoomDesc"]["day1"].split(', ');
+              for (let i = 0; i < elem["zoomTimestamp"]["day1"].length; i++) {
+                if (elem["zoomTimestamp"]["day1"][i][1] > nowTimestamp) {
+                  console.log(elem["eventID"]);
+                  console.log(i);
+                  let zoomDay1s = zoomDay1[i].split('~');
+                  requiredTime = "7日 " + zoomDay1s[0] + "~";
+                  break;
+                }
+              }  
+            }
+            if (elem["zoomDesc"]["day2"]) {
+              let zoomDay2 = elem["zoomDesc"]["day2"].split(', ');
+              if (requiredTime == "") {
+                // 1日目は終わった
+                for (let i = 0; i < elem["zoomTimestamp"]["day2"].length; i++) {
+                  if (elem["zoomTimestamp"]["day2"][i][1] > nowTimestamp) {
+                    let zoomDay2s = zoomDay2[i].split('~');
+                    requiredTime = "8日 " + zoomDay2s[0] + "~";
+                    break;
+                  }
+                }
+              }
+            }
+            if (requiredTime == "") {
+              // 全企画終了
+              requiredTime = "終了";
+            }
+          }
+        }
 
         let childrenTag = ""; //子ども向けの企画タグ
         if (elem["age"] == "child") childrenTag = '<div class = "eventChild child"><div>子ども向け</div></div>';
@@ -215,7 +266,7 @@ const eventLoad = placeCommonParts.then(() => {
         /* タイル追加 */
         let EventListTile = document.createElement('a');
         EventListTile.setAttribute('href', eventURL);
-        let EventListTileInner = '<div class = "eventTile" id = "' + elem["eventID"] + '"><div class = "eventTitle">' + elem["eventName"] + '</div><div class = "eventTime">' + elem["requiredTime"] + '</div>' + childrenTag + '<div class = "eventDesc">' + elem["pamphDesc"] + '</div><div class = "eventView"><span>0</span></div><div class = "eventThumbsUp">0</div><div class = "eventGroupName">' + elem["groupName"] + '</div><div class = "border"></div></div>';
+        let EventListTileInner = '<div class = "eventTile" id = "' + elem["eventID"] + '"><div class = "eventTitle">' + elem["eventName"] + '</div><div class = "eventTime">' + requiredTime + '</div>' + childrenTag + '<div class = "eventDesc">' + elem["pamphDesc"] + '</div><div class = "eventView"><span>0</span></div><div class = "eventThumbsUp">0</div><div class = "eventGroupName">' + elem["groupName"] + '</div><div class = "border"></div></div>';
 
         EventListTile.innerHTML = EventListTileInner;
 
