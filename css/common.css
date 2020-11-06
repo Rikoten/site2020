@@ -9,6 +9,18 @@
   height: 60px;
   z-index: 10000;
   align-items: center;
+  font-weight: normal;
+  font-family: "Yu Gothic", "游ゴシック", "YuGothic", "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
+}
+
+#sticky-header p,
+#sticky-header h2 {
+  color: #454E53;
+}
+
+#sticky-header h2 {
+  line-height: calc(22px*1.6);
+  border: none;
 }
 
 #sticky-header .icon {
@@ -18,7 +30,13 @@
 
 #sticky-header .text {
   height: 40px;
-  margin: 0 auto 0 20px;
+  margin-left: 10px;
+}
+
+#sticky-header .head a {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
 }
 
 #sticky-header select {
@@ -46,6 +64,7 @@
   position: relative;
   font-size: 14px;
   height: 30px;
+  margin: 0;
 }
 
 #sticky-header fieldset::before {
@@ -106,9 +125,21 @@
   color: #FFF;
   font-size: 14px;
   font-weight: 500;
-  line-height: 31px;
-  height: 31px;
+  line-height: 35px;
+  height: 35px;
+  transition: .2s;
+  outline: none;
+  cursor: pointer;
 }
+
+#toggle-pin.toggle-pin-clicked,
+#toggle-live.toggle-live-clicked {
+  height: 60px;
+  background: #454E53;
+  border-radius: 0; 
+}
+
+
 
 #sticky-header fieldset.fold {
   transform: translateY(-120%);
@@ -132,7 +163,7 @@
   }
 
   #sticky-header .text {
-    height: 35px;
+    height: 32px;
     margin-left: 5px;
   }
 
@@ -158,6 +189,7 @@ div#pin-list {
   height: calc(100vh - 60px);
   overflow-y: auto;
   transition: transform .1s ease-out;
+  z-index: 20000;
 }
 
 div#pin-list.hidden {
@@ -168,6 +200,8 @@ div#pin-list.hidden {
   margin-top: 2rem;
   text-align: center;
   display: none;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 #pin-list .no-pins.shown {
@@ -176,7 +210,8 @@ div#pin-list.hidden {
 
 #pin-list ul {
   list-style: none;
-  padding: 1rem 0;
+  padding: 0 0 1rem;
+  margin: 0;
 }
 
 #pin-list li {
@@ -198,7 +233,7 @@ div#pin-list.hidden {
   line-height: 2rem;
   padding-right: .81rem;
   padding-left: .81rem;
-  font-size: 1rem;
+  font-size: .875rem;
   font-weight: bold;
   border-radius: 3px;
   width: 3rem;
@@ -222,19 +257,20 @@ div#pin-list.hidden {
 #pin-list .time {
   line-height: 2rem;
   margin-left: 1rem;
+  font-size: .875rem;
 }
 
 #pin-list h2 {
   background: inherit;
   margin: .5rem 0;
   padding: 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
 #pin-list .item p {
   line-height: 1.5;
-  font-size: 1rem;
+  font-size: .875rem;
   margin: 0;
 }
 
@@ -245,6 +281,7 @@ div#pin-list.hidden {
   font-size: 2rem;
   border: none;
   background: inherit;
+  font-family: "Yu Gothic", "游ゴシック", "YuGothic", "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
 }
 
 
@@ -261,6 +298,7 @@ div#streaming-list {
   height: calc(100vh - 60px);
   overflow-y: auto;
   transition: transform .1s ease-out;
+  z-index: 20000;
 }
 
 div#streaming-list.hidden {
@@ -273,7 +311,7 @@ div#streaming-list.hidden {
   padding: .5rem 0;
   margin: 0;
   border-bottom: solid 1px #DFDFDF;
-  padding-left: 2rem;
+  padding-left: 1.5rem;
   font-weight: bold;
 }
 
@@ -295,7 +333,7 @@ div#streaming-list.hidden {
 #streaming-list ul {
   list-style: none;
   padding: 0;
-  margin-bottom: 0;
+  margin: 0 0 1rem;
 }
 
 #streaming-list li {
@@ -306,7 +344,7 @@ div#streaming-list.hidden {
   text-decoration: none;
   color: inherit;
   display: block;
-  padding: 1rem 1.5rem;
+  padding: .5rem 1rem;
   transition: 0.4s;
 }
 
@@ -321,13 +359,14 @@ div#streaming-list.hidden {
 
 #streaming-list .time {
   font-weight: bold;
+  font-size: .875rem;
 }
 
 #streaming-list .title {
   background: inherit;
   margin: 0;
   padding: 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -340,14 +379,59 @@ div#streaming-list.hidden {
 #streaming-list a > img {
   margin-left: 1rem;
   margin-top: .2rem;
-  transform: scale(1.2);
-  vertical-align: top;
 }
 
 #streaming-list .live > h2,
 #streaming-list .upcoming > h2 {
   font-weight: bold;
   background-color: #F9FAFA;
+}
+
+#streaming-list .scheduled {
+  transform: scale(1.3);
+  margin-right: 15px;
+}
+
+#streaming-list p {
+  padding: 2rem 1.5rem 1rem;
+  height: 3rem;
+  text-align: center;
+  font-weight: bold;
+  display: none;
+}
+
+#streaming-list p.shown {
+  display: block;
+}
+
+#streaming-list > a {
+  margin: 2rem auto;
+  padding: .6rem 2rem;
+  color: #454E53;
+  background-color: #F2F2F2;
+  font-weight: bold;
+  width: 7rem;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+#sticky-header ::-webkit-scrollbar {
+  width: 5px;
+}
+
+/*スクロールバーの軌道*/
+#sticky-header ::-webkit-scrollbar-track {
+border-radius: 5px;
+box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+}
+
+/*スクロールバーの動く部分*/
+#sticky-header ::-webkit-scrollbar-thumb {
+background-color: var(--color-font);
+border-radius: 5px;
+box-shadow:0 0 0 1px rgba(255, 255, 255, .3);
 }
 
 /*****************   bottom-navigation   ****************/
@@ -486,112 +570,141 @@ div#streaming-list.hidden {
   }
 }
 
-
-
-/* Footer */
 footer {
-  grid-area: footer;
-  display: grid;
-  background-color: #243D7D;
-  color: #fff;
-  grid-template-rows: 80px auto 30px auto 30px auto auto;
-  grid-template-columns: 50% 50%;
-  grid-template-areas:
-  ". ."
-  "logo logo"
-  ". ."
-  "sitemap no1"
-  ". ."
-  "sns sns"
-  "copyright copyright";
-  text-align: center;
-}
-
-footer #footerLogo {
-  grid-area: logo;
-}
-
-footer #footerLogo > img.icon, footer #footerLogo > img.text {
-  width: 150px;
-}
-
-footer #footerSiteMap {
-  grid-area: sitemap;
-  padding: 30px 10%;
-  display: grid;
-  grid-template-columns: calc(100% / 3) calc(100% / 3) calc(100% / 3);
-  border-right: solid 1px #fff;
-}
-
-footer #footerSiteMap > a {
-  display: block;
-  text-align: left;
-  text-decoration: none;
-  height: 50px;
-  line-height: 50px;
-  color: #fff;
-}
-
-footer #footer-no1 {
-  grid-area: no1;
-  display: flex;
-  justify-content: center; /*左右中央揃え*/
-  align-items: center;     /*上下中央揃え*/
-}
-
-footer #footer-no1 img.rikoten-no1 {
-  height: 180px;
-  max-width: 90%;
-}
-
-footer #footerCopyright {
-  grid-area: copyright;
+  color: white;
+  background: #121F4A;
+  padding: 20px 0 10px;
   font-size: 14px;
+  font-weight: normal;
+  position: relative;
+  font-family: "Yu Gothic", "游ゴシック", "YuGothic", "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
 }
 
-footer #sns-btn {
-  grid-area: sns;
+footer .copyright {
+  margin: 0 auto;
   text-align: center;
 }
 
-@media screen and (max-width: 992px) {
-  footer {
-    grid-area: footer;
-    display: grid;
-    background-color: #243D7D;
-    color: #fff;
-    grid-template-rows: 80px auto 30px auto 30px auto auto;
-    grid-template-columns: 50% 50%;
-    grid-template-areas:
-    ". ."
-    "logo logo"
-    ". ."
-    "sitemap sitemap"
-    ". ."
-    "sns sns"
-    "copyright copyright";
+footer .jasrac {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  margin: 0;
+}
+
+footer a {
+  text-decoration: none;
+  color: #FFF;
+}
+
+footer ul {
+  max-width: 1000px;
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 10px;
+  list-style-type: none;
+  padding: 0;
+}
+
+footer ul.link li {
+  display: flex;
+  padding: 0 20px 0 0;
+  align-items: center;
+}
+
+footer ul.link li:not(:last-child)::after {
+  content: "";
+  height: 14px;
+  width: 1px;
+  background: #FFF;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+footer ul.social-icon li {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #0D163B;
+  transition: .3s;
+  cursor: pointer;
+}
+
+footer ul.social-icon li:not(:last-child) {
+  margin-right: 20px;
+}
+
+footer ul.social-icon li a {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+footer ul.social-icon li img {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+footer ul.social-icon .twitter-icon:hover {
+  background: #55acee;
+}
+
+footer ul.social-icon .facebook-icon:hover {
+  background: #3B5998;
+}
+
+footer ul.social-icon .instagram-icon:hover {
+  position: relative;
+  overflow: hidden;
+  background: -webkit-linear-gradient(135deg, #427eff 0%, #f13f79 70%) no-repeat;
+  background: linear-gradient(135deg, #427eff 0%, #f13f79 70%) no-repeat;
+}
+
+footer ul.social-icon .instagram-icon:hover::before {
+  content: "";
+  width: 60px;
+  height: 60px;
+  background: -webkit-radial-gradient(#ffdb2c 10%, rgba(255, 105, 34, 0.65) 55%, rgba(255, 88, 96, 0) 70%);
+  background: radial-gradient(#ffdb2c 10%, rgba(255, 105, 34, 0.65) 55%, rgba(255, 88, 96, 0) 70%);
+  position: absolute;
+  top: 23px;
+  left: -18px;
+  z-index: 1;
+}
+
+footer ul.social-icon .instagram-icon img {
+  z-index: 2;
+}
+
+footer ul.social-icon .youtube-icon:hover {
+  background: #FF0000;
+}
+
+@media screen and (max-width: 900px) {
+  footer .jasrac {
+    position: absolute;
+    bottom: 105px;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
+    width: 270px;
   }
 
-  footer #footer-no1 {
-    display: none;
+  footer .social-icon {
+    margin-top: 45px;
   }
 }
 
-@media screen and (max-width: 700px) {
-  div#pin-list,
-  div#streaming-list {
-    top: 55px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  footer #footerSiteMap {
-    margin: 0 5%;
-    grid-template-columns: 50% 50%;
-    border-right: none;
-  }
-  footer #footerSiteMap a {
-    text-align: center;
+@media screen and (max-width: 432px) {
+  header #streaming-list,
+  header #pin-list {
+    max-width: 27rem;
   }
 }

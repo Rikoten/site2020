@@ -2,20 +2,20 @@
 <html lang = "ja">
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-117940930-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117940930-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'UA-117940930-1');
-    </script>-->
+    </script>
     <meta charset="utf-8">
     <meta name = "viewport" content = "width = device-width, initial-scale = 1, shrink-to-fit = no">
 
     <link rel = "stylesheet" href = "/css/common.css">
-    <link rel = "stylesheet" href = "/css/sns.css">
     <link rel = "stylesheet" href = "/css/main.css">
     <link rel = "stylesheet" href = "https://rikoten.github.io/2020-bannerData/banner.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
     <link rel='prefetch' href='/css/event.css'>
     <link rel='prefetch' href='/js/likes.js'>
@@ -80,15 +80,15 @@
             <a href = "#eventArticle"><div><div>Article</div><div>記事</div></div></a>
           </div>-->
           <div id = "eventTypeTab">
-            <a href = "#" target = "eventLive" class = "arrow prev type"></a>
-            <a href = "#eventLive" class = "active"><div>Live</div><div>ライブ</div></a>
-            <a href = "#" target = "eventLive" class = "arrow next type"></a>
-            <a href = "#" target = "eventMovie" class = "arrow prev type"></a>
-            <a href = "#eventMovie"><div>Movie</div><div>動画</div></a>
-            <a href = "#" target = "eventMovie" class = "arrow next type"></a>
-            <a href = "#" target = "eventArticle" class = "arrow prev type"></a>
-            <a href = "#eventArticle"><div>Article</div><div>記事</div></a>
-            <a href = "#" target = "eventArticle" class = "arrow next type"></a>
+            <a href = "#" target = "eventLive" class = "arrow prev visible disabled"></a>
+            <a href = "#eventLive" class = "active type"><div>Live</div><div>ライブ</div></a>
+            <a href = "#" target = "eventLive" class = "arrow next visible"></a>
+            <a href = "#" target = "eventMovie" class = "arrow prev"></a>
+            <a href = "#eventMovie" class = "type"><div>Movie</div><div>動画</div></a>
+            <a href = "#" target = "eventMovie" class = "arrow next"></a>
+            <a href = "#" target = "eventArticle" class = "arrow prev"></a>
+            <a href = "#eventArticle" class = "type"><div>Article</div><div>記事</div></a>
+            <a href = "#" target = "eventArticle" class = "arrow next"></a>
           </div>
           <div id = "eventList">
             <div id = "eventLive" class = "eventTypePage active">
@@ -103,7 +103,7 @@
               <div class = "foot">
                 <div class = "pagination-container">
                   <div class = "pagination"></div>
-                  <a href = "/timetable/" class = "timetable">タイムテーブルを見る</a>
+                  <a href = "https://drive.google.com/file/d/1P9V86pjQb1-39lL7zk1m1XRN0aB8jyzL/view?usp=sharing" class = "timetable pamph" target = "_blank" rel = "noopener noreferrer">パンフレットを見る</a>
                 </div>
               </div>
             </div>
@@ -111,7 +111,7 @@
               <div class = "foot">
                 <div class = "pagination-container">
                   <div class = "pagination"></div>
-                  <a href = "/timetable/" class = "timetable">タイムテーブルを見る</a>
+                  <a href = "https://drive.google.com/file/d/1P9V86pjQb1-39lL7zk1m1XRN0aB8jyzL/view?usp=sharing" class = "timetable pamph" target = "_blank" rel = "noopener noreferrer">パンフレットを見る</a>
                 </div>
               </div>
             </div>
@@ -199,5 +199,5 @@
   </body>
   <script src = "/js/main.js"></script>
   <script src = "https://rikoten.github.io/2020-bannerData/banner.js"></script>
-
+  <script type="text/javascript" src='/js/common.js'></script>
 </html>

@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117940930-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-117940930-1');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>タイムテーブル - 早稲田理工の学園祭 第67回理工展</title>
     <link href = "timetable.css" rel = "stylesheet" media = "all">
     <meta name = "viewport" content = "width = device-width">
+    <link rel = "stylesheet" href = "/css/common.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+    <meta property="og:url" content="https://rikoten.com">
+    <meta property="og:type" content="website">
+    <meta name="description" content="第67回理工展のライブ配信企画のタイムテーブルです。">
+    <meta property="og:title" content="タイムテーブル - 第67回理工展">
+    <meta property="og:description" content="第67回理工展のライブ配信企画のタイムテーブルです。">
+    <meta property="og:image" content="https://rikoten.com/img/twitter-card/top.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@rikoten_waseda">
+    <meta name="twitter:creator" content="@rikoten_waseda">
+    <meta name="twitter:title" content="タイムテーブル - 第67回理工展">
+    <meta name="twitter:description" content="第67回理工展のライブ配信企画のタイムテーブルです。">
+    <meta name="twitter:image" content="https://rikoten.com/img/twitter-card/top.jpg">
 </head>
 <body>
-<main>
+    <div id="common-header"></div>
+<main style = "padding-top: 100px;">
     <div class="dot1"></div>
     <div class="box1"></div>
     <div class="box2"></div>
@@ -705,5 +730,35 @@
 
     </div>
 </main>
+<footer></footer>
+<script>
+    let xhr = new XMLHttpRequest(),
+          method = "GET",
+          url = "/common.html";
+    let box = document.getElementById("common-header"),
+          box2 = document.getElementById("bottom-nav"),
+          box3 = document.getElementsByTagName("footer")[0];
+    
+    xhr.responseType = "document";
+    xhr.open(method, url, true);
+    xhr.onreadystatechange = () => {
+        if(xhr.readyState === 4 && xhr.status === 200) {
+          let restxt = xhr.responseXML;
+          let int = restxt.getElementsByTagName("header")[0],
+              int2 = restxt.getElementsByTagName("nav")[0],
+              int3 = restxt.getElementsByTagName("footer")[0];
+          box.outerHTML = int.outerHTML;
+          //box2.outerHTML = int2.outerHTML;
+          box3.outerHTML = int3.outerHTML;
+    
+          const script = document.createElement('script')
+          script.src = '/js/common-header.js'
+          document.head.appendChild(script)
+        }
+    }
+    
+      xhr.send();
+</script>
+<script type="text/javascript" src='/js/common.js'></script>
 </body>
 </html>

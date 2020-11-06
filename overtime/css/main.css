@@ -815,6 +815,29 @@ a.detailButton:hover::before {
 }
 
 @media screen and (max-width: 576px) {
+  #logo {
+    margin: 0 auto;
+    max-width: 500px;
+    width: 100%;
+    padding: 50px 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+  }
+  
+  #logo img.icon {
+    width: 25%;
+    height: auto;
+    margin: 0;
+    padding-right: 15px;
+  }
+  
+  #logo img.text {
+    width: 50%;
+    height: auto;
+    margin: 0;
+    padding-left: 15px;
+  }
 }
 
 @media screen and (max-width: 340px) {

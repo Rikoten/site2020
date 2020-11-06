@@ -114,7 +114,7 @@ body {
   position: relative;
   height: 100vh;
   min-height: 900px;
-  background: url(../img/top-background.png) no-repeat;
+  background: center url(../img/top-background.png) no-repeat;
   background-size: cover;
   width: 100%;
   overflow: hidden;
@@ -311,7 +311,7 @@ body {
   grid-row: 2;
   grid-template-columns: 20% 60% 20%;
   display: grid;
-  grid-template-rows: 100px 80px 110px 30px auto;
+  grid-template-rows: 100px 80px 90px 30px auto;
 }
 
 /*#eventTypeTab {
@@ -405,6 +405,38 @@ body {
   line-height: 24px;
 }
 
+#eventTypeTab a.arrow {
+  width: 40px;
+  height: 80px;
+  pointer-events: none;
+  opacity: 0;
+  transition: background-image opacity .2s;
+}
+
+#eventTypeTab a.arrow.visible {
+  pointer-events: initial;
+  content: '';
+  background: url(../img/triangle-light.svg) no-repeat;
+  background-size: 15px 30px;
+  background-position: center;
+  opacity: 1;
+  transition: background-image opacity .2s;
+}
+
+#eventTypeTab a.arrow.visible.disabled {
+  content: '';
+  background: url(../img/triangle-dark.svg) no-repeat;
+  background-size: 15px 30px;
+  background-position: center;
+  opacity: 1;
+  transition: background-image opacity .2s;
+  pointer-events: none;
+}
+
+#eventTypeTab a.arrow.prev {
+  transform: rotate(-180deg);
+}
+
 #eventList {
   grid-row: 5;
   grid-column: 1 / -1;
@@ -450,7 +482,7 @@ body {
 #eventList .eventTile.active .border {
   display: block;
   grid-area: border;
-  border-right: 2px dashed #A3D4DC;
+  border-right: 2px dashed #FFF;
 }
 
 /*#eventList .eventTile.active::before {
@@ -684,6 +716,9 @@ body {
   text-align: center;
   line-height: 40px;
   text-decoration: none;
+  background: #FFF;
+  color: #0D163B;
+  font-weight: bold;
 }
 
 #eventList a.more {
@@ -826,7 +861,7 @@ a.detailButton:hover::before {
   grid-area: other;
   background-color: #A3D4DC;
   display: grid;
-  grid-template-rows: auto 50px auto 100px;
+  grid-template-rows: auto 50px auto 50px;
   grid-template-areas: 
   "app"
   "."
@@ -882,6 +917,7 @@ a.detailButton:hover::before {
 #other a.detailButton {
   border: 3px solid #fff;
   color: #fff;
+  margin-top: 40px;
 }
 
 #other a.detailButton:hover {
@@ -895,6 +931,7 @@ a.detailButton:hover::before {
 #other #app a.detailButton {
   border: 3px solid #243D7D;
   color: #243D7D;
+  margin-top: 0;
 }
 
 #other #app a.detailButton:hover {
@@ -915,6 +952,7 @@ a.detailButton:hover::before {
 #support > h3 {
   font-weight: 500;
   font-size: 30px;
+  margin-top: 80px;
 }
 
 /* PC全般（今後整理） */
@@ -930,7 +968,7 @@ a.detailButton:hover::before {
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1350px) {
   #event > #eventContainer {
     grid-template-columns: 10% 80% 10%;
   }
@@ -1090,23 +1128,23 @@ a.detailButton:hover::before {
     grid-column: 1 / -1;
   }
 
-  #eventTypeTab > a {
+  #eventTypeTab > a.type {
     border: none!important;
     padding: 0;
     margin: 0 10px;
     display: inline-block;
   }
 
-  #eventTypeTab > a.active {
+  #eventTypeTab > a.type.active {
     background: transparent;
   }
 
-  #eventTypeTab > a.active {
+  #eventTypeTab > a.type.active {
     background-color: #A3D4DC;
     color: #121F4A;
   }
 
-  #eventTypeTab > a {
+  #eventTypeTab > a.type {
     position: relative;
     height: 30px;
     width: 100px;
@@ -1116,11 +1154,11 @@ a.detailButton:hover::before {
     color: #121F4A;
   }
 
-  #eventTypeTab > a > div:nth-child(1) {
+  #eventTypeTab > a.type > div:nth-child(1) {
     display: none;
   }
 
-  #eventTypeTab > a > div:nth-child(2) {
+  #eventTypeTab > a.type > div:nth-child(2) {
     position: absolute;
     display: inline-block;
     font-size: 16px;
@@ -1130,6 +1168,10 @@ a.detailButton:hover::before {
     top: 0;
     left: 0;
     text-align: center;
+  }
+
+  #eventTypeTab a.arrow {
+    display: none;
   }
 
   #eventList .eventListPage {
@@ -1339,6 +1381,16 @@ a.detailButton:hover::before {
   #goldBanner, #silverBanner {
     margin: 0 0 40px 0;
   }
+
+  #other h3,
+  #support h3 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  #support h3 {
+    margin: 60px 0 0 0;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -1348,17 +1400,32 @@ a.detailButton:hover::before {
 @media screen and (max-width: 576px) {
 }
 
-@media screen and (max-width: 340px) {
-  #about-mb > div.about-tile > a > div:nth-child(2) {
-    font-size: 12px;
-  }
-  #eventTypeTab > a {
+@media screen and (max-width: 400px) {
+  #eventTypeTab > a.type {
     position: relative;
     width: 90px;
     margin: 0 5px;
   }
+}
 
-  #eventList .eventTile > .eventTime {
+@media screen and (max-width: 360px) {
+  #eventList .eventTile.live {
+    grid-template-areas: "title title title title title title"
+    ". . . . . ."
+    ". view thumb time time ."
+    ". desc desc desc desc ."
+    ". . . . . .";
+  }
+
+  #eventList .eventTile.live > .eventChild {
+    display: none;
+  }
+
+  #about-mb > div.about-tile > a > div:nth-child(2) {
+    font-size: 12px;
+  }
+
+  #eventList .eventTile:not(.live) > .eventTime {
     display: none;
   }
 }
@@ -1521,6 +1588,10 @@ a.detailButton:hover::before {
   .app-band div:nth-child(1) p, .app-band div:nth-child(3) p {
       font-size: 14px;
   }
+
+  #topView > #themeText {
+    height: calc(100% - 195px - 60px);
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -1555,6 +1626,11 @@ a.detailButton:hover::before {
 
   .app-band::after {
       display: none;
+  }
+
+  #other #app {
+    padding-top: 50px;
+    padding-bottom: 0;
   }
 }
 

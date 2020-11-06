@@ -1,6 +1,6 @@
 const param = {};
 const ShuffledID = [];
-const switchToJaData = /D-04|D-18|E-0[7-9]|E-1[0-7]/;
+const switchToJaData = /D-04|D-18|E-0[7-9]|E-1[0-3|6-7]/;
 let language = "";
 let switchToJaDataFlag = false;
 
@@ -33,6 +33,7 @@ const placeCommonParts = new Promise ((resolve, reject) => {
       method = "GET",
       url = "/common.html";
   let box = document.getElementById("common-header");
+      box2 = document.getElementsByTagName("footer")[0];
 
   xhr.responseType = "document";
   xhr.open(method, url, true);
@@ -40,16 +41,18 @@ const placeCommonParts = new Promise ((resolve, reject) => {
     if(xhr.readyState === 4 && xhr.status === 200) {
       let restxt = xhr.responseXML;
       let int = restxt.getElementsByTagName("header")[0];
+          int2 = restxt.getElementsByTagName("footer")[0];
       box.outerHTML = int.outerHTML;
+      box2.outerHTML = int2.outerHTML;
 
       const script = document.createElement('script')
       script.src = '/js/common-header.js'
       document.head.appendChild(script)
+      resolve();
     }
   }
 
   xhr.send();
-  resolve();
 });
 
 /********** JSON読み込み **********/
@@ -162,7 +165,6 @@ placeData.then((obj) => {
 
   if(document.querySelector(".youtube-live")) liveInit();
 
-  barEvent();
   quizEvent();
   indexEvent();
   morebuttonEvent(obj);
@@ -428,7 +430,7 @@ const placeOGP = (data) => {
 const placeShareLink = () => {
   const $a = document.querySelectorAll(".share a");
 
-  $a[0].href = `https://twitter.com/share?url=https://rikoten.com${generateURL(param.id)}&hashtags=rikoten2020`;
+  $a[0].href = `https://twitter.com/share?url=https://rikoten.com${generateURL(param.id)}&hashtags=Rikoten2020`;
   $a[1].href = `http://www.facebook.com/share.php?u=https://rikoten.com${generateURL(param.id)}`;
   $a[2].href = `https://social-plugins.line.me/lineit/share?url=http://rikoten.com${generateURL(param.id)}`;
 }
@@ -495,7 +497,9 @@ const generateEventTile = (data) => {
 
 const removeMoreButton = (html) => {
   const $aside = document.getElementsByTagName("aside")[0];
+  const y = document.documentElement.scrollTop;
   $aside.lastElementChild.insertAdjacentHTML("beforebegin", html.join(""));
+  document.documentElement.scrollTop = y;
   $aside.removeChild($aside.lastElementChild);
 }
 
@@ -520,32 +524,6 @@ const liveInit = () => {
 }
 
 /********** イベントリスナを設定する関数 **********/
-
-const barEvent = () => {
-  const barButton = document.querySelectorAll("article .bar button");
-/*
-  barButton[1].addEventListener("click", () => {
-    if (storageAvailable('localStorage')) {
-      if(!localStorage.getItem("pin")) {
-        let data = null;
-        data = {`${eventID}`: "true"};
-        localStorage.setItem('pin', JSON.stringify(data));
-        barButton[1].classList.add("pin-clicked");
-      } else {
-        if(localStorage.getItem("pin")[eventID] == "true") {
-          const data = {eventID: "false"};
-          localStorage.setItem('pin', JSON.stringify(data));
-          barButton[1].classList.remove("pin-clicked");
-        } else {
-          const data = {eventID: "true"};
-          localStorage.setItem('good', JSON.stringify(data));
-          barButton[1].classList.add("pin-clicked");
-        }
-      }
-    }
-  });
-*/
-}
 
 const quizEvent = () => {
   const $options = document.querySelectorAll(".quiz li");
@@ -588,7 +566,9 @@ const morebuttonEvent = (data) => {
   const $more = document.querySelector("aside .more");
 
   $more.addEventListener("click", () => {
+    const y = document.documentElement.scrollTop;
     $more.insertAdjacentHTML("beforebegin", generateEventTile(data));
+    document.documentElement.scrollTop = y;
   });
 }
 
