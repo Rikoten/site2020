@@ -375,7 +375,7 @@ ul.pagination li.current {
 
 #title-header .title-wrapper {
   max-width: 1000px;
-  margin: 0 20px;
+  margin: 60px 20px 0;
   color: var(--color-font);
   padding: 0 10px;
   z-index: 1000;
@@ -1311,7 +1311,7 @@ article .link-zoom-container + .link-zoom-container {
 #title-header .notice {
   display: flex;
   font-weight: bold;
-  margin-bottom: 80px;
+  margin-bottom: 20px;
   line-height: 20px;
   min-height: 38px;
 }
@@ -1347,6 +1347,23 @@ article .link-zoom-container + .link-zoom-container {
   border-radius: 0 10px 10px 0;
   display: flex;
   align-items: center;
+}
+
+.link-copy {
+  color: #FFF;
+  font-weight: bold;
+  background: var(--color-font);
+  padding: 10px;
+  position: fixed;
+  bottom: -100px;
+  left: 50px;
+  z-index: 10000;
+  box-shadow: 0 3px 6px 0px rgba(0, 0, 0, .16);
+  transition: .2s;
+}
+
+.show-notification {
+  bottom: 30px;
 }
 
 /* 2カラムレイアウトの横幅1330px + 左右余白40px */
@@ -1412,7 +1429,7 @@ article .link-zoom-container + .link-zoom-container {
   }
 
   #title-header .title-wrapper {
-    margin: 0 auto;
+    margin: 60px auto 0;
   }
 
   .youtube-live {
@@ -1592,5 +1609,13 @@ article .link-zoom-container + .link-zoom-container {
 
   .contain-notice-body {
     grid-template-rows: 600px auto auto auto;
+  }
+
+  .link-copy {
+    left: 20px;
+  }
+
+  .show-notification {
+    bottom: 20px;
   }
 }
