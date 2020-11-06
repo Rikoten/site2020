@@ -174,12 +174,15 @@ div#pin-list.hidden {
 
 #pin-list ul {
   list-style: none;
-  padding: 1rem 2rem;
+  padding: 1rem 0;
 }
 
 #pin-list li {
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
+  border-bottom: solid 1px black;
+  padding-bottom: 1.5rem;
+  padding: 0 2rem 1.5rem 2rem;
 }
 
 #pin-list a {
