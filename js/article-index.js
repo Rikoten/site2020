@@ -48,11 +48,11 @@ const placeCommonParts = new Promise ((resolve, reject) => {
       const script = document.createElement('script')
       script.src = '/js/common-header.js'
       document.head.appendChild(script)
+      resolve();
     }
   }
 
   xhr.send();
-  resolve();
 });
 
 /********** JSON読み込み **********/
