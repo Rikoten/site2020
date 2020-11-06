@@ -1,7 +1,9 @@
 const param = {};
 const ShuffledID = [];
+const switchToJaData = /D-04|D-18|E-0[7-9]|E-1[0-7]/;
 let language = "";
-const SwitchToJaData = /D-04|D-18|E-0[7-9]|E-1[0-7]/;
+let switchToJaDataFlag = false;
+
 
 /********** ローカルストレージが使用可能か判定 **********/
 
@@ -39,6 +41,10 @@ const placeCommonParts = new Promise ((resolve, reject) => {
       let restxt = xhr.responseXML;
       let int = restxt.getElementsByTagName("header")[0];
       box.outerHTML = int.outerHTML;
+
+      const script = document.createElement('script')
+      script.src = '/js/common-header.js'
+      document.head.appendChild(script)
     }
   }
 
@@ -67,9 +73,9 @@ const getJSON = placeCommonParts.then(() => {
     if(storageAvailable('localStorage')) if(localStorage.getItem("lang")) language = localStorage.getItem("lang");
     else language = "ja"
     if(language == "en") url = "/data/eventData_en.json";
-    if(param.id.match(SwitchToJaData)) {
+    if(param.id.match(switchToJaData)) {
       url = "/data/eventData.json";
-      //showModal();
+      switchToJaDataFlag = true;
     }
 
     xhr.responseType = "json";
@@ -99,10 +105,10 @@ const placeData = getJSON.then((obj) => {
   const $title = document.querySelector("header .title-wrapper");
   const $barSpan = document.querySelector("article .bar span");
   const $info = document.querySelector("header .title-wrapper .supplementary-info");
-  
+
   $title.insertAdjacentHTML("afterbegin", `<span class = "type-${eventData["eventType"]}-light">${eventData["eventType"].charAt(0).toUpperCase() + eventData["eventType"].substring(1)}</span><h1>${eventData["eventName"]}</h1><p>${eventData["pamphDesc"]}</p>`);
   $barSpan.innerText = eventData["eventName"];
-  
+
   if(eventData["age"] == "child") $info.insertAdjacentHTML("afterbegin", "<span class = 'target'>子ども向け</span>");
   else if(eventData["age"] == "student") $info.insertAdjacentHTML("afterbegin", "<span class = 'target'>受験生向け</span>");
   else $info.firstElementChild.classList.add("first-span");
@@ -125,7 +131,7 @@ const placeData = getJSON.then((obj) => {
       link.push(`<a class = "link-web" href = "${data.url}">${data.name}</a>`);
     }
   }
-  
+
   if(eventData["twitter"]) link.push(`<a class = "link-twitter" href = "https://twitter.com/${eventData["twitter"]}">Twitter</a>`);
   if(eventData["facebook"]) link.push(`<a class = "link-facebook" href = "${eventData["facebook"]}">Facebook</a>`);
   if(eventData["instagram"]) link.push(`<a class = "link-instagram" href = "https://www.instagram.com/${eventData["instagram"]}">Instagram</a>`);
@@ -135,8 +141,9 @@ const placeData = getJSON.then((obj) => {
 
   placeOtherEvent(obj);
   placeOGP(eventData);
-  //placeShareLink();
-  
+  placeShareLink();
+  if(switchToJaDataFlag) placeNotice();
+
   return new Promise((resolve, reject) => {
     resolve(obj);
   })
@@ -178,7 +185,7 @@ placeData.then((obj) => {
       });
     }
   }, 100);
-  
+
 });
 
 
@@ -205,11 +212,11 @@ const placeLive = (liveData) => {
   for(const data of liveData) {
     let Class = "", text = "";
 
-    if(data.timestampStart < time) {
+    if(data.timestampEnd < time) {
       Class = "done";
       text = "配信済み";
       if(language == "en") text = "Streamed live";
-    } else if(data.timestampStart >= time && data.timestampEnd <= time) {
+    } else if(data.timestampStart <= time && time <= data.timestampEnd) {
       Class = "on-air active";
       text = "配信中";
       if(language == "en") text = "Live";
@@ -281,7 +288,7 @@ const placeArticle = (articleData) => {
     if(data.tag == "h2") {
       if(li.length != 0) index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a><ul>${li.join("")}</ul></li>`);
       else if(!isFirst) index.push(`<li ${h2Class}><a href = "${generateURL(param.id, h2Page, URLEscape(h2))}"><span>${h2}</span></a></li>`);
-      
+
       li.length = 0;
       isFirst = false;
       h2 = data.code;
@@ -349,6 +356,7 @@ const returnZoomURL = (data, num) => {
 const placeQuiz = (quizData) => {
   const $article = document.getElementsByTagName("article")[0];
   const html = [];
+  let h2Text = "クイズ";
 
   for(const data of quizData) {
     const choices = [];
@@ -376,7 +384,10 @@ const placeQuiz = (quizData) => {
       </div>
     </section>`);
   }
-  $article.insertAdjacentHTML("beforeend", `<section class = "quiz"><h2>クイズ</h2>${html.join("")}</section>`);
+
+  if(param.id == "D-17") h2Text = "アンケート";
+
+  $article.insertAdjacentHTML("beforeend", `<section class = "quiz"><h2>${h2Text}</h2>${html.join("")}</section>`);
 }
 
 const placeFile = (fileData) => {
@@ -419,6 +430,20 @@ const placeShareLink = () => {
   $a[0].href = `https://twiter.com/share?url=https://rikoten.com${generateURL(param.id)}`;
   $a[1].href = `http://www.facebook.com/share.php?u=https://rikoten.com${generateURL(param.id)}`;
   $a[2].href = `https://social-plugins.line.me/lineit/share?url=http://rikoten.com${generateURL(param.id)}`;
+}
+
+const placeNotice = () => {
+  const $titleHeader = document.getElementById("title-header");
+  const $body = document.body;
+
+  $titleHeader.children[0].classList.add("contain-notice");
+  $body.classList.add("contain-notice-body");
+  $titleHeader.insertAdjacentHTML("afterbegin", `
+    <div class = "notice">
+      <span></span>
+      <div><p>This article contains academic text and cannot display machine translation.</p></div>
+    </div>
+  `);
 }
 
 const generateShuffledID = (data) => {
@@ -523,7 +548,7 @@ const barEvent = () => {
 
 const quizEvent = () => {
   const $options = document.querySelectorAll(".quiz li");
-      
+
   for(const option of $options) {
     option.addEventListener("click", () => {
       const commentary = option.parentNode.nextElementSibling;
@@ -589,7 +614,10 @@ const languageEvent = () => {
       const $quiz = document.querySelector("section.quiz h2");
       const $file = document.querySelector("section.file h2");
       if($zoom) $zoom.innerText = "Zoom";
-      if($quiz) $quiz.innerText = "Quiz";
+      if($quiz) {
+        if(param.id = "D-17") $quiz.innerText = "Questionnaire";
+        else $quiz.innerText = "Quiz";
+      }
       if($file) $file.innerText = "File";
 
       const $target = document.querySelector(".supplementary-info .target");
@@ -599,7 +627,7 @@ const languageEvent = () => {
       }
     }
   }
-  
+
 
   $fieldset.onchange = function(){
     const language = document.querySelector("#sticky-header :checked").value;
@@ -626,7 +654,7 @@ const intersectEvent = () => {
     threshold: 0
   };
   const observer = new IntersectionObserver(intersect, options);
-  
+
   h.forEach((h) => {
     observer.observe(h);
   });
@@ -650,7 +678,7 @@ const activateIndex = (elem) => {
 
 const linkClickEvent = () => {
   const $a = document.querySelectorAll('#index a');
-  
+
   for(const a of $a) {
     a.addEventListener("click", (event) => {
       const id = a.href.split("#")[1];
