@@ -1,6 +1,6 @@
 const param = {};
 const ShuffledID = [];
-const switchToJaData = /D-04|D-18|E-0[7-9]|E-1[0-7]/;
+const switchToJaData = /D-04|D-18|E-0[7-9]|E-1[0-3|6-7]/;
 let language = "";
 let switchToJaDataFlag = false;
 
@@ -33,6 +33,7 @@ const placeCommonParts = new Promise ((resolve, reject) => {
       method = "GET",
       url = "/common.html";
   let box = document.getElementById("common-header");
+      box2 = document.getElementsByTagName("footer")[0];
 
   xhr.responseType = "document";
   xhr.open(method, url, true);
@@ -40,7 +41,9 @@ const placeCommonParts = new Promise ((resolve, reject) => {
     if(xhr.readyState === 4 && xhr.status === 200) {
       let restxt = xhr.responseXML;
       let int = restxt.getElementsByTagName("header")[0];
+          int2 = restxt.getElementsByTagName("footer")[0];
       box.outerHTML = int.outerHTML;
+      box2.outerHTML = int2.outerHTML;
 
       const script = document.createElement('script')
       script.src = '/js/common-header.js'
@@ -495,7 +498,9 @@ const generateEventTile = (data) => {
 
 const removeMoreButton = (html) => {
   const $aside = document.getElementsByTagName("aside")[0];
+  const y = document.documentElement.scrollTop;
   $aside.lastElementChild.insertAdjacentHTML("beforebegin", html.join(""));
+  document.documentElement.scrollTop = y;
   $aside.removeChild($aside.lastElementChild);
 }
 
@@ -588,7 +593,9 @@ const morebuttonEvent = (data) => {
   const $more = document.querySelector("aside .more");
 
   $more.addEventListener("click", () => {
+    const y = document.documentElement.scrollTop;
     $more.insertAdjacentHTML("beforebegin", generateEventTile(data));
+    document.documentElement.scrollTop = y;
   });
 }
 

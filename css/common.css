@@ -46,6 +46,7 @@
   position: relative;
   font-size: 14px;
   height: 30px;
+  margin: 0;
 }
 
 #sticky-header fieldset::before {
@@ -106,9 +107,21 @@
   color: #FFF;
   font-size: 14px;
   font-weight: 500;
-  line-height: 31px;
-  height: 31px;
+  line-height: 35px;
+  height: 35px;
+  transition: .2s;
+  outline: none;
+  cursor: pointer;
 }
+
+#toggle-pin.toggle-pin-clicked,
+#toggle-live.toggle-live-clicked {
+  height: 60px;
+  background: #454E53;
+  border-radius: 0; 
+}
+
+
 
 #sticky-header fieldset.fold {
   transform: translateY(-120%);
@@ -158,6 +171,7 @@ div#pin-list {
   height: calc(100vh - 60px);
   overflow-y: auto;
   transition: transform .1s ease-out;
+  z-index: 20000;
 }
 
 div#pin-list.hidden {
@@ -168,6 +182,7 @@ div#pin-list.hidden {
   margin-top: 2rem;
   text-align: center;
   display: none;
+  font-weight: bold;
 }
 
 #pin-list .no-pins.shown {
@@ -176,7 +191,7 @@ div#pin-list.hidden {
 
 #pin-list ul {
   list-style: none;
-  padding: 1rem 0;
+  padding: 0 0 1rem;
 }
 
 #pin-list li {
@@ -261,6 +276,7 @@ div#streaming-list {
   height: calc(100vh - 60px);
   overflow-y: auto;
   transition: transform .1s ease-out;
+  z-index: 20000;
 }
 
 div#streaming-list.hidden {
@@ -348,6 +364,18 @@ div#streaming-list.hidden {
 #streaming-list .upcoming > h2 {
   font-weight: bold;
   background-color: #F9FAFA;
+}
+
+#streaming-list p {
+  padding: 2rem 1.5rem 1rem;
+  height: 3rem;
+  text-align: center;
+  font-weight: bold;
+  display: none;
+}
+
+#streaming-list p.shown {
+  display: block;
 }
 
 /*****************   bottom-navigation   ****************/
@@ -486,9 +514,108 @@ div#streaming-list.hidden {
   }
 }
 
+footer {
+  color: white;
+  background: #121F4A;
+  padding: 20px 0 10px;
+  font-size: 14px;
+}
+
+footer p {
+  margin: 0 auto;
+  text-align: center;
+}
+
+footer ul {
+  max-width: 1000px;
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+footer ul.link li {
+  display: flex;
+  padding: 0 20px 0 0;
+  align-items: center;
+}
+
+footer ul.link li:not(:last-child)::after {
+  content: "";
+  height: 14px;
+  width: 1px;
+  background: #FFF;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+footer ul.social-icon li {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #0D163B;
+  transition: .3s;
+  cursor: pointer;
+}
+
+footer ul.social-icon li:not(:last-child) {
+  margin-right: 20px;
+}
+
+footer ul.social-icon li a {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+footer ul.social-icon li img {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+footer ul.social-icon .twitter-icon:hover {
+  background: #55acee;
+}
+
+footer ul.social-icon .facebook-icon:hover {
+  background: #3B5998;
+}
+
+footer ul.social-icon .instagram-icon:hover {
+  position: relative;
+  overflow: hidden;
+  background: -webkit-linear-gradient(135deg, #427eff 0%, #f13f79 70%) no-repeat;
+  background: linear-gradient(135deg, #427eff 0%, #f13f79 70%) no-repeat;
+}
+
+footer ul.social-icon .instagram-icon:hover::before {
+  content: "";
+  width: 60px;
+  height: 60px;
+  background: -webkit-radial-gradient(#ffdb2c 10%, rgba(255, 105, 34, 0.65) 55%, rgba(255, 88, 96, 0) 70%);
+  background: radial-gradient(#ffdb2c 10%, rgba(255, 105, 34, 0.65) 55%, rgba(255, 88, 96, 0) 70%);
+  position: absolute;
+  top: 23px;
+  left: -18px;
+  z-index: 1;
+}
+
+footer ul.social-icon .instagram-icon img {
+  z-index: 2;
+}
+
+footer ul.social-icon .youtube-icon:hover {
+  background: #FF0000;
+}
 
 
-/* Footer */
+/* Footer 
 footer {
   grid-area: footer;
   display: grid;
@@ -535,8 +662,8 @@ footer #footerSiteMap > a {
 footer #footer-no1 {
   grid-area: no1;
   display: flex;
-  justify-content: center; /*左右中央揃え*/
-  align-items: center;     /*上下中央揃え*/
+  justify-content: center; /*左右中央揃え
+  align-items: center;     /*上下中央揃え
 }
 
 footer #footer-no1 img.rikoten-no1 {
@@ -552,6 +679,20 @@ footer #footerCopyright {
 footer #sns-btn {
   grid-area: sns;
   text-align: center;
+}
+
+footer ul {
+  font-size: 14px;
+  display: flex;
+}
+
+footer li {
+  margin: 20px;
+  border-right: 1px solid #FFF;
+}
+
+footer li:not(:last-child) {
+  border-right: none;
 }
 
 @media screen and (max-width: 992px) {
@@ -578,13 +719,6 @@ footer #sns-btn {
   }
 }
 
-@media screen and (max-width: 700px) {
-  div#pin-list,
-  div#streaming-list {
-    top: 55px;
-  }
-}
-
 @media screen and (max-width: 768px) {
   footer #footerSiteMap {
     margin: 0 5%;
@@ -595,3 +729,5 @@ footer #sns-btn {
     text-align: center;
   }
 }
+
+*/
