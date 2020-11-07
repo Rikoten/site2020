@@ -28,7 +28,7 @@ body {
 }
 
 .box1{
-    padding: 0.2em 0.5em;
+    padding: 1em 2em;
     margin: 2em 0;
     background: #ffffff;
     background-color: #0D163B;
@@ -40,7 +40,8 @@ body {
 }
 
 .box1 p {
-    margin: 0; 
+    margin: 0;
+    margin-top: 1em;
     padding: 0;
     color: white;
 }
@@ -137,5 +138,5 @@ body {
         padding-left: 20px;
     }
 
-    
+
 }
