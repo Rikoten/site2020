@@ -27,13 +27,37 @@ likeButton.addEventListener('click', async () => {
         credentials: 'include',
         method: 'POST'
     })
-    liked = true
     if (liked) return
+    liked = true
     likeCounter.textContent = Number.parseInt(likeCounter.textContent) + 1
 })
 
-pinButton.addEventListener('click', () => {
+function removePin(id) {
+    const preveousPinned = JSON.parse(localStorage.getItem('pin'))
+    const i = preveousPinned.findIndex(it => it == id)
+    preveousPinned.splice(i, 1)
+    localStorage.setItem('pin', JSON.stringify(preveousPinned))
+}
+
+function addPin(id) {
     const preveousPinned = new Set(JSON.parse(localStorage.getItem('pin')) || [])
-    preveousPinned.add(eventId)
+    preveousPinned.add(id)
     localStorage.setItem('pin', JSON.stringify(Array.from(preveousPinned)))
+}
+
+function isPinned(id) {
+    const preveousPinned = JSON.parse(localStorage.getItem('pin') || '[]')
+    return Boolean(preveousPinned.find(it => it == id))
+}
+
+if (isPinned(eventId)) pinButton.classList.add('pin-clicked')
+
+pinButton.addEventListener('click', () => {
+    if (!isPinned(eventId)) {
+        pinButton.classList.add('pin-clicked')
+        addPin(eventId)
+    } else {
+        pinButton.classList.remove('pin-clicked')
+        removePin(eventId)
+    }
 })
