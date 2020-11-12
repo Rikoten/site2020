@@ -118,11 +118,11 @@ const placeCommonParts = new Promise ((resolve, reject) => {
       const script = document.createElement('script')
       script.src = '/js/common-header.js'
       document.head.appendChild(script)
+      resolve();
     }
   }
 
   xhr.send();
-  resolve();
 });
 
 const eventLoad = placeCommonParts.then(() => {
@@ -200,13 +200,13 @@ const eventLoad = placeCommonParts.then(() => {
               let zoomDay1 = elem["zoomDesc"]["day1"].split(', ');
               for (let i = 0; i < elem["zoomTimestamp"]["day1"].length; i++) {
                 if (elem["zoomTimestamp"]["day1"][i][1] > nowTimestamp) {
-                  console.log(elem["eventID"]);
-                  console.log(i);
+                  //console.log(elem["eventID"]);
+                  //console.log(i);
                   let zoomDay1s = zoomDay1[i].split('~');
                   requiredTime = "7日 " + zoomDay1s[0] + "~";
                   break;
                 }
-              }  
+              }
             }
             if (elem["zoomDesc"]["day2"]) {
               let zoomDay2 = elem["zoomDesc"]["day2"].split(', ');
@@ -281,24 +281,21 @@ const eventLoad = placeCommonParts.then(() => {
   });
 });
 
-function loadLike(EventDataShuffled) {
+async function loadLike(EventDataShuffled) {
+  const likes = await fetch('/api/like').then(res => res.json())
+  const views = await fetch('/api/views').then(res => res.json())
+
   for (let i = 0; i < EventDataShuffled.length; i++) {
     let eventId = EventDataShuffled[i]["eventID"];
     let targetTile = document.getElementById(EventDataShuffled[i]["eventID"]);
     let likeCounter = targetTile.getElementsByClassName('eventThumbsUp')[0]
     let viewsCounter = targetTile.getElementsByClassName('eventView')[0]
 
-    ;(async () => {
-        const likes = await fetch('/api/like').then(res => res.json())
-        const likeCount = (likes[eventId] && likes[eventId].likes) || 0
+    const likeCount = (likes[eventId] && likes[eventId].likes) || 0
+    const viewCount = (views[eventId] && views[eventId].views) || 0
 
-        const views = await fetch('/api/views/' + eventId).then(res => res.json())
-        // console.log(views)
-
-
-        likeCounter.textContent = likeCount
-        viewsCounter.textContent = views.views
-    })()
+    likeCounter.textContent = likeCount
+    viewsCounter.textContent = viewCount
   }
 }
 

@@ -114,7 +114,7 @@ body {
   position: relative;
   height: 100vh;
   min-height: 900px;
-  background: url(../img/top-background.png) no-repeat;
+  background: center url(../img/top-background.png) no-repeat;
   background-size: cover;
   width: 100%;
   overflow: hidden;
@@ -311,7 +311,7 @@ body {
   grid-row: 2;
   grid-template-columns: 20% 60% 20%;
   display: grid;
-  grid-template-rows: 100px 80px 110px 30px auto;
+  grid-template-rows: 100px 80px 90px 30px auto;
 }
 
 /*#eventTypeTab {
@@ -482,7 +482,7 @@ body {
 #eventList .eventTile.active .border {
   display: block;
   grid-area: border;
-  border-right: 2px dashed #A3D4DC;
+  border-right: 2px dashed #FFF;
 }
 
 /*#eventList .eventTile.active::before {
@@ -716,6 +716,9 @@ body {
   text-align: center;
   line-height: 40px;
   text-decoration: none;
+  background: #FFF;
+  color: #0D163B;
+  font-weight: bold;
 }
 
 #eventList a.more {
@@ -858,7 +861,7 @@ a.detailButton:hover::before {
   grid-area: other;
   background-color: #A3D4DC;
   display: grid;
-  grid-template-rows: auto 50px auto 100px;
+  grid-template-rows: auto 50px auto 50px;
   grid-template-areas: 
   "app"
   "."
@@ -914,6 +917,7 @@ a.detailButton:hover::before {
 #other a.detailButton {
   border: 3px solid #fff;
   color: #fff;
+  margin-top: 40px;
 }
 
 #other a.detailButton:hover {
@@ -927,6 +931,7 @@ a.detailButton:hover::before {
 #other #app a.detailButton {
   border: 3px solid #243D7D;
   color: #243D7D;
+  margin-top: 0;
 }
 
 #other #app a.detailButton:hover {
@@ -947,6 +952,7 @@ a.detailButton:hover::before {
 #support > h3 {
   font-weight: 500;
   font-size: 30px;
+  margin-top: 80px;
 }
 
 /* PC全般（今後整理） */
@@ -962,7 +968,7 @@ a.detailButton:hover::before {
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1350px) {
   #event > #eventContainer {
     grid-template-columns: 10% 80% 10%;
   }
@@ -1375,6 +1381,16 @@ a.detailButton:hover::before {
   #goldBanner, #silverBanner {
     margin: 0 0 40px 0;
   }
+
+  #other h3,
+  #support h3 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  #support h3 {
+    margin: 60px 0 0 0;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -1572,6 +1588,10 @@ a.detailButton:hover::before {
   .app-band div:nth-child(1) p, .app-band div:nth-child(3) p {
       font-size: 14px;
   }
+
+  #topView > #themeText {
+    height: calc(100% - 195px - 60px);
+  }
 }
 
 @media screen and (max-width: 900px) {
@@ -1606,6 +1626,11 @@ a.detailButton:hover::before {
 
   .app-band::after {
       display: none;
+  }
+
+  #other #app {
+    padding-top: 50px;
+    padding-bottom: 0;
   }
 }
 

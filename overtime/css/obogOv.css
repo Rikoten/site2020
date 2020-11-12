@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", "メイリオ", 'Noto Sans JP', sans-serif;
+    background: linear-gradient(#1A2D63, #0D163B);
+}
+
+body > section {
+    font-size: 18px;
+    line-height: 36px;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+    width: 90vw;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+section ul {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+    column-gap: 3em;
+    row-gap: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+}
+
+section li {
+    text-align: center;
+}
+
+section p {
+    margin-top: 3em;
+}
+
+
+
+    
+header {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    pointer-events: none;
+    display: flex;
+    width: calc(100% - 40px);
+    height: 50px;
+    padding: 20px 20px;
+    z-index: 10000;
+    align-items: center;
+}
+
+header a {
+    pointer-events: initial;
+    text-decoration: none;
+}
+
+header .icon {
+    height: 50px;
+    width: calc(50px/490*662);
+}
+
+header .text {
+    height: 40px;
+    margin: 0 auto 0 20px;
+}

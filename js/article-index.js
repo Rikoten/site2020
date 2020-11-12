@@ -48,11 +48,11 @@ const placeCommonParts = new Promise ((resolve, reject) => {
       const script = document.createElement('script')
       script.src = '/js/common-header.js'
       document.head.appendChild(script)
+      resolve();
     }
   }
 
   xhr.send();
-  resolve();
 });
 
 /********** JSON読み込み **********/
@@ -165,7 +165,6 @@ placeData.then((obj) => {
 
   if(document.querySelector(".youtube-live")) liveInit();
 
-  barEvent();
   quizEvent();
   indexEvent();
   morebuttonEvent(obj);
@@ -423,6 +422,7 @@ const placeOGP = (data) => {
     <meta property = "og:url" content = "https://rikoten.com${generateURL(param.id, param.page)}" />
     <meta property = "og:title" content = "${data.eventName}" />
     <meta property = "og:description" content = "${data.pamphDesc.replace(/\n/g, "")}" />
+    <meta property="og:image" content="https://rikoten.com/img/thumbnail/【${param.id}】.jpg">
   `
 
   $head.insertAdjacentHTML("beforeend", text);
@@ -431,7 +431,7 @@ const placeOGP = (data) => {
 const placeShareLink = () => {
   const $a = document.querySelectorAll(".share a");
 
-  $a[0].href = `https://twitter.com/share?url=https://rikoten.com${generateURL(param.id)}&hashtags=rikoten2020`;
+  $a[0].href = `https://twitter.com/share?url=https://rikoten.com${generateURL(param.id)}&hashtags=Rikoten2020`;
   $a[1].href = `http://www.facebook.com/share.php?u=https://rikoten.com${generateURL(param.id)}`;
   $a[2].href = `https://social-plugins.line.me/lineit/share?url=http://rikoten.com${generateURL(param.id)}`;
 }
@@ -525,32 +525,6 @@ const liveInit = () => {
 }
 
 /********** イベントリスナを設定する関数 **********/
-
-const barEvent = () => {
-  const barButton = document.querySelectorAll("article .bar button");
-/*
-  barButton[1].addEventListener("click", () => {
-    if (storageAvailable('localStorage')) {
-      if(!localStorage.getItem("pin")) {
-        let data = null;
-        data = {`${eventID}`: "true"};
-        localStorage.setItem('pin', JSON.stringify(data));
-        barButton[1].classList.add("pin-clicked");
-      } else {
-        if(localStorage.getItem("pin")[eventID] == "true") {
-          const data = {eventID: "false"};
-          localStorage.setItem('pin', JSON.stringify(data));
-          barButton[1].classList.remove("pin-clicked");
-        } else {
-          const data = {eventID: "true"};
-          localStorage.setItem('good', JSON.stringify(data));
-          barButton[1].classList.add("pin-clicked");
-        }
-      }
-    }
-  });
-*/
-}
 
 const quizEvent = () => {
   const $options = document.querySelectorAll(".quiz li");
